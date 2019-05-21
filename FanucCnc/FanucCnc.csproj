@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{72D33C36-6DBB-42E2-8198-1C5F191CD9F7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FanucCnc</RootNamespace>
+    <AssemblyName>FanucCnc</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=0ffbc31322e9d308, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CncScreenDisplay.cs" />
+    <Compile Include="Enum\PmcAdrTypeEnum.cs" />
+    <Compile Include="Enum\PmcDataTypeEnum.cs" />
+    <Compile Include="Fanuc.cs" />
+    <Compile Include="fwlib32.cs" />
+    <Compile Include="Model\BaseInfo.cs" />
+    <Compile Include="Model\CncAlarm.cs" />
+    <Compile Include="Model\CncStaticInfo.cs" />
+    <Compile Include="Model\LimitBom.cs" />
+    <Compile Include="Model\LimitBomItem.cs" />
+    <Compile Include="Model\MacroBom.cs" />
+    <Compile Include="Model\MacroBomItem.cs" />
+    <Compile Include="Model\ParaAutoAirSourceInfo.cs" />
+    <Compile Include="Model\ParaDieChangeInfo.cs" />
+    <Compile Include="Model\ParaDieClampInfo.cs" />
+    <Compile Include="Model\ParaDieClosingInfo.cs" />
+    <Compile Include="Model\ParaDiePartingProcInfo.cs" />
+    <Compile Include="Model\ParaDieClosingProcInfo.cs" />
+    <Compile Include="Model\ParaDiePartingInfo.cs" />
+    <Compile Include="Model\ParaWorkCountInfo.cs" />
+    <Compile Include="Model\PmcBom.cs" />
+    <Compile Include="Model\PmcBomItem.cs" />
+    <Compile Include="Model\ParaPressureMaintInfo.cs" />
+    <Compile Include="Model\ProcPointInfo.cs" />
+    <Compile Include="Model\SParaAnalogInfo.cs" />
+    <Compile Include="Model\SParaEncodeInfo.cs" />
+    <Compile Include="Model\SParaLubricateInfo.cs" />
+    <Compile Include="Model\SParaMachineInfo.cs" />
+    <Compile Include="Model\StateMonitorInfo.cs" />
+    <Compile Include="Model\StateMonitorLineChartData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

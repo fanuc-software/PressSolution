@@ -1,0 +1,51 @@
+﻿<Window x:Class="PressHmi.View.AutoAirSourceArrInputDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PressHmi.View"
+        AllowsTransparency="True"
+        mc:Ignorable="d" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent"
+        Title="AutoAirSourceArrInputDialog" Height="200" Width="360">
+    <Window.Resources>
+        <Style x:Key="FontAwesome">
+            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
+        </Style>
+    </Window.Resources>
+    <Border CornerRadius="3" Background="{StaticResource AutoAirSourceArrInputDialogBackground}" Grid.Row="1" Margin="3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="160"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock  Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"
+                    Foreground="{DynamicResource DataInputDialogTitleForeground}"
+                    FontSize="16" Text="{Binding DataInputTitle}"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button Style="{StaticResource btn-primary}" Content="确认" Margin="0,0,10,0" Command="{Binding _OkCmd}"/>
+                    <Button Style="{StaticResource btn-warning}" Content="取消" Margin="0,0,10,0" Command="{Binding _CancelCmd}"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ToggleButton Grid.Column="0" Margin="30" Content="上行" Style="{StaticResource AutoAirSourceArrInputDialogButton}"
+                              IsChecked="{Binding UpChecked}" Command="{Binding UpCmd}"/>
+                <ToggleButton Grid.Column="1" Margin="30" Content="下行" Style="{StaticResource AutoAirSourceArrInputDialogButton}"
+                              IsChecked="{Binding DownChecked}" Command="{Binding DownCmd}"/>
+            </Grid>
+
+            <TextBlock Grid.Row="2" Foreground="Red" Text="{Binding DataInputMessage}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,5,0"/>
+        </Grid>
+    </Border>
+
+</Window>

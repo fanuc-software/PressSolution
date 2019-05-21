@@ -1,0 +1,501 @@
+﻿<Page x:Class="PressHmi.View.ParaSubDieClampPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:conv="clr-namespace:PressHmi.View.Converters" 
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+      xmlns:local="clr-namespace:PressHmi.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="608" d:DesignWidth="940"
+      Title="ParaSubDieClampPage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding UnloadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Page.Resources>
+        <conv:ClampMoveStatusConverter x:Key="_cmsc"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Grid Grid.Row="0"  Margin="2,2,1,2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="基本信息"/>
+            </Border>
+            <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource HmiBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="夹紧检测一:" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30"
+                               Text="{Binding ParaDieClampInfo.ClampStatus1}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="夹紧检测二:" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30"
+                               Text="{Binding ParaDieClampInfo.ClampStatus2}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="放松允许位置:" />
+                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaDieClampInfo.ClampRelaxPosition}" Command="{Binding ClampRelaxPositionSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="放松到位信息" />
+                    <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30"
+                               Text="{Binding ParaDieClampInfo.ClampRelaxInPosition}"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="1"  Margin="1,2,1,2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="前夹模器选择"/>
+            </Border>
+            <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource HmiBorder}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="夹模器" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="使用选择" />
+                    <TextBlock Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="移出检测" />
+                    <TextBlock Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="移入检测" />
+                    <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前1" />
+                    <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前2" />
+                    <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前3" />
+                    <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前4" />
+                    <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前5" />
+                    <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前6" />
+                    <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前7" />
+                    <TextBlock Grid.Column="0" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前8" />
+                    <TextBlock Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前9" />
+                    <TextBlock Grid.Column="0" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前10" />
+                    <TextBlock Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前11" />
+                    <TextBlock Grid.Column="0" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前12" />
+                    <TextBlock Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前13" />
+                    <CheckBox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_1_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_2_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_3_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_4_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_5_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_6_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_7_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_8_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_9_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_10_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_11_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_12_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_13_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_1_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_2_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_3_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_4_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_5_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_6_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_7_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_8_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_9_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_10_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_11_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_12_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_13_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_1_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_1_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_2_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_2_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_3_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_3_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_4_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_4_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_5_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_5_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_6_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_6_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_7_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_7_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_8_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_8_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_9_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_9_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_10_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_10_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_11_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_11_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_12_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_12_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Front_13_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_13_Ebable}"/>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="2"  Margin="1,2,1,2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="后夹模器选择"/>
+            </Border>
+            <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource HmiBorder}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="夹模器" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="使用选择" />
+                    <TextBlock Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="移出检测" />
+                    <TextBlock Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="移入检测" />
+                    <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前1" />
+                    <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前2" />
+                    <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前3" />
+                    <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前4" />
+                    <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前5" />
+                    <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前6" />
+                    <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前7" />
+                    <TextBlock Grid.Column="0" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前8" />
+                    <TextBlock Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前9" />
+                    <TextBlock Grid.Column="0" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前10" />
+                    <TextBlock Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前11" />
+                    <TextBlock Grid.Column="0" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前12" />
+                    <TextBlock Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="前13" />
+                    <CheckBox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_1_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_2_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_3_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_4_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_5_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_6_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_7_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_8_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_9_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_10_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_11_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_12_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="2" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_13_MoveInStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_1_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_2_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_3_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_4_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_5_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_6_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_7_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_8_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_9_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_10_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_11_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_12_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <CheckBox Grid.Column="3" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                              Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
+                               FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_13_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_1_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_1_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_2_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_2_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_3_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_3_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_4_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_4_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_5_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_5_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_6_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_6_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_7_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_7_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_8_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_8_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_9_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_9_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_10_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_10_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_11_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_11_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_12_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_12_Ebable}"/>
+                    <ToggleButton Grid.Column="1" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
+                               Content="使用" Command="{Binding Clamp_Back_13_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_13_Ebable}"/>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</Page>

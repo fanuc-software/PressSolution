@@ -1,0 +1,62 @@
+﻿<Page x:Class="PressHmi.View.ParaMainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PressHmi.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="684" d:DesignWidth="944"
+      Title="ParaMainPage">
+    
+    <Border CornerRadius="3" Background="{DynamicResource ContentPanelBackground}" Margin="2,3,2,3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Frame   Background="Transparent" NavigationUIVisibility="Hidden" Content="{Binding _ParaPanel}"></Frame>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <ToggleButton Grid.Column="0" Style="{StaticResource ParaMenuNormalButton}"
+                      Content="{Binding ParaMenu1}" IsChecked="{Binding ParaMenu1Cheched}" 
+                      Visibility="{Binding ParaMenu1.Visibility}" Command="{Binding ParaMenu1.Cmd}"/>
+                <ToggleButton Grid.Column="1" Style="{StaticResource ParaMenuNormalButton}" 
+                      Content="{Binding ParaMenu2}" IsChecked="{Binding ParaMenu2Cheched}" 
+                      Visibility="{Binding ParaMenu2.Visibility}" Command="{Binding ParaMenu2.Cmd}"/>
+                <ToggleButton Grid.Column="2" Style="{StaticResource ParaMenuNormalButton}" 
+                      Content="{Binding ParaMenu3}" IsChecked="{Binding ParaMenu3Cheched}" 
+                      Visibility="{Binding ParaMenu3.Visibility}" Command="{Binding ParaMenu3.Cmd}"/>
+                <ToggleButton Grid.Column="3" Style="{StaticResource ParaMenuNormalButton}" 
+                      Content="{Binding ParaMenu4}" IsChecked="{Binding ParaMenu4Cheched}" 
+                      Visibility="{Binding ParaMenu4.Visibility}" Command="{Binding ParaMenu4.Cmd}"/>
+                <ToggleButton Grid.Column="4" Style="{StaticResource ParaMenuNormalButton}" 
+                      Content="{Binding ParaMenu5}" IsChecked="{Binding ParaMenu5Cheched}" 
+                      Visibility="{Binding ParaMenu5.Visibility}" Command="{Binding ParaMenu5.Cmd}"/>
+                <ToggleButton Grid.Column="5" Style="{StaticResource ParaMenuNormalButton}" 
+                      Content="{Binding ParaMenu6}" IsChecked="{Binding ParaMenu6Cheched}" 
+                      Visibility="{Binding ParaMenu6.Visibility}" Command="{Binding ParaMenu6.Cmd}"/>
+                <ToggleButton Grid.Column="6" Style="{StaticResource ParaMenuNormalButton}" 
+                      Content="{Binding ParaMenu7}" IsChecked="{Binding ParaMenu7Cheched}" 
+                      Visibility="{Binding ParaMenu7.Visibility}" Command="{Binding ParaMenu7.Cmd}"/>
+                <ToggleButton Grid.Column="7" Style="{StaticResource ParaMenuNormalButton}" 
+                      Content="{Binding ParaMenu8}" IsChecked="{Binding ParaMenu8Cheched}" 
+                      Visibility="{Binding ParaMenu8.Visibility}" Command="{Binding ParaMenu8.Cmd}"/>
+
+            </Grid>
+
+        </Grid>
+    </Border>
+
+    
+</Page>

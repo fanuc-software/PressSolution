@@ -1,0 +1,103 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:PressHmi.View.Color">
+    
+    <Color x:Key="HmiBackgroundColor">#FF383737</Color>
+    <SolidColorBrush x:Key="HmiBackground" Color="{DynamicResource HmiBackgroundColor}"/>
+    <Color x:Key="HmiBorderColor">Gray</Color>
+    <SolidColorBrush x:Key="HmiBorder" Color="{DynamicResource HmiBorderColor}"/>
+    <Color x:Key="TitleBackgroundColor">#FF383737</Color>
+    <SolidColorBrush x:Key="TitleBackground" Color="{DynamicResource TitleBackgroundColor}"/>
+    <Color x:Key="ContentPanelBackgroundColor">LightGray</Color>
+    <SolidColorBrush x:Key="ContentPanelBackground" Color="{DynamicResource ContentPanelBackgroundColor}"/>
+    <Color x:Key="ContentPanelPrimerBackgroundColor">#ff000000</Color>
+    <SolidColorBrush x:Key="ContentPanelPrimerBackground" Color="{DynamicResource ContentPanelPrimerBackgroundColor}"/>
+    <Color x:Key="ContentPanelPrimerForegroundColor">#ffffffff</Color>
+    <SolidColorBrush x:Key="ContentPanelPrimerForeground" Color="{DynamicResource ContentPanelPrimerForegroundColor}"/>
+    <Color x:Key="ContentPanelNormalBackgroundColor">Gray</Color>
+    <SolidColorBrush x:Key="ContentPanelNormalBackground" Color="{DynamicResource ContentPanelNormalBackgroundColor}"/>
+
+    <Color x:Key="MainMenuBorderColor">Gray</Color>
+    <SolidColorBrush x:Key="MainMenuBorder" Color="{DynamicResource MainMenuBorderColor}"/>
+    <Color x:Key="MainMenuForegroundColor">#ffffffff</Color>
+    <SolidColorBrush x:Key="MainMenuForeground" Color="{DynamicResource MainMenuForegroundColor}"/>
+    <Color x:Key="MainMenuBackgroundColor">Transparent</Color>
+    <SolidColorBrush x:Key="MainMenuBackground" Color="{DynamicResource MainMenuBackgroundColor}"/>
+    <Color x:Key="MainMenuCheckedForegroundColor">#ff000000</Color>
+    <SolidColorBrush x:Key="MainMenuCheckedForeground" Color="{DynamicResource MainMenuCheckedForegroundColor}"/>
+    <Color x:Key="MainMenuCheckedBackgroundColor">Gray</Color>
+    <SolidColorBrush x:Key="MainMenuCheckedBackground" Color="{DynamicResource MainMenuCheckedBackgroundColor}"/>
+
+    <Color x:Key="ParaMenuBorderColor">LightGray</Color>
+    <SolidColorBrush x:Key="ParaMenuBorder" Color="{DynamicResource ParaMenuBorderColor}"/>
+    <Color x:Key="ParaMenuForegroundColor">#ffffffff</Color>
+    <SolidColorBrush x:Key="ParaMenuForeground" Color="{DynamicResource ParaMenuForegroundColor}"/>
+    <Color x:Key="ParaMenuBackgroundColor">#FF04AEA6</Color>
+    <SolidColorBrush x:Key="ParaMenuBackground" Color="{DynamicResource ParaMenuBackgroundColor}"/>
+    <Color x:Key="ParaMenuCheckedForegroundColor">#ff000000</Color>
+    <SolidColorBrush x:Key="ParaMenuCheckedForeground" Color="{DynamicResource ParaMenuCheckedForegroundColor}"/>
+    <Color x:Key="ParaMenuCheckedBackgroundColor">LightGray</Color>
+    <SolidColorBrush x:Key="ParaMenuCheckedBackground" Color="{DynamicResource ParaMenuCheckedBackgroundColor}"/>
+
+    <Color x:Key="ParaClampDefalutBorderColor">Gray</Color>
+    <SolidColorBrush x:Key="ParaClampDefalutBorder" Color="{DynamicResource ParaClampDefalutBorderColor}"/>
+    <Color x:Key="ParaClampCheckedBorderColor">#428bca</Color>
+    <SolidColorBrush x:Key="ParaClampCheckedBorder" Color="{DynamicResource ParaClampCheckedBorderColor}"/>
+    <Color x:Key="ParaClampDefalutForegroundColor">Gray</Color>
+    <SolidColorBrush x:Key="ParaClampDefalutForeground" Color="{DynamicResource ParaClampDefalutForegroundColor}"/>
+    <Color x:Key="ParaClampCheckedForegroundColor">White</Color>
+    <SolidColorBrush x:Key="ParaClampCheckedForeground" Color="{DynamicResource ParaClampCheckedForegroundColor}"/>
+    <Color x:Key="ParaClampDefalutBackgroundColor">Transparent</Color>
+    <SolidColorBrush x:Key="ParaClampDefalutBackground" Color="{DynamicResource ParaClampDefalutBackgroundColor}"/>
+    <Color x:Key="ParaClampCheckedBackgroundColor">#428bca</Color>
+    <SolidColorBrush x:Key="ParaClampCheckedBackground" Color="{DynamicResource ParaClampCheckedBackgroundColor}"/>
+
+    <Color x:Key="ParaInputBorderColor">LightGray</Color>
+    <SolidColorBrush x:Key="ParaInputBorder" Color="{DynamicResource ParaInputBorderColor}"/>
+    <Color x:Key="ParaInputForegroundColor">#ff000000</Color>
+    <SolidColorBrush x:Key="ParaInputForeground" Color="{DynamicResource ParaInputForegroundColor}"/>
+    <Color x:Key="ParaInputBackgroundColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="ParaInputBackground" Color="{DynamicResource ParaInputBackgroundColor}"/>
+    <Color x:Key="ParaInputCheckedBorderColor">#428bca</Color>
+    <SolidColorBrush x:Key="ParaInputCheckedBorder" Color="{DynamicResource ParaInputCheckedBorderColor}"/>
+    <Color x:Key="ParaInputCheckedForegroundColor">#ff000000</Color>
+    <SolidColorBrush x:Key="ParaInputCheckedForeground" Color="{DynamicResource ParaInputCheckedForegroundColor}"/>
+    <Color x:Key="ParaInputCheckedBackgroundColor">#FFFFFFFF</Color>
+    <SolidColorBrush x:Key="ParaInputCheckedBackground" Color="{DynamicResource ParaInputCheckedBackgroundColor}"/>
+    <Color x:Key="ParaListInputBackgroundColor">lightblue</Color>
+    <SolidColorBrush x:Key="ParaListInputBackground" Color="{DynamicResource ParaListInputBackgroundColor}"/>
+    <Color x:Key="ParaListInputUnEnabledBackgroundColor">#ffffffff</Color>
+    <SolidColorBrush x:Key="ParaListInputUnEnabledBackground" Color="{DynamicResource ParaListInputUnEnabledBackgroundColor}"/>
+
+
+
+    <Color x:Key="TextNormalForegroundColor">#ffffffff</Color>
+    <SolidColorBrush x:Key="TextNormalForeground" Color="{DynamicResource TextNormalForegroundColor}"/>
+    <Color x:Key="TextWarningForegroundColor">yellow</Color>
+    <SolidColorBrush x:Key="TextWarningForeground" Color="{DynamicResource TextWarningForegroundColor}"/>
+    <Color x:Key="TextPrimerForegroundColor">#ffBBEEC3</Color>
+    <SolidColorBrush x:Key="TextPrimerForeground" Color="{DynamicResource TextPrimerForegroundColor}"/>
+
+    <Color x:Key="DataInputDialogBackgroundColor">#FF81088D</Color>
+    <SolidColorBrush x:Key="DataInputDialogBackground" Color="{DynamicResource DataInputDialogBackgroundColor}"/>
+    <Color x:Key="DataInputDialogTitleForegroundColor">#FFffffff</Color>
+    <SolidColorBrush x:Key="DataInputDialogTitleForeground" Color="{DynamicResource DataInputDialogTitleForegroundColor}"/>
+    <Color x:Key="DataInputButtonBackgroundColor">#ffCC9966</Color>
+    <SolidColorBrush x:Key="DataInputButtonBackground" Color="{DynamicResource DataInputButtonBackgroundColor}"/>
+    <Color x:Key="DataInputButtonForegroundColor">#ffffffff</Color>
+    <SolidColorBrush x:Key="DataInputButtonForeground" Color="{DynamicResource DataInputButtonForegroundColor}"/>
+    <Color x:Key="DataInputButtonForegroundColor_OT">#ffffff00</Color>
+    <SolidColorBrush x:Key="DataInputButtonForeground_OT" Color="{DynamicResource DataInputButtonForegroundColor_OT}"/>
+    <Color x:Key="DataInputButtonForegroundColor_OK">green</Color>
+    <SolidColorBrush x:Key="DataInputButtonForeground_OK" Color="{DynamicResource DataInputButtonForegroundColor_OK}"/>
+    <Color x:Key="DataInputButtonForegroundColor_CAN">red</Color>
+    <SolidColorBrush x:Key="DataInputButtonForeground_CAN" Color="{DynamicResource DataInputButtonForegroundColor_CAN}"/>
+    <Color x:Key="DataInputButtonClickedBackgroundColor">#ffffffff</Color>
+    <SolidColorBrush x:Key="DataInputButtonClickedBackground" Color="{DynamicResource DataInputButtonClickedBackgroundColor}"/>
+    <Color x:Key="DataInputButtonClickedForegroundColor">#ff000000</Color>
+    <SolidColorBrush x:Key="DataInputButtonClickedForeground" Color="{DynamicResource DataInputButtonClickedForegroundColor}"/>
+
+    <Color x:Key="AutoAirSourceArrInputDialogBackgroundColor">#FF81088D</Color>
+    <SolidColorBrush x:Key="AutoAirSourceArrInputDialogBackground" Color="{DynamicResource AutoAirSourceArrInputDialogBackgroundColor}"/>
+
+</ResourceDictionary>

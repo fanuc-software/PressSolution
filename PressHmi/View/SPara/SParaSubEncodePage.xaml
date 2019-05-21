@@ -1,0 +1,205 @@
+﻿<Page x:Class="PressHmi.View.SParaSubEncodePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+      xmlns:local="clr-namespace:PressHmi.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="608" d:DesignWidth="940"
+      Title="SParaSubEncodePage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding UnloadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0" Margin="2,2,2,2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="装模高度编码器设置"/>
+            </Border>
+            <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource HmiBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="每圈分辨率:" />
+                    <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_RESOLUTION}" Command="{Binding IM_RESOLUTIONSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="每圈移动量:" />
+                    <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_MOVEPITCH}" Command="{Binding IM_MOVEPITCHSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="上升到达范围:" />
+                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_UPPOSITION}" Command="{Binding IM_UPPOSITIONSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="下升到达范围:" />
+                    <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_DOWNPOSITION}" Command="{Binding IM_DOWNPOSITIONSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="速度切换点:" />
+                    <Button Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_SPEEDCHANGEPOSITION}" Command="{Binding IM_SPEEDCHANGEPOSITIONSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="模高上限:" />
+                    <Button Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_LIMITUP}" Command="{Binding IM_LIMITUPSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="模高下限:" />
+                    <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_LIMITDOWN}" Command="{Binding IM_LIMITDOWNSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="偏置值:" />
+                    <Button Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_ERROR}" Command="{Binding IM_ERRORSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="编码器方向:" />
+                    <Button Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.IM_DIRECTION}" Command="{Binding IM_DIRECTIONSetCmd}"/>
+
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" Margin="2,2,2,2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="气垫高度编码器设置"/>
+            </Border>
+            <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource HmiBorder}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="每圈分辨率:" />
+                    <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.AC_RESOLUTION}" Command="{Binding AC_RESOLUTIONSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="每圈移动量:" />
+                    <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.AC_MOVEPITCH}" Command="{Binding AC_MOVEPITCHSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="上升到达范围:" />
+                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.AC_UPPOSITION}" Command="{Binding AC_UPPOSITIONSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="下升到达范围:" />
+                    <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.AC_DOWNPOSITION}" Command="{Binding AC_DOWNPOSITIONSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="模高上限:" />
+                    <Button Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.AC_LIMITUP}" Command="{Binding AC_LIMITUPSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="模高下限:" />
+                    <Button Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.AC_LIMITDOWN}" Command="{Binding AC_LIMITDOWNSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="偏置值:" />
+                    <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.AC_ERROR}" Command="{Binding AC_ERRORSetCmd}"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="编码器方向:" />
+                    <Button Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaEncodeInfo.AC_DIRECTION}" Command="{Binding AC_DIRECTIONSetCmd}"/>
+
+                </Grid>
+            </Border>
+        </Grid>
+
+    </Grid>
+</Page>

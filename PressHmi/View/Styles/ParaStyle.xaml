@@ -1,0 +1,324 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="MyParaButtonBase" BasedOn="{x:Null}" TargetType="{x:Type ButtonBase}">
+        <Setter Property="Focusable" Value="False"></Setter>
+    </Style>
+
+
+    <Style x:Key="ParaMenuNormalButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="4 2">
+                        <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ParaMenuNormalButton" BasedOn="{StaticResource MyParaButtonBase}" TargetType="{x:Type ToggleButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontFamily" Value="YouYuan"/>
+        <Setter Property="FontSize" Value="{DynamicResource MenuButtonFontSize}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ParaMenuNormalButtonFocusVisual}" />
+        <Setter Property="Background" Value="{DynamicResource ParaMenuBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="border" CornerRadius="0,0,5,5" BorderThickness="1,0,1,2" BorderBrush="{DynamicResource ParaMenuBorder}"
+						SnapsToDevicePixels="False" Background="{DynamicResource ParaMenuBackground}">
+                        <Grid>
+                            <TextBlock x:Name="text2" FontSize="{DynamicResource TextPrimerSize}" Margin="5"  FontFamily="Microsoft YaHei UI Light"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+										Text="{Binding Content.Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+										Foreground="{DynamicResource ParaMenuForeground}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ParaMenuCheckedBackground}" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource ParaMenuCheckedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource MenuPressedBackground}" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MenuPressedForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ParaInputNormalButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="4 2">
+                        <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ParaInputNormalButton" BasedOn="{StaticResource MyParaButtonBase}"  TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontFamily" Value="YouYuan"/>
+        <Setter Property="FontSize" Value="{DynamicResource MenuButtonFontSize}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ParaInputNormalButtonFocusVisual}" />
+        <Setter Property="Background" Value="{DynamicResource ParaInputBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" CornerRadius="3" BorderThickness="0" BorderBrush="{DynamicResource ParaInputCheckedBorder}"
+						SnapsToDevicePixels="False" Background="{DynamicResource ParaInputBackground}">
+                        <Grid>
+                            <TextBlock x:Name="text2" FontSize="16" Margin="5"  FontFamily="Microsoft YaHei UI Light"
+                                        HorizontalAlignment="Left" VerticalAlignment="Center"
+										Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+										Foreground="{DynamicResource ParaInputForeground}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="BorderThickness" Value="1" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MenuPressedForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ParaInputInBoxButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="4 2">
+                        <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ParaInputInBoxButton" BasedOn="{StaticResource MyParaButtonBase}"  TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontFamily" Value="YouYuan"/>
+        <Setter Property="FontSize" Value="{DynamicResource MenuButtonFontSize}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ParaInputInBoxButtonFocusVisual}" />
+        <Setter Property="Background" Value="{DynamicResource ParaInputBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" CornerRadius="0" BorderThickness="0" BorderBrush="{DynamicResource ParaInputCheckedBorder}"
+						SnapsToDevicePixels="False" Background="{DynamicResource ParaInputBackground}">
+                        <Grid>
+                            <TextBlock x:Name="text2" FontSize="16" Margin="5"  FontFamily="Microsoft YaHei UI Light"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+										Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+										Foreground="{DynamicResource ParaInputForeground}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="BorderThickness" Value="1" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MenuPressedForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ParaListInputInBoxButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="4 2">
+                        <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ParaListInputInBoxButton" BasedOn="{StaticResource MyParaButtonBase}"  TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontFamily" Value="YouYuan"/>
+        <Setter Property="FontSize" Value="{DynamicResource MenuButtonFontSize}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ParaListInputInBoxButtonFocusVisual}" />
+        <Setter Property="Background" Value="{DynamicResource ParaInputBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" CornerRadius="0" BorderThickness="0" BorderBrush="{DynamicResource ParaInputCheckedBorder}"
+						SnapsToDevicePixels="False" Background="{DynamicResource ParaListInputBackground}">
+                        <Grid>
+                            <TextBlock x:Name="text2" FontSize="16" Margin="5"  FontFamily="Microsoft YaHei UI Light"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+										Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+										Foreground="{DynamicResource ParaInputForeground}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="BorderThickness" Value="1" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MenuPressedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ParaListInputUnEnabledBackground}" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MenuPressedForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AutoAirSourceArrInputDialogButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="4 2">
+                        <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="AutoAirSourceArrInputDialogButton" BasedOn="{StaticResource MyParaButtonBase}" TargetType="{x:Type ToggleButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontFamily" Value="YouYuan"/>
+        <Setter Property="FontSize" Value="{DynamicResource MenuButtonFontSize}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource AutoAirSourceArrInputDialogButtonFocusVisual}" />
+        <Setter Property="Background" Value="{DynamicResource ParaMenuBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="border" CornerRadius="0" BorderThickness="1,1,1,1" BorderBrush="{DynamicResource ParaMenuBorder}"
+						SnapsToDevicePixels="False" Background="Transparent">
+                        <Grid>
+                            <TextBlock x:Name="text2" FontSize="12" Margin="5"  FontFamily="Microsoft YaHei UI Light"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+										Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+										Foreground="{DynamicResource ParaMenuForeground}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ParaMenuCheckedBackground}" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource ParaMenuCheckedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource MenuPressedBackground}" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MenuPressedForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--CheckBox-->
+    <Style x:Key="MyCheckBoxBaseStyle" BasedOn="{StaticResource FormControlBaseStyle}" TargetType="{x:Type CheckBox}">
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid SnapsToDevicePixels="true">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0" Width="20" Height="20" CornerRadius="7" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Ellipse x:Name="checkedPath" Width="8" Height="8" Fill="{TemplateBinding BorderBrush}" Visibility="Collapsed"/>
+                                <!--<Path x:Name="checkedPath" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="2" Visibility="Collapsed" Data="M1,5 L4,8 9,2"/>-->
+                                <Rectangle x:Name="nullRec" Width="8" Height="8" RadiusX="2" RadiusY="2" Fill="{TemplateBinding BorderBrush}" Visibility="Collapsed"/>
+                            </Grid>
+                        </Border>
+                        <ContentPresenter Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter TargetName="checkedPath" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="{x:Null}">
+                            <Setter TargetName="nullRec" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="HasContent" Value="true">
+                            <Setter Property="Padding" Value="4,0,0,0"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style BasedOn="{StaticResource MyCheckBoxBaseStyle}" TargetType="{x:Type CheckBox}"/>
+    <Style x:Key="checkbox my-has-success" BasedOn="{StaticResource MyCheckBoxBaseStyle}" TargetType="{x:Type CheckBox}">
+        <Setter Property="BorderBrush" Value="{DynamicResource Foreground-Success}"/>
+        <Setter Property="Foreground" Value="{DynamicResource Foreground-Success}"/>
+    </Style>
+
+    <Style x:Key="ParaClampButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="4 2">
+                        <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ParaClampNormalButton" BasedOn="{StaticResource MyParaButtonBase}" TargetType="{x:Type ToggleButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontFamily" Value="YouYuan"/>
+        <Setter Property="FontSize" Value="{DynamicResource MenuButtonFontSize}"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Background" Value="{DynamicResource ParaClampDefalutBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="border" CornerRadius="0,0,0,0" BorderThickness="1" BorderBrush="{DynamicResource ParaClampDefalutBorder}"
+						SnapsToDevicePixels="False" Background="{DynamicResource ParaClampDefalutBackground}">
+                        <Grid>
+                            <TextBlock x:Name="text2" FontSize="{DynamicResource TextSmallSize}" Margin="0"  FontFamily="Microsoft YaHei UI Light"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+										Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+										Foreground="{DynamicResource ParaClampDefalutForeground}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource ParaClampCheckedBackground}" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource ParaClampCheckedBorder}" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource ParaClampCheckedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource MenuPressedBackground}" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MenuPressedForeground}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

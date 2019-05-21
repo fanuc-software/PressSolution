@@ -1,0 +1,294 @@
+﻿<Page x:Class="PressHmi.View.StateMonitorPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PressHmi.View"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+      xmlns:conv="clr-namespace:PressHmi.View.Converters" 
+      xmlns:SciChart="http://schemas.abtsoftware.co.uk/scichart"
+      mc:Ignorable="d"
+      d:DesignHeight="684" d:DesignWidth="944"
+      Title="StateMonitorPage">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Unloaded">
+            <i:InvokeCommandAction Command="{Binding UnloadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Page.Resources>
+        <conv:BoolConverter x:Key="_bc"/>
+    </Page.Resources>
+
+    <Border CornerRadius="3" Background="{DynamicResource ContentPanelBackground}" Margin="2,3,2,3">
+        <Grid Margin="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="187"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="187*"/>
+                    <ColumnDefinition Width="187*"/>
+                    <ColumnDefinition Width="187*"/>
+                    <ColumnDefinition Width="188*"/>
+                    <ColumnDefinition Width="187*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="下行延时(s)"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="{Binding StateMonitorInfo.DownDelayTime}"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="下行时间(s)"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="{Binding StateMonitorInfo.DownTime}"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="保压倒计时(s)"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="{Binding StateMonitorInfo.SavePressureCount}"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="上行延时(s)"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="{Binding StateMonitorInfo.UpDelayTime}"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Column="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="上行时间(s)"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="{Binding StateMonitorInfo.UpTime}"/>
+                    </Border>
+                </Grid>
+
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="72"/>
+                    <RowDefinition Height="72"/>
+                    <RowDefinition Height="72"/>
+                    <RowDefinition Height="72"/>
+
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource btn-primary}" Height="40" Width="180" Grid.Row="1" Content="开始绘制" IsEnabled="{Binding StateMonitorInfo.LineChartFlag,Converter={StaticResource _bc}}" Command="{Binding StartSciChartCmd}"/>
+                    <Button Style="{StaticResource btn-warning}" Height="40" Width="180" Grid.Row="2" Content="停止绘制"  Command="{Binding StopSciChartCmd}"/>
+                </Grid>
+
+
+                <Grid Grid.Row="1" Margin="0,0,0,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelPrimerBackground}" Background="Transparent">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="black" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="油缸模式"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelPrimerBackground}" Background="Gray">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="??"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="0,0,0,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelPrimerBackground}" Background="Transparent">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="black" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="送料机械手"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelPrimerBackground}" Background="#FF08DE08">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="??"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="3" Margin="0,0,0,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelPrimerBackground}" Background="Transparent">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="black" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="工作步骤"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelPrimerBackground}" Background="yellow">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="??"/>
+                    </Border>
+                </Grid>
+
+                <Grid Grid.Row="4" Margin="0,0,0,2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelPrimerBackground}" Background="Transparent">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="black" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="工作节拍"/>
+                    </Border>
+                    <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelPrimerBackground}" Background="#FF08DE08">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="??"/>
+                    </Border>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="0"/>
+                </Grid.RowDefinitions>
+                <SciChart:SciChartSurface Name="Plotter" SciChart:ThemeManager.Theme="ExpressionLight" Background="Transparent">
+
+                    <SciChart:SciChartSurface.RenderableSeries>
+                        <SciChart:FastLineRenderableSeries DataSeries="{Binding PosSeries}" SeriesColor="#c23531" StrokeThickness="1" YAxisId="PS1_POS"/>
+                        <SciChart:FastLineRenderableSeries DataSeries="{Binding SpeedSeries}" SeriesColor="#2f4554" StrokeThickness="1" YAxisId="PS1_SPEED"/>
+                        <SciChart:FastLineRenderableSeries DataSeries="{Binding TemSeries}" SeriesColor="#61a0a8" StrokeThickness="1" YAxisId="PS1_TEM"/>
+                        <SciChart:FastLineRenderableSeries DataSeries="{Binding PressSeries}" SeriesColor="#d48265" StrokeThickness="1" YAxisId="PS1_PRESS"/>
+                    </SciChart:SciChartSurface.RenderableSeries>
+
+                    <!-- Create an X Axis -->
+                    <SciChart:SciChartSurface.XAxis>
+                        <SciChart:NumericAxis AutoRange="Always" BorderThickness="0,0,1,0"  Visibility="Visible" TextFormatting="0">
+                            <SciChart:NumericAxis.GrowBy>
+                                <SciChart:DoubleRange Min="0.1" Max="0.1"/>
+                            </SciChart:NumericAxis.GrowBy>
+                        </SciChart:NumericAxis>
+                    </SciChart:SciChartSurface.XAxis>
+
+                    <!-- Create an Y Axes -->
+                    <SciChart:SciChartSurface.YAxes>
+                        <SciChart:NumericAxis Id="PS1_POS" AxisTitle="位移(mm)"  AutoRange="Always" AxisAlignment="Left" 
+                                              BorderBrush="#c23531" BorderThickness="0,0,1,0" 
+                                              DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
+                                              TickTextBrush="#c23531">
+                            <SciChart:NumericAxis.GrowBy>
+                                <SciChart:DoubleRange Min="0.1" Max="0.1"/>
+                            </SciChart:NumericAxis.GrowBy>
+                        </SciChart:NumericAxis>
+
+                        <SciChart:NumericAxis Id="PS1_SPEED" AxisTitle="速度(mm/s)" AutoRange="Always" AxisAlignment="Left" 
+                                              BorderBrush="#2f4554" BorderThickness="0,0,1,0" 
+                                              DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
+                                              TickTextBrush="#2f4554">
+                            <SciChart:NumericAxis.GrowBy>
+                                <SciChart:DoubleRange Min="0.1" Max="0.1"/>
+                            </SciChart:NumericAxis.GrowBy>
+                        </SciChart:NumericAxis>
+
+                        <SciChart:NumericAxis Id="PS1_TEM" AxisTitle="温度(℃)" AutoRange="Always" AxisAlignment="Right" 
+                                              BorderBrush="#61a0a8" BorderThickness="0,0,1,0" 
+                                              DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
+                                              TickTextBrush="#61a0a8">
+                            <SciChart:NumericAxis.GrowBy>
+                                <SciChart:DoubleRange Min="0.1" Max="0.1"/>
+                            </SciChart:NumericAxis.GrowBy>
+                        </SciChart:NumericAxis>
+
+                        <SciChart:NumericAxis Id="PS1_PRESS" AxisTitle="压力(MPa)" AutoRange="Always" AxisAlignment="Right" 
+                                              BorderBrush="#d48265" BorderThickness="0,0,1,0" 
+                                              DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
+                                              TickTextBrush="#d48265">
+                            <SciChart:NumericAxis.GrowBy>
+                                <SciChart:DoubleRange Min="0.1" Max="0.1"/>
+                            </SciChart:NumericAxis.GrowBy>
+                        </SciChart:NumericAxis>
+
+                    </SciChart:SciChartSurface.YAxes>
+
+
+
+                </SciChart:SciChartSurface>
+
+            </Grid>
+
+        </Grid>
+    </Border>
+
+</Page>

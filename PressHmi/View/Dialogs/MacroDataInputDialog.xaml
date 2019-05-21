@@ -1,0 +1,81 @@
+﻿<Window x:Class="PressHmi.View.MacroDataInputDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PressHmi.View"
+        AllowsTransparency="True"
+        mc:Ignorable="d" WindowStyle="None" WindowStartupLocation="CenterScreen" Background="Transparent"
+        Title="DataInputDialog" Height="550" Width="360">
+    <Window.Resources>
+        <Style x:Key="FontAwesome">
+            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
+        </Style>
+    </Window.Resources>
+
+
+    <Border CornerRadius="3" Background="{StaticResource DataInputDialogBackground}" Grid.Row="1" Margin="3">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <TextBlock Foreground="{DynamicResource DataInputDialogTitleForeground}" Text="{Binding DataInputTitle}" Grid.Row="0" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                <TextBox x:Name="inputdata" Text="{Binding InputData}" Grid.Row="1" Width="320" Height="50" FontSize="16"/>
+                <Grid Grid.Row="2" Visibility="{Binding Display}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="1" Foreground="{DynamicResource DataInputDialogTitleForeground}" Text="上限值:" Grid.Row="0" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
+                    <TextBlock Grid.Column="3" Foreground="{DynamicResource DataInputDialogTitleForeground}" Text="下限值:" Grid.Row="0" FontSize="16" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"/>
+                    <TextBlock Grid.Column="2" Foreground="{DynamicResource DataInputDialogTitleForeground}" Text="{Binding DataLimitUp}" Grid.Row="0" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,0"/>
+                    <TextBlock Grid.Column="4" Foreground="{DynamicResource DataInputDialogTitleForeground}" Text="{Binding DataLimitDown}" Grid.Row="0" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,5,0"/>
+                </Grid>
+            </Grid>
+
+            <Button Command="local:MacroDataInputDialog._Cmd7" Focusable="False" Grid.Row="1" Grid.Column="1" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="7"/>
+            <Button Command="local:MacroDataInputDialog._Cmd8" Focusable="False" Grid.Row="1" Grid.Column="2" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="8"/>
+            <Button Command="local:MacroDataInputDialog._Cmd9" Focusable="False" Grid.Row="1" Grid.Column="3" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="9"/>
+            <Button Command="local:MacroDataInputDialog._Cmd4" Focusable="False" Grid.Row="2" Grid.Column="1" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="4"/>
+            <Button Command="local:MacroDataInputDialog._Cmd5" Focusable="False" Grid.Row="2" Grid.Column="2" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="5"/>
+            <Button Command="local:MacroDataInputDialog._Cmd6" Focusable="False" Grid.Row="2" Grid.Column="3" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="6"/>
+            <Button Command="local:MacroDataInputDialog._Cmd1" Focusable="False" Grid.Row="3" Grid.Column="1" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="1"/>
+            <Button Command="local:MacroDataInputDialog._Cmd2" Focusable="False" Grid.Row="3" Grid.Column="2" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="2"/>
+            <Button Command="local:MacroDataInputDialog._Cmd3" Focusable="False" Grid.Row="3" Grid.Column="3" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="3"/>
+            <Button Command="local:MacroDataInputDialog._CmdShortLine" Focusable="False" Grid.Row="4" Grid.Column="1" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="-"/>
+            <Button Command="local:MacroDataInputDialog._Cmd0" Focusable="False" Grid.Row="4" Grid.Column="2" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="0"/>
+            <Button Command="local:MacroDataInputDialog._CmdPoint" Focusable="False" Grid.Row="4" Grid.Column="3" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="·"/>
+
+            <Button Command="local:MacroDataInputDialog._CmdBackSpace" Focusable="False" Grid.Row="1" Grid.Column="4" Foreground="{StaticResource DataInputButtonForeground}" Style="{StaticResource DataInputButton}" Content="&#xf060;"/>
+            <Button Grid.Row="2" Grid.Column="4" Foreground="{StaticResource DataInputButtonForeground_OT}" Style="{StaticResource DataInputButton}"/>
+            <Button Command="{Binding _OkCmd}"  Grid.Row="3" Grid.Column="4" Foreground="{StaticResource DataInputButtonForeground_OK}" Style="{StaticResource DataInputButton}" Content="&#xf00c;"/>
+            <Button Command="{Binding _CancelCmd}" Grid.Row="4" Grid.Column="4" Foreground="{StaticResource DataInputButtonForeground_CAN}" Style="{StaticResource DataInputButton}" Content="&#xf00d;"/>
+
+            <TextBlock Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Foreground="Red" Text="{Binding DataInputMessage}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,5,5,0"/>
+        </Grid>
+    </Border>
+</Window>

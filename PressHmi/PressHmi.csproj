@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B350DB26-8E5C-4B0B-89B7-074A6D460B6F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PressHmi</RootNamespace>
+    <AssemblyName>PressHmi</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Abt.Controls.SciChart.Wpf">
+      <HintPath>..\packages\Abt.Controls.SciChart.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper, Version=6.2.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="De.TorstenMandelkow.MetroChart">
+      <HintPath>..\packages\De.TorstenMandelkow.MetroChart.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight, Version=5.4.1.0, Culture=neutral, PublicKeyToken=0ffbc31322e9d308, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\GalaSoft.MvvmLight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GalaSoft.MvvmLight.Platform, Version=5.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\GalaSoft.MvvmLight.Platform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\packages\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Core.1.0.109.2\lib\net451\System.Data.SQLite.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.109.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.109.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmLightLibsStd10.5.4.1.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Model\CncAlarm.cs" />
+    <Compile Include="Model\CncStaticInfoDto.cs" />
+    <Compile Include="Model\MaintainSubLimitDto.cs" />
+    <Compile Include="Model\ParaAutoAirSourceInfoDto.cs" />
+    <Compile Include="Model\ParaDieChangeInfoDto.cs" />
+    <Compile Include="Model\ParaDieClampInfoDto.cs" />
+    <Compile Include="Model\ParaDieClosingInfoDto.cs" />
+    <Compile Include="Model\ParaDiePartingProcInfoDto.cs" />
+    <Compile Include="Model\ParaDieClosingProcInfoDto.cs" />
+    <Compile Include="Model\ParaDiePartingInfoDto.cs" />
+    <Compile Include="Model\ParaPressureMaintInfoDto.cs" />
+    <Compile Include="Model\ParaWorkCountInfoDto.cs" />
+    <Compile Include="Model\ProcPointInfoDto.cs" />
+    <Compile Include="Model\SParaAnalogInfoDto.cs" />
+    <Compile Include="Model\SParaEncodeInfoDto.cs" />
+    <Compile Include="Model\SParaLubricateInfoDto.cs" />
+    <Compile Include="Model\SParaMachineInfoDto.cs" />
+    <Compile Include="Model\StateMonitorInfoDto.cs" />
+    <Compile Include="Roles\Role.cs" />
+    <Compile Include="ViewModel\Maintain\MaintainMainPageViewModel.cs" />
+    <Compile Include="ViewModel\Maintain\MaintainSubLimitPageViewModel.cs" />
+    <Compile Include="ViewModel\Message\MessageMainPageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaMainPageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaSubAutoAirSourcePageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaSubDieChangePageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaSubDieClampPageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaSubDieClosingPageViewMode.cs" />
+    <Compile Include="ViewModel\Para\ParaSubPressureMaintPageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaSubDiePartingPageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaSubWorkCountPageViewModel.cs" />
+    <Compile Include="ViewModel\SPara\SParaMainPageViewModel.cs" />
+    <Compile Include="ViewModel\SPara\SParaSubAnalogPageViewModel.cs" />
+    <Compile Include="ViewModel\SPara\SParaSubEncodePageViewModel.cs" />
+    <Compile Include="ViewModel\SPara\SParaSubLubricatePageViewModel.cs" />
+    <Compile Include="ViewModel\SPara\SParaSubMachinePageViewModel.cs" />
+    <Compile Include="ViewModel\Status\StateMonitorPageViewModel.cs" />
+    <Compile Include="ViewModel\System\SystemMainPageViewModel.cs" />
+    <Compile Include="View\Controls\MySendKeys.cs" />
+    <Compile Include="View\Controls\StoryboardManager.cs" />
+    <Compile Include="View\Converters\AutoAirSourceActionFlagColorConverter.cs" />
+    <Compile Include="View\Converters\AutoAirSourceArrTextConverter.cs" />
+    <Compile Include="View\Converters\BoolConverter.cs" />
+    <Compile Include="View\Converters\ClampMoveStatusConverter.cs" />
+    <Compile Include="View\Converters\CncAlarmVisibilityConverter.cs" />
+    <Compile Include="View\Converters\LampStatusColorConverter.cs" />
+    <Compile Include="View\Converters\LampStatusTextConverter.cs" />
+    <Compile Include="View\Converters\MainStatusAlarmColorConverter.cs" />
+    <Compile Include="View\Converters\MainStatusDiePointColorConverter.cs" />
+    <Compile Include="View\Converters\MainStatusEmgColorConverter.cs" />
+    <Compile Include="View\Converters\MainStatusPowerColorConverter.cs" />
+    <Compile Include="View\Converters\ModeTextConverter.cs" />
+    <Compile Include="View\Dialogs\AutoAirSourceArrInputDialog.xaml.cs">
+      <DependentUpon>AutoAirSourceArrInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\AutoAirSourceArrInputDialogViewModel.cs" />
+    <Compile Include="View\Dialogs\MacroDataInputDialogViewModel.cs" />
+    <Compile Include="View\Dialogs\MacroDataInputDialog.xaml.cs">
+      <DependentUpon>MacroDataInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\DataInputDialog.xaml.cs">
+      <DependentUpon>DataInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\DataInputDialogViewModel.cs" />
+    <Compile Include="View\Maintain\MaintainMainPage.xaml.cs">
+      <DependentUpon>MaintainMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Maintain\MaintainSubCsdPage.xaml.cs">
+      <DependentUpon>MaintainSubCsdPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Maintain\MaintainSubLimitPage.xaml.cs">
+      <DependentUpon>MaintainSubLimitPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Message\MessageSubAlarmPage.xaml.cs">
+      <DependentUpon>MessageSubAlarmPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Message\MessageMainPage.xaml.cs">
+      <DependentUpon>MessageMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaMainPage.xaml.cs">
+      <DependentUpon>ParaMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubAutoAirSourcePage.xaml.cs">
+      <DependentUpon>ParaSubAutoAirSourcePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubDieChangePage.xaml.cs">
+      <DependentUpon>ParaSubDieChangePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubDieClampPage.xaml.cs">
+      <DependentUpon>ParaSubDieClampPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubDieClosingPage.xaml.cs">
+      <DependentUpon>ParaSubDieClosingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubDieHydrPage.xaml.cs">
+      <DependentUpon>ParaSubDieHydrPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubDiePartingPage.xaml.cs">
+      <DependentUpon>ParaSubDiePartingPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubPressureMaintPage.xaml.cs">
+      <DependentUpon>ParaSubPressureMaintPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubProcManagementPage.xaml.cs">
+      <DependentUpon>ParaSubProcManagementPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Para\ParaSubWorkCountPage.xaml.cs">
+      <DependentUpon>ParaSubWorkCountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SPara\SParaMainPage.xaml.cs">
+      <DependentUpon>SParaMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SPara\SParaSubAnalogPage.xaml.cs">
+      <DependentUpon>SParaSubAnalogPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SPara\SParaSubEncodePage.xaml.cs">
+      <DependentUpon>SParaSubEncodePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SPara\SParaSubLubricatePage.xaml.cs">
+      <DependentUpon>SParaSubLubricatePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SPara\SParaSubMachinePage.xaml.cs">
+      <DependentUpon>SParaSubMachinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Status\StateMonitorPage.xaml.cs">
+      <DependentUpon>StateMonitorPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\System\SystemMainPage.xaml.cs">
+      <DependentUpon>SystemMainPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\Dialogs\AutoAirSourceArrInputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\MacroDataInputDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Dialogs\DataInputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Maintain\MaintainMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Maintain\MaintainSubCsdPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Maintain\MaintainSubLimitPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Message\MessageSubAlarmPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Message\MessageMainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Para\ParaMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubAutoAirSourcePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubDieChangePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubDieClampPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubDieClosingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubDieHydrPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubDiePartingPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubPressureMaintPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubProcManagementPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Para\ParaSubWorkCountPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Size\normal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SPara\SParaMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SPara\SParaSubAnalogPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SPara\SParaSubEncodePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SPara\SParaSubLubricatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SPara\SParaSubMachinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Status\StateMonitorPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Styles\BootStrap\BaseStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\Bootstrap.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\DataGrid.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\Fonts.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\FormControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\InputGroup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\Label.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\Panel.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\ProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\Sizes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Styles\BootStrap\Window.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Color\dark.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
+    <Compile Include="App_Start\IocConfig.cs" />
+    <Compile Include="Model\MenuButtonDto.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="View\Styles\MainStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Styles\MessageStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Styles\ParaStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\System\SystemMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="View\FontAwesome\fontawesome-webfont.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataCenter\DataCenter.csproj">
+      <Project>{93e9f0ee-3e35-438d-976b-d83561d45581}</Project>
+      <Name>DataCenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FanucCnc\FanucCnc.csproj">
+      <Project>{72d33c36-6dbb-42e2-8198-1c5f191cd9f7}</Project>
+      <Name>FanucCnc</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.109.2\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
