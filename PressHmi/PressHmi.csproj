@@ -124,6 +124,7 @@
     <Compile Include="Model\ParaDieClosingProcInfoDto.cs" />
     <Compile Include="Model\ParaDiePartingInfoDto.cs" />
     <Compile Include="Model\ParaPressureMaintInfoDto.cs" />
+    <Compile Include="Model\ParaProcFileDto.cs" />
     <Compile Include="Model\ParaWorkCountInfoDto.cs" />
     <Compile Include="Model\ProcPointInfoDto.cs" />
     <Compile Include="Model\SParaAnalogInfoDto.cs" />
