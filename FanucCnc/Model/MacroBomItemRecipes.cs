@@ -8,6 +8,10 @@ namespace FanucCnc.Model
 {
     public class MacroBomItemRecipes
     {
+        public string Id { get; set; }
+
+        public string Name { get; set; }
+
         public short Adr { get; set; }
 
         public bool? IsRecipes { get; set; }

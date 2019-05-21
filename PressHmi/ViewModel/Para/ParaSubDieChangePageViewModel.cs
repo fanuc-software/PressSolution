@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -43,6 +44,8 @@ namespace PressHmi.ViewModel
                 }
             }
         }
+
+
 
         public ParaSubDieChangePageViewModel(IMapper mapper, Fanuc fanuc)
         {

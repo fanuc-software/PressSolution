@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
@@ -74,6 +75,20 @@ namespace PressHmi.ViewModel
             }
         }
 
+        private ObservableCollection<RecipesInfoItemDto> m_RecipesInfos = new ObservableCollection<RecipesInfoItemDto>();
+        public ObservableCollection<RecipesInfoItemDto> RecipesInfos
+        {
+            get { return m_RecipesInfos; }
+            set
+            {
+                if (m_RecipesInfos != value)
+                {
+                    m_RecipesInfos = value;
+                    RaisePropertyChanged(() => RecipesInfos);
+                }
+            }
+        }
+
         public ParaSubProcManagementPageViewModel(IMapper mapper, Fanuc fanuc)
         {
             _fanuc = fanuc;
@@ -88,6 +103,98 @@ namespace PressHmi.ViewModel
             FileFolderCommand =new RelayCommand(OnFileFolder);
 
             GetProcFiles(CurFileFolder);
+
+            Messenger.Default.Register<RecipesInfo>(this, "ParaRecipesInfoMsg", msg =>
+            {
+                foreach(var info in msg.PmcBoms)
+                {
+                    var rec = RecipesInfos.Where(x => x.Id == info.Id && x.PmcType == true).FirstOrDefault();
+
+                    if (rec == null)
+                    {
+
+                        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                        {
+                            RecipesInfos.Add(new RecipesInfoItemDto()
+                            {
+                                Id = info.Id,
+                                PmcType = true,
+                                Name=info.Name,
+                                PmcBomItem = new PmcBomItemRecipesDto()
+                                {
+                                    Id = info.Id,
+                                    Adr = info.Adr,
+                                    AdrType = info.AdrType,
+                                    Bit = info.Bit,
+                                    ConversionFactor = info.ConversionFactor,
+                                    DataType = info.DataType,
+                                    IsRecipes = info.IsRecipes,
+                                    Value = info.Value
+                                }
+                            });
+                        });
+                        
+                    }
+                    else
+                    {
+                        rec.Value = info.Value;
+                    }
+                }
+
+                foreach (var info in msg.MacroBoms)
+                {
+                    var rec = RecipesInfos.Where(x => x.Id == info.Id && x.MacroType == true).FirstOrDefault();
+
+                    if (rec == null)
+                    {
+                        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                        {
+                            RecipesInfos.Add(new RecipesInfoItemDto()
+                            {
+                                Id = info.Id,
+                                Name = info.Name,
+                                MacroType = true,
+                                MacroBomItem = new MacroBomItemRecipesDto()
+                                {
+                                    Id = info.Id,
+                                    Adr = info.Adr,
+                                    IsRecipes = info.IsRecipes,
+                                    Value = info.Value
+                                }
+                            });
+                        });
+                    }
+                    else
+                    {
+                        rec.Value = info.Value;
+                    }
+                }
+
+                foreach(var info in RecipesInfos.Where(x=>x.PmcType==true))
+                {
+
+                    if (msg.PmcBoms.Where(x => x.Id == info.Id).Count() == 0)
+                    {
+                        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                        {
+                            RecipesInfos.Remove(info);
+                        });
+                    }
+                        
+                }
+
+                foreach (var info in RecipesInfos.Where(x => x.MacroType == true))
+                {
+                    if (msg.MacroBoms.Where(x => x.Id == info.Id).Count() == 0)
+                    {
+                        DispatcherHelper.CheckBeginInvokeOnUI(() =>
+                        {
+                            RecipesInfos.Remove(info);
+                        });
+                    }
+                }
+
+            });
         }
 
         private void OnRefreshFile()
@@ -110,7 +217,7 @@ namespace PressHmi.ViewModel
 
         private void OnLoaded()
         {
-            _fanuc.ChangePageEvent(paraworkcount: true);
+            _fanuc.ChangePageEvent(pararecipes: true);
         }
 
         private void OnUnloaded()

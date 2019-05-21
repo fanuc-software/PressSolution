@@ -31,6 +31,7 @@ namespace PressHmi.App_Start
             SimpleIoc.Default.Register<ParaSubAutoAirSourcePageViewModel>();
             SimpleIoc.Default.Register<ParaSubWorkCountPageViewModel>();
             SimpleIoc.Default.Register<ParaSubDieClampPageViewModel>();
+            SimpleIoc.Default.Register<ParaSubProcManagementPageViewModel>();
 
             SimpleIoc.Default.Register<MessageMainPageViewModel>();
 

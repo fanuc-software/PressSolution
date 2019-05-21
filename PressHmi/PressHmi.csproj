@@ -115,6 +115,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\CncAlarm.cs" />
     <Compile Include="Model\CncStaticInfoDto.cs" />
+    <Compile Include="Model\MacroBomItemRecipesDto.cs" />
     <Compile Include="Model\MaintainSubLimitDto.cs" />
     <Compile Include="Model\ParaAutoAirSourceInfoDto.cs" />
     <Compile Include="Model\ParaDieChangeInfoDto.cs" />
@@ -126,7 +127,9 @@
     <Compile Include="Model\ParaPressureMaintInfoDto.cs" />
     <Compile Include="Model\ParaProcFileDto.cs" />
     <Compile Include="Model\ParaWorkCountInfoDto.cs" />
+    <Compile Include="Model\PmcBomItemRecipesDto.cs" />
     <Compile Include="Model\ProcPointInfoDto.cs" />
+    <Compile Include="Model\RecipesInfoItemDto.cs" />
     <Compile Include="Model\SParaAnalogInfoDto.cs" />
     <Compile Include="Model\SParaEncodeInfoDto.cs" />
     <Compile Include="Model\SParaLubricateInfoDto.cs" />
@@ -159,6 +162,8 @@
     <Compile Include="View\Converters\BoolConverter.cs" />
     <Compile Include="View\Converters\ClampMoveStatusConverter.cs" />
     <Compile Include="View\Converters\CncAlarmVisibilityConverter.cs" />
+    <Compile Include="View\Converters\IsConsistentColorConverter.cs" />
+    <Compile Include="View\Converters\IsConsistentStringConverter.cs" />
     <Compile Include="View\Converters\LampStatusColorConverter.cs" />
     <Compile Include="View\Converters\LampStatusTextConverter.cs" />
     <Compile Include="View\Converters\MainStatusAlarmColorConverter.cs" />
@@ -485,7 +490,9 @@
   </Target>
   <PropertyGroup>
     <PostBuildEvent>Copy  "$(SolutionDir)lib\*.dll" "$(ProjectDir)$(OutDir)"
-Copy  "$(SolutionDir)lib\*.lib" "$(ProjectDir)$(OutDir)"</PostBuildEvent>
+Copy  "$(SolutionDir)lib\*.lib" "$(ProjectDir)$(OutDir)"
+Copy  "$(SolutionDir)data\PressDB.db" "$(ProjectDir)$(OutDir)"
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

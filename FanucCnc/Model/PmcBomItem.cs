@@ -9,6 +9,8 @@ namespace FanucCnc.Model
 {
     public class PmcBomItem
     {
+        public string Id { get; set; }
+
         public PmcAdrTypeEnum AdrType { get; set; }
 
         public PmcDataTypeEnum DataType { get; set; }

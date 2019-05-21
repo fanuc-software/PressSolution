@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using FanucCnc.Model;
 using FanucCnc.Enum;
@@ -39,6 +40,15 @@ namespace FanucCnc
             get
             {
                 return _limitBom;
+            }
+        }
+
+        private RecipesInfo _recipes = new RecipesInfo();
+        public RecipesInfo Recipes
+        {
+            get
+            {
+                return _recipes;
             }
         }
 
@@ -81,6 +91,9 @@ namespace FanucCnc
         private bool m_paraworkcount = false;
         private ParaWorkCountInfo m_workcount_info = new ParaWorkCountInfo();
 
+        private bool m_pararecipes = false;
+        private RecipesInfo m_recipes_info = new RecipesInfo();
+
         private bool m_sparamachine = false;
         private SParaMachineInfo m_sparamachine_info = new SParaMachineInfo();
 
@@ -95,7 +108,7 @@ namespace FanucCnc
 
         public void ChangePageEvent(bool statemonitor = false, bool paradiechange = false, bool paradieclosing = false,
             bool paradieparting = false, bool parapressuremaint = false, bool paraautoairsource = false,
-            bool paraworkcount = false, bool sparamachine = false, bool sparalubricate = false, bool sparaanalog = false,
+            bool paraworkcount = false,  bool pararecipes =false, bool sparamachine = false, bool sparalubricate = false, bool sparaanalog = false,
             bool sparaencode = false, bool paradieclamp = false)
         {
             m_statemonitor = statemonitor;
@@ -106,6 +119,7 @@ namespace FanucCnc
             m_parapressuremaint = parapressuremaint;
             m_paraautoairsource = paraautoairsource;
             m_paraworkcount = paraworkcount;
+            m_pararecipes = pararecipes;
             m_sparamachine = sparamachine;
             m_sparalubricate = sparalubricate;
             m_sparaanalog = sparaanalog;
@@ -792,6 +806,7 @@ namespace FanucCnc
 
             #region macro
             _macroBom.DownDelayTime = new MacroBomItem();
+            _macroBom.DownDelayTime.Id = "M1001";
             _macroBom.DownDelayTime.Adr = 100;
             _macroBom.DownTime = new MacroBomItem();
             _macroBom.DownTime.Adr = 101;
@@ -803,188 +818,249 @@ namespace FanucCnc
             _macroBom.UpTime.Adr = 104;
 
             _macroBom.DJP_SectionNum = new MacroBomItem();
+            _macroBom.DJP_SectionNum.Id = "M1002";
             _macroBom.DJP_SectionNum.Adr = 105;
             _macroBom.DJP_SectionNum.IsRecipes = true;
             _macroBom.DJP_PreDelayTime = new MacroBomItem();
+            _macroBom.DJP_PreDelayTime.Id = "M1003";
             _macroBom.DJP_PreDelayTime.Adr = 106;
             _macroBom.DJP_PreDelayTime.IsRecipes = true;
             _macroBom.DJP_SafeTime = new MacroBomItem();
+            _macroBom.DJP_SafeTime.Id = "M1004";
             _macroBom.DJP_SafeTime.Adr = 107;
             _macroBom.DJP_SafeTime.IsRecipes = true;
             _macroBom.DJP_Pos_1 = new MacroBomItem();
+            _macroBom.DJP_Pos_1.Id = "M1005";
             _macroBom.DJP_Pos_1.Adr = 116;
             _macroBom.DJP_Pos_1.IsRecipes = true;
             _macroBom.DJP_Speed_1 = new MacroBomItem();
+            _macroBom.DJP_Speed_1.Id = "M1006";
             _macroBom.DJP_Speed_1.Adr = 117;
             _macroBom.DJP_Speed_1.IsRecipes = true;
             _macroBom.DJP_StopTime_1 = new MacroBomItem();
+            _macroBom.DJP_StopTime_1.Id = "M1007";
             _macroBom.DJP_StopTime_1.Adr = 118;
             _macroBom.DJP_StopTime_1.IsRecipes = true;
             _macroBom.DJP_Pos_2 = new MacroBomItem();
+            _macroBom.DJP_Pos_2.Id = "M1008";
             _macroBom.DJP_Pos_2.Adr = 119;
             _macroBom.DJP_Pos_2.IsRecipes = true;
             _macroBom.DJP_Speed_2 = new MacroBomItem();
+            _macroBom.DJP_Speed_2.Id = "M1009";
             _macroBom.DJP_Speed_2.Adr = 120;
             _macroBom.DJP_Speed_2.IsRecipes = true;
             _macroBom.DJP_StopTime_2 = new MacroBomItem();
+            _macroBom.DJP_StopTime_2.Id = "M1010";
             _macroBom.DJP_StopTime_2.Adr = 121;
             _macroBom.DJP_StopTime_2.IsRecipes = true;
             _macroBom.DJP_Pos_3 = new MacroBomItem();
+            _macroBom.DJP_Pos_3.Id = "M1011";
             _macroBom.DJP_Pos_3.Adr = 122;
             _macroBom.DJP_Pos_3.IsRecipes = true;
             _macroBom.DJP_Speed_3 = new MacroBomItem();
+            _macroBom.DJP_Speed_3.Id = "M1012";
             _macroBom.DJP_Speed_3.Adr = 123;
             _macroBom.DJP_Speed_3.IsRecipes = true;
             _macroBom.DJP_StopTime_3 = new MacroBomItem();
+            _macroBom.DJP_StopTime_3.Id = "M1013";
             _macroBom.DJP_StopTime_3.Adr = 124;
             _macroBom.DJP_StopTime_3.IsRecipes = true;
             _macroBom.DJP_Pos_4 = new MacroBomItem();
+            _macroBom.DJP_Pos_4.Id = "M1014";
             _macroBom.DJP_Pos_4.Adr = 125;
             _macroBom.DJP_Pos_4.IsRecipes = true;
             _macroBom.DJP_Speed_4 = new MacroBomItem();
+            _macroBom.DJP_Speed_4.Id = "M1015";
             _macroBom.DJP_Speed_4.Adr = 126;
             _macroBom.DJP_Speed_4.IsRecipes = true;
             _macroBom.DJP_StopTime_4 = new MacroBomItem();
+            _macroBom.DJP_StopTime_4.Id = "M1016";
             _macroBom.DJP_StopTime_4.Adr = 127;
             _macroBom.DJP_StopTime_4.IsRecipes = true;
             _macroBom.DJP_Pos_5 = new MacroBomItem();
+            _macroBom.DJP_Pos_5.Id = "M1017";
             _macroBom.DJP_Pos_5.Adr = 128;
             _macroBom.DJP_Pos_5.IsRecipes = true;
             _macroBom.DJP_Speed_5 = new MacroBomItem();
+            _macroBom.DJP_Speed_5.Id = "M1018";
             _macroBom.DJP_Speed_5.Adr = 129;
             _macroBom.DJP_Speed_5.IsRecipes = true;
             _macroBom.DJP_StopTime_5 = new MacroBomItem();
+            _macroBom.DJP_StopTime_5.Id = "M1019";
             _macroBom.DJP_StopTime_5.Adr = 130;
             _macroBom.DJP_StopTime_5.IsRecipes = true;
             _macroBom.DJP_Pos_6 = new MacroBomItem();
+            _macroBom.DJP_Pos_6.Id = "M1020";
             _macroBom.DJP_Pos_6.Adr = 131;
             _macroBom.DJP_Pos_6.IsRecipes = true;
             _macroBom.DJP_Speed_6 = new MacroBomItem();
+            _macroBom.DJP_Speed_6.Id = "M1021";
             _macroBom.DJP_Speed_6.Adr = 132;
             _macroBom.DJP_Speed_6.IsRecipes = true;
             _macroBom.DJP_StopTime_6 = new MacroBomItem();
+            _macroBom.DJP_StopTime_6.Id = "M1022";
             _macroBom.DJP_StopTime_6.Adr = 133;
             _macroBom.DJP_StopTime_6.IsRecipes = true;
             _macroBom.DJP_Pos_7 = new MacroBomItem();
+            _macroBom.DJP_Pos_7.Id = "M1023";
             _macroBom.DJP_Pos_7.Adr = 134;
             _macroBom.DJP_Pos_7.IsRecipes = true;
             _macroBom.DJP_Speed_7 = new MacroBomItem();
+            _macroBom.DJP_Speed_7.Id = "M1024";
             _macroBom.DJP_Speed_7.Adr = 135;
             _macroBom.DJP_Speed_7.IsRecipes = true;
             _macroBom.DJP_StopTime_7 = new MacroBomItem();
+            _macroBom.DJP_StopTime_7.Id = "M1025";
             _macroBom.DJP_StopTime_7.Adr = 136;
             _macroBom.DJP_StopTime_7.IsRecipes = true;
             _macroBom.DJP_Pos_8 = new MacroBomItem();
+            _macroBom.DJP_Pos_8.Id = "M1026";
             _macroBom.DJP_Pos_8.Adr = 137;
             _macroBom.DJP_Pos_8.IsRecipes = true;
             _macroBom.DJP_Speed_8 = new MacroBomItem();
+            _macroBom.DJP_Speed_8.Id = "M1027";
             _macroBom.DJP_Speed_8.Adr = 138;
             _macroBom.DJP_Speed_8.IsRecipes = true;
             _macroBom.DJP_StopTime_8 = new MacroBomItem();
+            _macroBom.DJP_StopTime_8.Id = "M1028";
             _macroBom.DJP_StopTime_8.Adr = 139;
             _macroBom.DJP_StopTime_8.IsRecipes = true;
             _macroBom.DJP_BottomDeadCentre = new MacroBomItem();
+            _macroBom.DJP_BottomDeadCentre.Id = "M1029";
             _macroBom.DJP_BottomDeadCentre.Adr = 140;
             _macroBom.DJP_BottomDeadCentre.IsRecipes = true;
 
             _macroBom.DPP_SectionNum = new MacroBomItem();
+            _macroBom.DPP_SectionNum.Id = "M1030";
             _macroBom.DPP_SectionNum.Adr = 108;
             _macroBom.DPP_SectionNum.IsRecipes = true;
             _macroBom.DPP_PreDelayTime = new MacroBomItem();
+            _macroBom.DPP_PreDelayTime.Id = "M1031";
             _macroBom.DPP_PreDelayTime.Adr = 109;
             _macroBom.DPP_PreDelayTime.IsRecipes = true;
             _macroBom.DPP_SafeTime = new MacroBomItem();
+            _macroBom.DPP_SafeTime.Id = "M1032";
             _macroBom.DPP_SafeTime.Adr = 110;
             _macroBom.DPP_SafeTime.IsRecipes = true;
             _macroBom.DPP_Pos_1 = new MacroBomItem();
+            _macroBom.DPP_Pos_1.Id = "M1033";
             _macroBom.DPP_Pos_1.Adr = 141;
             _macroBom.DPP_Pos_1.IsRecipes = true;
             _macroBom.DPP_Speed_1 = new MacroBomItem();
+            _macroBom.DPP_Speed_1.Id = "M1034";
             _macroBom.DPP_Speed_1.Adr = 142;
             _macroBom.DPP_Speed_1.IsRecipes = true;
             _macroBom.DPP_StopTime_1 = new MacroBomItem();
+            _macroBom.DPP_StopTime_1.Id = "M1035";
             _macroBom.DPP_StopTime_1.Adr = 143;
             _macroBom.DPP_StopTime_1.IsRecipes = true;
             _macroBom.DPP_Pos_2 = new MacroBomItem();
+            _macroBom.DPP_Pos_2.Id = "M1036";
             _macroBom.DPP_Pos_2.Adr = 144;
             _macroBom.DPP_Pos_2.IsRecipes = true;
             _macroBom.DPP_Speed_2 = new MacroBomItem();
+            _macroBom.DPP_Speed_2.Id = "M1037";
             _macroBom.DPP_Speed_2.Adr = 145;
             _macroBom.DPP_Speed_2.IsRecipes = true;
             _macroBom.DPP_StopTime_2 = new MacroBomItem();
+            _macroBom.DPP_StopTime_2.Id = "M1038";
             _macroBom.DPP_StopTime_2.Adr = 146;
             _macroBom.DPP_StopTime_2.IsRecipes = true;
             _macroBom.DPP_Pos_3 = new MacroBomItem();
+            _macroBom.DPP_Pos_3.Id = "M1039";
             _macroBom.DPP_Pos_3.Adr = 147;
             _macroBom.DPP_Pos_3.IsRecipes = true;
             _macroBom.DPP_Speed_3 = new MacroBomItem();
+            _macroBom.DPP_Speed_3.Id = "M1040";
             _macroBom.DPP_Speed_3.Adr = 148;
             _macroBom.DPP_Speed_3.IsRecipes = true;
             _macroBom.DPP_StopTime_3 = new MacroBomItem();
+            _macroBom.DPP_StopTime_3.Id = "M1041";
             _macroBom.DPP_StopTime_3.Adr = 149;
             _macroBom.DPP_StopTime_3.IsRecipes = true;
             _macroBom.DPP_Pos_4 = new MacroBomItem();
+            _macroBom.DPP_Pos_4.Id = "M1042";
             _macroBom.DPP_Pos_4.Adr = 150;
             _macroBom.DPP_Pos_4.IsRecipes = true;
             _macroBom.DPP_Speed_4 = new MacroBomItem();
+            _macroBom.DPP_Speed_4.Id = "M1043";
             _macroBom.DPP_Speed_4.Adr = 151;
             _macroBom.DPP_Speed_4.IsRecipes = true;
             _macroBom.DPP_StopTime_4 = new MacroBomItem();
+            _macroBom.DPP_StopTime_4.Id = "M1044";
             _macroBom.DPP_StopTime_4.Adr = 152;
             _macroBom.DPP_StopTime_4.IsRecipes = true;
             _macroBom.DPP_Pos_5 = new MacroBomItem();
+            _macroBom.DPP_Pos_5.Id = "M1045";
             _macroBom.DPP_Pos_5.Adr = 153;
             _macroBom.DPP_Pos_5.IsRecipes = true;
             _macroBom.DPP_Speed_5 = new MacroBomItem();
+            _macroBom.DPP_Speed_5.Id = "M1046";
             _macroBom.DPP_Speed_5.Adr = 154;
             _macroBom.DPP_Speed_5.IsRecipes = true;
             _macroBom.DPP_StopTime_5 = new MacroBomItem();
+            _macroBom.DPP_StopTime_5.Id = "M1047";
             _macroBom.DPP_StopTime_5.Adr = 155;
             _macroBom.DPP_StopTime_5.IsRecipes = true;
             _macroBom.DPP_Pos_6 = new MacroBomItem();
+            _macroBom.DPP_Pos_6.Id = "M1048";
             _macroBom.DPP_Pos_6.Adr = 156;
             _macroBom.DPP_Pos_6.IsRecipes = true;
             _macroBom.DPP_Speed_6 = new MacroBomItem();
+            _macroBom.DPP_Speed_6.Id = "M1049";
             _macroBom.DPP_Speed_6.Adr = 157;
             _macroBom.DPP_Speed_6.IsRecipes = true;
             _macroBom.DPP_StopTime_6 = new MacroBomItem();
+            _macroBom.DPP_StopTime_6.Id = "M1050";
             _macroBom.DPP_StopTime_6.Adr = 158;
             _macroBom.DPP_StopTime_6.IsRecipes = true;
             _macroBom.DPP_Pos_7 = new MacroBomItem();
+            _macroBom.DPP_Pos_7.Id = "M1051";
             _macroBom.DPP_Pos_7.Adr = 159;
             _macroBom.DPP_Pos_7.IsRecipes = true;
             _macroBom.DPP_Speed_7 = new MacroBomItem();
+            _macroBom.DPP_Speed_7.Id = "M1052";
             _macroBom.DPP_Speed_7.Adr = 160;
             _macroBom.DPP_Speed_7.IsRecipes = true;
             _macroBom.DPP_StopTime_7 = new MacroBomItem();
+            _macroBom.DPP_StopTime_7.Id = "M1053";
             _macroBom.DPP_StopTime_7.Adr = 161;
             _macroBom.DPP_StopTime_7.IsRecipes = true;
             _macroBom.DPP_Pos_8 = new MacroBomItem();
+            _macroBom.DPP_Pos_8.Id = "M1054";
             _macroBom.DPP_Pos_8.Adr = 162;
             _macroBom.DPP_Pos_8.IsRecipes = true;
             _macroBom.DPP_Speed_8 = new MacroBomItem();
+            _macroBom.DPP_Speed_8.Id = "M1055";
             _macroBom.DPP_Speed_8.Adr = 163;
             _macroBom.DPP_Speed_8.IsRecipes = true;
             _macroBom.DPP_StopTime_8 = new MacroBomItem();
+            _macroBom.DPP_StopTime_8.Id = "M1056";
             _macroBom.DPP_StopTime_8.Adr = 164;
             _macroBom.DPP_StopTime_8.IsRecipes = true;
             _macroBom.DPP_BottomDeadCentre = new MacroBomItem();
+            _macroBom.DPP_BottomDeadCentre.Id = "M1057";
             _macroBom.DPP_BottomDeadCentre.Adr = 165;
             _macroBom.DPP_BottomDeadCentre.IsRecipes = true;
 
             _macroBom.SPP_Pressure = new MacroBomItem();
+            _macroBom.SPP_Pressure.Id = "M1058";
             _macroBom.SPP_Pressure.Adr = 111;
             _macroBom.SPP_Pressure.IsRecipes = true;
             _macroBom.SPP_Time = new MacroBomItem();
+            _macroBom.SPP_Time.Id = "M1059";
             _macroBom.SPP_Time.Adr = 112;
             _macroBom.SPP_Time.IsRecipes = true;
             _macroBom.SPP_PreDelayTime = new MacroBomItem();
+            _macroBom.SPP_PreDelayTime.Id = "M1060";
             _macroBom.SPP_PreDelayTime.Adr = 113;
             _macroBom.SPP_PreDelayTime.IsRecipes = true;
             _macroBom.SPP_ChangeMode = new MacroBomItem();
+            _macroBom.SPP_ChangeMode.Id = "M1061";
             _macroBom.SPP_ChangeMode.Adr = 114;
             _macroBom.SPP_ChangeMode.IsRecipes = true;
             _macroBom.SPP_ChangePressure = new MacroBomItem();
+            _macroBom.SPP_ChangePressure.Id = "M1062";
             _macroBom.SPP_ChangePressure.Adr = 115;
             _macroBom.SPP_ChangePressure.IsRecipes = true;
 
@@ -999,49 +1075,58 @@ namespace FanucCnc
 
             #region 状态栏
             _pmcBom.Mode = new PmcBomItem();
+            _pmcBom.Mode.Id = "PMC1001";
             _pmcBom.Mode.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.Mode.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.Mode.Adr = 0;
 
             _pmcBom.MainStatus = new PmcBomItem();
+            _pmcBom.MainStatus.Id = "PMC1002";
             _pmcBom.MainStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.MainStatus.DataType = PmcDataTypeEnum.BYTE;
             _pmcBom.MainStatus.Adr = 2;
 
             _pmcBom.SliderPressure = new PmcBomItem();
+            _pmcBom.SliderPressure.Id = "PMC1003";
             _pmcBom.SliderPressure.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SliderPressure.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SliderPressure.Adr = 4;
             _pmcBom.SliderPressure.ConversionFactor = 1000;
 
             _pmcBom.BalanceCylinderPressure = new PmcBomItem();
+            _pmcBom.BalanceCylinderPressure.Id = "PMC1004";
             _pmcBom.BalanceCylinderPressure.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.BalanceCylinderPressure.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.BalanceCylinderPressure.Adr = 8;
             _pmcBom.BalanceCylinderPressure.ConversionFactor = 1000;
 
             _pmcBom.InstallDieHigh = new PmcBomItem();
+            _pmcBom.InstallDieHigh.Id = "PMC1005";
             _pmcBom.InstallDieHigh.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.InstallDieHigh.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.InstallDieHigh.Adr = 12;
             _pmcBom.InstallDieHigh.ConversionFactor = 1000;
 
             _pmcBom.TotalPiece = new PmcBomItem();
+            _pmcBom.TotalPiece.Id = "PMC1006";
             _pmcBom.TotalPiece.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.TotalPiece.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.TotalPiece.Adr = 16;
 
             _pmcBom.TotalWork = new PmcBomItem();
+            _pmcBom.TotalWork.Id = "PMC1007";
             _pmcBom.TotalWork.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.TotalWork.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.TotalWork.Adr = 20;
 
             _pmcBom.DayPiece = new PmcBomItem();
+            _pmcBom.DayPiece.Id = "PMC1008";
             _pmcBom.DayPiece.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DayPiece.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DayPiece.Adr = 24;
 
             _pmcBom.DayWork = new PmcBomItem();
+            _pmcBom.DayWork.Id = "PMC1009";
             _pmcBom.DayWork.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DayWork.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DayWork.Adr = 28;
@@ -1050,26 +1135,31 @@ namespace FanucCnc
 
             #region 状态监控
             _pmcBom.SMP_CylinderMode = new PmcBomItem();
+            _pmcBom.SMP_CylinderMode.Id = "PMC1010";
             _pmcBom.SMP_CylinderMode.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SMP_CylinderMode.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.SMP_CylinderMode.Adr = 100;
 
             _pmcBom.SMP_LoaderState = new PmcBomItem();
+            _pmcBom.SMP_LoaderState.Id = "PMC1011";
             _pmcBom.SMP_LoaderState.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SMP_LoaderState.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.SMP_LoaderState.Adr = 102;
 
             _pmcBom.SMP_WorkStep = new PmcBomItem();
+            _pmcBom.SMP_WorkStep.Id = "PMC1012";
             _pmcBom.SMP_WorkStep.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SMP_WorkStep.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.SMP_WorkStep.Adr = 104;
 
             _pmcBom.SMP_SliderPressure = new PmcBomItem();
+            _pmcBom.SMP_SliderPressure.Id = "PMC1013";
             _pmcBom.SMP_SliderPressure.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SMP_SliderPressure.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SMP_SliderPressure.Adr = 108;
 
             _pmcBom.SMP_SliderTemperature = new PmcBomItem();
+            _pmcBom.SMP_SliderTemperature.Id = "PMC1014";
             _pmcBom.SMP_SliderTemperature.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SMP_SliderTemperature.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SMP_SliderTemperature.Adr = 112;
@@ -1078,16 +1168,19 @@ namespace FanucCnc
 
             #region 换模设定
             _pmcBom.DCP_RapidFeed = new PmcBomItem();
+            _pmcBom.DCP_RapidFeed.Id = "PMC1015";
             _pmcBom.DCP_RapidFeed.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DCP_RapidFeed.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.DCP_RapidFeed.Adr = 200;
 
             _pmcBom.DCP_JogFeed = new PmcBomItem();
+            _pmcBom.DCP_JogFeed.Id = "PMC1016";
             _pmcBom.DCP_JogFeed.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DCP_JogFeed.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.DCP_JogFeed.Adr = 202;
 
             _pmcBom.DCP_InstallDieHighSet = new PmcBomItem();
+            _pmcBom.DCP_InstallDieHighSet.Id = "PMC1017";
             _pmcBom.DCP_InstallDieHighSet.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DCP_InstallDieHighSet.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DCP_InstallDieHighSet.Adr = 204;
@@ -1095,12 +1188,14 @@ namespace FanucCnc
             _pmcBom.DCP_InstallDieHighSet.IsRecipes = true;
 
             _pmcBom.DCP_InstallDieHighActual = new PmcBomItem();
+            _pmcBom.DCP_InstallDieHighActual.Id = "PMC1018";
             _pmcBom.DCP_InstallDieHighActual.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DCP_InstallDieHighActual.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DCP_InstallDieHighActual.Adr = 208;
             _pmcBom.DCP_InstallDieHighActual.ConversionFactor = 1000;
 
             _pmcBom.DCP_CylinderpRressureSet = new PmcBomItem();
+            _pmcBom.DCP_CylinderpRressureSet.Id = "PMC1019";
             _pmcBom.DCP_CylinderpRressureSet.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DCP_CylinderpRressureSet.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.DCP_CylinderpRressureSet.Adr = 212;
@@ -1108,12 +1203,14 @@ namespace FanucCnc
             _pmcBom.DCP_CylinderpRressureSet.IsRecipes = true;
 
             _pmcBom.DCP_CylinderpRressureActual = new PmcBomItem();
+            _pmcBom.DCP_CylinderpRressureActual.Id = "PMC1020";
             _pmcBom.DCP_CylinderpRressureActual.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DCP_CylinderpRressureActual.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.DCP_CylinderpRressureActual.Adr = 214;
             _pmcBom.DCP_CylinderpRressureActual.ConversionFactor = 1000;
 
             _pmcBom.DCP_DieWeight = new PmcBomItem();
+            _pmcBom.DCP_DieWeight.Id = "PMC1021";
             _pmcBom.DCP_DieWeight.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.DCP_DieWeight.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.DCP_DieWeight.Adr = 216;
@@ -1124,412 +1221,575 @@ namespace FanucCnc
 
             #region 夹模器设定
             _pmcBom.CLS_ClampStatus1 = new PmcBomItem();
+            _pmcBom.CLS_ClampStatus1.Id = "PMC1022";
             _pmcBom.CLS_ClampStatus1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_ClampStatus1.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_ClampStatus1.Adr = 500;
             _pmcBom.CLS_ClampStatus1.Bit = 0;
+
             _pmcBom.CLS_ClampStatus2 = new PmcBomItem();
+            _pmcBom.CLS_ClampStatus2.Id = "PMC1023";
             _pmcBom.CLS_ClampStatus2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_ClampStatus2.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_ClampStatus2.Adr = 500;
             _pmcBom.CLS_ClampStatus2.Bit = 1;
+
             _pmcBom.CLS_ClampRelaxPosition = new PmcBomItem();
+            _pmcBom.CLS_ClampRelaxPosition.Id = "PMC1024";
             _pmcBom.CLS_ClampRelaxPosition.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_ClampRelaxPosition.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.CLS_ClampRelaxPosition.Adr = 528;
             _pmcBom.CLS_ClampRelaxPosition.IsRecipes = true;
+
             _pmcBom.CLS_ClampRelaxInPosition = new PmcBomItem();
+            _pmcBom.CLS_ClampRelaxInPosition.Id = "PMC1025";
             _pmcBom.CLS_ClampRelaxInPosition.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_ClampRelaxInPosition.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_ClampRelaxInPosition.Adr = 500;
             _pmcBom.CLS_ClampRelaxInPosition.Bit = 2;
             _pmcBom.CLS_ClampRelaxInPosition.IsRecipes = true;
+
             _pmcBom.CLS_Clamp_Front_1_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_1_Ebable.Id = "PMC1026";
             _pmcBom.CLS_Clamp_Front_1_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_1_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_1_Ebable.Adr = 501;
             _pmcBom.CLS_Clamp_Front_1_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_1_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_1_MoveOutStatus.Id = "PMC1027";
             _pmcBom.CLS_Clamp_Front_1_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_1_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_1_MoveOutStatus.Adr = 501;
             _pmcBom.CLS_Clamp_Front_1_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_1_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_1_MoveInStatus.Id = "PMC1028";
             _pmcBom.CLS_Clamp_Front_1_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_1_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_1_MoveInStatus.Adr = 501;
             _pmcBom.CLS_Clamp_Front_1_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_2_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_2_Ebable.Id = "PMC1029";
             _pmcBom.CLS_Clamp_Front_2_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_2_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_2_Ebable.Adr = 502;
             _pmcBom.CLS_Clamp_Front_2_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_2_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_2_MoveOutStatus.Id = "PMC1030";
             _pmcBom.CLS_Clamp_Front_2_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_2_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_2_MoveOutStatus.Adr = 502;
             _pmcBom.CLS_Clamp_Front_2_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_2_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_2_MoveInStatus.Id = "PMC1031";
             _pmcBom.CLS_Clamp_Front_2_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_2_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_2_MoveInStatus.Adr = 502;
             _pmcBom.CLS_Clamp_Front_2_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_3_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_3_Ebable.Id = "PMC1032";
             _pmcBom.CLS_Clamp_Front_3_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_3_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_3_Ebable.Adr = 503;
             _pmcBom.CLS_Clamp_Front_3_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_3_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_3_MoveOutStatus.Id = "PMC1033";
             _pmcBom.CLS_Clamp_Front_3_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_3_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_3_MoveOutStatus.Adr = 503;
             _pmcBom.CLS_Clamp_Front_3_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_3_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_3_MoveInStatus.Id = "PMC1034";
             _pmcBom.CLS_Clamp_Front_3_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_3_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_3_MoveInStatus.Adr = 503;
             _pmcBom.CLS_Clamp_Front_3_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_4_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_4_Ebable.Id = "PMC1035";
             _pmcBom.CLS_Clamp_Front_4_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_4_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_4_Ebable.Adr = 504;
             _pmcBom.CLS_Clamp_Front_4_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_4_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_4_MoveOutStatus.Id = "PMC1036";
             _pmcBom.CLS_Clamp_Front_4_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_4_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_4_MoveOutStatus.Adr = 504;
             _pmcBom.CLS_Clamp_Front_4_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_4_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_4_MoveInStatus.Id = "PMC1037";
             _pmcBom.CLS_Clamp_Front_4_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_4_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_4_MoveInStatus.Adr = 504;
             _pmcBom.CLS_Clamp_Front_4_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_5_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_5_Ebable.Id = "PMC1038";
             _pmcBom.CLS_Clamp_Front_5_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_5_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_5_Ebable.Adr = 505;
             _pmcBom.CLS_Clamp_Front_5_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_5_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_5_MoveOutStatus.Id = "PMC1039";
             _pmcBom.CLS_Clamp_Front_5_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_5_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_5_MoveOutStatus.Adr = 505;
             _pmcBom.CLS_Clamp_Front_5_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_5_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_5_MoveInStatus.Id = "PMC1040";
             _pmcBom.CLS_Clamp_Front_5_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_5_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_5_MoveInStatus.Adr = 505;
             _pmcBom.CLS_Clamp_Front_5_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_6_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_6_Ebable.Id = "PMC1041";
             _pmcBom.CLS_Clamp_Front_6_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_6_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_6_Ebable.Adr = 506;
             _pmcBom.CLS_Clamp_Front_6_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_6_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_6_MoveOutStatus.Id = "PMC1042";
             _pmcBom.CLS_Clamp_Front_6_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_6_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_6_MoveOutStatus.Adr = 506;
             _pmcBom.CLS_Clamp_Front_6_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_6_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_6_MoveInStatus.Id = "PMC1043";
             _pmcBom.CLS_Clamp_Front_6_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_6_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_6_MoveInStatus.Adr = 506;
             _pmcBom.CLS_Clamp_Front_6_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_7_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_7_Ebable.Id = "PMC1044";
             _pmcBom.CLS_Clamp_Front_7_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_7_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_7_Ebable.Adr = 507;
             _pmcBom.CLS_Clamp_Front_7_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_7_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_7_MoveOutStatus.Id = "PMC1045";
             _pmcBom.CLS_Clamp_Front_7_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_7_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_7_MoveOutStatus.Adr = 507;
             _pmcBom.CLS_Clamp_Front_7_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_7_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_7_MoveInStatus.Id = "PMC1046";
             _pmcBom.CLS_Clamp_Front_7_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_7_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_7_MoveInStatus.Adr = 507;
             _pmcBom.CLS_Clamp_Front_7_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_8_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_8_Ebable.Id = "PMC1047";
             _pmcBom.CLS_Clamp_Front_8_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_8_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_8_Ebable.Adr = 508;
             _pmcBom.CLS_Clamp_Front_8_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_8_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_8_MoveOutStatus.Id = "PMC1048";
             _pmcBom.CLS_Clamp_Front_8_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_8_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_8_MoveOutStatus.Adr = 508;
             _pmcBom.CLS_Clamp_Front_8_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_8_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_8_MoveInStatus.Id = "PMC1049";
             _pmcBom.CLS_Clamp_Front_8_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_8_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_8_MoveInStatus.Adr = 508;
             _pmcBom.CLS_Clamp_Front_8_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_9_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_9_Ebable.Id = "PMC1050";
             _pmcBom.CLS_Clamp_Front_9_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_9_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_9_Ebable.Adr = 509;
             _pmcBom.CLS_Clamp_Front_9_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_9_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_9_MoveOutStatus.Id = "PMC1051";
             _pmcBom.CLS_Clamp_Front_9_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_9_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_9_MoveOutStatus.Adr = 509;
             _pmcBom.CLS_Clamp_Front_9_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_9_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_9_MoveInStatus.Id = "PMC1052";
             _pmcBom.CLS_Clamp_Front_9_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_9_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_9_MoveInStatus.Adr = 509;
             _pmcBom.CLS_Clamp_Front_9_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_10_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_10_Ebable.Id = "PMC1053";
             _pmcBom.CLS_Clamp_Front_10_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_10_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_10_Ebable.Adr = 510;
             _pmcBom.CLS_Clamp_Front_10_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_10_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_10_MoveOutStatus.Id = "PMC1054";
             _pmcBom.CLS_Clamp_Front_10_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_10_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_10_MoveOutStatus.Adr = 510;
             _pmcBom.CLS_Clamp_Front_10_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_10_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_10_MoveInStatus.Id = "PMC1055";
             _pmcBom.CLS_Clamp_Front_10_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_10_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_10_MoveInStatus.Adr = 510;
             _pmcBom.CLS_Clamp_Front_10_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_11_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_11_Ebable.Id = "PMC1056";
             _pmcBom.CLS_Clamp_Front_11_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_11_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_11_Ebable.Adr = 511;
             _pmcBom.CLS_Clamp_Front_11_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_11_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_11_MoveOutStatus.Id = "PMC1057";
             _pmcBom.CLS_Clamp_Front_11_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_11_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_11_MoveOutStatus.Adr = 511;
             _pmcBom.CLS_Clamp_Front_11_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_11_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_11_MoveInStatus.Id = "PMC1058";
             _pmcBom.CLS_Clamp_Front_11_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_11_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_11_MoveInStatus.Adr = 511;
             _pmcBom.CLS_Clamp_Front_11_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_12_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_12_Ebable.Id = "PMC1059";
             _pmcBom.CLS_Clamp_Front_12_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_12_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_12_Ebable.Adr = 512;
             _pmcBom.CLS_Clamp_Front_12_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_12_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_12_MoveOutStatus.Id = "PMC1060";
             _pmcBom.CLS_Clamp_Front_12_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_12_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_12_MoveOutStatus.Adr = 512;
             _pmcBom.CLS_Clamp_Front_12_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_12_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_12_MoveInStatus.Id = "PMC1061";
             _pmcBom.CLS_Clamp_Front_12_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_12_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_12_MoveInStatus.Adr = 512;
             _pmcBom.CLS_Clamp_Front_12_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Front_13_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_13_Ebable.Id = "PMC1062";
             _pmcBom.CLS_Clamp_Front_13_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_13_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_13_Ebable.Adr = 513;
             _pmcBom.CLS_Clamp_Front_13_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Front_13_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_13_MoveOutStatus.Id = "PMC1063";
             _pmcBom.CLS_Clamp_Front_13_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_13_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_13_MoveOutStatus.Adr = 513;
             _pmcBom.CLS_Clamp_Front_13_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Front_13_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Front_13_MoveInStatus.Id = "PMC1064";
             _pmcBom.CLS_Clamp_Front_13_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_13_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Front_13_MoveInStatus.Adr = 513;
             _pmcBom.CLS_Clamp_Front_13_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_1_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_1_Ebable.Id = "PMC1065";
             _pmcBom.CLS_Clamp_Back_1_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_1_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_1_Ebable.Adr = 514;
             _pmcBom.CLS_Clamp_Back_1_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_1_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_1_MoveOutStatus.Id = "PMC1066";
             _pmcBom.CLS_Clamp_Back_1_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_1_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_1_MoveOutStatus.Adr = 514;
             _pmcBom.CLS_Clamp_Back_1_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_1_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_1_MoveInStatus.Id = "PMC1067";
             _pmcBom.CLS_Clamp_Back_1_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_1_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_1_MoveInStatus.Adr = 514;
             _pmcBom.CLS_Clamp_Back_1_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_2_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_2_Ebable.Id = "PMC1068";
             _pmcBom.CLS_Clamp_Back_2_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_2_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_2_Ebable.Adr = 515;
             _pmcBom.CLS_Clamp_Back_2_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_2_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_2_MoveOutStatus.Id = "PMC1069";
             _pmcBom.CLS_Clamp_Back_2_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_2_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_2_MoveOutStatus.Adr = 515;
             _pmcBom.CLS_Clamp_Back_2_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_2_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_2_MoveInStatus.Id = "PMC1070";
             _pmcBom.CLS_Clamp_Back_2_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_2_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_2_MoveInStatus.Adr = 515;
             _pmcBom.CLS_Clamp_Back_2_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_3_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_3_Ebable.Id = "PMC1071";
             _pmcBom.CLS_Clamp_Back_3_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_3_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_3_Ebable.Adr = 516;
             _pmcBom.CLS_Clamp_Back_3_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_3_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_3_MoveOutStatus.Id = "PMC1072";
             _pmcBom.CLS_Clamp_Back_3_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_3_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_3_MoveOutStatus.Adr = 516;
             _pmcBom.CLS_Clamp_Back_3_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_3_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_3_MoveInStatus.Id = "PMC1073";
             _pmcBom.CLS_Clamp_Back_3_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_3_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_3_MoveInStatus.Adr = 516;
             _pmcBom.CLS_Clamp_Back_3_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_4_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_4_Ebable.Id = "PMC1074";
             _pmcBom.CLS_Clamp_Back_4_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_4_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_4_Ebable.Adr = 517;
             _pmcBom.CLS_Clamp_Back_4_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_4_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_4_MoveOutStatus.Id = "PMC1075";
             _pmcBom.CLS_Clamp_Back_4_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_4_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_4_MoveOutStatus.Adr = 517;
             _pmcBom.CLS_Clamp_Back_4_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_4_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_4_MoveInStatus.Id = "PMC1076";
             _pmcBom.CLS_Clamp_Back_4_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_4_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_4_MoveInStatus.Adr = 517;
             _pmcBom.CLS_Clamp_Back_4_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_5_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_5_Ebable.Id = "PMC1077";
             _pmcBom.CLS_Clamp_Back_5_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_5_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_5_Ebable.Adr = 518;
             _pmcBom.CLS_Clamp_Back_5_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_5_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_5_MoveOutStatus.Id = "PMC1078";
             _pmcBom.CLS_Clamp_Back_5_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_5_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_5_MoveOutStatus.Adr = 518;
             _pmcBom.CLS_Clamp_Back_5_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_5_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_5_MoveInStatus.Id = "PMC1079";
             _pmcBom.CLS_Clamp_Back_5_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_5_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_5_MoveInStatus.Adr = 518;
             _pmcBom.CLS_Clamp_Back_5_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_6_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_6_Ebable.Id = "PMC1080";
             _pmcBom.CLS_Clamp_Back_6_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_6_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_6_Ebable.Adr = 519;
             _pmcBom.CLS_Clamp_Back_6_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_6_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_6_MoveOutStatus.Id = "PMC1081";
             _pmcBom.CLS_Clamp_Back_6_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_6_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_6_MoveOutStatus.Adr = 519;
             _pmcBom.CLS_Clamp_Back_6_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_6_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_6_MoveInStatus.Id = "PMC1082";
             _pmcBom.CLS_Clamp_Back_6_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_6_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_6_MoveInStatus.Adr = 519;
             _pmcBom.CLS_Clamp_Back_6_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_7_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_7_Ebable.Id = "PMC1083";
             _pmcBom.CLS_Clamp_Back_7_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_7_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_7_Ebable.Adr = 520;
             _pmcBom.CLS_Clamp_Back_7_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_7_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_7_MoveOutStatus.Id = "PMC1084";
             _pmcBom.CLS_Clamp_Back_7_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_7_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_7_MoveOutStatus.Adr = 520;
             _pmcBom.CLS_Clamp_Back_7_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_7_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_7_MoveInStatus.Id = "PMC1085";
             _pmcBom.CLS_Clamp_Back_7_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_7_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_7_MoveInStatus.Adr = 520;
             _pmcBom.CLS_Clamp_Back_7_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_8_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_8_Ebable.Id = "PMC1086";
             _pmcBom.CLS_Clamp_Back_8_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_8_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_8_Ebable.Adr = 521;
             _pmcBom.CLS_Clamp_Back_8_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_8_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_8_MoveOutStatus.Id = "PMC1087";
             _pmcBom.CLS_Clamp_Back_8_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_8_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_8_MoveOutStatus.Adr = 521;
             _pmcBom.CLS_Clamp_Back_8_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_8_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_8_MoveInStatus.Id = "PMC1088";
             _pmcBom.CLS_Clamp_Back_8_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_8_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_8_MoveInStatus.Adr = 521;
             _pmcBom.CLS_Clamp_Back_8_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_9_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_9_Ebable.Id = "PMC1089";
             _pmcBom.CLS_Clamp_Back_9_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_9_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_9_Ebable.Adr = 522;
             _pmcBom.CLS_Clamp_Back_9_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_9_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_9_MoveOutStatus.Id = "PMC1090";
             _pmcBom.CLS_Clamp_Back_9_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_9_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_9_MoveOutStatus.Adr = 522;
             _pmcBom.CLS_Clamp_Back_9_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_9_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_9_MoveInStatus.Id = "PMC1091";
             _pmcBom.CLS_Clamp_Back_9_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_9_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_9_MoveInStatus.Adr = 522;
             _pmcBom.CLS_Clamp_Back_9_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_10_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_10_Ebable.Id = "PMC1092";
             _pmcBom.CLS_Clamp_Back_10_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_10_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_10_Ebable.Adr = 523;
             _pmcBom.CLS_Clamp_Back_10_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_10_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_10_MoveOutStatus.Id = "PMC1093";
             _pmcBom.CLS_Clamp_Back_10_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_10_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_10_MoveOutStatus.Adr = 523;
             _pmcBom.CLS_Clamp_Back_10_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_10_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_10_MoveInStatus.Id = "PMC1094";
             _pmcBom.CLS_Clamp_Back_10_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_10_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_10_MoveInStatus.Adr = 523;
             _pmcBom.CLS_Clamp_Back_10_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_11_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_11_Ebable.Id = "PMC1095";
             _pmcBom.CLS_Clamp_Back_11_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_11_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_11_Ebable.Adr = 524;
             _pmcBom.CLS_Clamp_Back_11_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_11_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_11_MoveOutStatus.Id = "PMC1096";
             _pmcBom.CLS_Clamp_Back_11_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_11_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_11_MoveOutStatus.Adr = 524;
             _pmcBom.CLS_Clamp_Back_11_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_11_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_11_MoveInStatus.Id = "PMC1097";
             _pmcBom.CLS_Clamp_Back_11_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_11_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_11_MoveInStatus.Adr = 524;
             _pmcBom.CLS_Clamp_Back_11_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_12_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_12_Ebable.Id = "PMC1098";
             _pmcBom.CLS_Clamp_Back_12_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_12_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_12_Ebable.Adr = 525;
             _pmcBom.CLS_Clamp_Back_12_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_12_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_12_MoveOutStatus.Id = "PMC1099";
             _pmcBom.CLS_Clamp_Back_12_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_12_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_12_MoveOutStatus.Adr = 525;
             _pmcBom.CLS_Clamp_Back_12_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_12_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_12_MoveInStatus.Id = "PMC1100";
             _pmcBom.CLS_Clamp_Back_12_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_12_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_12_MoveInStatus.Adr = 525;
             _pmcBom.CLS_Clamp_Back_12_MoveInStatus.Bit = 2;
+
             _pmcBom.CLS_Clamp_Back_13_Ebable = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_13_Ebable.Id = "PMC1101";
             _pmcBom.CLS_Clamp_Back_13_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_13_Ebable.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_13_Ebable.Adr = 526;
             _pmcBom.CLS_Clamp_Back_13_Ebable.Bit = 0;
+
             _pmcBom.CLS_Clamp_Back_13_MoveOutStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_13_MoveOutStatus.Id = "PMC1102";
             _pmcBom.CLS_Clamp_Back_13_MoveOutStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_13_MoveOutStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_13_MoveOutStatus.Adr = 526;
             _pmcBom.CLS_Clamp_Back_13_MoveOutStatus.Bit = 1;
+
             _pmcBom.CLS_Clamp_Back_13_MoveInStatus = new PmcBomItem();
+            _pmcBom.CLS_Clamp_Back_13_MoveInStatus.Id = "PMC1103";
             _pmcBom.CLS_Clamp_Back_13_MoveInStatus.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Back_13_MoveInStatus.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_Clamp_Back_13_MoveInStatus.Adr = 526;
@@ -1538,12 +1798,14 @@ namespace FanucCnc
 
             #region 自动化气源
             _pmcBom.AAS_StartPos_1 = new PmcBomItem();
+            _pmcBom.AAS_StartPos_1.Id = "PMC1104";
             _pmcBom.AAS_StartPos_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartPos_1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_StartPos_1.Adr = 300;
             _pmcBom.AAS_StartPos_1.IsRecipes = true;
 
             _pmcBom.AAS_StartArr_1 = new PmcBomItem();
+            _pmcBom.AAS_StartArr_1.Id = "PMC1105";
             _pmcBom.AAS_StartArr_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartArr_1.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_StartArr_1.Adr = 308;
@@ -1551,12 +1813,14 @@ namespace FanucCnc
             _pmcBom.AAS_StartArr_1.IsRecipes = true;
 
             _pmcBom.AAS_EndPos_1 = new PmcBomItem();
+            _pmcBom.AAS_EndPos_1.Id = "PMC1106";
             _pmcBom.AAS_EndPos_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndPos_1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_EndPos_1.Adr = 304;
             _pmcBom.AAS_EndPos_1.IsRecipes = true;
 
             _pmcBom.AAS_EndArr_1 = new PmcBomItem();
+            _pmcBom.AAS_EndArr_1.Id = "PMC1107";
             _pmcBom.AAS_EndArr_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndArr_1.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_EndArr_1.Adr = 308;
@@ -1564,6 +1828,7 @@ namespace FanucCnc
             _pmcBom.AAS_EndArr_1.IsRecipes = true;
 
             _pmcBom.AAS_ActionFlag_1 = new PmcBomItem();
+            _pmcBom.AAS_ActionFlag_1.Id = "PMC1108";
             _pmcBom.AAS_ActionFlag_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_ActionFlag_1.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_ActionFlag_1.Adr = 308;
@@ -1571,12 +1836,14 @@ namespace FanucCnc
             _pmcBom.AAS_ActionFlag_1.IsRecipes = true;
 
             _pmcBom.AAS_StartPos_2 = new PmcBomItem();
+            _pmcBom.AAS_StartPos_2.Id = "PMC1109";
             _pmcBom.AAS_StartPos_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartPos_2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_StartPos_2.Adr = 310;
             _pmcBom.AAS_StartPos_2.IsRecipes = true;
 
             _pmcBom.AAS_StartArr_2 = new PmcBomItem();
+            _pmcBom.AAS_StartArr_2.Id = "PMC1110";
             _pmcBom.AAS_StartArr_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartArr_2.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_StartArr_2.Adr = 318;
@@ -1584,12 +1851,14 @@ namespace FanucCnc
             _pmcBom.AAS_StartArr_2.IsRecipes = true;
 
             _pmcBom.AAS_EndPos_2 = new PmcBomItem();
+            _pmcBom.AAS_EndPos_2.Id = "PMC1111";
             _pmcBom.AAS_EndPos_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndPos_2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_EndPos_2.Adr = 314;
             _pmcBom.AAS_EndPos_2.IsRecipes = true;
 
             _pmcBom.AAS_EndArr_2 = new PmcBomItem();
+            _pmcBom.AAS_EndArr_2.Id = "PMC1112";
             _pmcBom.AAS_EndArr_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndArr_2.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_EndArr_2.Adr = 318;
@@ -1597,6 +1866,7 @@ namespace FanucCnc
             _pmcBom.AAS_EndArr_2.IsRecipes = true;
 
             _pmcBom.AAS_ActionFlag_2 = new PmcBomItem();
+            _pmcBom.AAS_ActionFlag_2.Id = "PMC1113";
             _pmcBom.AAS_ActionFlag_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_ActionFlag_2.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_ActionFlag_2.Adr = 318;
@@ -1604,12 +1874,14 @@ namespace FanucCnc
             _pmcBom.AAS_ActionFlag_2.IsRecipes = true;
 
             _pmcBom.AAS_StartPos_3 = new PmcBomItem();
+            _pmcBom.AAS_StartPos_3.Id = "PMC1114";
             _pmcBom.AAS_StartPos_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartPos_3.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_StartPos_3.Adr = 320;
             _pmcBom.AAS_StartPos_3.IsRecipes = true;
 
             _pmcBom.AAS_StartArr_3 = new PmcBomItem();
+            _pmcBom.AAS_StartArr_3.Id = "PMC1115";
             _pmcBom.AAS_StartArr_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartArr_3.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_StartArr_3.Adr = 328;
@@ -1617,12 +1889,14 @@ namespace FanucCnc
             _pmcBom.AAS_StartArr_3.IsRecipes = true;
 
             _pmcBom.AAS_EndPos_3 = new PmcBomItem();
+            _pmcBom.AAS_EndPos_3.Id = "PMC1116";
             _pmcBom.AAS_EndPos_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndPos_3.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_EndPos_3.Adr = 324;
             _pmcBom.AAS_EndPos_3.IsRecipes = true;
 
             _pmcBom.AAS_EndArr_3 = new PmcBomItem();
+            _pmcBom.AAS_EndArr_3.Id = "PMC1117";
             _pmcBom.AAS_EndArr_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndArr_3.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_EndArr_3.Adr = 328;
@@ -1630,6 +1904,7 @@ namespace FanucCnc
             _pmcBom.AAS_EndArr_3.IsRecipes = true;
 
             _pmcBom.AAS_ActionFlag_3 = new PmcBomItem();
+            _pmcBom.AAS_ActionFlag_3.Id = "PMC1118";
             _pmcBom.AAS_ActionFlag_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_ActionFlag_3.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_ActionFlag_3.Adr = 328;
@@ -1637,12 +1912,14 @@ namespace FanucCnc
             _pmcBom.AAS_ActionFlag_3.IsRecipes = true;
 
             _pmcBom.AAS_StartPos_4 = new PmcBomItem();
+            _pmcBom.AAS_StartPos_4.Id = "PMC1119";
             _pmcBom.AAS_StartPos_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartPos_4.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_StartPos_4.Adr = 330;
             _pmcBom.AAS_StartPos_4.IsRecipes = true;
 
             _pmcBom.AAS_StartArr_4 = new PmcBomItem();
+            _pmcBom.AAS_StartArr_4.Id = "PMC1120";
             _pmcBom.AAS_StartArr_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartArr_4.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_StartArr_4.Adr = 338;
@@ -1650,12 +1927,14 @@ namespace FanucCnc
             _pmcBom.AAS_StartArr_4.IsRecipes = true;
 
             _pmcBom.AAS_EndPos_4 = new PmcBomItem();
+            _pmcBom.AAS_EndPos_4.Id = "PMC1121";
             _pmcBom.AAS_EndPos_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndPos_4.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_EndPos_4.Adr = 334;
             _pmcBom.AAS_EndPos_4.IsRecipes = true;
 
             _pmcBom.AAS_EndArr_4 = new PmcBomItem();
+            _pmcBom.AAS_EndArr_4.Id = "PMC1122";
             _pmcBom.AAS_EndArr_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndArr_4.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_EndArr_4.Adr = 338;
@@ -1663,6 +1942,7 @@ namespace FanucCnc
             _pmcBom.AAS_EndArr_4.IsRecipes = true;
 
             _pmcBom.AAS_ActionFlag_4 = new PmcBomItem();
+            _pmcBom.AAS_ActionFlag_4.Id = "PMC1123";
             _pmcBom.AAS_ActionFlag_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_ActionFlag_4.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_ActionFlag_4.Adr = 338;
@@ -1673,36 +1953,43 @@ namespace FanucCnc
 
             #region 工件计数
             _pmcBom.WPP_DayPiece = new PmcBomItem();
+            _pmcBom.WPP_DayPiece.Id = "PMC1124";
             _pmcBom.WPP_DayPiece.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.WPP_DayPiece.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.WPP_DayPiece.Adr = 500;
 
             _pmcBom.WPP_DayWork = new PmcBomItem();
+            _pmcBom.WPP_DayWork.Id = "PMC1125";
             _pmcBom.WPP_DayWork.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.WPP_DayWork.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.WPP_DayWork.Adr = 504;
 
             _pmcBom.WPP_CurPiece = new PmcBomItem();
+            _pmcBom.WPP_CurPiece.Id = "PMC1126";
             _pmcBom.WPP_CurPiece.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.WPP_CurPiece.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.WPP_CurPiece.Adr = 510;
 
             _pmcBom.WPP_SetPiece = new PmcBomItem();
+            _pmcBom.WPP_SetPiece.Id = "PMC1127";
             _pmcBom.WPP_SetPiece.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.WPP_SetPiece.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.WPP_SetPiece.Adr = 514;
 
             _pmcBom.WPP_CurPiece2 = new PmcBomItem();
+            _pmcBom.WPP_CurPiece2.Id = "PMC1128";
             _pmcBom.WPP_CurPiece2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.WPP_CurPiece2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.WPP_CurPiece2.Adr = 520;
 
             _pmcBom.WPP_TotalPiece = new PmcBomItem();
+            _pmcBom.WPP_TotalPiece.Id = "PMC1129";
             _pmcBom.WPP_TotalPiece.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.WPP_TotalPiece.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.WPP_TotalPiece.Adr = 530;
 
             _pmcBom.WPP_TotalWork = new PmcBomItem();
+            _pmcBom.WPP_TotalWork.Id = "PMC1130";
             _pmcBom.WPP_TotalWork.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.WPP_TotalWork.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.WPP_TotalWork.Adr = 534;
@@ -1711,51 +1998,61 @@ namespace FanucCnc
 
             #region 系统参数 压机设定
             _pmcBom.SPM_MaxWeight = new PmcBomItem();
+            _pmcBom.SPM_MaxWeight.Id = "PMC1131";
             _pmcBom.SPM_MaxWeight.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_MaxWeight.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_MaxWeight.Adr = 600;
 
             _pmcBom.SPM_MaxTemperature = new PmcBomItem();
+            _pmcBom.SPM_MaxTemperature.Id = "PMC1132";
             _pmcBom.SPM_MaxTemperature.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_MaxTemperature.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_MaxTemperature.Adr = 604;
 
             _pmcBom.SPM_MaxError = new PmcBomItem();
+            _pmcBom.SPM_MaxError.Id = "PMC1133";
             _pmcBom.SPM_MaxError.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_MaxError.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_MaxError.Adr = 608;
 
             _pmcBom.SPM_PressureSensorPara = new PmcBomItem();
+            _pmcBom.SPM_PressureSensorPara.Id = "PMC1134";
             _pmcBom.SPM_PressureSensorPara.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_PressureSensorPara.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_PressureSensorPara.Adr = 612;
 
             _pmcBom.SPM_BalanceCylinderAnalog = new PmcBomItem();
+            _pmcBom.SPM_BalanceCylinderAnalog.Id = "PMC1135";
             _pmcBom.SPM_BalanceCylinderAnalog.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_BalanceCylinderAnalog.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_BalanceCylinderAnalog.Adr = 616;
 
             _pmcBom.SPM_BalanceCylinderPressure = new PmcBomItem();
+            _pmcBom.SPM_BalanceCylinderPressure.Id = "PMC1136";
             _pmcBom.SPM_BalanceCylinderPressure.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_BalanceCylinderPressure.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_BalanceCylinderPressure.Adr = 620;
 
             _pmcBom.SPM_OverflowDelay = new PmcBomItem();
+            _pmcBom.SPM_OverflowDelay.Id = "PMC1137";
             _pmcBom.SPM_OverflowDelay.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_OverflowDelay.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_OverflowDelay.Adr = 624;
 
             _pmcBom.SPM_PressureDiffPara = new PmcBomItem();
+            _pmcBom.SPM_PressureDiffPara.Id = "PMC1138";
             _pmcBom.SPM_PressureDiffPara.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_PressureDiffPara.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_PressureDiffPara.Adr = 628;
 
             _pmcBom.SPM_PressureLowAlarm = new PmcBomItem();
+            _pmcBom.SPM_PressureLowAlarm.Id = "PMC1139";
             _pmcBom.SPM_PressureLowAlarm.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_PressureLowAlarm.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_PressureLowAlarm.Adr = 632;
 
             _pmcBom.SPM_LubricateDetect = new PmcBomItem();
+            _pmcBom.SPM_LubricateDetect.Id = "PMC1140";
             _pmcBom.SPM_LubricateDetect.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPM_LubricateDetect.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPM_LubricateDetect.Adr = 636;
@@ -1764,141 +2061,169 @@ namespace FanucCnc
 
             #region 系统参数 润滑设定
             _pmcBom.SPL_AC_LubricateTime = new PmcBomItem();
+            _pmcBom.SPL_AC_LubricateTime.Id = "PMC1141";
             _pmcBom.SPL_AC_LubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_LubricateTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_LubricateTime.Adr = 700;
 
             _pmcBom.SPL_CR_SetLubricateInterval = new PmcBomItem();
+            _pmcBom.SPL_CR_SetLubricateInterval.Id = "PMC1142";
             _pmcBom.SPL_CR_SetLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_CR_SetLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_CR_SetLubricateInterval.Adr = 704;
 
             _pmcBom.SPL_CR_ActualLubricateInterval = new PmcBomItem();
+            _pmcBom.SPL_CR_ActualLubricateInterval.Id = "PMC1143";
             _pmcBom.SPL_CR_ActualLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_CR_ActualLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_CR_ActualLubricateInterval.Adr = 708;
 
             _pmcBom.SPL_CR_LubricateDetectTime = new PmcBomItem();
+            _pmcBom.SPL_CR_LubricateDetectTime.Id = "PMC1144";
             _pmcBom.SPL_CR_LubricateDetectTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_CR_LubricateDetectTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_CR_LubricateDetectTime.Adr = 712;
 
             _pmcBom.SPL_CR_LubricateTotalNum = new PmcBomItem();
+            _pmcBom.SPL_CR_LubricateTotalNum.Id = "PMC1145";
             _pmcBom.SPL_CR_LubricateTotalNum.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_CR_LubricateTotalNum.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_CR_LubricateTotalNum.Adr = 716;
 
             _pmcBom.SPL_CR_PowerOnLubricateTime = new PmcBomItem();
+            _pmcBom.SPL_CR_PowerOnLubricateTime.Id = "PMC1146";
             _pmcBom.SPL_CR_PowerOnLubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_CR_PowerOnLubricateTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_CR_PowerOnLubricateTime.Adr = 720;
 
             _pmcBom.SPL_CR_LubricateDetecte = new PmcBomItem();
+            _pmcBom.SPL_CR_LubricateDetecte.Id = "PMC1147";
             _pmcBom.SPL_CR_LubricateDetecte.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_CR_LubricateDetecte.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_CR_LubricateDetecte.Adr = 724;
 
             _pmcBom.SPL_AC_LubricateTime = new PmcBomItem();
+            _pmcBom.SPL_AC_LubricateTime.Id = "PMC1148";
             _pmcBom.SPL_AC_LubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_LubricateTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_LubricateTime.Adr = 728;
 
             _pmcBom.SPL_AC_SetLubricateInterval = new PmcBomItem();
+            _pmcBom.SPL_AC_SetLubricateInterval.Id = "PMC1149";
             _pmcBom.SPL_AC_SetLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_SetLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_SetLubricateInterval.Adr = 732;
 
             _pmcBom.SPL_AC_ActualLubricateInterval = new PmcBomItem();
+            _pmcBom.SPL_AC_ActualLubricateInterval.Id = "PMC1150";
             _pmcBom.SPL_AC_ActualLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_ActualLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_ActualLubricateInterval.Adr = 736;
 
             _pmcBom.SPL_AC_LubricateDetectTime = new PmcBomItem();
+            _pmcBom.SPL_AC_LubricateDetectTime.Id = "PMC1151";
             _pmcBom.SPL_AC_LubricateDetectTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_LubricateDetectTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_LubricateDetectTime.Adr = 740;
 
             _pmcBom.SPL_AC_LubricateTotalNum = new PmcBomItem();
+            _pmcBom.SPL_AC_LubricateTotalNum.Id = "PMC1152";
             _pmcBom.SPL_AC_LubricateTotalNum.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_LubricateTotalNum.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_LubricateTotalNum.Adr = 744;
 
             _pmcBom.SPL_AC_PowerOnLubricateTime = new PmcBomItem();
+            _pmcBom.SPL_AC_PowerOnLubricateTime.Id = "PMC1153";
             _pmcBom.SPL_AC_PowerOnLubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_PowerOnLubricateTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_PowerOnLubricateTime.Adr = 748;
 
             _pmcBom.SPL_AC2_LubricateTime = new PmcBomItem();
+            _pmcBom.SPL_AC2_LubricateTime.Id = "PMC1154";
             _pmcBom.SPL_AC2_LubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_LubricateTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_LubricateTime.Adr = 752;
 
             _pmcBom.SPL_AC2_SetLubricateInterval = new PmcBomItem();
+            _pmcBom.SPL_AC2_SetLubricateInterval.Id = "PMC1155";
             _pmcBom.SPL_AC2_SetLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_SetLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_SetLubricateInterval.Adr = 756;
 
             _pmcBom.SPL_AC2_ActualLubricateInterval = new PmcBomItem();
+            _pmcBom.SPL_AC2_ActualLubricateInterval.Id = "PMC1156";
             _pmcBom.SPL_AC2_ActualLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_ActualLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_ActualLubricateInterval.Adr = 760;
 
             _pmcBom.SPL_AC2_LubricateDetectTime = new PmcBomItem();
+            _pmcBom.SPL_AC2_LubricateDetectTime.Id = "PMC1157";
             _pmcBom.SPL_AC2_LubricateDetectTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_LubricateDetectTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_LubricateDetectTime.Adr = 764;
 
             _pmcBom.SPL_AC2_LubricateTotalNum = new PmcBomItem();
+            _pmcBom.SPL_AC2_LubricateTotalNum.Id = "PMC1158";
             _pmcBom.SPL_AC2_LubricateTotalNum.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_LubricateTotalNum.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_LubricateTotalNum.Adr = 768;
 
             _pmcBom.SPL_AC2_PowerOnLubricateTime = new PmcBomItem();
+            _pmcBom.SPL_AC2_PowerOnLubricateTime.Id = "PMC1159";
             _pmcBom.SPL_AC2_PowerOnLubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_PowerOnLubricateTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_PowerOnLubricateTime.Adr = 772;
 
             _pmcBom.SPL_GR_LubricateReversing = new PmcBomItem();
+            _pmcBom.SPL_GR_LubricateReversing.Id = "PMC1160";
             _pmcBom.SPL_GR_LubricateReversing.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_GR_LubricateReversing.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_GR_LubricateReversing.Adr = 776;
 
             _pmcBom.SPL_GR_LubricateDetectTime = new PmcBomItem();
+            _pmcBom.SPL_GR_LubricateDetectTime.Id = "PMC1161";
             _pmcBom.SPL_GR_LubricateDetectTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_GR_LubricateDetectTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_GR_LubricateDetectTime.Adr = 780;
 
             _pmcBom.SPL_SC_LubricateReversing = new PmcBomItem();
+            _pmcBom.SPL_SC_LubricateReversing.Id = "PMC1162";
             _pmcBom.SPL_SC_LubricateReversing.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_SC_LubricateReversing.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_SC_LubricateReversing.Adr = 784;
 
             _pmcBom.SPL_OS_Time = new PmcBomItem();
+            _pmcBom.SPL_OS_Time.Id = "PMC1163";
             _pmcBom.SPL_OS_Time.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_OS_Time.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_OS_Time.Adr = 788;
 
             _pmcBom.SPL_OS_IntervalTime = new PmcBomItem();
+            _pmcBom.SPL_OS_IntervalTime.Id = "PMC1164";
             _pmcBom.SPL_OS_IntervalTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_OS_IntervalTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_OS_IntervalTime.Adr = 792;
 
             _pmcBom.SPL_OS_DelayTime = new PmcBomItem();
+            _pmcBom.SPL_OS_DelayTime.Id = "PMC1165";
             _pmcBom.SPL_OS_DelayTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_OS_DelayTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_OS_DelayTime.Adr = 796;
 
             _pmcBom.SPL_TS_DelayTime = new PmcBomItem();
+            _pmcBom.SPL_TS_DelayTime.Id = "PMC1166";
             _pmcBom.SPL_TS_DelayTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_TS_DelayTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_TS_DelayTime.Adr = 800;
 
             _pmcBom.SPL_TS_StopTime = new PmcBomItem();
+            _pmcBom.SPL_TS_StopTime.Id = "PMC1167";
             _pmcBom.SPL_TS_StopTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_TS_StopTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_TS_StopTime.Adr = 804;
 
             _pmcBom.SPL_TS_RunTime = new PmcBomItem();
+            _pmcBom.SPL_TS_RunTime.Id = "PMC1168";
             _pmcBom.SPL_TS_RunTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_TS_RunTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_TS_RunTime.Adr = 808;
@@ -1907,99 +2232,122 @@ namespace FanucCnc
 
             #region 系统参数 模拟量设定
             _pmcBom.SPA_A1_Value = new PmcBomItem();
+            _pmcBom.SPA_A1_Value.Id = "PMC1169";
             _pmcBom.SPA_A1_Value.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A1_Value.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A1_Value.Adr = 900;
             _pmcBom.SPA_A1_WeightPara1 = new PmcBomItem();
+            _pmcBom.SPA_A1_WeightPara1.Id = "PMC1170";
             _pmcBom.SPA_A1_WeightPara1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A1_WeightPara1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A1_WeightPara1.Adr = 904;
             _pmcBom.SPA_A1_WeightPara2 = new PmcBomItem();
+            _pmcBom.SPA_A1_WeightPara2.Id = "PMC1171";
             _pmcBom.SPA_A1_WeightPara2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A1_WeightPara2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A1_WeightPara2.Adr = 908;
             _pmcBom.SPA_A1_Weight = new PmcBomItem();
+            _pmcBom.SPA_A1_Weight.Id = "PMC1172";
             _pmcBom.SPA_A1_Weight.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A1_Weight.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A1_Weight.Adr = 912;
 
             _pmcBom.SPA_A2_Value = new PmcBomItem();
+            _pmcBom.SPA_A2_Value.Id = "PMC1173";
             _pmcBom.SPA_A2_Value.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A2_Value.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A2_Value.Adr = 916;
             _pmcBom.SPA_A2_WeightPara1 = new PmcBomItem();
+            _pmcBom.SPA_A2_WeightPara1.Id = "PMC1174";
             _pmcBom.SPA_A2_WeightPara1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A2_WeightPara1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A2_WeightPara1.Adr = 920;
             _pmcBom.SPA_A2_WeightPara2 = new PmcBomItem();
+            _pmcBom.SPA_A2_WeightPara2.Id = "PMC1175";
             _pmcBom.SPA_A2_WeightPara2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A2_WeightPara2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A2_WeightPara2.Adr = 924;
             _pmcBom.SPA_A2_Weight = new PmcBomItem();
+            _pmcBom.SPA_A2_Weight.Id = "PMC1176";
             _pmcBom.SPA_A2_Weight.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A2_Weight.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A2_Weight.Adr = 928;
 
             _pmcBom.SPA_A3_Value = new PmcBomItem();
+            _pmcBom.SPA_A3_Value.Id = "PMC1177";
             _pmcBom.SPA_A3_Value.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A3_Value.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A3_Value.Adr = 932;
             _pmcBom.SPA_A3_WeightPara1 = new PmcBomItem();
+            _pmcBom.SPA_A3_WeightPara1.Id = "PMC1178";
             _pmcBom.SPA_A3_WeightPara1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A3_WeightPara1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A3_WeightPara1.Adr = 936;
             _pmcBom.SPA_A3_WeightPara2 = new PmcBomItem();
+            _pmcBom.SPA_A3_WeightPara2.Id = "PMC1179";
             _pmcBom.SPA_A3_WeightPara2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A3_WeightPara2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A3_WeightPara2.Adr = 940;
             _pmcBom.SPA_A3_Weight = new PmcBomItem();
+            _pmcBom.SPA_A3_Weight.Id = "PMC1180";
             _pmcBom.SPA_A3_Weight.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A3_Weight.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A3_Weight.Adr = 944;
 
             _pmcBom.SPA_A4_Value = new PmcBomItem();
+            _pmcBom.SPA_A4_Value.Id = "PMC1181";
             _pmcBom.SPA_A4_Value.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A4_Value.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A4_Value.Adr = 948;
             _pmcBom.SPA_A4_WeightPara1 = new PmcBomItem();
+            _pmcBom.SPA_A4_WeightPara1.Id = "PMC1182";
             _pmcBom.SPA_A4_WeightPara1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A4_WeightPara1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A4_WeightPara1.Adr = 952;
             _pmcBom.SPA_A4_WeightPara2 = new PmcBomItem();
+            _pmcBom.SPA_A4_WeightPara2.Id = "PMC1183";
             _pmcBom.SPA_A4_WeightPara2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A4_WeightPara2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A4_WeightPara2.Adr = 956;
             _pmcBom.SPA_A4_Weight = new PmcBomItem();
+            _pmcBom.SPA_A4_Weight.Id = "PMC1184";
             _pmcBom.SPA_A4_Weight.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A4_Weight.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_A4_Weight.Adr = 960;
 
             _pmcBom.SPA_TotalWeight = new PmcBomItem();
+            _pmcBom.SPA_TotalWeight.Id = "PMC1185";
             _pmcBom.SPA_TotalWeight.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_TotalWeight.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_TotalWeight.Adr = 964;
             _pmcBom.SPA_DetectPosition = new PmcBomItem();
+            _pmcBom.SPA_DetectPosition.Id = "PMC1186";
             _pmcBom.SPA_DetectPosition.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_DetectPosition.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_DetectPosition.Adr = 968;
             _pmcBom.SPA_DetectInPosition = new PmcBomItem();
+            _pmcBom.SPA_DetectInPosition.Id = "PMC1187";
             _pmcBom.SPA_DetectInPosition.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_DetectInPosition.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_DetectInPosition.Adr = 972;
             _pmcBom.SPA_DetectSensor = new PmcBomItem();
+            _pmcBom.SPA_DetectSensor.Id = "PMC1188";
             _pmcBom.SPA_DetectSensor.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_DetectSensor.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_DetectSensor.Adr = 976;
 
             _pmcBom.SPA_Pressure = new PmcBomItem();
+            _pmcBom.SPA_Pressure.Id = "PMC1189";
             _pmcBom.SPA_Pressure.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_Pressure.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_Pressure.Adr = 980;
             _pmcBom.SPA_PressureUp = new PmcBomItem();
+            _pmcBom.SPA_PressureUp.Id = "PMC1190";
             _pmcBom.SPA_PressureUp.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_PressureUp.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_PressureUp.Adr = 984;
             _pmcBom.SPA_PressureDown = new PmcBomItem();
+            _pmcBom.SPA_PressureDown.Id = "PMC1191";
             _pmcBom.SPA_PressureDown.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_PressureDown.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_PressureDown.Adr = 988;
@@ -2009,76 +2357,94 @@ namespace FanucCnc
 
             #region 系统参数 编码器设定
             _pmcBom.SPA_IM_RESOLUTION = new PmcBomItem();
+            _pmcBom.SPA_IM_RESOLUTION.Id = "PMC1192";
             _pmcBom.SPA_IM_RESOLUTION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_RESOLUTION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_RESOLUTION.Adr = 980;
             _pmcBom.SPA_IM_MOVEPITCH = new PmcBomItem();
+            _pmcBom.SPA_IM_MOVEPITCH.Id = "PMC1193";
             _pmcBom.SPA_IM_MOVEPITCH.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_MOVEPITCH.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_MOVEPITCH.Adr = 980;
             _pmcBom.SPA_IM_UPPOSITION = new PmcBomItem();
+            _pmcBom.SPA_IM_UPPOSITION.Id = "PMC1194";
             _pmcBom.SPA_IM_UPPOSITION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_UPPOSITION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_UPPOSITION.Adr = 980;
             _pmcBom.SPA_IM_DOWNPOSITION = new PmcBomItem();
+            _pmcBom.SPA_IM_DOWNPOSITION.Id = "PMC1195";
             _pmcBom.SPA_IM_DOWNPOSITION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_DOWNPOSITION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_DOWNPOSITION.Adr = 980;
             _pmcBom.SPA_IM_SPEEDCHANGEPOSITION = new PmcBomItem();
+            _pmcBom.SPA_IM_SPEEDCHANGEPOSITION.Id = "PMC1196";
             _pmcBom.SPA_IM_SPEEDCHANGEPOSITION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_SPEEDCHANGEPOSITION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_SPEEDCHANGEPOSITION.Adr = 980;
             _pmcBom.SPA_IM_LIMITUP = new PmcBomItem();
+            _pmcBom.SPA_IM_LIMITUP.Id = "PMC1197";
             _pmcBom.SPA_IM_LIMITUP.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_LIMITUP.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_LIMITUP.Adr = 980;
             _pmcBom.SPA_IM_LIMITDOWN = new PmcBomItem();
+            _pmcBom.SPA_IM_LIMITDOWN.Id = "PMC1198";
             _pmcBom.SPA_IM_LIMITDOWN.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_LIMITDOWN.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_LIMITDOWN.Adr = 980;
             _pmcBom.SPA_IM_ERROR = new PmcBomItem();
+            _pmcBom.SPA_IM_ERROR.Id = "PMC1199";
             _pmcBom.SPA_IM_ERROR.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_ERROR.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_ERROR.Adr = 980;
             _pmcBom.SPA_IM_DIRECTION = new PmcBomItem();
+            _pmcBom.SPA_IM_DIRECTION.Id = "PMC1200";
             _pmcBom.SPA_IM_DIRECTION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_IM_DIRECTION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_IM_DIRECTION.Adr = 980;
             _pmcBom.SPA_AC_RESOLUTION = new PmcBomItem();
+            _pmcBom.SPA_AC_RESOLUTION.Id = "PMC1201";
             _pmcBom.SPA_AC_RESOLUTION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_RESOLUTION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_RESOLUTION.Adr = 980;
             _pmcBom.SPA_AC_MOVEPITCH = new PmcBomItem();
+            _pmcBom.SPA_AC_MOVEPITCH.Id = "PMC1202";
             _pmcBom.SPA_AC_MOVEPITCH.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_MOVEPITCH.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_MOVEPITCH.Adr = 980;
             _pmcBom.SPA_AC_UPPOSITION = new PmcBomItem();
+            _pmcBom.SPA_AC_UPPOSITION.Id = "PMC1203";
             _pmcBom.SPA_AC_UPPOSITION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_UPPOSITION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_UPPOSITION.Adr = 980;
             _pmcBom.SPA_AC_DOWNPOSITION = new PmcBomItem();
+            _pmcBom.SPA_AC_DOWNPOSITION.Id = "PMC1204";
             _pmcBom.SPA_AC_DOWNPOSITION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_DOWNPOSITION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_DOWNPOSITION.Adr = 980;
             _pmcBom.SPA_AC_LIMITUP = new PmcBomItem();
+            _pmcBom.SPA_AC_LIMITUP.Id = "PMC1205";
             _pmcBom.SPA_AC_LIMITUP.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_LIMITUP.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_LIMITUP.Adr = 980;
             _pmcBom.SPA_AC_LIMITDOWN = new PmcBomItem();
+            _pmcBom.SPA_AC_LIMITDOWN.Id = "PMC1206";
             _pmcBom.SPA_AC_LIMITDOWN.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_LIMITDOWN.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_LIMITDOWN.Adr = 980;
             _pmcBom.SPA_AC_ERROR = new PmcBomItem();
+            _pmcBom.SPA_AC_ERROR.Id = "PMC1207";
             _pmcBom.SPA_AC_ERROR.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_ERROR.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_ERROR.Adr = 980;
             _pmcBom.SPA_AC_DIRECTION = new PmcBomItem();
+            _pmcBom.SPA_AC_DIRECTION.Id = "PMC1208";
             _pmcBom.SPA_AC_DIRECTION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_DIRECTION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_DIRECTION.Adr = 980;
 
 
             #endregion
+
 
             var jsonPmcBom = JsonConvert.SerializeObject(_pmcBom, Formatting.Indented);
             using (StreamWriter sw = new StreamWriter(@"pmcbom.cfg", false))
@@ -2088,8 +2454,50 @@ namespace FanucCnc
 
             #endregion
 
+            #region 配方
+            
+            var obj = CurMacroBom.GetType();
+            foreach (PropertyInfo item in obj.GetProperties())
+            {
+                var bomItem = item.GetValue(CurMacroBom) as MacroBomItem;
+                if (bomItem?.IsRecipes ?? false)
+                {
+                    _recipes.MacroBoms.Add(new MacroBomItemRecipes()
+                    {
+                        Id = bomItem.Id,
+                        Name= item.GetCustomAttribute<DisplayAttribute>().Name,
+                        Adr = bomItem.Adr,
+                        Value = "0",
+                        IsRecipes = bomItem.IsRecipes
+                    });
+                }
+            }
+
+            var obj_pmc = CurPmcBom.GetType();
+            foreach (PropertyInfo item in obj_pmc.GetProperties())
+            {
+                var bomItem = item.GetValue(CurPmcBom) as PmcBomItem;
+                if (bomItem?.IsRecipes ?? false)
+                {
+                    _recipes.PmcBoms.Add(new PmcBomItemRecipes()
+                    {
+                        Id = bomItem.Id,
+                        Name = item.GetCustomAttribute<DisplayAttribute>().Name,
+                        AdrType = bomItem.AdrType,
+                        DataType = bomItem.DataType,
+                        Adr = bomItem.Adr,
+                        Bit = bomItem.Bit,
+                        ConversionFactor = bomItem.ConversionFactor,
+                        IsRecipes = bomItem.IsRecipes,
+                        Value = "0"
+                    });
+                }
+            }
+
+            #endregion
+
             #region 基础信息
-            _baseInfo.Ip = "192.168.1.1";
+            _baseInfo.Ip = "127.0.0.1";
             _baseInfo.Port = 8193;
             _baseInfo.Timeout = 10;
             _baseInfo.Increment = 1000.0;
@@ -2217,6 +2625,7 @@ namespace FanucCnc
 
                     recipes.MacroBoms.Add(new MacroBomItemRecipes()
                     {
+                        Id = bomItem.Id,
                         Adr = bomItem.Adr,
                         Value= temp_data,
                         IsRecipes = bomItem.IsRecipes
@@ -2265,6 +2674,7 @@ namespace FanucCnc
                     }
 
                     recipes.PmcBoms.Add(new PmcBomItemRecipes() {
+                        Id = bomItem.Id,
                         AdrType = bomItem.AdrType,
                         DataType = bomItem.DataType,
                         Adr = bomItem.Adr,
@@ -3248,6 +3658,70 @@ namespace FanucCnc
 
                     Messenger.Default.Send<ParaWorkCountInfo>(m_workcount_info, "ParaWorkCountInfoMsg");
                 }
+                #endregion
+
+                #region 配方
+                if(m_pararecipes==true)
+                {
+                    foreach(var macro_item in _recipes.MacroBoms)
+                    {
+                        string temp_data = "";
+                        GetMacro(new MacroBomItem() {
+                            Id=macro_item.Id,
+                            Adr=macro_item.Adr,
+                            IsRecipes=macro_item.IsRecipes
+                        }, ref temp_data);
+                        macro_item.Value = temp_data;
+
+                    }
+                    
+                    foreach(var pmc_item in _recipes.PmcBoms)
+                    {
+                        string data_res = "";
+                        var bomItem = new PmcBomItem()
+                        {
+                            Id= pmc_item.Id,
+                            Adr= pmc_item.Adr,
+                            AdrType= pmc_item.AdrType,
+                            Bit= pmc_item.Bit,
+                            ConversionFactor= pmc_item.ConversionFactor,
+                            DataType= pmc_item.DataType,
+                            IsRecipes= pmc_item.IsRecipes
+                        };
+
+                        switch (bomItem.DataType)
+                        {
+                            case PmcDataTypeEnum.BIT:
+                                bool bTemp = false;
+                                GetPmc(bomItem, ref bTemp);
+                                data_res = bTemp.ToString();
+                                break;
+                            case PmcDataTypeEnum.BYTE:
+                                byte cTemp = 0;
+                                GetPmc(bomItem, ref cTemp);
+                                data_res = cTemp.ToString();
+                                break;
+                            case PmcDataTypeEnum.WORD:
+                                short iTemp = 0;
+                                GetPmc(bomItem, ref iTemp);
+                                data_res = iTemp.ToString();
+                                break;
+                            case PmcDataTypeEnum.LONG:
+                                int lTemp = 0;
+                                GetPmc(bomItem, ref lTemp);
+                                data_res = lTemp.ToString();
+                                break;
+                            default:
+                                break;
+                        }
+
+                        pmc_item.Value = data_res;
+                    }
+
+                    Messenger.Default.Send<RecipesInfo>(_recipes, "ParaRecipesInfoMsg");
+                }
+
+
                 #endregion
 
                 #region 系统参数 压机设定
