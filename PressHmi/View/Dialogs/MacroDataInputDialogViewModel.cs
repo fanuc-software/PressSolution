@@ -15,6 +15,8 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using FanucCnc.Model;
 using FanucCnc;
+using System.Windows;
+using System;
 
 namespace PressHmi.View
 {
@@ -51,7 +53,7 @@ namespace PressHmi.View
                 }
             }
         }
-
+        public Visibility Display { get; set; } = Visibility.Visible;
         private string m_DataInputTitle;
         public string DataInputTitle
         {
@@ -98,7 +100,9 @@ namespace PressHmi.View
 
         public ICommand _CancelCmd { get; set; }
 
-        public MacroDataInputDialogViewModel(Fanuc fanuc, MacroBomItem macro,  LimitBomItem limit, string title)
+        public event Action<string> SaveActionEvent;
+
+        public MacroDataInputDialogViewModel(Fanuc fanuc, MacroBomItem macro, LimitBomItem limit, string title)
         {
             _fanuc = fanuc;
             _macro = macro;
@@ -107,15 +111,24 @@ namespace PressHmi.View
 
 
             if (limit.LimitUp.HasValue == true) DataLimitUp = limit.LimitUp.Value.ToString();
-            if (limit.LimitDown.HasValue == true)  DataLimitDown = limit.LimitDown.ToString();
-            
+            if (limit.LimitDown.HasValue == true) DataLimitDown = limit.LimitDown.ToString();
+
             _OkCmd = new RelayCommand(OnOkCmd);
             _CancelCmd = new RelayCommand(OnCancelCmd);
-            
-        }
-        
 
-        private void OnOkCmd()
+        }
+
+        public MacroDataInputDialogViewModel(Fanuc fanuc, string value, string title)
+        {
+            _fanuc = fanuc;
+            DataInputTitle = title;
+            InputData = value;
+            Display = Visibility.Hidden;
+            _OkCmd = new RelayCommand(() => SaveActionEvent?.Invoke(InputData));
+            _CancelCmd = new RelayCommand(OnCancelCmd);
+
+        }
+        public virtual void OnOkCmd()
         {
             var ret = _fanuc.SetMacro(_macro, _limit, InputData);
 
@@ -126,7 +139,7 @@ namespace PressHmi.View
             }
         }
 
-        private void OnCancelCmd()
+        public virtual void OnCancelCmd()
         {
             Messenger.Default.Send<bool>(false, "MacroDataInputDialogQuitMsg");
         }
