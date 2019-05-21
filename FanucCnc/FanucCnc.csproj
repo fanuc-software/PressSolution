@@ -70,6 +70,7 @@
     <Compile Include="Model\LimitBomItem.cs" />
     <Compile Include="Model\MacroBom.cs" />
     <Compile Include="Model\MacroBomItem.cs" />
+    <Compile Include="Model\MacroBomItemRecipes.cs" />
     <Compile Include="Model\ParaAutoAirSourceInfo.cs" />
     <Compile Include="Model\ParaDieChangeInfo.cs" />
     <Compile Include="Model\ParaDieClampInfo.cs" />
@@ -81,7 +82,9 @@
     <Compile Include="Model\PmcBom.cs" />
     <Compile Include="Model\PmcBomItem.cs" />
     <Compile Include="Model\ParaPressureMaintInfo.cs" />
+    <Compile Include="Model\PmcBomItemRecipes.cs" />
     <Compile Include="Model\ProcPointInfo.cs" />
+    <Compile Include="Model\RecipesInfo.cs" />
     <Compile Include="Model\SParaAnalogInfo.cs" />
     <Compile Include="Model\SParaEncodeInfo.cs" />
     <Compile Include="Model\SParaLubricateInfo.cs" />
