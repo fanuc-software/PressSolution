@@ -10,16 +10,17 @@ using Newtonsoft.Json;
 using FanucCnc.Model;
 using FanucCnc.Enum;
 using GalaSoft.MvvmLight.Messaging;
+using System.Reflection;
 
 namespace FanucCnc
 {
     public class Fanuc
     {
         private static Fanuc _instance = null;
-        
+
         private bool _simulate = false;
         private BaseInfo _baseInfo = new BaseInfo();
-        
+
         private PmcBom _pmcBom = new PmcBom();
         public PmcBom CurPmcBom
         {
@@ -48,7 +49,7 @@ namespace FanucCnc
         private CncStaticInfo m_static_info = new CncStaticInfo();
 
         #endregion
-        
+
         #region 页的连接句柄
         private ushort m_page_flib = 0;
         private BackgroundWorker m_page_BackgroundWorker = new BackgroundWorker();
@@ -62,7 +63,7 @@ namespace FanucCnc
 
         private bool m_paradieclamp = false;
         private ParaDieClampInfo m_dieclamp_info = new ParaDieClampInfo();
-        
+
         private bool m_paradieclosing = false;
         private ParaDieClosingInfo m_dieclosing_info = new ParaDieClosingInfo();
         private ParaDieClosingProcInfo m_dieclosingproc_info = new ParaDieClosingProcInfo();
@@ -73,7 +74,7 @@ namespace FanucCnc
 
         private bool m_parapressuremaint = false;
         private ParaPressureMaintInfo m_pressuremaint_info = new ParaPressureMaintInfo();
-        
+
         private bool m_paraautoairsource = false;
         private ParaAutoAirSourceInfo m_autoairsource_info = new ParaAutoAirSourceInfo();
 
@@ -82,7 +83,7 @@ namespace FanucCnc
 
         private bool m_sparamachine = false;
         private SParaMachineInfo m_sparamachine_info = new SParaMachineInfo();
-        
+
         private bool m_sparalubricate = false;
         private SParaLubricateInfo m_sparalubricat_info = new SParaLubricateInfo();
 
@@ -92,10 +93,10 @@ namespace FanucCnc
         private bool m_sparaencode = false;
         private SParaEncodeInfo m_sparaencode_info = new SParaEncodeInfo();
 
-        public void ChangePageEvent(bool statemonitor=false, bool paradiechange =false, bool paradieclosing =false,
-            bool paradieparting =false, bool parapressuremaint= false, bool paraautoairsource = false,
-            bool paraworkcount =false, bool sparamachine=false ,bool sparalubricate=false, bool sparaanalog=false,
-            bool sparaencode = false, bool paradieclamp=false)
+        public void ChangePageEvent(bool statemonitor = false, bool paradiechange = false, bool paradieclosing = false,
+            bool paradieparting = false, bool parapressuremaint = false, bool paraautoairsource = false,
+            bool paraworkcount = false, bool sparamachine = false, bool sparalubricate = false, bool sparaanalog = false,
+            bool sparaencode = false, bool paradieclamp = false)
         {
             m_statemonitor = statemonitor;
             m_paradiechange = paradiechange;
@@ -165,7 +166,7 @@ namespace FanucCnc
 
 
         }
-        
+
         private short InitialPmcBom()
         {
             string jsonMacroBom;
@@ -313,7 +314,7 @@ namespace FanucCnc
             _limitBom.DJP_StopTime_8 = new LimitBomItem();
             _limitBom.DJP_StopTime_8.LimitDown = 0.1;
             _limitBom.DJP_StopTime_8.LimitUp = 1;
-            
+
             _limitBom.DJP_BottomDeadCentre = new LimitBomItem();
             _limitBom.DJP_BottomDeadCentre.LimitDown = 0;
             _limitBom.DJP_BottomDeadCentre.LimitUp = 20;
@@ -324,11 +325,11 @@ namespace FanucCnc
             _limitBom.DPP_SectionNum = new LimitBomItem();
             _limitBom.DPP_SectionNum.LimitDown = 2;
             _limitBom.DPP_SectionNum.LimitUp = 8;
-                       
+
             _limitBom.DPP_PreDelayTime = new LimitBomItem();
             _limitBom.DPP_PreDelayTime.LimitDown = 0.1;
             _limitBom.DPP_PreDelayTime.LimitUp = 1;
-                       
+
             _limitBom.DPP_SafeTime = new LimitBomItem();
             _limitBom.DPP_SafeTime.LimitDown = 0;
             _limitBom.DPP_SafeTime.LimitUp = 1;
@@ -431,7 +432,7 @@ namespace FanucCnc
             _limitBom.SPP_PreDelayTime = new LimitBomItem();
             _limitBom.SPP_PreDelayTime.LimitDown = 10;
             _limitBom.SPP_PreDelayTime.LimitUp = 20;
-            
+
             _limitBom.SPP_ChangeMode = new LimitBomItem();
             _limitBom.SPP_ChangeMode.LimitDown = 0;
             _limitBom.SPP_ChangeMode.LimitUp = 2;
@@ -485,7 +486,7 @@ namespace FanucCnc
             _limitBom.SPM_MaxTemperature = new LimitBomItem();
             _limitBom.SPM_MaxTemperature.LimitDown = 0;
             _limitBom.SPM_MaxTemperature.LimitUp = 999;
-            
+
             _limitBom.SPM_MaxError = new LimitBomItem();
             _limitBom.SPM_MaxError.LimitDown = 0;
             _limitBom.SPM_MaxError.LimitUp = 999;
@@ -545,7 +546,7 @@ namespace FanucCnc
             _limitBom.SPL_CR_LubricateTotalNum = new LimitBomItem();
             _limitBom.SPL_CR_LubricateTotalNum.LimitDown = 0;
             _limitBom.SPL_CR_LubricateTotalNum.LimitUp = 999;
-            
+
             _limitBom.SPL_CR_PowerOnLubricateTime = new LimitBomItem();
             _limitBom.SPL_CR_PowerOnLubricateTime.LimitDown = 0;
             _limitBom.SPL_CR_PowerOnLubricateTime.LimitUp = 999;
@@ -557,27 +558,27 @@ namespace FanucCnc
             _limitBom.SPL_AC_LubricateTime = new LimitBomItem();
             _limitBom.SPL_AC_LubricateTime.LimitDown = 0;
             _limitBom.SPL_AC_LubricateTime.LimitUp = 999;
-                          
+
             _limitBom.SPL_AC_SetLubricateInterval = new LimitBomItem();
             _limitBom.SPL_AC_SetLubricateInterval.LimitDown = 0;
             _limitBom.SPL_AC_SetLubricateInterval.LimitUp = 999;
-                          
+
             _limitBom.SPL_AC_ActualLubricateInterval = new LimitBomItem();
             _limitBom.SPL_AC_ActualLubricateInterval.LimitDown = 0;
             _limitBom.SPL_AC_ActualLubricateInterval.LimitUp = 999;
-                          
+
             _limitBom.SPL_AC_LubricateDetectTime = new LimitBomItem();
             _limitBom.SPL_AC_LubricateDetectTime.LimitDown = 0;
             _limitBom.SPL_AC_LubricateDetectTime.LimitUp = 999;
-                          
+
             _limitBom.SPL_AC_LubricateTotalNum = new LimitBomItem();
             _limitBom.SPL_AC_LubricateTotalNum.LimitDown = 0;
             _limitBom.SPL_AC_LubricateTotalNum.LimitUp = 999;
-                          
+
             _limitBom.SPL_AC_PowerOnLubricateTime = new LimitBomItem();
             _limitBom.SPL_AC_PowerOnLubricateTime.LimitDown = 0;
             _limitBom.SPL_AC_PowerOnLubricateTime.LimitUp = 999;
-                          
+
             _limitBom.SPL_AC_LubricateDetecte = new LimitBomItem();
             _limitBom.SPL_AC_LubricateDetecte.LimitDown = 0;
             _limitBom.SPL_AC_LubricateDetecte.LimitUp = 999;
@@ -585,27 +586,27 @@ namespace FanucCnc
             _limitBom.SPL_AC2_LubricateTime = new LimitBomItem();
             _limitBom.SPL_AC2_LubricateTime.LimitDown = 0;
             _limitBom.SPL_AC2_LubricateTime.LimitUp = 999;
-                            
+
             _limitBom.SPL_AC2_SetLubricateInterval = new LimitBomItem();
             _limitBom.SPL_AC2_SetLubricateInterval.LimitDown = 0;
             _limitBom.SPL_AC2_SetLubricateInterval.LimitUp = 999;
-                            
+
             _limitBom.SPL_AC2_ActualLubricateInterval = new LimitBomItem();
             _limitBom.SPL_AC2_ActualLubricateInterval.LimitDown = 0;
             _limitBom.SPL_AC2_ActualLubricateInterval.LimitUp = 999;
-                            
+
             _limitBom.SPL_AC2_LubricateDetectTime = new LimitBomItem();
             _limitBom.SPL_AC2_LubricateDetectTime.LimitDown = 0;
             _limitBom.SPL_AC2_LubricateDetectTime.LimitUp = 999;
-                            
+
             _limitBom.SPL_AC2_LubricateTotalNum = new LimitBomItem();
             _limitBom.SPL_AC2_LubricateTotalNum.LimitDown = 0;
             _limitBom.SPL_AC2_LubricateTotalNum.LimitUp = 999;
-                            
+
             _limitBom.SPL_AC2_PowerOnLubricateTime = new LimitBomItem();
             _limitBom.SPL_AC2_PowerOnLubricateTime.LimitDown = 0;
             _limitBom.SPL_AC2_PowerOnLubricateTime.LimitUp = 999;
-                            
+
             _limitBom.SPL_AC2_LubricateDetecte = new LimitBomItem();
             _limitBom.SPL_AC2_LubricateDetecte.LimitDown = 0;
             _limitBom.SPL_AC2_LubricateDetecte.LimitUp = 999;
@@ -778,7 +779,7 @@ namespace FanucCnc
             _limitBom.SPA_AC_DIRECTION = new LimitBomItem();
             _limitBom.SPA_AC_DIRECTION.LimitDown = 0;
             _limitBom.SPA_AC_DIRECTION.LimitUp = 999;
-            
+
 
             #endregion
 
@@ -803,128 +804,189 @@ namespace FanucCnc
 
             _macroBom.DJP_SectionNum = new MacroBomItem();
             _macroBom.DJP_SectionNum.Adr = 105;
+            _macroBom.DJP_SectionNum.IsRecipes = true;
             _macroBom.DJP_PreDelayTime = new MacroBomItem();
             _macroBom.DJP_PreDelayTime.Adr = 106;
+            _macroBom.DJP_PreDelayTime.IsRecipes = true;
             _macroBom.DJP_SafeTime = new MacroBomItem();
             _macroBom.DJP_SafeTime.Adr = 107;
+            _macroBom.DJP_SafeTime.IsRecipes = true;
             _macroBom.DJP_Pos_1 = new MacroBomItem();
             _macroBom.DJP_Pos_1.Adr = 116;
+            _macroBom.DJP_Pos_1.IsRecipes = true;
             _macroBom.DJP_Speed_1 = new MacroBomItem();
             _macroBom.DJP_Speed_1.Adr = 117;
+            _macroBom.DJP_Speed_1.IsRecipes = true;
             _macroBom.DJP_StopTime_1 = new MacroBomItem();
             _macroBom.DJP_StopTime_1.Adr = 118;
+            _macroBom.DJP_StopTime_1.IsRecipes = true;
             _macroBom.DJP_Pos_2 = new MacroBomItem();
             _macroBom.DJP_Pos_2.Adr = 119;
+            _macroBom.DJP_Pos_2.IsRecipes = true;
             _macroBom.DJP_Speed_2 = new MacroBomItem();
             _macroBom.DJP_Speed_2.Adr = 120;
+            _macroBom.DJP_Speed_2.IsRecipes = true;
             _macroBom.DJP_StopTime_2 = new MacroBomItem();
             _macroBom.DJP_StopTime_2.Adr = 121;
+            _macroBom.DJP_StopTime_2.IsRecipes = true;
             _macroBom.DJP_Pos_3 = new MacroBomItem();
             _macroBom.DJP_Pos_3.Adr = 122;
+            _macroBom.DJP_Pos_3.IsRecipes = true;
             _macroBom.DJP_Speed_3 = new MacroBomItem();
             _macroBom.DJP_Speed_3.Adr = 123;
+            _macroBom.DJP_Speed_3.IsRecipes = true;
             _macroBom.DJP_StopTime_3 = new MacroBomItem();
             _macroBom.DJP_StopTime_3.Adr = 124;
+            _macroBom.DJP_StopTime_3.IsRecipes = true;
             _macroBom.DJP_Pos_4 = new MacroBomItem();
             _macroBom.DJP_Pos_4.Adr = 125;
+            _macroBom.DJP_Pos_4.IsRecipes = true;
             _macroBom.DJP_Speed_4 = new MacroBomItem();
             _macroBom.DJP_Speed_4.Adr = 126;
+            _macroBom.DJP_Speed_4.IsRecipes = true;
             _macroBom.DJP_StopTime_4 = new MacroBomItem();
             _macroBom.DJP_StopTime_4.Adr = 127;
+            _macroBom.DJP_StopTime_4.IsRecipes = true;
             _macroBom.DJP_Pos_5 = new MacroBomItem();
             _macroBom.DJP_Pos_5.Adr = 128;
+            _macroBom.DJP_Pos_5.IsRecipes = true;
             _macroBom.DJP_Speed_5 = new MacroBomItem();
             _macroBom.DJP_Speed_5.Adr = 129;
+            _macroBom.DJP_Speed_5.IsRecipes = true;
             _macroBom.DJP_StopTime_5 = new MacroBomItem();
             _macroBom.DJP_StopTime_5.Adr = 130;
+            _macroBom.DJP_StopTime_5.IsRecipes = true;
             _macroBom.DJP_Pos_6 = new MacroBomItem();
             _macroBom.DJP_Pos_6.Adr = 131;
+            _macroBom.DJP_Pos_6.IsRecipes = true;
             _macroBom.DJP_Speed_6 = new MacroBomItem();
             _macroBom.DJP_Speed_6.Adr = 132;
+            _macroBom.DJP_Speed_6.IsRecipes = true;
             _macroBom.DJP_StopTime_6 = new MacroBomItem();
             _macroBom.DJP_StopTime_6.Adr = 133;
+            _macroBom.DJP_StopTime_6.IsRecipes = true;
             _macroBom.DJP_Pos_7 = new MacroBomItem();
             _macroBom.DJP_Pos_7.Adr = 134;
+            _macroBom.DJP_Pos_7.IsRecipes = true;
             _macroBom.DJP_Speed_7 = new MacroBomItem();
             _macroBom.DJP_Speed_7.Adr = 135;
+            _macroBom.DJP_Speed_7.IsRecipes = true;
             _macroBom.DJP_StopTime_7 = new MacroBomItem();
             _macroBom.DJP_StopTime_7.Adr = 136;
+            _macroBom.DJP_StopTime_7.IsRecipes = true;
             _macroBom.DJP_Pos_8 = new MacroBomItem();
             _macroBom.DJP_Pos_8.Adr = 137;
+            _macroBom.DJP_Pos_8.IsRecipes = true;
             _macroBom.DJP_Speed_8 = new MacroBomItem();
             _macroBom.DJP_Speed_8.Adr = 138;
+            _macroBom.DJP_Speed_8.IsRecipes = true;
             _macroBom.DJP_StopTime_8 = new MacroBomItem();
             _macroBom.DJP_StopTime_8.Adr = 139;
+            _macroBom.DJP_StopTime_8.IsRecipes = true;
             _macroBom.DJP_BottomDeadCentre = new MacroBomItem();
             _macroBom.DJP_BottomDeadCentre.Adr = 140;
+            _macroBom.DJP_BottomDeadCentre.IsRecipes = true;
 
             _macroBom.DPP_SectionNum = new MacroBomItem();
             _macroBom.DPP_SectionNum.Adr = 108;
+            _macroBom.DPP_SectionNum.IsRecipes = true;
             _macroBom.DPP_PreDelayTime = new MacroBomItem();
             _macroBom.DPP_PreDelayTime.Adr = 109;
+            _macroBom.DPP_PreDelayTime.IsRecipes = true;
             _macroBom.DPP_SafeTime = new MacroBomItem();
             _macroBom.DPP_SafeTime.Adr = 110;
+            _macroBom.DPP_SafeTime.IsRecipes = true;
             _macroBom.DPP_Pos_1 = new MacroBomItem();
             _macroBom.DPP_Pos_1.Adr = 141;
+            _macroBom.DPP_Pos_1.IsRecipes = true;
             _macroBom.DPP_Speed_1 = new MacroBomItem();
             _macroBom.DPP_Speed_1.Adr = 142;
+            _macroBom.DPP_Speed_1.IsRecipes = true;
             _macroBom.DPP_StopTime_1 = new MacroBomItem();
             _macroBom.DPP_StopTime_1.Adr = 143;
+            _macroBom.DPP_StopTime_1.IsRecipes = true;
             _macroBom.DPP_Pos_2 = new MacroBomItem();
             _macroBom.DPP_Pos_2.Adr = 144;
+            _macroBom.DPP_Pos_2.IsRecipes = true;
             _macroBom.DPP_Speed_2 = new MacroBomItem();
             _macroBom.DPP_Speed_2.Adr = 145;
+            _macroBom.DPP_Speed_2.IsRecipes = true;
             _macroBom.DPP_StopTime_2 = new MacroBomItem();
             _macroBom.DPP_StopTime_2.Adr = 146;
+            _macroBom.DPP_StopTime_2.IsRecipes = true;
             _macroBom.DPP_Pos_3 = new MacroBomItem();
             _macroBom.DPP_Pos_3.Adr = 147;
+            _macroBom.DPP_Pos_3.IsRecipes = true;
             _macroBom.DPP_Speed_3 = new MacroBomItem();
             _macroBom.DPP_Speed_3.Adr = 148;
+            _macroBom.DPP_Speed_3.IsRecipes = true;
             _macroBom.DPP_StopTime_3 = new MacroBomItem();
             _macroBom.DPP_StopTime_3.Adr = 149;
+            _macroBom.DPP_StopTime_3.IsRecipes = true;
             _macroBom.DPP_Pos_4 = new MacroBomItem();
             _macroBom.DPP_Pos_4.Adr = 150;
+            _macroBom.DPP_Pos_4.IsRecipes = true;
             _macroBom.DPP_Speed_4 = new MacroBomItem();
             _macroBom.DPP_Speed_4.Adr = 151;
+            _macroBom.DPP_Speed_4.IsRecipes = true;
             _macroBom.DPP_StopTime_4 = new MacroBomItem();
             _macroBom.DPP_StopTime_4.Adr = 152;
+            _macroBom.DPP_StopTime_4.IsRecipes = true;
             _macroBom.DPP_Pos_5 = new MacroBomItem();
             _macroBom.DPP_Pos_5.Adr = 153;
+            _macroBom.DPP_Pos_5.IsRecipes = true;
             _macroBom.DPP_Speed_5 = new MacroBomItem();
             _macroBom.DPP_Speed_5.Adr = 154;
+            _macroBom.DPP_Speed_5.IsRecipes = true;
             _macroBom.DPP_StopTime_5 = new MacroBomItem();
             _macroBom.DPP_StopTime_5.Adr = 155;
+            _macroBom.DPP_StopTime_5.IsRecipes = true;
             _macroBom.DPP_Pos_6 = new MacroBomItem();
             _macroBom.DPP_Pos_6.Adr = 156;
+            _macroBom.DPP_Pos_6.IsRecipes = true;
             _macroBom.DPP_Speed_6 = new MacroBomItem();
             _macroBom.DPP_Speed_6.Adr = 157;
+            _macroBom.DPP_Speed_6.IsRecipes = true;
             _macroBom.DPP_StopTime_6 = new MacroBomItem();
             _macroBom.DPP_StopTime_6.Adr = 158;
+            _macroBom.DPP_StopTime_6.IsRecipes = true;
             _macroBom.DPP_Pos_7 = new MacroBomItem();
             _macroBom.DPP_Pos_7.Adr = 159;
+            _macroBom.DPP_Pos_7.IsRecipes = true;
             _macroBom.DPP_Speed_7 = new MacroBomItem();
             _macroBom.DPP_Speed_7.Adr = 160;
+            _macroBom.DPP_Speed_7.IsRecipes = true;
             _macroBom.DPP_StopTime_7 = new MacroBomItem();
             _macroBom.DPP_StopTime_7.Adr = 161;
+            _macroBom.DPP_StopTime_7.IsRecipes = true;
             _macroBom.DPP_Pos_8 = new MacroBomItem();
             _macroBom.DPP_Pos_8.Adr = 162;
+            _macroBom.DPP_Pos_8.IsRecipes = true;
             _macroBom.DPP_Speed_8 = new MacroBomItem();
             _macroBom.DPP_Speed_8.Adr = 163;
+            _macroBom.DPP_Speed_8.IsRecipes = true;
             _macroBom.DPP_StopTime_8 = new MacroBomItem();
             _macroBom.DPP_StopTime_8.Adr = 164;
+            _macroBom.DPP_StopTime_8.IsRecipes = true;
             _macroBom.DPP_BottomDeadCentre = new MacroBomItem();
             _macroBom.DPP_BottomDeadCentre.Adr = 165;
+            _macroBom.DPP_BottomDeadCentre.IsRecipes = true;
 
             _macroBom.SPP_Pressure = new MacroBomItem();
             _macroBom.SPP_Pressure.Adr = 111;
+            _macroBom.SPP_Pressure.IsRecipes = true;
             _macroBom.SPP_Time = new MacroBomItem();
             _macroBom.SPP_Time.Adr = 112;
+            _macroBom.SPP_Time.IsRecipes = true;
             _macroBom.SPP_PreDelayTime = new MacroBomItem();
             _macroBom.SPP_PreDelayTime.Adr = 113;
+            _macroBom.SPP_PreDelayTime.IsRecipes = true;
             _macroBom.SPP_ChangeMode = new MacroBomItem();
             _macroBom.SPP_ChangeMode.Adr = 114;
+            _macroBom.SPP_ChangeMode.IsRecipes = true;
             _macroBom.SPP_ChangePressure = new MacroBomItem();
             _macroBom.SPP_ChangePressure.Adr = 115;
+            _macroBom.SPP_ChangePressure.IsRecipes = true;
 
             var jsonMacroBom = JsonConvert.SerializeObject(_macroBom, Formatting.Indented);
             using (StreamWriter sw = new StreamWriter(@"macrobom.cfg", false))
@@ -1030,6 +1092,7 @@ namespace FanucCnc
             _pmcBom.DCP_InstallDieHighSet.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DCP_InstallDieHighSet.Adr = 204;
             _pmcBom.DCP_InstallDieHighSet.ConversionFactor = 1000;
+            _pmcBom.DCP_InstallDieHighSet.IsRecipes = true;
 
             _pmcBom.DCP_InstallDieHighActual = new PmcBomItem();
             _pmcBom.DCP_InstallDieHighActual.AdrType = PmcAdrTypeEnum.E;
@@ -1042,6 +1105,7 @@ namespace FanucCnc
             _pmcBom.DCP_CylinderpRressureSet.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.DCP_CylinderpRressureSet.Adr = 212;
             _pmcBom.DCP_CylinderpRressureSet.ConversionFactor = 1000;
+            _pmcBom.DCP_CylinderpRressureSet.IsRecipes = true;
 
             _pmcBom.DCP_CylinderpRressureActual = new PmcBomItem();
             _pmcBom.DCP_CylinderpRressureActual.AdrType = PmcAdrTypeEnum.E;
@@ -1054,6 +1118,7 @@ namespace FanucCnc
             _pmcBom.DCP_DieWeight.DataType = PmcDataTypeEnum.WORD;
             _pmcBom.DCP_DieWeight.Adr = 216;
             _pmcBom.DCP_DieWeight.ConversionFactor = 1000;
+            _pmcBom.DCP_DieWeight.IsRecipes = true;
 
             #endregion
 
@@ -1072,11 +1137,13 @@ namespace FanucCnc
             _pmcBom.CLS_ClampRelaxPosition.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_ClampRelaxPosition.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.CLS_ClampRelaxPosition.Adr = 528;
+            _pmcBom.CLS_ClampRelaxPosition.IsRecipes = true;
             _pmcBom.CLS_ClampRelaxInPosition = new PmcBomItem();
             _pmcBom.CLS_ClampRelaxInPosition.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_ClampRelaxInPosition.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.CLS_ClampRelaxInPosition.Adr = 500;
             _pmcBom.CLS_ClampRelaxInPosition.Bit = 2;
+            _pmcBom.CLS_ClampRelaxInPosition.IsRecipes = true;
             _pmcBom.CLS_Clamp_Front_1_Ebable = new PmcBomItem();
             _pmcBom.CLS_Clamp_Front_1_Ebable.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.CLS_Clamp_Front_1_Ebable.DataType = PmcDataTypeEnum.BIT;
@@ -1474,113 +1541,133 @@ namespace FanucCnc
             _pmcBom.AAS_StartPos_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartPos_1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_StartPos_1.Adr = 300;
+            _pmcBom.AAS_StartPos_1.IsRecipes = true;
 
             _pmcBom.AAS_StartArr_1 = new PmcBomItem();
             _pmcBom.AAS_StartArr_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartArr_1.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_StartArr_1.Adr = 308;
             _pmcBom.AAS_StartArr_1.Bit = 1;
+            _pmcBom.AAS_StartArr_1.IsRecipes = true;
 
             _pmcBom.AAS_EndPos_1 = new PmcBomItem();
             _pmcBom.AAS_EndPos_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndPos_1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_EndPos_1.Adr = 304;
+            _pmcBom.AAS_EndPos_1.IsRecipes = true;
 
             _pmcBom.AAS_EndArr_1 = new PmcBomItem();
             _pmcBom.AAS_EndArr_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndArr_1.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_EndArr_1.Adr = 308;
             _pmcBom.AAS_EndArr_1.Bit = 2;
+            _pmcBom.AAS_EndArr_1.IsRecipes = true;
 
             _pmcBom.AAS_ActionFlag_1 = new PmcBomItem();
             _pmcBom.AAS_ActionFlag_1.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_ActionFlag_1.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_ActionFlag_1.Adr = 308;
             _pmcBom.AAS_ActionFlag_1.Bit = 3;
+            _pmcBom.AAS_ActionFlag_1.IsRecipes = true;
 
             _pmcBom.AAS_StartPos_2 = new PmcBomItem();
             _pmcBom.AAS_StartPos_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartPos_2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_StartPos_2.Adr = 310;
+            _pmcBom.AAS_StartPos_2.IsRecipes = true;
 
             _pmcBom.AAS_StartArr_2 = new PmcBomItem();
             _pmcBom.AAS_StartArr_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartArr_2.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_StartArr_2.Adr = 318;
             _pmcBom.AAS_StartArr_2.Bit = 1;
+            _pmcBom.AAS_StartArr_2.IsRecipes = true;
 
             _pmcBom.AAS_EndPos_2 = new PmcBomItem();
             _pmcBom.AAS_EndPos_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndPos_2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_EndPos_2.Adr = 314;
+            _pmcBom.AAS_EndPos_2.IsRecipes = true;
 
             _pmcBom.AAS_EndArr_2 = new PmcBomItem();
             _pmcBom.AAS_EndArr_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndArr_2.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_EndArr_2.Adr = 318;
             _pmcBom.AAS_EndArr_2.Bit = 2;
+            _pmcBom.AAS_EndArr_2.IsRecipes = true;
 
             _pmcBom.AAS_ActionFlag_2 = new PmcBomItem();
             _pmcBom.AAS_ActionFlag_2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_ActionFlag_2.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_ActionFlag_2.Adr = 318;
             _pmcBom.AAS_ActionFlag_2.Bit = 3;
+            _pmcBom.AAS_ActionFlag_2.IsRecipes = true;
 
             _pmcBom.AAS_StartPos_3 = new PmcBomItem();
             _pmcBom.AAS_StartPos_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartPos_3.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_StartPos_3.Adr = 320;
+            _pmcBom.AAS_StartPos_3.IsRecipes = true;
 
             _pmcBom.AAS_StartArr_3 = new PmcBomItem();
             _pmcBom.AAS_StartArr_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartArr_3.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_StartArr_3.Adr = 328;
             _pmcBom.AAS_StartArr_3.Bit = 1;
+            _pmcBom.AAS_StartArr_3.IsRecipes = true;
 
             _pmcBom.AAS_EndPos_3 = new PmcBomItem();
             _pmcBom.AAS_EndPos_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndPos_3.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_EndPos_3.Adr = 324;
+            _pmcBom.AAS_EndPos_3.IsRecipes = true;
 
             _pmcBom.AAS_EndArr_3 = new PmcBomItem();
             _pmcBom.AAS_EndArr_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndArr_3.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_EndArr_3.Adr = 328;
             _pmcBom.AAS_EndArr_3.Bit = 2;
+            _pmcBom.AAS_EndArr_3.IsRecipes = true;
 
             _pmcBom.AAS_ActionFlag_3 = new PmcBomItem();
             _pmcBom.AAS_ActionFlag_3.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_ActionFlag_3.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_ActionFlag_3.Adr = 328;
             _pmcBom.AAS_ActionFlag_3.Bit = 3;
+            _pmcBom.AAS_ActionFlag_3.IsRecipes = true;
 
             _pmcBom.AAS_StartPos_4 = new PmcBomItem();
             _pmcBom.AAS_StartPos_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartPos_4.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_StartPos_4.Adr = 330;
+            _pmcBom.AAS_StartPos_4.IsRecipes = true;
 
             _pmcBom.AAS_StartArr_4 = new PmcBomItem();
             _pmcBom.AAS_StartArr_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_StartArr_4.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_StartArr_4.Adr = 338;
             _pmcBom.AAS_StartArr_4.Bit = 1;
+            _pmcBom.AAS_StartArr_4.IsRecipes = true;
 
             _pmcBom.AAS_EndPos_4 = new PmcBomItem();
             _pmcBom.AAS_EndPos_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndPos_4.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.AAS_EndPos_4.Adr = 334;
+            _pmcBom.AAS_EndPos_4.IsRecipes = true;
 
             _pmcBom.AAS_EndArr_4 = new PmcBomItem();
             _pmcBom.AAS_EndArr_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_EndArr_4.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_EndArr_4.Adr = 338;
             _pmcBom.AAS_EndArr_4.Bit = 2;
+            _pmcBom.AAS_EndArr_4.IsRecipes = true;
 
             _pmcBom.AAS_ActionFlag_4 = new PmcBomItem();
             _pmcBom.AAS_ActionFlag_4.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.AAS_ActionFlag_4.DataType = PmcDataTypeEnum.BIT;
             _pmcBom.AAS_ActionFlag_4.Adr = 338;
             _pmcBom.AAS_ActionFlag_4.Bit = 3;
+            _pmcBom.AAS_ActionFlag_4.IsRecipes = true;
 
             #endregion
 
@@ -1715,27 +1802,27 @@ namespace FanucCnc
             _pmcBom.SPL_AC_LubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_LubricateTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_LubricateTime.Adr = 728;
-                        
+
             _pmcBom.SPL_AC_SetLubricateInterval = new PmcBomItem();
             _pmcBom.SPL_AC_SetLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_SetLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_SetLubricateInterval.Adr = 732;
-                        
+
             _pmcBom.SPL_AC_ActualLubricateInterval = new PmcBomItem();
             _pmcBom.SPL_AC_ActualLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_ActualLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_ActualLubricateInterval.Adr = 736;
-                        
+
             _pmcBom.SPL_AC_LubricateDetectTime = new PmcBomItem();
             _pmcBom.SPL_AC_LubricateDetectTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_LubricateDetectTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_LubricateDetectTime.Adr = 740;
-                        
+
             _pmcBom.SPL_AC_LubricateTotalNum = new PmcBomItem();
             _pmcBom.SPL_AC_LubricateTotalNum.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_LubricateTotalNum.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC_LubricateTotalNum.Adr = 744;
-                        
+
             _pmcBom.SPL_AC_PowerOnLubricateTime = new PmcBomItem();
             _pmcBom.SPL_AC_PowerOnLubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC_PowerOnLubricateTime.DataType = PmcDataTypeEnum.LONG;
@@ -1745,27 +1832,27 @@ namespace FanucCnc
             _pmcBom.SPL_AC2_LubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_LubricateTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_LubricateTime.Adr = 752;
-                          
+
             _pmcBom.SPL_AC2_SetLubricateInterval = new PmcBomItem();
             _pmcBom.SPL_AC2_SetLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_SetLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_SetLubricateInterval.Adr = 756;
-                          
+
             _pmcBom.SPL_AC2_ActualLubricateInterval = new PmcBomItem();
             _pmcBom.SPL_AC2_ActualLubricateInterval.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_ActualLubricateInterval.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_ActualLubricateInterval.Adr = 760;
-                          
+
             _pmcBom.SPL_AC2_LubricateDetectTime = new PmcBomItem();
             _pmcBom.SPL_AC2_LubricateDetectTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_LubricateDetectTime.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_LubricateDetectTime.Adr = 764;
-                          
+
             _pmcBom.SPL_AC2_LubricateTotalNum = new PmcBomItem();
             _pmcBom.SPL_AC2_LubricateTotalNum.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_LubricateTotalNum.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPL_AC2_LubricateTotalNum.Adr = 768;
-                          
+
             _pmcBom.SPL_AC2_PowerOnLubricateTime = new PmcBomItem();
             _pmcBom.SPL_AC2_PowerOnLubricateTime.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPL_AC2_PowerOnLubricateTime.DataType = PmcDataTypeEnum.LONG;
@@ -1830,7 +1917,7 @@ namespace FanucCnc
             _pmcBom.SPA_A1_WeightPara2 = new PmcBomItem();
             _pmcBom.SPA_A1_WeightPara2.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A1_WeightPara2.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.SPA_A1_WeightPara2.Adr = 908;         
+            _pmcBom.SPA_A1_WeightPara2.Adr = 908;
             _pmcBom.SPA_A1_Weight = new PmcBomItem();
             _pmcBom.SPA_A1_Weight.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_A1_Weight.DataType = PmcDataTypeEnum.LONG;
@@ -1989,7 +2076,7 @@ namespace FanucCnc
             _pmcBom.SPA_AC_DIRECTION.AdrType = PmcAdrTypeEnum.E;
             _pmcBom.SPA_AC_DIRECTION.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.SPA_AC_DIRECTION.Adr = 980;
-            
+
 
             #endregion
 
@@ -2002,7 +2089,7 @@ namespace FanucCnc
             #endregion
 
             #region 基础信息
-            _baseInfo.Ip = "192.168.21.44";
+            _baseInfo.Ip = "192.168.1.1";
             _baseInfo.Port = 8193;
             _baseInfo.Timeout = 10;
             _baseInfo.Increment = 1000.0;
@@ -2025,7 +2112,7 @@ namespace FanucCnc
         #endregion
 
         #region 即时连接
-        public string GetPmc<T>(PmcBomItem pmc, T data)
+        public string GetPmc<T>(PmcBomItem pmc, ref T data)
         {
             if (pmc == null) return "设定数据失败,PMC配置信息不完整";
 
@@ -2034,7 +2121,7 @@ namespace FanucCnc
             if (ret != 0) return "设定数据失败,连接失败";
 
             ret = GetPmc(_pmcBom.Mode, ref data, flib);
-            
+
             FreeConnect(flib);
 
             if (ret != 0) return "获取数据失败,CNC数据读取失败";
@@ -2054,13 +2141,13 @@ namespace FanucCnc
             FreeConnect(flib);
 
             return res;
-            
+
         }
 
         public string ChangePmcBit(PmcBomItem pmc)
         {
             if (pmc == null) return "设定数据失败,PMC配置信息不完整";
-            if(pmc.DataType!=PmcDataTypeEnum.BIT) return "设定数据失败,PMC类型非开关量";
+            if (pmc.DataType != PmcDataTypeEnum.BIT) return "设定数据失败,PMC类型非开关量";
 
             ushort flib = 0;
             var ret = BuildConnect(ref flib);
@@ -2070,9 +2157,9 @@ namespace FanucCnc
             GetPmc(pmc, ref temp, flib);
 
             string set_ret;
-            if(temp>0) set_ret = SetPmc_InTask(flib, pmc, null, "false");
+            if (temp > 0) set_ret = SetPmc_InTask(flib, pmc, null, "false");
             else set_ret = SetPmc_InTask(flib, pmc, null, "true");
-            
+
             FreeConnect(flib);
 
             return set_ret;
@@ -2093,6 +2180,112 @@ namespace FanucCnc
 
             return res;
         }
+
+        public string GetMacro(MacroBomItem macro, ref string data)
+        {
+            if (macro == null) return "获得数据失败,宏变量配置信息不完整";
+
+            ushort flib = 0;
+            var ret = BuildConnect(ref flib);
+            if (ret != 0) return "获得数据失败,连接失败";
+
+            double temp_data = 0;
+            ret = GetMacro(macro.Adr, ref temp_data, flib);
+            
+
+            FreeConnect(flib);
+
+            if (ret != 0) return "获得数据失败(" + ret.ToString() + ")";
+            return null;
+        }
+
+        public string SaveRecipesToPC(string path)
+        {
+            RecipesInfo recipes = new RecipesInfo();
+            var obj = CurMacroBom.GetType();
+            foreach (PropertyInfo item in obj.GetProperties())
+            {
+                var bomItem = item.GetValue(CurMacroBom) as MacroBomItem;
+                if (bomItem?.IsRecipes??false)
+                {
+                    string temp_data = "";
+                    var ret = GetMacro(bomItem, ref temp_data);
+                    if(ret!=null)
+                    {
+                        return "保存配方失败，写入宏变量失败，返回:" + ret;
+                    }
+
+                    recipes.MacroBoms.Add(new MacroBomItemRecipes()
+                    {
+                        Adr = bomItem.Adr,
+                        Value= temp_data,
+                        IsRecipes = bomItem.IsRecipes
+                    });
+                }
+            }
+
+            var obj_pmc = CurPmcBom.GetType();
+            foreach (PropertyInfo item in obj_pmc.GetProperties())
+            {
+                var bomItem = item.GetValue(CurPmcBom) as PmcBomItem;
+                if (bomItem?.IsRecipes ?? false)
+                {
+                    string ret;
+                    string data_res="";
+                    switch (bomItem.DataType)
+                    {
+                        case PmcDataTypeEnum.BIT:
+                            bool bTemp = false;
+                            ret = GetPmc(bomItem,ref bTemp);
+                            data_res = bTemp.ToString();
+                            break;
+                        case PmcDataTypeEnum.BYTE:
+                            byte cTemp = 0;
+                            ret = GetPmc(bomItem, ref cTemp);
+                            data_res = cTemp.ToString();
+                            break;
+                        case PmcDataTypeEnum.WORD:
+                            short iTemp = 0;
+                            ret = GetPmc(bomItem, ref iTemp);
+                            data_res = iTemp.ToString();
+                            break;
+                        case PmcDataTypeEnum.LONG:
+                            int lTemp = 0;
+                            ret = GetPmc(bomItem, ref lTemp);
+                            data_res = lTemp.ToString();
+                            break;
+                        default:
+                            ret = "类型错误";
+                            break;
+                    }
+
+                    if (ret != null)
+                    {
+                        return "保存配方失败，写入PMC失败，返回:" + ret;
+                    }
+
+                    recipes.PmcBoms.Add(new PmcBomItemRecipes() {
+                        AdrType = bomItem.AdrType,
+                        DataType = bomItem.DataType,
+                        Adr = bomItem.Adr,
+                        Bit = bomItem.Bit,
+                        ConversionFactor = bomItem.ConversionFactor,
+                        IsRecipes = bomItem.IsRecipes,
+                        Value = data_res
+                    });
+                }
+            }
+
+            var jsonData = JsonConvert.SerializeObject(recipes, Formatting.Indented);
+            using (System.IO.StreamWriter sw =new StreamWriter(path))
+            {
+                sw.WriteLine(jsonData);
+            }
+            
+            return null;
+
+        }
+
         #endregion
 
         #region 曲线
@@ -2183,12 +2376,12 @@ namespace FanucCnc
                 }
 
                 #endregion
-                
+
                 m_static_info.Increment = _baseInfo.Increment;
 
                 int mode_temp = 0;
                 GetPmc(_pmcBom.Mode, ref mode_temp, m_static_flib);
-                m_static_info.Mode =mode_temp;
+                m_static_info.Mode = mode_temp;
 
                 int mainstatus_temp = 0;
                 GetPmc(_pmcBom.MainStatus, ref mainstatus_temp, m_static_flib);
@@ -2267,7 +2460,7 @@ namespace FanucCnc
                 }
 
                 #region 状态监控
-                if (m_statemonitor==true)
+                if (m_statemonitor == true)
                 {
                     m_statemonitor_info.LineChartFlag = m_monitorline_indo;
                     m_statemonitor_info.Increment = _baseInfo.Increment;
@@ -2318,7 +2511,7 @@ namespace FanucCnc
                 #endregion
 
                 #region 换模设定
-                if(m_paradiechange==true)
+                if (m_paradiechange == true)
                 {
                     m_diechange_info.Increment = _baseInfo.Increment;
 
@@ -2691,7 +2884,7 @@ namespace FanucCnc
                 #endregion
 
                 #region 合模设定
-                if (m_paradieclosing==true)
+                if (m_paradieclosing == true)
                 {
                     double sn_temp = 0;
                     GetMacro(_macroBom.DJP_SectionNum.Adr, ref sn_temp, m_page_flib);
@@ -2922,7 +3115,7 @@ namespace FanucCnc
                     double pdt_temp = 0;
                     GetMacro(_macroBom.SPP_PreDelayTime.Adr, ref pdt_temp, m_page_flib);
                     m_pressuremaint_info.PreDelayTime = pdt_temp;
-                    
+
                     double cm_temp = 0;
                     GetMacro(_macroBom.SPP_ChangeMode.Adr, ref cm_temp, m_page_flib);
                     m_pressuremaint_info.ChangeMode = cm_temp;
@@ -3023,7 +3216,7 @@ namespace FanucCnc
                 #endregion
 
                 #region 工件计数
-                if(m_paraworkcount==true)
+                if (m_paraworkcount == true)
                 {
                     double dp_temp = 0;
                     GetPmc(_pmcBom.WPP_DayPiece, ref dp_temp, m_page_flib);
@@ -3040,7 +3233,7 @@ namespace FanucCnc
                     double sp_temp = 0;
                     GetPmc(_pmcBom.WPP_SetPiece, ref sp_temp, m_page_flib);
                     m_workcount_info.SetPiece = sp_temp;
-                    
+
                     double cp2_temp = 0;
                     GetPmc(_pmcBom.WPP_SetPiece, ref cp2_temp, m_page_flib);
                     m_workcount_info.CurPiece2 = cp2_temp;
@@ -3072,7 +3265,7 @@ namespace FanucCnc
                     GetPmc(_pmcBom.SPM_MaxError, ref spm_maxe, m_page_flib);
                     m_sparamachine_info.MaxError = spm_maxe;
 
-                    double spm_psp= 0;
+                    double spm_psp = 0;
                     GetPmc(_pmcBom.SPM_PressureSensorPara, ref spm_psp, m_page_flib);
                     m_sparamachine_info.PressureSensorPara = spm_psp;
 
@@ -3235,7 +3428,7 @@ namespace FanucCnc
                 #endregion
 
                 #region 系统参数 模拟量设定
-                if(m_sparaanalog==true)
+                if (m_sparaanalog == true)
                 {
                     double spa_a1v = 0;
                     GetPmc(_pmcBom.SPA_A1_Value, ref spa_a1v, m_page_flib);
@@ -3368,7 +3561,7 @@ namespace FanucCnc
                     double im_drt = 0;
                     GetPmc(_pmcBom.SPA_IM_DIRECTION, ref im_drt, m_page_flib);
                     m_sparaencode_info.IM_DIRECTION = im_drt;
-                    
+
                     double im_acr = 0;
                     GetPmc(_pmcBom.SPA_AC_RESOLUTION, ref im_acr, m_page_flib);
                     m_sparaencode_info.AC_RESOLUTION = im_acr;
@@ -3406,10 +3599,10 @@ namespace FanucCnc
 
 
                 }
-                    
+
                 #endregion
 
-                }
+            }
 
             FreeConnect(m_page_flib);
         }
@@ -3471,7 +3664,7 @@ namespace FanucCnc
                         ref inflag);
                 }
 
-                if(inflag==true)
+                if (inflag == true)
                 {
                     Focas1.ODBAXIS buf = new Focas1.ODBAXIS();
                     ret = Focas1.cnc_absolute2(m_monitorline_flib, 1, 8, buf);
@@ -3566,18 +3759,18 @@ namespace FanucCnc
             short dec = buf.dec_val;
             dec = (short)(dec * (-1));
             data = (double)(mcr * Math.Pow(10, dec));
-            
+
 
             return 0;
         }
 
-        private short GetPmc<T>(PmcBomItem item,ref T data, ushort flib)
+        private short GetPmc<T>(PmcBomItem item, ref T data, ushort flib)
         {
             if (item == null) return -999;
 
             short ret = 0;
 
-            switch(item.DataType)
+            switch (item.DataType)
             {
                 case PmcDataTypeEnum.BIT:
                     bool bTemp = false;
@@ -3694,7 +3887,7 @@ namespace FanucCnc
 
             return 0;
         }
-        
+
         private string SetPmc_InTask(ushort flib, PmcBomItem pmc, LimitBomItem limit, string data)
         {
             short ret = 0;
@@ -3889,7 +4082,7 @@ namespace FanucCnc
             buf.type_a = type;
             buf.type_d = 0;
             var ret = Focas1.pmc_wrpmcrng(flib, 9, buf);
-            
+
             return ret;
         }
 
@@ -3900,11 +4093,11 @@ namespace FanucCnc
             buf.idata = new short[5];
             buf.idata[0] = data;
             buf.datano_s = (short)adr;
-            buf.datano_e = (short)(adr+1);
+            buf.datano_e = (short)(adr + 1);
             buf.type_a = type;
             buf.type_d = 1;
             var ret = Focas1.pmc_wrpmcrng(flib, 10, buf);
-            
+
             return ret;
         }
 
@@ -3915,7 +4108,7 @@ namespace FanucCnc
             buf.ldata = new int[5];
             buf.ldata[0] = data;
             buf.datano_s = (short)adr;
-            buf.datano_e = (short)(adr+3);
+            buf.datano_e = (short)(adr + 3);
             buf.type_a = type;
             buf.type_d = 2;
             var ret = Focas1.pmc_wrpmcrng(flib, 12, buf);

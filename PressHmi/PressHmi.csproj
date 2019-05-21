@@ -142,6 +142,7 @@
     <Compile Include="ViewModel\Para\ParaSubDieClosingPageViewMode.cs" />
     <Compile Include="ViewModel\Para\ParaSubPressureMaintPageViewModel.cs" />
     <Compile Include="ViewModel\Para\ParaSubDiePartingPageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaSubProcManagementPageViewModel.cs" />
     <Compile Include="ViewModel\Para\ParaSubWorkCountPageViewModel.cs" />
     <Compile Include="ViewModel\SPara\SParaMainPageViewModel.cs" />
     <Compile Include="ViewModel\SPara\SParaSubAnalogPageViewModel.cs" />

@@ -164,7 +164,6 @@ namespace PressHmi.ViewModel
                     _fanuc.CurLimitBom.SPA_A2_WeightPara1,
                     "模拟量标定2--吨位乘值");
             dlg.ShowDialog();
-
         }
 
         private void OnA2_WeightPara2SetCmd()

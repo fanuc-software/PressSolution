@@ -423,7 +423,7 @@ namespace PressHmi.ViewModel
         private void OnParaMenu12Click()
         {
             ChangeParaMenuEvent(m2: true);
-            _ParaPanel = new ParaSubWorkCountPage();
+            _ParaPanel = new ParaSubProcManagementPage();
         }
         
 

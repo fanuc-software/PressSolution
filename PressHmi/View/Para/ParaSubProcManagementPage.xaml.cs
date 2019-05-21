@@ -12,8 +12,7 @@ namespace PressHmi.View
         public ParaSubProcManagementPage()
         {
             InitializeComponent();
-
-
+            this.DataContext = SimpleIoc.Default.GetInstance<ParaSubProcManagementPageViewModel>();
         }
     }
 }

@@ -71,7 +71,6 @@ namespace PressHmi.ViewModel
                 ParaAutoAirSourceInfo = _mapper.Map<ParaAutoAirSourceInfo, ParaAutoAirSourceInfoDto>(msg);
             });
 
-
         }
 
         private void OnLoaded()

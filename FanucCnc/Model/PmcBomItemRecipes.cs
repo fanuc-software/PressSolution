@@ -7,7 +7,7 @@ using FanucCnc.Enum;
 
 namespace FanucCnc.Model
 {
-    public class PmcBomItem
+    public class PmcBomItemRecipes
     {
         public PmcAdrTypeEnum AdrType { get; set; }
 
@@ -20,5 +20,7 @@ namespace FanucCnc.Model
         public double? ConversionFactor { get; set; }
 
         public bool? IsRecipes { get; set; }
+
+        public string Value { get; set; }
     }
 }

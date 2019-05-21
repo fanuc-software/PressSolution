@@ -7,8 +7,101 @@
       mc:Ignorable="d" 
       d:DesignHeight="608" d:DesignWidth="940"
       Title="ParaSubProcManagementPage">
+    <Page.Resources>
+        <DataTemplate x:Key="Wrapitem">
+            <StackPanel  Height="50" Width="270" Margin="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!--<TextBlock Text="&#xf0f6;" HorizontalAlignment="Center" FontWeight="Light" VerticalAlignment="Center"
+                       FontSize="16" Style="{DynamicResource FontAwesome}"/>-->
+                <TextBlock Width="250" Text="{Binding Name}"  HorizontalAlignment="Center" Foreground="Black" TextWrapping="WrapWithOverflow"
+                       FontFamily="Microsoft YaHei UI Light"  Margin="10,0,0,0"  VerticalAlignment="Center"
+                       FontSize="16"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0"  Margin="2,2,0,2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="配方列表"/>
+            </Border>
+            <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource HmiBorder}">
+                <Grid>
+                    <ListBox x:Name="list2"  ScrollViewer.HorizontalScrollBarVisibility="Hidden"   ItemTemplate="{StaticResource Wrapitem}"
+                                         ItemsSource="{Binding ProcFiles}" SelectedItem="{Binding SelProcFile}" Foreground="White">
+                        <ListBox.Resources>
+                            <Style TargetType="ListBoxItem">
+                                <Style.Resources>
+                                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#FFA1A1A1"/>
+                                </Style.Resources>
+                            </Style>
+                        </ListBox.Resources>
+                        <ListBox.Template>
+                            <ControlTemplate TargetType="{x:Type ListBox}">
+                                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                    <WrapPanel Orientation="Vertical" IsItemsHost="True" ScrollViewer.CanContentScroll="True"/>
+                                </ScrollViewer>
+                            </ControlTemplate>
+                        </ListBox.Template>
+                    </ListBox>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Width="120" Height="45" Margin="10,0,10,0" Style="{StaticResource btn-info}" Content="刷新配方列表" Command="{Binding RefreshFileCommand}"/>
+                <Button Width="120" Height="45" Margin="10,0,10,0" Style="{StaticResource btn-warning}" Content="保存当前工艺参数" Command="{Binding SaveToPcCommand}"/>
+                <Button Width="120" Height="45" Margin="10,0,10,0" Style="{StaticResource btn-primary}" Content="加载工艺参数文件" Command="{Binding LoadAndShowCommand}"/>
+                <Button Width="120" Height="45" Margin="10,0,10,0" Style="{StaticResource btn-success}" Content="生效工艺参数" Command="{Binding SaveAndApplicationCommand}"/>
+            </StackPanel>
+            <Grid Grid.Row="1"  Margin="2,2,2,2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="工艺参数"/>
+                </Border>
+                <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource HmiBorder}">
+                    <Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="2,0,2,2">
+            <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="Transparent">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="当前配方路径:"/>
+                    <TextBox Text="{Binding CurFileFolder}" Background="Transparent" Width="700" Margin="10,2,10,2" IsEnabled="False"/>
+                    <Button Content="选择配方路径" Style="{StaticResource btn-success}" Command="{Binding FileFolderCommand}"/>
+                </StackPanel>
+
+            </Border>
+        </Grid>
     </Grid>
 </Page>

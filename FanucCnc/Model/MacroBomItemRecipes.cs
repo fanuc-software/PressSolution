@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace FanucCnc.Model
 {
-    public class MacroBomItem
+    public class MacroBomItemRecipes
     {
         public short Adr { get; set; }
 
         public bool? IsRecipes { get; set; }
+
+        public string Value { get; set; }
     }
 }

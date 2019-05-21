@@ -100,7 +100,7 @@ namespace PressHmi.View
 
 
             bool temp = false;
-            var ret = _fanuc.GetPmc(pmc, temp);
+            var ret = _fanuc.GetPmc(pmc, ref temp);
             if (ret != null)
             {
                 DataInputMessage = ret;

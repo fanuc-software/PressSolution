@@ -37,11 +37,9 @@ namespace PressHmi.View
         public static RoutedUICommand _CmdPoint = new RoutedUICommand();
         public static RoutedUICommand _CmdBackSpace = new RoutedUICommand();
 
-        public event Action<string> SaveInputEvent;
         public MacroDataInputDialog(Fanuc fanuc, MacroBomItem macro, LimitBomItem limit, string title)
         {
             InitializeComponent();
-            inputdata.Focus();
             this.DataContext = new MacroDataInputDialogViewModel(fanuc, macro, limit, title);
 
             CommandBinding Cb0 = new CommandBinding(_Cmd0, RunCommand_0);
@@ -79,54 +77,6 @@ namespace PressHmi.View
 
         }
 
-        public MacroDataInputDialog(Fanuc fanu, string value, string title)
-        {
-            InitializeComponent();
-            inputdata.Focus();
-
-            var model = new MacroDataInputDialogViewModel(fanu, value, title);
-            model.SaveActionEvent += Model_SaveActionEvent;
-            this.DataContext = model;
-            CommandBinding Cb0 = new CommandBinding(_Cmd0, RunCommand_0);
-            CommandBinding Cb1 = new CommandBinding(_Cmd1, RunCommand_1);
-            CommandBinding Cb2 = new CommandBinding(_Cmd2, RunCommand_2);
-            CommandBinding Cb3 = new CommandBinding(_Cmd3, RunCommand_3);
-            CommandBinding Cb4 = new CommandBinding(_Cmd4, RunCommand_4);
-            CommandBinding Cb5 = new CommandBinding(_Cmd5, RunCommand_5);
-            CommandBinding Cb6 = new CommandBinding(_Cmd6, RunCommand_6);
-            CommandBinding Cb7 = new CommandBinding(_Cmd7, RunCommand_7);
-            CommandBinding Cb8 = new CommandBinding(_Cmd8, RunCommand_8);
-            CommandBinding Cb9 = new CommandBinding(_Cmd9, RunCommand_9);
-            CommandBinding CbShortLine = new CommandBinding(_CmdShortLine, RunCommand_ShortLine);
-            CommandBinding CbPoint = new CommandBinding(_CmdPoint, RunCommand_Point);
-            CommandBinding CbBackSpace = new CommandBinding(_CmdBackSpace, RunCommand_BackSpace);
-
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb0);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb1);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb2);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb3);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb4);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb5);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb6);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb7);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb8);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), Cb9);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), CbShortLine);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), CbPoint);
-            CommandManager.RegisterClassCommandBinding(typeof(MacroDataInputDialog), CbBackSpace);
-
-            Messenger.Default.Register<bool>(this, "MacroDataInputDialogQuitMsg", msg =>
-            {
-                this.Close();
-            });
-
-        }
-
-        private void Model_SaveActionEvent(string obj)
-        {
-            SaveInputEvent?.Invoke(obj);
-            this.Close();
-        }
         #region 0~9
         void RunCommand_0(object sender, ExecutedRoutedEventArgs e)
         {
