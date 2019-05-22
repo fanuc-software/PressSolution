@@ -338,7 +338,7 @@ namespace PressHmi.ViewModel
         private void OnMaintainMenu1Click()
         {
             ChangeMaintainMenuEvent(m1: true);
-            //_MaintainPanel = new MaintainSubDieChangePage();
+            _MaintainPanel = new MaintainSubLimitPage();
 
 
         }
