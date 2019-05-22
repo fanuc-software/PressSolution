@@ -5,16 +5,18 @@ using System.Globalization;
 namespace PressHmi.View.Converters
 {
 
-    [ValueConversion(typeof(bool?), typeof(string))]
-    public class IsConsistentStringConverter : IValueConverter
+    [ValueConversion(typeof(double?), typeof(string))]
+    public class UpDownStringConverter : IValueConverter
     {
         public object Convert(object value,
             Type targetType, object parameter, CultureInfo culture)
         {
-            bool? temp = (bool?)value;
+            double? temp = (double?)value;
             if (!temp.HasValue) return null;
-            if (temp.Value == true) return "&#xf00c;";
-            else return "&#xf00d;";
+
+            if (temp.Value > 0) return "&#xf062;";
+            if (temp.Value < 0) return "&#xf063;";
+            else return "一致";
         }
         //反转换方法，将字符串转换为日期类型
         public object ConvertBack(object value,

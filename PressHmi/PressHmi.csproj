@@ -135,6 +135,7 @@
     <Compile Include="Model\SParaLubricateInfoDto.cs" />
     <Compile Include="Model\SParaMachineInfoDto.cs" />
     <Compile Include="Model\StateMonitorInfoDto.cs" />
+    <Compile Include="View\Converters\UpDownStringConverter.cs" />
     <Compile Include="Roles\Role.cs" />
     <Compile Include="ViewModel\Maintain\MaintainMainPageViewModel.cs" />
     <Compile Include="ViewModel\Maintain\MaintainSubLimitPageViewModel.cs" />
@@ -171,6 +172,7 @@
     <Compile Include="View\Converters\MainStatusEmgColorConverter.cs" />
     <Compile Include="View\Converters\MainStatusPowerColorConverter.cs" />
     <Compile Include="View\Converters\ModeTextConverter.cs" />
+    <Compile Include="View\Converters\UpDownColorConverter.cs" />
     <Compile Include="View\Dialogs\AutoAirSourceArrInputDialog.xaml.cs">
       <DependentUpon>AutoAirSourceArrInputDialog.xaml</DependentUpon>
     </Compile>

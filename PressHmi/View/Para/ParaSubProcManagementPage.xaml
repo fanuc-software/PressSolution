@@ -24,6 +24,8 @@
 
         <conv:IsConsistentColorConverter x:Key="_isccc"/>
         <conv:IsConsistentStringConverter x:Key="_iscsc"/>
+        <conv:UpDownColorConverter x:Key="_udcc"/>
+        <conv:UpDownStringConverter x:Key="_udsc"/>
 
         <DataTemplate x:Key="Wrapitem">
             <StackPanel  Height="50" Width="270" Margin="5" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
@@ -42,12 +44,14 @@
                     <ColumnDefinition Width="280"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="{Binding IsConsistent,Converter={StaticResource _iscsc}}"  HorizontalAlignment="Left" 
-                           Foreground="{Binding IsConsistent,Converter={StaticResource _isccc}}"
-                 FontFamily="Microsoft YaHei UI Light"  Margin="10,0,0,0"  VerticalAlignment="Center"
-                 FontSize="16"/>
+                <TextBlock Grid.Column="0" Text="&#xf02e;"  
+                           HorizontalAlignment="Left" 
+                           Foreground="{Binding IsConsistent,Converter={StaticResource _isccc}}" 
+                           Style="{DynamicResource FontAwesome}"
+                           Margin="10,0,0,0"  VerticalAlignment="Center"
+                           FontSize="16"/>
                 <TextBlock Grid.Column="1" Text="{Binding Name}"  HorizontalAlignment="Left" Foreground="Black" TextWrapping="WrapWithOverflow"
                 FontFamily="Microsoft YaHei UI Light"  Margin="10,0,0,0"  VerticalAlignment="Center"
                 FontSize="16"/>
@@ -57,9 +61,10 @@
                 <TextBlock Grid.Column="3" Text="{Binding FileValue}"  HorizontalAlignment="Right" Foreground="Black" TextWrapping="WrapWithOverflow"
                 FontFamily="Microsoft YaHei UI Light"  Margin="10,0,10,0"  VerticalAlignment="Center"
                 FontSize="16"/>
-                <TextBlock Grid.Column="4" Text="{Binding UpDown}"  HorizontalAlignment="Center" Foreground="Black" TextWrapping="WrapWithOverflow"
+                <TextBlock Grid.Column="4" Text="{Binding UpDown,Converter={StaticResource _udsc}}" 
+                    HorizontalAlignment="Center" Foreground="{Binding UpDown,Converter={StaticResource _udcc}}"
                     FontFamily="Microsoft YaHei UI Light"  Margin="10,0,0,0"  VerticalAlignment="Center"
-                    FontSize="16"/>
+                    FontSize="16" Style="{DynamicResource FontAwesome}"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -142,7 +147,7 @@
                                 <ColumnDefinition Width="280"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="100"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
                                    Text="工艺参数名称"/>

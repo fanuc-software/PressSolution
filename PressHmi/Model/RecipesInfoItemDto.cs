@@ -46,8 +46,27 @@ namespace PressHmi.Model
                 if (m_IsConsistent != value)
                 {
                     m_IsConsistent = value;
+
+                    if (m_IsConsistent == null) IsConsistentStr = null;
+                    else if (m_IsConsistent == true) IsConsistentStr = "&#xf00c;";
+                    else IsConsistentStr = "&#xf00d;";
+
                     RaisePropertyChanged(() => IsConsistent);
                 }
+            }
+        }
+
+        private string m_IsConsistentStr;
+        public string IsConsistentStr
+        {
+            get { return m_IsConsistentStr; }
+            set
+            {
+                //if (m_IsConsistent == null) m_IsConsistentStr = null;
+                //else if (m_IsConsistent == true) m_IsConsistentStr = "&#xf00c;";
+                //else m_IsConsistentStr = "&#xf00d;";
+                m_IsConsistentStr = value;
+                RaisePropertyChanged(() => IsConsistentStr);
             }
         }
 
@@ -79,16 +98,29 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_UpDown;
-        public double UpDown
+        private double? m_UpDown;
+        public double? UpDown
         {
-            get {
-                if (Value != null && FileValue != null)
-                    return double.Parse(Value) - double.Parse(FileValue);
-                else
-                    return 0;
+            get { return m_UpDown; }
+            set
+            {
+                if (m_UpDown != value)
+                {
+                    m_UpDown = value;
+                    RaisePropertyChanged(() => UpDown);
+                }
             }
         }
+
+        //public double? UpDown
+        //{
+        //    get {
+        //        if (Value != null && FileValue != null)
+        //            return double.Parse(Value) - double.Parse(FileValue);
+        //        else
+        //            return null;
+        //    }
+        //}
 
 
         private bool m_PmcType;

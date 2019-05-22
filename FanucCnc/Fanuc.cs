@@ -2604,89 +2604,91 @@ namespace FanucCnc
             FreeConnect(flib);
 
             if (ret != 0) return "获得数据失败(" + ret.ToString() + ")";
+
+            data = temp_data.ToString();
             return null;
         }
 
         public string SaveRecipesToPC(string path)
         {
-            RecipesInfo recipes = new RecipesInfo();
-            var obj = CurMacroBom.GetType();
-            foreach (PropertyInfo item in obj.GetProperties())
-            {
-                var bomItem = item.GetValue(CurMacroBom) as MacroBomItem;
-                if (bomItem?.IsRecipes??false)
-                {
-                    string temp_data = "";
-                    var ret = GetMacro(bomItem, ref temp_data);
-                    if(ret!=null)
-                    {
-                        return "保存配方失败，写入宏变量失败，返回:" + ret;
-                    }
+            //RecipesInfo recipes = new RecipesInfo();
+            //var obj = CurMacroBom.GetType();
+            //foreach (PropertyInfo item in obj.GetProperties())
+            //{
+            //    var bomItem = item.GetValue(CurMacroBom) as MacroBomItem;
+            //    if (bomItem?.IsRecipes??false)
+            //    {
+            //        string temp_data = "";
+            //        var ret = GetMacro(bomItem, ref temp_data);
+            //        if(ret!=null)
+            //        {
+            //            return "保存配方失败，写入宏变量失败，返回:" + ret;
+            //        }
 
-                    recipes.MacroBoms.Add(new MacroBomItemRecipes()
-                    {
-                        Id = bomItem.Id,
-                        Adr = bomItem.Adr,
-                        Value= temp_data,
-                        IsRecipes = bomItem.IsRecipes
-                    });
-                }
-            }
+            //        recipes.MacroBoms.Add(new MacroBomItemRecipes()
+            //        {
+            //            Id = bomItem.Id,
+            //            Adr = bomItem.Adr,
+            //            Value= temp_data,
+            //            IsRecipes = bomItem.IsRecipes
+            //        });
+            //    }
+            //}
 
-            var obj_pmc = CurPmcBom.GetType();
-            foreach (PropertyInfo item in obj_pmc.GetProperties())
-            {
-                var bomItem = item.GetValue(CurPmcBom) as PmcBomItem;
-                if (bomItem?.IsRecipes ?? false)
-                {
-                    string ret;
-                    string data_res="";
-                    switch (bomItem.DataType)
-                    {
-                        case PmcDataTypeEnum.BIT:
-                            bool bTemp = false;
-                            ret = GetPmc(bomItem,ref bTemp);
-                            data_res = bTemp.ToString();
-                            break;
-                        case PmcDataTypeEnum.BYTE:
-                            byte cTemp = 0;
-                            ret = GetPmc(bomItem, ref cTemp);
-                            data_res = cTemp.ToString();
-                            break;
-                        case PmcDataTypeEnum.WORD:
-                            short iTemp = 0;
-                            ret = GetPmc(bomItem, ref iTemp);
-                            data_res = iTemp.ToString();
-                            break;
-                        case PmcDataTypeEnum.LONG:
-                            int lTemp = 0;
-                            ret = GetPmc(bomItem, ref lTemp);
-                            data_res = lTemp.ToString();
-                            break;
-                        default:
-                            ret = "类型错误";
-                            break;
-                    }
+            //var obj_pmc = CurPmcBom.GetType();
+            //foreach (PropertyInfo item in obj_pmc.GetProperties())
+            //{
+            //    var bomItem = item.GetValue(CurPmcBom) as PmcBomItem;
+            //    if (bomItem?.IsRecipes ?? false)
+            //    {
+            //        string ret;
+            //        string data_res="";
+            //        switch (bomItem.DataType)
+            //        {
+            //            case PmcDataTypeEnum.BIT:
+            //                bool bTemp = false;
+            //                ret = GetPmc(bomItem,ref bTemp);
+            //                data_res = bTemp.ToString();
+            //                break;
+            //            case PmcDataTypeEnum.BYTE:
+            //                byte cTemp = 0;
+            //                ret = GetPmc(bomItem, ref cTemp);
+            //                data_res = cTemp.ToString();
+            //                break;
+            //            case PmcDataTypeEnum.WORD:
+            //                short iTemp = 0;
+            //                ret = GetPmc(bomItem, ref iTemp);
+            //                data_res = iTemp.ToString();
+            //                break;
+            //            case PmcDataTypeEnum.LONG:
+            //                int lTemp = 0;
+            //                ret = GetPmc(bomItem, ref lTemp);
+            //                data_res = lTemp.ToString();
+            //                break;
+            //            default:
+            //                ret = "类型错误";
+            //                break;
+            //        }
 
-                    if (ret != null)
-                    {
-                        return "保存配方失败，写入PMC失败，返回:" + ret;
-                    }
+            //        if (ret != null)
+            //        {
+            //            return "保存配方失败，写入PMC失败，返回:" + ret;
+            //        }
 
-                    recipes.PmcBoms.Add(new PmcBomItemRecipes() {
-                        Id = bomItem.Id,
-                        AdrType = bomItem.AdrType,
-                        DataType = bomItem.DataType,
-                        Adr = bomItem.Adr,
-                        Bit = bomItem.Bit,
-                        ConversionFactor = bomItem.ConversionFactor,
-                        IsRecipes = bomItem.IsRecipes,
-                        Value = data_res
-                    });
-                }
-            }
+            //        recipes.PmcBoms.Add(new PmcBomItemRecipes() {
+            //            Id = bomItem.Id,
+            //            AdrType = bomItem.AdrType,
+            //            DataType = bomItem.DataType,
+            //            Adr = bomItem.Adr,
+            //            Bit = bomItem.Bit,
+            //            ConversionFactor = bomItem.ConversionFactor,
+            //            IsRecipes = bomItem.IsRecipes,
+            //            Value = data_res
+            //        });
+            //    }
+            //}
 
-            var jsonData = JsonConvert.SerializeObject(recipes, Formatting.Indented);
+            var jsonData = JsonConvert.SerializeObject(_recipes, Formatting.Indented);
             using (System.IO.StreamWriter sw =new StreamWriter(path))
             {
                 sw.WriteLine(jsonData);

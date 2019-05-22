@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Threading;
 using GalaSoft.MvvmLight.Ioc;
+using Newtonsoft.Json;
 using AutoMapper;
 using PressHmi.Model;
 using PressHmi.View;
@@ -138,6 +139,33 @@ namespace PressHmi.ViewModel
                     else
                     {
                         rec.Value = info.Value;
+
+                        if (rec.Value != null && rec.FileValue != null)
+                        {
+                            double v1, v2;
+                            var ret_v1 = double.TryParse(rec.Value, out v1);
+                            var ret_v2 = double.TryParse(rec.FileValue, out v2);
+
+                            if(ret_v1==false || ret_v2==false)
+                            {
+                                bool v3, v4;
+                                var ret_v3 = bool.TryParse(rec.Value, out v3);
+                                var ret_v4 = bool.TryParse(rec.FileValue, out v4);
+
+                                if (ret_v3 == true && ret_v4 == true)
+                                {
+                                    if(v3==v4)
+                                    {
+                                        rec.UpDown = 0;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                rec.UpDown = v1 - v2;
+                            }
+                        }
+                        else rec.UpDown = null;
                     }
                 }
 
@@ -167,6 +195,33 @@ namespace PressHmi.ViewModel
                     else
                     {
                         rec.Value = info.Value;
+
+                        if (rec.Value != null && rec.FileValue != null)
+                        {
+                            double v1, v2;
+                            var ret_v1 = double.TryParse(rec.Value, out v1);
+                            var ret_v2 = double.TryParse(rec.FileValue, out v2);
+
+                            if (ret_v1 == false || ret_v2 == false)
+                            {
+                                bool v3, v4;
+                                var ret_v3 = bool.TryParse(rec.Value, out v3);
+                                var ret_v4 = bool.TryParse(rec.FileValue, out v4);
+
+                                if (ret_v3 == true && ret_v4 == true)
+                                {
+                                    if (v3 == v4)
+                                    {
+                                        rec.UpDown = 0;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                rec.UpDown = v1 - v2;
+                            }
+                        }
+                        else rec.UpDown = null;
                     }
                 }
 
@@ -245,7 +300,64 @@ namespace PressHmi.ViewModel
 
         private void OnLoadAndShow()
         {
+            if(SelProcFile==null)
+            {
+                return;
+            }
 
+            string file_buf = "";
+            using (StreamReader sr = new StreamReader(SelProcFile.Path, true))
+            {
+                file_buf = sr.ReadToEnd();
+            }
+
+            var recps = JsonConvert.DeserializeObject<RecipesInfo>(file_buf);
+
+            foreach(var pmc_item in recps.PmcBoms)
+            {
+                try
+                {
+                    var dto_info = RecipesInfos.Where(x => x.Id == pmc_item.Id).FirstOrDefault();
+                    if (dto_info!=null)
+                    {
+                        if (dto_info.Name != pmc_item.Name || dto_info.PmcType == false || dto_info.PmcBomItem.Adr != pmc_item.Adr
+                            || dto_info.PmcBomItem.AdrType != pmc_item.AdrType || dto_info.PmcBomItem.Bit != pmc_item.Bit
+                            || dto_info.PmcBomItem.ConversionFactor != pmc_item.ConversionFactor || dto_info.PmcBomItem.DataType != pmc_item.DataType)
+                        {
+                            dto_info.IsConsistent = false;
+                        }
+                        else dto_info.IsConsistent = true;
+
+                        dto_info.FileValue = pmc_item.Value;
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+
+            foreach (var macro_item in recps.MacroBoms)
+            {
+                try
+                {
+                    var dto_info = RecipesInfos.Where(x => x.Id == macro_item.Id).FirstOrDefault();
+                    if (dto_info != null)
+                    {
+                        if (dto_info.Name != macro_item.Name || dto_info.MacroType == false || dto_info.MacroBomItem.Adr != macro_item.Adr)
+                        {
+                            dto_info.IsConsistent = false;
+                        }
+                        else dto_info.IsConsistent = true;
+
+                        dto_info.FileValue = macro_item.Value;
+                    }
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void OnSaveAndApplication()
@@ -257,7 +369,7 @@ namespace PressHmi.ViewModel
         {
             try
             {
-                var files = System.IO.Directory.GetFiles(root, "*.*", SearchOption.TopDirectoryOnly);
+                var files = System.IO.Directory.GetFiles(root, "*.recip", SearchOption.TopDirectoryOnly);
 
                 ProcFiles.Clear();
                 foreach (string f in files)
