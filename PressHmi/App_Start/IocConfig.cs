@@ -34,6 +34,7 @@ namespace PressHmi.App_Start
             SimpleIoc.Default.Register<ParaSubProcManagementPageViewModel>();
 
             SimpleIoc.Default.Register<MessageMainPageViewModel>();
+            SimpleIoc.Default.Register<MessageSubAlarmPageViewModel>();
 
             SimpleIoc.Default.Register<MaintainMainPageViewModel>();
             SimpleIoc.Default.Register<MaintainSubLimitPageViewModel>();

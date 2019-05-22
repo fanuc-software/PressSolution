@@ -17,6 +17,9 @@
             <i:InvokeCommandAction Command="{Binding UnloadedCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Page.Resources>
+        <conv:AlarmTypeStringConverter x:Key="_atsc"/>
+    </Page.Resources>
 
 
     <Grid>
@@ -31,7 +34,7 @@
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="报警类型"    Width="200"  ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Type}"/>
+                    <DataGridTextColumn Header="报警类型"    Width="200"  ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Type,Converter={StaticResource _atsc}}"/>
                     <DataGridTextColumn Header="报警号"  Width="200"   ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Alm_No}"/>
                     <DataGridTextColumn Header="报警信息"  Width="500"   ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Alm_Msg}"/>
                 </DataGrid.Columns>

@@ -135,6 +135,8 @@
     <Compile Include="Model\SParaLubricateInfoDto.cs" />
     <Compile Include="Model\SParaMachineInfoDto.cs" />
     <Compile Include="Model\StateMonitorInfoDto.cs" />
+    <Compile Include="ViewModel\Message\MessageSubAlarmPageViewModel.cs" />
+    <Compile Include="View\Converters\AlarmTypeStringConverter.cs" />
     <Compile Include="View\Converters\UpDownStringConverter.cs" />
     <Compile Include="Roles\Role.cs" />
     <Compile Include="ViewModel\Maintain\MaintainMainPageViewModel.cs" />

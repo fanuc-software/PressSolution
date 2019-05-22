@@ -13,10 +13,13 @@ namespace PressHmi.Model
                 if (_type != value)
                 {
                     _type = value;
+
                     RaisePropertyChanged(() => Type);
                 }
             }
         }
+        
+
 
         private int _alm_No;
         public int Alm_No
