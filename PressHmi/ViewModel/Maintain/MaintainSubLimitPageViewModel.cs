@@ -43,6 +43,9 @@ namespace PressHmi.ViewModel
                 if (attributes != null && (attributes.GetAutoGenerateField() ?? true))
                 {
                     var limit = item.GetValue(fanuc.CurLimitBom) as LimitBomItem;
+                    if (limit == null) {
+                        continue;
+                    }
                     var node = new MaintainSubLimitDto()
                     {
                         Title = attributes.Name,
