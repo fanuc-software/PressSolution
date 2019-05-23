@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/PressHmi;component/View/Styles/MainStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/PressHmi;component/View/Styles/ParaStyle.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/PressHmi;component/View/Styles/MessageStyle.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/PressHmi;component/View/Styles/MaintainCsdStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -135,6 +135,7 @@
     <Compile Include="Model\SParaLubricateInfoDto.cs" />
     <Compile Include="Model\SParaMachineInfoDto.cs" />
     <Compile Include="Model\StateMonitorInfoDto.cs" />
+    <Compile Include="ViewModel\Maintain\MaintainSubCsdPageViewModel.cs" />
     <Compile Include="ViewModel\Message\MessageSubAlarmPageViewModel.cs" />
     <Compile Include="View\Converters\AlarmTypeStringConverter.cs" />
     <Compile Include="View\Converters\UpDownStringConverter.cs" />
@@ -426,6 +427,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\Styles\MainStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Styles\MaintainCsdStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

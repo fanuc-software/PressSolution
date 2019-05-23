@@ -38,7 +38,7 @@ namespace PressHmi.App_Start
 
             SimpleIoc.Default.Register<MaintainMainPageViewModel>();
             SimpleIoc.Default.Register<MaintainSubLimitPageViewModel>();
-
+            SimpleIoc.Default.Register<MaintainSubCsdPageViewModel>();
 
             SimpleIoc.Default.Register<SystemMainPageViewModel>();
 

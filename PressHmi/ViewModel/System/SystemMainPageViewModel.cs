@@ -309,7 +309,7 @@ namespace PressHmi.ViewModel
 
             SystemMenu6 = new MenuButtonDto
             {
-                Text = "",
+                Text = "数据表",
                 Cmd = new RelayCommand(OnSystemMenu6Click),
                 Visibility = "Visible",
             };

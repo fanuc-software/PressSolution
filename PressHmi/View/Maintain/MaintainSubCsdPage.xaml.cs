@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FanucCnc;
+using GalaSoft.MvvmLight.Ioc;
+using PressHmi.Model;
+using PressHmi.ViewModel;
 
 namespace PressHmi.View
 {
@@ -25,24 +28,27 @@ namespace PressHmi.View
         {
             InitializeComponent();
 
-            IntPtr hwnd;
-            hwnd = myPanel.Handle;
-            var csd = CncScreenDisplay.CreateInstance();
-            csd.CreateCncScreenDisplay(hwnd);
+            this.DataContext = SimpleIoc.Default.GetInstance<MaintainSubCsdPageViewModel>();
+
+            //TODO:NO CNC
+            //IntPtr hwnd;
+            //hwnd = myPanel.Handle;
+            //var csd = CncScreenDisplay.CreateInstance();
+            //csd.CreateCncScreenDisplay(hwnd);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //TODO:NO CNC
-            var csd = CncScreenDisplay.CreateInstance();
-            csd.StartRefreshCncScreenDisplay();
+            //var csd = CncScreenDisplay.CreateInstance();
+            //csd.StartRefreshCncScreenDisplay();
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             //TODO:NO CNC
-            var csd = CncScreenDisplay.CreateInstance();
-            csd.StopRefreshCncScreenDisplay();
+            //var csd = CncScreenDisplay.CreateInstance();
+            //csd.StopRefreshCncScreenDisplay();
         }
     }
 }
