@@ -338,18 +338,19 @@ namespace PressHmi.ViewModel
         private void OnSystemMenu1Click()
         {
             ChangeSystemMenuEvent(m1: true);
+            _SystemPanel = new SystemInfoPage();
 
 
         }
         private void OnSystemMenu2Click()
         {
             ChangeSystemMenuEvent(m2: true);
-            //_SystemPanel = new SystemSubDieClosingPage();
+            _SystemPanel = new SystemPmcPage();
         }
         private void OnSystemMenu3Click()
         {
             ChangeSystemMenuEvent(m3: true);
-            //_SystemPanel = new SystemSubDiePartingPage();
+            _SystemPanel = new SystemMacroPage();
         }
         private void OnSystemMenu4Click()
         {

@@ -26,12 +26,7 @@ namespace PressHmi.ViewModel
             LoadData();
         }
 
-        public void ShowInputWindow()
-        {
-
-           // var dlg = new MacroDataInputDialog(fanuc, _fanuc.CurMacroBom.DJP_StopTime_3, _fanuc.CurLimitBom.DJP_StopTime_3, "输入P3停止时间(s)");
-         //   dlg.ShowDialog();
-        }
+       
         private void LoadData()
         {
             var type = fanuc.CurLimitBom.GetType();

@@ -113,7 +113,16 @@ namespace FanucCnc
 
         public void CreateCncScreenDisplay(IntPtr hwnd)
         {
-            _CreateCncScreenDisplay(hwnd, m_ip, 0, 0, -5, -32, 640, 480, 640, 480);
+            try
+            {
+                _CreateCncScreenDisplay(hwnd, m_ip, 0, 0, -5, -32, 640, 480, 640, 480);
+
+            }
+            catch (Exception)
+            {
+
+                
+            }
         }
 
         public void StartRefreshCncScreenDisplay()

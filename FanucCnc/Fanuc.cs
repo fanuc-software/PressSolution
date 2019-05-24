@@ -22,6 +22,8 @@ namespace FanucCnc
         private bool _simulate = false;
         private BaseInfo _baseInfo = new BaseInfo();
 
+        public BaseInfo BaseInfo { get { return _baseInfo; } }
+
         private PmcBom _pmcBom = new PmcBom();
         public PmcBom CurPmcBom
         {

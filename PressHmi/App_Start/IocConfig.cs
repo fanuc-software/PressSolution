@@ -47,6 +47,11 @@ namespace PressHmi.App_Start
             SimpleIoc.Default.Register<SParaSubLubricatePageViewModel>();
             SimpleIoc.Default.Register<SParaSubAnalogPageViewModel>();
             SimpleIoc.Default.Register<SParaSubEncodePageViewModel>();
+
+
+            SimpleIoc.Default.Register<SysetmInfoViewModel>();
+            SimpleIoc.Default.Register<SystemMacroViewModel>();
+            SimpleIoc.Default.Register<SystemPmcViewModel>();
         }
 
     }
