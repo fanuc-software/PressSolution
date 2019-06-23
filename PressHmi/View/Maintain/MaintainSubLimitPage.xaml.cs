@@ -30,6 +30,7 @@ namespace PressHmi.View
             InitializeComponent();
             var viewModel = SimpleIoc.Default.GetInstance<MaintainSubLimitPageViewModel>();
             viewModel.ShowLimitWindowEvent += ViewModel_ShowLimitWindowEvent;
+            this.Unloaded += (s, e) => viewModel.ShowLimitWindowEvent -= ViewModel_ShowLimitWindowEvent;
             this.DataContext = viewModel;
 
         }
@@ -41,6 +42,7 @@ namespace PressHmi.View
                 (obj.Type == "Up" ? obj.LimitUp : obj.LimitDown) + "", $"输入{obj.Title}");
             dlg.SaveInputEvent += Dlg_SaveInputEvent;
             dlg.ShowDialog();
+
         }
 
         private void Dlg_SaveInputEvent(string obj)

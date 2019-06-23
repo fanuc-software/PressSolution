@@ -137,6 +137,9 @@
     <Compile Include="Model\StateMonitorInfoDto.cs" />
     <Compile Include="ViewModel\Maintain\MaintainSubCsdPageViewModel.cs" />
     <Compile Include="ViewModel\Message\MessageSubAlarmPageViewModel.cs" />
+    <Compile Include="ViewModel\System\SysetmInfoViewModel.cs" />
+    <Compile Include="ViewModel\System\SystemMacroViewModel.cs" />
+    <Compile Include="ViewModel\System\SystemPmcViewModel.cs" />
     <Compile Include="View\Converters\AlarmTypeStringConverter.cs" />
     <Compile Include="View\Converters\UpDownStringConverter.cs" />
     <Compile Include="Roles\Role.cs" />
@@ -251,8 +254,17 @@
     <Compile Include="View\Status\StateMonitorPage.xaml.cs">
       <DependentUpon>StateMonitorPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\System\SystemInfoPage.xaml.cs">
+      <DependentUpon>SystemInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\System\SystemMacroPage.xaml.cs">
+      <DependentUpon>SystemMacroPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\System\SystemMainPage.xaml.cs">
       <DependentUpon>SystemMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\System\SystemPmcPage.xaml.cs">
+      <DependentUpon>SystemPmcPage.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Dialogs\AutoAirSourceArrInputDialog.xaml">
       <SubType>Designer</SubType>
@@ -442,7 +454,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\System\SystemInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\System\SystemMacroPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\System\SystemMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\System\SystemPmcPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
