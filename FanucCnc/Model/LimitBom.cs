@@ -197,6 +197,10 @@ namespace FanucCnc.Model
         public LimitBomItem DJP_PreDelayTime { get; set; }
         [Display(Name = "合模设定-合模安全时间", AutoGenerateField = true)]
         public LimitBomItem DJP_SafeTime { get; set; }
+        [Display(Name = "合模设定-输入上死点位置", AutoGenerateField = true)]
+        public LimitBomItem DJP_TopDeadCentre { get; set; }
+        [Display(Name = "合模设定-输入上死点速度", AutoGenerateField = true)]
+        public LimitBomItem DJP_Speed_TopDeadCentre { get; set; }
         [Display(Name = "合模规划-位置1", AutoGenerateField = true)]
         public LimitBomItem DJP_Pos_1 { get; set; }
         [Display(Name = "合模规划-速度1", AutoGenerateField = true)]
@@ -247,67 +251,27 @@ namespace FanucCnc.Model
         public LimitBomItem DJP_StopTime_8 { get; set; }
         [Display(Name = "合模规划-上死点", AutoGenerateField = true)]
         public LimitBomItem DJP_BottomDeadCentre { get; set; }
+        [Display(Name = "合模规划-输入合模下死点停止时间", AutoGenerateField = true)]
+        public LimitBomItem DJP_BottomDeadCentre_StopTime { get; set; }
 
         #endregion
 
         #region 分模设定
         [Display(Name = "开模设定-开模段数", AutoGenerateField = true)]
         public LimitBomItem DPP_SectionNum { get; set; }
-        [Display(Name = "开模设定-开模前延时", AutoGenerateField = true)]
-        public LimitBomItem DPP_PreDelayTime { get; set; }
-        [Display(Name = "开模设定-开模安全时间", AutoGenerateField = true)]
-        public LimitBomItem DPP_SafeTime { get; set; }
+        
         [Display(Name = "开模规划-位置1", AutoGenerateField = true)]
         public LimitBomItem DPP_Pos_1 { get; set; }
         [Display(Name = "开模规划-速度1", AutoGenerateField = true)]
         public LimitBomItem DPP_Speed_1 { get; set; }
-        [Display(Name = "开模规划-停止时间1", AutoGenerateField = true)]
-        public LimitBomItem DPP_StopTime_1 { get; set; }
-        [Display(Name = "开模规划-位置2", AutoGenerateField = true)]
-        public LimitBomItem DPP_Pos_2 { get; set; }
-        [Display(Name = "开模规划-速度2", AutoGenerateField = true)]
-        public LimitBomItem DPP_Speed_2 { get; set; }
-        [Display(Name = "开模规划-停止时间2", AutoGenerateField = true)]
-        public LimitBomItem DPP_StopTime_2 { get; set; }
-        [Display(Name = "开模规划-位置3", AutoGenerateField = true)]
-        public LimitBomItem DPP_Pos_3 { get; set; }
-        [Display(Name = "开模规划-速度3", AutoGenerateField = true)]
-        public LimitBomItem DPP_Speed_3 { get; set; }
-        [Display(Name = "开模规划-停止时间3", AutoGenerateField = true)]
-        public LimitBomItem DPP_StopTime_3 { get; set; }
-        [Display(Name = "开模规划-位置4", AutoGenerateField = true)]
-        public LimitBomItem DPP_Pos_4 { get; set; }
-        [Display(Name = "开模规划-速度4", AutoGenerateField = true)]
-        public LimitBomItem DPP_Speed_4 { get; set; }
-        [Display(Name = "开模规划-停止时间4", AutoGenerateField = true)]
-        public LimitBomItem DPP_StopTime_4 { get; set; }
-        [Display(Name = "开模规划-位置5", AutoGenerateField = true)]
-        public LimitBomItem DPP_Pos_5 { get; set; }
-        [Display(Name = "开模规划-速度5", AutoGenerateField = true)]
-        public LimitBomItem DPP_Speed_5 { get; set; }
-        [Display(Name = "开模规划-停止时间5", AutoGenerateField = true)]
-        public LimitBomItem DPP_StopTime_5 { get; set; }
-        [Display(Name = "开模规划-位置6", AutoGenerateField = true)]
-        public LimitBomItem DPP_Pos_6 { get; set; }
-        [Display(Name = "开模规划-速度6", AutoGenerateField = true)]
-        public LimitBomItem DPP_Speed_6 { get; set; }
-        [Display(Name = "开模规划-停止时间6", AutoGenerateField = true)]
-        public LimitBomItem DPP_StopTime_6 { get; set; }
-        [Display(Name = "开模规划-位置7", AutoGenerateField = true)]
-        public LimitBomItem DPP_Pos_7 { get; set; }
-        [Display(Name = "开模规划-速度7", AutoGenerateField = true)]
-        public LimitBomItem DPP_Speed_7 { get; set; }
-        [Display(Name = "开模规划-停止时间7", AutoGenerateField = true)]
-        public LimitBomItem DPP_StopTime_7 { get; set; }
-        [Display(Name = "开模规划-位置8", AutoGenerateField = true)]
-        public LimitBomItem DPP_Pos_8 { get; set; }
-        [Display(Name = "开模规划-速度8", AutoGenerateField = true)]
-        public LimitBomItem DPP_Speed_8 { get; set; }
-        [Display(Name = "开模规划-停止时间8", AutoGenerateField = true)]
-        public LimitBomItem DPP_StopTime_8 { get; set; }
+
+        [Display(Name = "开模设定-下死点", AutoGenerateField = true)]
+        public LimitBomItem DPP_BottomDeadCentre { get; set; }
+        [Display(Name = "开模设定-下死点速度", AutoGenerateField = true)]
+        public LimitBomItem DPP_Speed_BottomDeadCentre { get; set; }
 
         [Display(Name = "开模规划-上死点", AutoGenerateField = true)]
-        public LimitBomItem DPP_BottomDeadCentre { get; set; }
+        public LimitBomItem DPP_TopDeadCentre { get; set; }
 
         #endregion
 

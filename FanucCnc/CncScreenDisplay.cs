@@ -78,7 +78,8 @@ namespace FanucCnc
             p.Start();//启动程序
 
             //向cmd窗口发送输入信息
-            var startcmd = @"#ROOT# && cd #CSDPATH# && CNCSCRNE /SERVER /H=#IP#:#PORT#";
+            //var startcmd = @"#ROOT# && cd #CSDPATH# && CNCSCRNE /SERVER /H=#IP#:#PORT#";
+            var startcmd = @"#ROOT# && cd #CSDPATH# && CNCSCRN /SERVER /NODE=0";
             startcmd = startcmd.Replace("#ROOT#", m_root);
             startcmd = startcmd.Replace("#CSDPATH#", m_csdfolder);
             startcmd = startcmd.Replace("#IP#", m_ip);
@@ -113,7 +114,7 @@ namespace FanucCnc
 
         public void CreateCncScreenDisplay(IntPtr hwnd)
         {
-            _CreateCncScreenDisplay(hwnd, m_ip, 0, 0, -5, -32, 640, 480, 640, 480);
+            _CreateCncScreenDisplay(hwnd, m_ip, 0, 0, 0, 100, 640, 480, 1088, 816);
         }
 
         public void StartRefreshCncScreenDisplay()

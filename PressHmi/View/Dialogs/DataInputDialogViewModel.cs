@@ -106,8 +106,11 @@ namespace PressHmi.View
             DataInputTitle = title;
 
 
-            if (limit.LimitUp.HasValue == true) DataLimitUp = limit.LimitUp.Value.ToString();
-            if (limit.LimitDown.HasValue == true)  DataLimitDown = limit.LimitDown.ToString();
+            if (limit != null)
+            {
+                if (limit.LimitUp.HasValue == true) DataLimitUp = limit.LimitUp.Value.ToString();
+                if (limit.LimitDown.HasValue == true) DataLimitDown = limit.LimitDown.ToString();
+            }
             
             _OkCmd = new RelayCommand(OnOkCmd);
             _CancelCmd = new RelayCommand(OnCancelCmd);

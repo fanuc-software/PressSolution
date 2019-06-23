@@ -6,6 +6,35 @@ namespace PressHmi.Model
     public class ParaDieClosingProcInfoDto : ViewModelBase
     {
         public double SectionNum { get; set; }
+        
+
+        private double m_TopDeadCentre;
+        public double TopDeadCentre
+        {
+            get { return m_TopDeadCentre; }
+            set
+            {
+                if (m_TopDeadCentre != value)
+                {
+                    m_TopDeadCentre = value;
+                    RaisePropertyChanged(() => TopDeadCentre);
+                }
+            }
+        }
+
+        private double m_Speed_TopDeadCentre;
+        public double Speed_TopDeadCentre
+        {
+            get { return m_Speed_TopDeadCentre; }
+            set
+            {
+                if (m_Speed_TopDeadCentre != value)
+                {
+                    m_Speed_TopDeadCentre = value;
+                    RaisePropertyChanged(() => Speed_TopDeadCentre);
+                }
+            }
+        }
 
         #region p1
 
@@ -37,19 +66,19 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StopTime_1;
-        public double StopTime_1
-        {
-            get { return m_StopTime_1; }
-            set
-            {
-                if (m_StopTime_1 != value)
-                {
-                    m_StopTime_1 = value;
-                    RaisePropertyChanged(() => StopTime_1);
-                }
-            }
-        }
+        //private double m_StopTime_1;
+        //public double StopTime_1
+        //{
+        //    get { return m_StopTime_1; }
+        //    set
+        //    {
+        //        if (m_StopTime_1 != value)
+        //        {
+        //            m_StopTime_1 = value;
+        //            RaisePropertyChanged(() => StopTime_1);
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -83,19 +112,19 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StopTime_2;
-        public double StopTime_2
-        {
-            get { return m_StopTime_2; }
-            set
-            {
-                if (m_StopTime_2 != value)
-                {
-                    m_StopTime_2 = value;
-                    RaisePropertyChanged(() => StopTime_2);
-                }
-            }
-        }
+        //private double m_StopTime_2;
+        //public double StopTime_2
+        //{
+        //    get { return m_StopTime_2; }
+        //    set
+        //    {
+        //        if (m_StopTime_2 != value)
+        //        {
+        //            m_StopTime_2 = value;
+        //            RaisePropertyChanged(() => StopTime_2);
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -129,19 +158,19 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StopTime_3;
-        public double StopTime_3
-        {
-            get { return m_StopTime_3; }
-            set
-            {
-                if (m_StopTime_3 != value)
-                {
-                    m_StopTime_3 = value;
-                    RaisePropertyChanged(() => StopTime_3);
-                }
-            }
-        }
+        //private double m_StopTime_3;
+        //public double StopTime_3
+        //{
+        //    get { return m_StopTime_3; }
+        //    set
+        //    {
+        //        if (m_StopTime_3 != value)
+        //        {
+        //            m_StopTime_3 = value;
+        //            RaisePropertyChanged(() => StopTime_3);
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -175,19 +204,19 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StopTime_4;
-        public double StopTime_4
-        {
-            get { return m_StopTime_4; }
-            set
-            {
-                if (m_StopTime_4 != value)
-                {
-                    m_StopTime_4 = value;
-                    RaisePropertyChanged(() => StopTime_4);
-                }
-            }
-        }
+        //private double m_StopTime_4;
+        //public double StopTime_4
+        //{
+        //    get { return m_StopTime_4; }
+        //    set
+        //    {
+        //        if (m_StopTime_4 != value)
+        //        {
+        //            m_StopTime_4 = value;
+        //            RaisePropertyChanged(() => StopTime_4);
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -221,19 +250,19 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StopTime_5;
-        public double StopTime_5
-        {
-            get { return m_StopTime_5; }
-            set
-            {
-                if (m_StopTime_5 != value)
-                {
-                    m_StopTime_5 = value;
-                    RaisePropertyChanged(() => StopTime_5);
-                }
-            }
-        }
+        //private double m_StopTime_5;
+        //public double StopTime_5
+        //{
+        //    get { return m_StopTime_5; }
+        //    set
+        //    {
+        //        if (m_StopTime_5 != value)
+        //        {
+        //            m_StopTime_5 = value;
+        //            RaisePropertyChanged(() => StopTime_5);
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -267,19 +296,19 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StopTime_6;
-        public double StopTime_6
-        {
-            get { return m_StopTime_6; }
-            set
-            {
-                if (m_StopTime_6 != value)
-                {
-                    m_StopTime_6 = value;
-                    RaisePropertyChanged(() => StopTime_6);
-                }
-            }
-        }
+        //private double m_StopTime_6;
+        //public double StopTime_6
+        //{
+        //    get { return m_StopTime_6; }
+        //    set
+        //    {
+        //        if (m_StopTime_6 != value)
+        //        {
+        //            m_StopTime_6 = value;
+        //            RaisePropertyChanged(() => StopTime_6);
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -313,19 +342,19 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StopTime_7;
-        public double StopTime_7
-        {
-            get { return m_StopTime_7; }
-            set
-            {
-                if (m_StopTime_7 != value)
-                {
-                    m_StopTime_7 = value;
-                    RaisePropertyChanged(() => StopTime_7);
-                }
-            }
-        }
+        //private double m_StopTime_7;
+        //public double StopTime_7
+        //{
+        //    get { return m_StopTime_7; }
+        //    set
+        //    {
+        //        if (m_StopTime_7 != value)
+        //        {
+        //            m_StopTime_7 = value;
+        //            RaisePropertyChanged(() => StopTime_7);
+        //        }
+        //    }
+        //}
 
         #endregion
 
@@ -359,22 +388,36 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StopTime_8;
-        public double StopTime_8
+        //private double m_StopTime_8;
+        //public double StopTime_8
+        //{
+        //    get { return m_StopTime_8; }
+        //    set
+        //    {
+        //        if (m_StopTime_8 != value)
+        //        {
+        //            m_StopTime_8 = value;
+        //            RaisePropertyChanged(() => StopTime_8);
+        //        }
+        //    }
+        //}
+
+        #endregion
+
+        private double m_BottomDeadCentre_StopTime;
+        public double BottomDeadCentre_StopTime
         {
-            get { return m_StopTime_8; }
+            get { return m_BottomDeadCentre_StopTime; }
             set
             {
-                if (m_StopTime_8 != value)
+                if (m_BottomDeadCentre_StopTime != value)
                 {
-                    m_StopTime_8 = value;
-                    RaisePropertyChanged(() => StopTime_8);
+                    m_BottomDeadCentre_StopTime = value;
+                    RaisePropertyChanged(() => BottomDeadCentre_StopTime);
                 }
             }
         }
 
-        #endregion
-        
         private double m_BottomDeadCentre;
         public double BottomDeadCentre
         {

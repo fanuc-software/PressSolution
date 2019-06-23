@@ -35,22 +35,22 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="24"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="57*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="350"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="175*"/>
+                <ColumnDefinition Width="237*"/>
+                <ColumnDefinition Width="100*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            
+
             <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,10,0"
                        Text="?????????  (??????)" 
                        Foreground="{DynamicResource TextNormalForeground}" FontSize="{DynamicResource TextNormalSize}" />
@@ -58,9 +58,9 @@
             <Button Style="{StaticResource MainAlarmNormalButton}" Content="{Binding _DisAlarm}" Visibility="{Binding CncStaticInfo.CncAlarmFlag,Converter={StaticResource _cavc}}"
                     Grid.Row="1" Grid.Column="0" Panel.ZIndex="10" x:Name="alarmGrid" Margin="3,0,0,0" FontSize="16"
                     Background="Red" Foreground="White">
-                
+
             </Button>
-            
+
 
             <TextBlock Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0"
                        Text="{Binding _Date}" 
@@ -74,11 +74,11 @@
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="70"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="59*"/>
+                <ColumnDefinition Width="5*"/>
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0" Grid.Row="1">
@@ -87,13 +87,13 @@
 
             <Grid Grid.Column="0" Grid.Row="0" Margin="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="250"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="125*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="60*"/>
+                    <ColumnDefinition Width="60*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
@@ -231,15 +231,15 @@
 
             <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="80"/>
-                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="11*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
                 <ToggleButton Grid.Row="0" Style="{StaticResource MainMenuNormalButton}" Margin="3"
                       Content="{Binding MainMenu1}" IsChecked="{Binding MainMenu1Cheched}" 

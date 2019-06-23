@@ -31,24 +31,26 @@ namespace PressHmi.View
             this.DataContext = SimpleIoc.Default.GetInstance<MaintainSubCsdPageViewModel>();
 
             //TODO:NO CNC
-            //IntPtr hwnd;
-            //hwnd = myPanel.Handle;
-            //var csd = CncScreenDisplay.CreateInstance();
-            //csd.CreateCncScreenDisplay(hwnd);
+            IntPtr hwnd;
+            hwnd = myPanel.Handle;
+            var csd = CncScreenDisplay.CreateInstance();
+
+            System.Threading.Thread.Sleep(1000);
+            csd.CreateCncScreenDisplay(hwnd);
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             //TODO:NO CNC
-            //var csd = CncScreenDisplay.CreateInstance();
-            //csd.StartRefreshCncScreenDisplay();
+            var csd = CncScreenDisplay.CreateInstance();
+            csd.StartRefreshCncScreenDisplay();
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
             //TODO:NO CNC
-            //var csd = CncScreenDisplay.CreateInstance();
-            //csd.StopRefreshCncScreenDisplay();
+            var csd = CncScreenDisplay.CreateInstance();
+            csd.StopRefreshCncScreenDisplay();
         }
     }
 }

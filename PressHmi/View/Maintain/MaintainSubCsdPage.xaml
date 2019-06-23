@@ -9,27 +9,27 @@
       xmlns:wfi ="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
       xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
       mc:Ignorable="d" 
-      d:DesignHeight="608" d:DesignWidth="940" Loaded="Page_Loaded" Unloaded="Page_Unloaded"
+      d:DesignHeight="892" d:DesignWidth="1770" Loaded="Page_Loaded" Unloaded="Page_Unloaded"
       Title="MaintainSubCsdPage">
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="528"/>
+            <RowDefinition Height="816"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="704"/>
+            <ColumnDefinition Width="1088"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <wfi:WindowsFormsHost Grid.Row="0" Width="704" Height="528" VerticalAlignment="Center" Focusable="True"
+        <wfi:WindowsFormsHost Grid.Row="0" Width="1088" Height="816" VerticalAlignment="Center" Focusable="True"
                                   Panel.ZIndex="10" >
             <wf:Panel x:Name="myPanel"></wf:Panel>
         </wfi:WindowsFormsHost>
         <Grid Grid.Column="1" Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="58"/>
-                <RowDefinition Height="354"/>
-                <RowDefinition Height="116"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="2*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
@@ -62,37 +62,53 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="1" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="1" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_1_Command}"/>
                 <Button Grid.Row="0" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="2" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="2" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_2_Command}"/>
                 <Button Grid.Row="0" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="3" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="3" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_3_Command}"/>
                 <Button Grid.Row="0" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="+" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="+" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_PLUS_Command}"/>
                 <Button Grid.Row="1" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="4" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="4" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_4_Command}"/>
                 <Button Grid.Row="1" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="5" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="5" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_5_Command}"/>
                 <Button Grid.Row="1" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="6" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="6" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_6_Command}"/>
                 <Button Grid.Row="1" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="-" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="-" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_MINUS_Command}"/>
                 <Button Grid.Row="2" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="7" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="7" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_7_Command}"/>
                 <Button Grid.Row="2" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="8" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="8" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_8_Command}"/>
                 <Button Grid.Row="2" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="9" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="9" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_9_Command}"/>
                 <Button Grid.Row="2" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="*" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="*" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_STAR_Command}"/>
                 <Button Grid.Row="3" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="/" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="/" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_SLASH_Command}"/>
                 <Button Grid.Row="3" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="0" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="0" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_0_Command}"/>
                 <Button Grid.Row="3" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="." FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="." FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_POINT_Command}"/>
                 <Button Grid.Row="3" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="=" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="=" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Numberic_EQUAL_Command}"/>
                 <Button Grid.Row="4" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
                   Background="Transparent" BorderBrush="DarkGray" Content="" FontSize="{DynamicResource TextPrimerSize}"/>
                 <Button Grid.Row="4" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
@@ -102,13 +118,17 @@
                 <Button Grid.Row="4" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
                   Background="Transparent" BorderBrush="DarkGray" Content="" FontSize="{DynamicResource TextPrimerSize}"/>
                 <Button Grid.Row="5" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="↑" Tag="PU" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="↑" Tag="PU" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_UP_Command}"/>
                 <Button Grid.Row="5" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="↓" Tag="PD" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="↓" Tag="PD" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_DOWN_Command}"/>
                 <Button Grid.Row="5" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="←" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="←" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_LEFT_Command}"/>
                 <Button Grid.Row="5" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="→" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="→" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_RIGHT_Command}"/>
             </Grid>
             <Grid Grid.Row="1" Margin="0,3,0,3" Visibility="{Binding AlphabetVisible}">
                 <Grid.ColumnDefinitions>
@@ -126,53 +146,77 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="O" Tag="(" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="O" Tag="(" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_O_Command}"/>
                 <Button Grid.Row="0" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="N" Tag=")" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="N" Tag=")" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_N_Command}"/>
                 <Button Grid.Row="0" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="G" Tag="E" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="G" Tag="E" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_G_Command}"/>
                 <Button Grid.Row="0" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="P" Tag="C" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="P" Tag="C" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_P_Command}"/>
                 <Button Grid.Row="1" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="X" Tag="U" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="X" Tag="U" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_X_Command}"/>
                 <Button Grid.Row="1" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="Y" Tag="V" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="Y" Tag="V" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_Y_Command}"/>
                 <Button Grid.Row="1" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="Z" Tag="W" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="Z" Tag="W" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_Z_Command}"/>
                 <Button Grid.Row="1" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="Q" Tag="?" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="Q" Tag="?" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_Q_Command}"/>
                 <Button Grid.Row="2" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="I" Tag="," FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="I" Tag="," FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_I_Command}"/>
                 <Button Grid.Row="2" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="J" Tag="A" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="J" Tag="A" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_J_Command}"/>
                 <Button Grid.Row="2" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="K" Tag="@" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="K" Tag="@" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_K_Command}"/>
                 <Button Grid.Row="2" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="R" Tag="-" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="R" Tag="-" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_R_Command}"/>
                 <Button Grid.Row="3" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="M" Tag="#" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="M" Tag="#" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_M_Command}"/>
                 <Button Grid.Row="3" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="S" Tag="=" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="S" Tag="=" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_S_Command}"/>
                 <Button Grid.Row="3" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="T" Tag="*" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="T" Tag="*" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_T_Command}"/>
                 <Button Grid.Row="3" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="L" Tag="+" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="L" Tag="+" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_L_Command}"/>
                 <Button Grid.Row="4" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="F" Tag="[" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="F" Tag="[" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_F_Command}"/>
                 <Button Grid.Row="4" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="D" Tag="]" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="D" Tag="]" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_D_Command}"/>
                 <Button Grid.Row="4" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="H" Tag="&amp;" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="H" Tag="&amp;" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_H_Command}"/>
                 <Button Grid.Row="4" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="B" Tag="SP" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="B" Tag="SP" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding Alphabet_B_Command}"/>
                 <Button Grid.Row="5" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="↑" Tag="PU" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="↑" Tag="PU" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_UP_Command}"/>
                 <Button Grid.Row="5" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="↓" Tag="PD" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="↓" Tag="PD" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_DOWN_Command}"/>
                 <Button Grid.Row="5" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="←" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="←" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_LEFT_Command}"/>
                 <Button Grid.Row="5" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="→" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="→" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_RIGHT_Command}"/>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -182,26 +226,33 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Button Grid.Row="0" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="RESET" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="RESET" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_RESET_Command}"/>
                 <Button Grid.Row="0" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="ALTER" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="ALTER" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_ALTER_Command}"/>
                 <Button Grid.Row="0" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="INSERT" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="INSERT" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_INSERT_Command}"/>
                 <Button Grid.Row="0" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="DEL" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="DEL" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_DEL_Command}"/>
                 <ToggleButton Grid.Row="1" Grid.Column="0" Margin="2" Foreground="Black" Style="{StaticResource MopToggleButton}"
                                 Background="Transparent" BorderBrush="DarkGray" Content="SHIFT" FontSize="{DynamicResource TextPrimerSize}"
                              IsChecked="{Binding ShiftChecked}" />
                 <Button Grid.Row="1" Grid.Column="1" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="EOB" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="EOB" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_EOB_Command}"/>
                 <Button Grid.Row="1" Grid.Column="2" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="CAN" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="CAN" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_CAN_Command}"/>
                 <Button Grid.Row="1" Grid.Column="3" Margin="2" Foreground="Black" Style="{StaticResource MopButton}"
-                  Background="Transparent" BorderBrush="DarkGray" Content="INPUT" FontSize="{DynamicResource TextPrimerSize}"/>
+                  Background="Transparent" BorderBrush="DarkGray" Content="INPUT" FontSize="{DynamicResource TextPrimerSize}"
+                        Command="{Binding COMMON_INPUT_Command}"/>
             </Grid>
         </Grid>
     </Grid>

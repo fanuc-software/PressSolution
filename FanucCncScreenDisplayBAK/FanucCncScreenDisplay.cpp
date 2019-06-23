@@ -69,8 +69,7 @@ BOOL CFanucCncScreenDisplayApp::InitInstance()
 	return TRUE;
 }
 
-void WINAPI _CreateCncScreenDisplay(HWND hWnd, char* ip,
-	int xSrc, int ySrc, int xDest, int yDest, int nSrcWidth, int nSrcHeight, int nDestWidth, int nDestHeight)
+void WINAPI _CreateCncScreenDisplay(HWND hWnd, char* ip)
 {
 	m_hWnd = hWnd;
 
@@ -81,8 +80,6 @@ void WINAPI _CreateCncScreenDisplay(HWND hWnd, char* ip,
 	pMyDlg->Create(IDD_CSD, CWnd::FromHandle(m_hWnd));
 	pMyDlg->ShowWindow(SW_NORMAL);
 	pMyDlg->SetIp(ip);
-
-	pMyDlg->SetScreenPara(xSrc, ySrc, xDest, yDest, nSrcWidth, nSrcHeight, nDestWidth, nDestHeight);
 
 }
 

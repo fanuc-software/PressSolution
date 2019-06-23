@@ -164,7 +164,7 @@
                     <Border x:Name="border" CornerRadius="0" BorderThickness="0" BorderBrush="{DynamicResource ParaInputCheckedBorder}"
 						SnapsToDevicePixels="False" Background="{DynamicResource ParaListInputBackground}">
                         <Grid>
-                            <TextBlock x:Name="text2" FontSize="16" Margin="5"  FontFamily="Microsoft YaHei UI Light"
+                            <TextBlock x:Name="text2" FontSize="12" Margin="5"  FontFamily="Microsoft YaHei UI Light"
                                         HorizontalAlignment="Center" VerticalAlignment="Center"
 										Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
 										Foreground="{DynamicResource ParaInputForeground}"/>

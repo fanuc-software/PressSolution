@@ -22,10 +22,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="165"/>
+            <RowDefinition Height="240"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="2,2,0,0">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="187"/>
                 <ColumnDefinition Width="187"/>
                 <ColumnDefinition Width="187"/>
                 <ColumnDefinition Width="187"/>
@@ -50,7 +51,7 @@
                 </Border>
             </Grid>
 
-            <Grid Grid.Column="1">
+            <Grid Grid.Column="1" Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -68,7 +69,7 @@
                 </Border>
             </Grid>
 
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="2"  Visibility="Hidden">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -86,7 +87,25 @@
                 </Border>
             </Grid>
 
-            <Button  Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="下限保持时间"/>
+                </Border>
+                <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0"
+                               FontSize="{DynamicResource TextPrimerSize}" Width="187" Height="30" Style="{StaticResource ParaInputInBoxButton}"
+                               Content="{Binding ParaDieClosingInfo.BottomDeadCentre_StopTime}" Command="{Binding BottomDeadCentre_StopTimeCmd}"/>
+                </Border>
+            </Grid>
+
+            <Button  Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"
                 Style="{StaticResource btn-primary}" Content="曲线预览" Height="60" Width="160"/>
 
         </Grid>
@@ -119,62 +138,67 @@
         </Grid>
         <Grid Grid.Row="2" Margin="2,0,2,5">
             <Grid.RowDefinitions>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="40"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="130"/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Width="90"/>
-                    <ColumnDefinition/>
+                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}" Margin="1,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="下死点 ← 上死点" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                                   Text="上死点 ← 下死点" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
             </Border>
             <Border Grid.Column="1" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="1" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
-                </Border>
+                                   Text="上死点" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+            </Border>
             <Border Grid.Column="2" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="2" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                                   Text="1" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="3" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="3" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                                   Text="2" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="4" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="4" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                                   Text="3" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="5" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="5" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                                   Text="4" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="6" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="6" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                                   Text="5" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="7" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="7" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                                   Text="6" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="8" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="8" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                                   Text="7" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="9" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                                   Text="8" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                </Border>
+            <Border Grid.Column="10" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
                 <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
                                    Text="下死点" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
             </Border>
@@ -192,84 +216,90 @@
                                    Text="停止时间(s)" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
             </Border>
             
-            <Button Grid.Column="1" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="2" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_1}" Command="{Binding Pos_1SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[0]}"/>
-            <Button Grid.Column="2" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="3" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_2}" Command="{Binding Pos_2SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[1]}"/>
-            <Button Grid.Column="3" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="4" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_3}" Command="{Binding Pos_3SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[2]}"/>
-            <Button Grid.Column="4" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="5" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_4}" Command="{Binding Pos_4SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[3]}"/>
-            <Button Grid.Column="5" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="6" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_5}" Command="{Binding Pos_5SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[4]}"/>
-            <Button Grid.Column="6" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="7" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_6}" Command="{Binding Pos_6SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[5]}"/>
-            <Button Grid.Column="7" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="8" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_7}" Command="{Binding Pos_7SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[6]}"/>
-            <Button Grid.Column="8" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="9" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_8}" Command="{Binding Pos_8SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[7]}"/>
 
-            <Button Grid.Column="1" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="2" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_1}" Command="{Binding Speed_1SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[0]}"/>
-            <Button Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="3" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_2}" Command="{Binding Speed_2SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[1]}"/>
-            <Button Grid.Column="3" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="4" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_3}" Command="{Binding Speed_3SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[2]}"/>
-            <Button Grid.Column="4" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="5" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_4}" Command="{Binding Speed_4SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[3]}"/>
-            <Button Grid.Column="5" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="6" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_5}" Command="{Binding Speed_5SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[4]}"/>
-            <Button Grid.Column="6" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="7" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_6}" Command="{Binding Speed_6SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[5]}"/>
-            <Button Grid.Column="7" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="8" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_7}" Command="{Binding Speed_7SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[6]}"/>
-            <Button Grid.Column="8" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="9" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_8}" Command="{Binding Speed_8SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[7]}"/>
 
-            <Button Grid.Column="1" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="2" Grid.Row="3"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.StopTime_1}" Command="{Binding StopTime_1SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[0]}"/>
-            <Button Grid.Column="2" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="3" Grid.Row="3"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.StopTime_2}" Command="{Binding StopTime_2SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[1]}"/>
-            <Button Grid.Column="3" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="4" Grid.Row="3"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.StopTime_3}" Command="{Binding StopTime_3SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[2]}"/>
-            <Button Grid.Column="4" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="5" Grid.Row="3"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.StopTime_4}" Command="{Binding StopTime_4SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[3]}"/>
-            <Button Grid.Column="5" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="6" Grid.Row="3"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.StopTime_5}" Command="{Binding StopTime_5SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[4]}"/>
-            <Button Grid.Column="6" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="7" Grid.Row="3"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.StopTime_6}" Command="{Binding StopTime_6SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[5]}"/>
-            <Button Grid.Column="7" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="8" Grid.Row="3"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.StopTime_7}" Command="{Binding StopTime_7SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[6]}"/>
-            <Button Grid.Column="8" Grid.Row="3"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="89" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="9" Grid.Row="3"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.StopTime_8}" Command="{Binding StopTime_8SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[7]}"/>
+
+            <Button Grid.Column="1" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
+                               Content="{Binding ParaDieClosingProcInfo.TopDeadCentre}" Command="{Binding TopDeadCentreCmd}" />
+            <Button Grid.Column="1" Grid.Row="2"    Margin="0,0,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
+                               Content="{Binding ParaDieClosingProcInfo.Speed_TopDeadCentre}" Command="{Binding Speed_TopDeadCentreCmd}" />
             
-            
-            <Button Grid.Column="9" Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="109" Height="38" Style="{StaticResource ParaListInputInBoxButton}"
+            <Button Grid.Column="10" Grid.Row="1"    Margin="0,1,1,1"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.BottomDeadCentre}" Command="{Binding BottomDeadCentreSetCmd}" />
         </Grid>
     </Grid>

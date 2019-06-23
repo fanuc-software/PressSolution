@@ -249,82 +249,94 @@ namespace FanucCnc
             _limitBom.DJP_SafeTime.LimitDown = 0;
             _limitBom.DJP_SafeTime.LimitUp = 1;
 
+            _limitBom.DJP_SectionNum = new LimitBomItem();
+            _limitBom.DJP_SectionNum.LimitDown = 2;
+            _limitBom.DJP_SectionNum.LimitUp = 8;
+
+            _limitBom.DJP_TopDeadCentre = new LimitBomItem();
+            _limitBom.DJP_TopDeadCentre.LimitDown = 0;
+            _limitBom.DJP_TopDeadCentre.LimitUp = 1280;
+
+            _limitBom.DJP_Speed_TopDeadCentre = new LimitBomItem();
+            _limitBom.DJP_Speed_TopDeadCentre.LimitDown = 0;
+            _limitBom.DJP_Speed_TopDeadCentre.LimitUp = 100;
+
             _limitBom.DJP_Pos_1 = new LimitBomItem();
-            _limitBom.DJP_Pos_1.LimitDown = 790;
-            _limitBom.DJP_Pos_1.LimitUp = 800;
+            _limitBom.DJP_Pos_1.LimitDown = 0;
+            _limitBom.DJP_Pos_1.LimitUp = 1280;
             _limitBom.DJP_Speed_1 = new LimitBomItem();
-            _limitBom.DJP_Speed_1.LimitDown = 20;
-            _limitBom.DJP_Speed_1.LimitUp = 80;
+            _limitBom.DJP_Speed_1.LimitDown = 0;
+            _limitBom.DJP_Speed_1.LimitUp = 100;
             _limitBom.DJP_StopTime_1 = new LimitBomItem();
             _limitBom.DJP_StopTime_1.LimitDown = 0.1;
             _limitBom.DJP_StopTime_1.LimitUp = 1;
 
             _limitBom.DJP_Pos_2 = new LimitBomItem();
-            _limitBom.DJP_Pos_2.LimitDown = 790;
-            _limitBom.DJP_Pos_2.LimitUp = 800;
+            _limitBom.DJP_Pos_2.LimitDown = 0;
+            _limitBom.DJP_Pos_2.LimitUp = 1280;
             _limitBom.DJP_Speed_2 = new LimitBomItem();
-            _limitBom.DJP_Speed_2.LimitDown = 20;
-            _limitBom.DJP_Speed_2.LimitUp = 80;
+            _limitBom.DJP_Speed_2.LimitDown = 0;
+            _limitBom.DJP_Speed_2.LimitUp = 100;
             _limitBom.DJP_StopTime_2 = new LimitBomItem();
             _limitBom.DJP_StopTime_2.LimitDown = 0.1;
             _limitBom.DJP_StopTime_2.LimitUp = 1;
 
             _limitBom.DJP_Pos_3 = new LimitBomItem();
-            _limitBom.DJP_Pos_3.LimitDown = 790;
-            _limitBom.DJP_Pos_3.LimitUp = 800;
+            _limitBom.DJP_Pos_3.LimitDown = 0;
+            _limitBom.DJP_Pos_3.LimitUp = 1280;
             _limitBom.DJP_Speed_3 = new LimitBomItem();
-            _limitBom.DJP_Speed_3.LimitDown = 20;
-            _limitBom.DJP_Speed_3.LimitUp = 80;
+            _limitBom.DJP_Speed_3.LimitDown = 0;
+            _limitBom.DJP_Speed_3.LimitUp = 100;
             _limitBom.DJP_StopTime_3 = new LimitBomItem();
             _limitBom.DJP_StopTime_3.LimitDown = 0.1;
             _limitBom.DJP_StopTime_3.LimitUp = 1;
 
             _limitBom.DJP_Pos_4 = new LimitBomItem();
-            _limitBom.DJP_Pos_4.LimitDown = 790;
-            _limitBom.DJP_Pos_4.LimitUp = 800;
+            _limitBom.DJP_Pos_4.LimitDown = 0;
+            _limitBom.DJP_Pos_4.LimitUp = 1280;
             _limitBom.DJP_Speed_4 = new LimitBomItem();
-            _limitBom.DJP_Speed_4.LimitDown = 20;
-            _limitBom.DJP_Speed_4.LimitUp = 80;
+            _limitBom.DJP_Speed_4.LimitDown = 0;
+            _limitBom.DJP_Speed_4.LimitUp = 100;
             _limitBom.DJP_StopTime_4 = new LimitBomItem();
             _limitBom.DJP_StopTime_4.LimitDown = 0.1;
             _limitBom.DJP_StopTime_4.LimitUp = 1;
 
             _limitBom.DJP_Pos_5 = new LimitBomItem();
-            _limitBom.DJP_Pos_5.LimitDown = 790;
-            _limitBom.DJP_Pos_5.LimitUp = 800;
+            _limitBom.DJP_Pos_5.LimitDown = 0;
+            _limitBom.DJP_Pos_5.LimitUp = 1280;
             _limitBom.DJP_Speed_5 = new LimitBomItem();
-            _limitBom.DJP_Speed_5.LimitDown = 20;
-            _limitBom.DJP_Speed_5.LimitUp = 80;
+            _limitBom.DJP_Speed_5.LimitDown = 0;
+            _limitBom.DJP_Speed_5.LimitUp = 100;
             _limitBom.DJP_StopTime_5 = new LimitBomItem();
             _limitBom.DJP_StopTime_5.LimitDown = 0.1;
             _limitBom.DJP_StopTime_5.LimitUp = 1;
 
             _limitBom.DJP_Pos_6 = new LimitBomItem();
-            _limitBom.DJP_Pos_6.LimitDown = 790;
-            _limitBom.DJP_Pos_6.LimitUp = 800;
+            _limitBom.DJP_Pos_6.LimitDown = 0;
+            _limitBom.DJP_Pos_6.LimitUp = 1280;
             _limitBom.DJP_Speed_6 = new LimitBomItem();
-            _limitBom.DJP_Speed_6.LimitDown = 20;
-            _limitBom.DJP_Speed_6.LimitUp = 80;
+            _limitBom.DJP_Speed_6.LimitDown = 0;
+            _limitBom.DJP_Speed_6.LimitUp = 100;
             _limitBom.DJP_StopTime_6 = new LimitBomItem();
             _limitBom.DJP_StopTime_6.LimitDown = 0.1;
             _limitBom.DJP_StopTime_6.LimitUp = 1;
 
             _limitBom.DJP_Pos_7 = new LimitBomItem();
-            _limitBom.DJP_Pos_7.LimitDown = 790;
-            _limitBom.DJP_Pos_7.LimitUp = 800;
+            _limitBom.DJP_Pos_7.LimitDown = 0;
+            _limitBom.DJP_Pos_7.LimitUp = 1280;
             _limitBom.DJP_Speed_7 = new LimitBomItem();
-            _limitBom.DJP_Speed_7.LimitDown = 20;
-            _limitBom.DJP_Speed_7.LimitUp = 80;
+            _limitBom.DJP_Speed_7.LimitDown = 0;
+            _limitBom.DJP_Speed_7.LimitUp = 100;
             _limitBom.DJP_StopTime_7 = new LimitBomItem();
             _limitBom.DJP_StopTime_7.LimitDown = 0.1;
             _limitBom.DJP_StopTime_7.LimitUp = 1;
 
             _limitBom.DJP_Pos_8 = new LimitBomItem();
-            _limitBom.DJP_Pos_8.LimitDown = 790;
-            _limitBom.DJP_Pos_8.LimitUp = 800;
+            _limitBom.DJP_Pos_8.LimitDown = 0;
+            _limitBom.DJP_Pos_8.LimitUp = 1280;
             _limitBom.DJP_Speed_8 = new LimitBomItem();
-            _limitBom.DJP_Speed_8.LimitDown = 20;
-            _limitBom.DJP_Speed_8.LimitUp = 80;
+            _limitBom.DJP_Speed_8.LimitDown = 0;
+            _limitBom.DJP_Speed_8.LimitUp = 100;
             _limitBom.DJP_StopTime_8 = new LimitBomItem();
             _limitBom.DJP_StopTime_8.LimitDown = 0.1;
             _limitBom.DJP_StopTime_8.LimitUp = 1;
@@ -333,104 +345,36 @@ namespace FanucCnc
             _limitBom.DJP_BottomDeadCentre.LimitDown = 0;
             _limitBom.DJP_BottomDeadCentre.LimitUp = 20;
 
+            _limitBom.DJP_BottomDeadCentre_StopTime = new LimitBomItem();
+            _limitBom.DJP_BottomDeadCentre_StopTime.LimitDown = 0;
+            _limitBom.DJP_BottomDeadCentre_StopTime.LimitUp = 20000;
+            
+
             #endregion
 
             #region 分模设定
             _limitBom.DPP_SectionNum = new LimitBomItem();
-            _limitBom.DPP_SectionNum.LimitDown = 2;
-            _limitBom.DPP_SectionNum.LimitUp = 8;
-
-            _limitBom.DPP_PreDelayTime = new LimitBomItem();
-            _limitBom.DPP_PreDelayTime.LimitDown = 0.1;
-            _limitBom.DPP_PreDelayTime.LimitUp = 1;
-
-            _limitBom.DPP_SafeTime = new LimitBomItem();
-            _limitBom.DPP_SafeTime.LimitDown = 0;
-            _limitBom.DPP_SafeTime.LimitUp = 1;
-
+            _limitBom.DPP_SectionNum.LimitDown = 1;
+            _limitBom.DPP_SectionNum.LimitUp = 1;
+            
             _limitBom.DPP_Pos_1 = new LimitBomItem();
-            _limitBom.DPP_Pos_1.LimitDown = 790;
-            _limitBom.DPP_Pos_1.LimitUp = 800;
+            _limitBom.DPP_Pos_1.LimitDown = 0;
+            _limitBom.DPP_Pos_1.LimitUp = 1280;
             _limitBom.DPP_Speed_1 = new LimitBomItem();
-            _limitBom.DPP_Speed_1.LimitDown = 20;
-            _limitBom.DPP_Speed_1.LimitUp = 80;
-            _limitBom.DPP_StopTime_1 = new LimitBomItem();
-            _limitBom.DPP_StopTime_1.LimitDown = 0.1;
-            _limitBom.DPP_StopTime_1.LimitUp = 1;
-
-            _limitBom.DPP_Pos_2 = new LimitBomItem();
-            _limitBom.DPP_Pos_2.LimitDown = 790;
-            _limitBom.DPP_Pos_2.LimitUp = 800;
-            _limitBom.DPP_Speed_2 = new LimitBomItem();
-            _limitBom.DPP_Speed_2.LimitDown = 20;
-            _limitBom.DPP_Speed_2.LimitUp = 80;
-            _limitBom.DPP_StopTime_2 = new LimitBomItem();
-            _limitBom.DPP_StopTime_2.LimitDown = 0.1;
-            _limitBom.DPP_StopTime_2.LimitUp = 1;
-
-            _limitBom.DPP_Pos_3 = new LimitBomItem();
-            _limitBom.DPP_Pos_3.LimitDown = 790;
-            _limitBom.DPP_Pos_3.LimitUp = 800;
-            _limitBom.DPP_Speed_3 = new LimitBomItem();
-            _limitBom.DPP_Speed_3.LimitDown = 20;
-            _limitBom.DPP_Speed_3.LimitUp = 80;
-            _limitBom.DPP_StopTime_3 = new LimitBomItem();
-            _limitBom.DPP_StopTime_3.LimitDown = 0.1;
-            _limitBom.DPP_StopTime_3.LimitUp = 1;
-
-            _limitBom.DPP_Pos_4 = new LimitBomItem();
-            _limitBom.DPP_Pos_4.LimitDown = 790;
-            _limitBom.DPP_Pos_4.LimitUp = 800;
-            _limitBom.DPP_Speed_4 = new LimitBomItem();
-            _limitBom.DPP_Speed_4.LimitDown = 20;
-            _limitBom.DPP_Speed_4.LimitUp = 80;
-            _limitBom.DPP_StopTime_4 = new LimitBomItem();
-            _limitBom.DPP_StopTime_4.LimitDown = 0.1;
-            _limitBom.DPP_StopTime_4.LimitUp = 1;
-
-            _limitBom.DPP_Pos_5 = new LimitBomItem();
-            _limitBom.DPP_Pos_5.LimitDown = 790;
-            _limitBom.DPP_Pos_5.LimitUp = 800;
-            _limitBom.DPP_Speed_5 = new LimitBomItem();
-            _limitBom.DPP_Speed_5.LimitDown = 20;
-            _limitBom.DPP_Speed_5.LimitUp = 80;
-            _limitBom.DPP_StopTime_5 = new LimitBomItem();
-            _limitBom.DPP_StopTime_5.LimitDown = 0.1;
-            _limitBom.DPP_StopTime_5.LimitUp = 1;
-
-            _limitBom.DPP_Pos_6 = new LimitBomItem();
-            _limitBom.DPP_Pos_6.LimitDown = 790;
-            _limitBom.DPP_Pos_6.LimitUp = 800;
-            _limitBom.DPP_Speed_6 = new LimitBomItem();
-            _limitBom.DPP_Speed_6.LimitDown = 20;
-            _limitBom.DPP_Speed_6.LimitUp = 80;
-            _limitBom.DPP_StopTime_6 = new LimitBomItem();
-            _limitBom.DPP_StopTime_6.LimitDown = 0.1;
-            _limitBom.DPP_StopTime_6.LimitUp = 1;
-
-            _limitBom.DPP_Pos_7 = new LimitBomItem();
-            _limitBom.DPP_Pos_7.LimitDown = 790;
-            _limitBom.DPP_Pos_7.LimitUp = 800;
-            _limitBom.DPP_Speed_7 = new LimitBomItem();
-            _limitBom.DPP_Speed_7.LimitDown = 20;
-            _limitBom.DPP_Speed_7.LimitUp = 80;
-            _limitBom.DPP_StopTime_7 = new LimitBomItem();
-            _limitBom.DPP_StopTime_7.LimitDown = 0.1;
-            _limitBom.DPP_StopTime_7.LimitUp = 1;
-
-            _limitBom.DPP_Pos_8 = new LimitBomItem();
-            _limitBom.DPP_Pos_8.LimitDown = 790;
-            _limitBom.DPP_Pos_8.LimitUp = 800;
-            _limitBom.DPP_Speed_8 = new LimitBomItem();
-            _limitBom.DPP_Speed_8.LimitDown = 20;
-            _limitBom.DPP_Speed_8.LimitUp = 80;
-            _limitBom.DPP_StopTime_8 = new LimitBomItem();
-            _limitBom.DPP_StopTime_8.LimitDown = 0.1;
-            _limitBom.DPP_StopTime_8.LimitUp = 1;
+            _limitBom.DPP_Speed_1.LimitDown = 0;
+            _limitBom.DPP_Speed_1.LimitUp = 100;
 
             _limitBom.DPP_BottomDeadCentre = new LimitBomItem();
             _limitBom.DPP_BottomDeadCentre.LimitDown = 0;
             _limitBom.DPP_BottomDeadCentre.LimitUp = 20;
+
+            _limitBom.DPP_Speed_BottomDeadCentre = new LimitBomItem();
+            _limitBom.DPP_Speed_BottomDeadCentre.LimitDown = 0;
+            _limitBom.DPP_Speed_BottomDeadCentre.LimitUp = 20;
+
+            _limitBom.DPP_TopDeadCentre = new LimitBomItem();
+            _limitBom.DPP_TopDeadCentre.LimitDown = 0;
+            _limitBom.DPP_TopDeadCentre.LimitUp = 20;
 
             #endregion
 
@@ -816,232 +760,8 @@ namespace FanucCnc
             _macroBom.UpDelayTime.Adr = 103;
             _macroBom.UpTime = new MacroBomItem();
             _macroBom.UpTime.Adr = 104;
-
-            _macroBom.DJP_SectionNum = new MacroBomItem();
-            _macroBom.DJP_SectionNum.Id = "M1002";
-            _macroBom.DJP_SectionNum.Adr = 105;
-            _macroBom.DJP_SectionNum.IsRecipes = true;
-            _macroBom.DJP_PreDelayTime = new MacroBomItem();
-            _macroBom.DJP_PreDelayTime.Id = "M1003";
-            _macroBom.DJP_PreDelayTime.Adr = 106;
-            _macroBom.DJP_PreDelayTime.IsRecipes = true;
-            _macroBom.DJP_SafeTime = new MacroBomItem();
-            _macroBom.DJP_SafeTime.Id = "M1004";
-            _macroBom.DJP_SafeTime.Adr = 107;
-            _macroBom.DJP_SafeTime.IsRecipes = true;
-            _macroBom.DJP_Pos_1 = new MacroBomItem();
-            _macroBom.DJP_Pos_1.Id = "M1005";
-            _macroBom.DJP_Pos_1.Adr = 116;
-            _macroBom.DJP_Pos_1.IsRecipes = true;
-            _macroBom.DJP_Speed_1 = new MacroBomItem();
-            _macroBom.DJP_Speed_1.Id = "M1006";
-            _macroBom.DJP_Speed_1.Adr = 117;
-            _macroBom.DJP_Speed_1.IsRecipes = true;
-            _macroBom.DJP_StopTime_1 = new MacroBomItem();
-            _macroBom.DJP_StopTime_1.Id = "M1007";
-            _macroBom.DJP_StopTime_1.Adr = 118;
-            _macroBom.DJP_StopTime_1.IsRecipes = true;
-            _macroBom.DJP_Pos_2 = new MacroBomItem();
-            _macroBom.DJP_Pos_2.Id = "M1008";
-            _macroBom.DJP_Pos_2.Adr = 119;
-            _macroBom.DJP_Pos_2.IsRecipes = true;
-            _macroBom.DJP_Speed_2 = new MacroBomItem();
-            _macroBom.DJP_Speed_2.Id = "M1009";
-            _macroBom.DJP_Speed_2.Adr = 120;
-            _macroBom.DJP_Speed_2.IsRecipes = true;
-            _macroBom.DJP_StopTime_2 = new MacroBomItem();
-            _macroBom.DJP_StopTime_2.Id = "M1010";
-            _macroBom.DJP_StopTime_2.Adr = 121;
-            _macroBom.DJP_StopTime_2.IsRecipes = true;
-            _macroBom.DJP_Pos_3 = new MacroBomItem();
-            _macroBom.DJP_Pos_3.Id = "M1011";
-            _macroBom.DJP_Pos_3.Adr = 122;
-            _macroBom.DJP_Pos_3.IsRecipes = true;
-            _macroBom.DJP_Speed_3 = new MacroBomItem();
-            _macroBom.DJP_Speed_3.Id = "M1012";
-            _macroBom.DJP_Speed_3.Adr = 123;
-            _macroBom.DJP_Speed_3.IsRecipes = true;
-            _macroBom.DJP_StopTime_3 = new MacroBomItem();
-            _macroBom.DJP_StopTime_3.Id = "M1013";
-            _macroBom.DJP_StopTime_3.Adr = 124;
-            _macroBom.DJP_StopTime_3.IsRecipes = true;
-            _macroBom.DJP_Pos_4 = new MacroBomItem();
-            _macroBom.DJP_Pos_4.Id = "M1014";
-            _macroBom.DJP_Pos_4.Adr = 125;
-            _macroBom.DJP_Pos_4.IsRecipes = true;
-            _macroBom.DJP_Speed_4 = new MacroBomItem();
-            _macroBom.DJP_Speed_4.Id = "M1015";
-            _macroBom.DJP_Speed_4.Adr = 126;
-            _macroBom.DJP_Speed_4.IsRecipes = true;
-            _macroBom.DJP_StopTime_4 = new MacroBomItem();
-            _macroBom.DJP_StopTime_4.Id = "M1016";
-            _macroBom.DJP_StopTime_4.Adr = 127;
-            _macroBom.DJP_StopTime_4.IsRecipes = true;
-            _macroBom.DJP_Pos_5 = new MacroBomItem();
-            _macroBom.DJP_Pos_5.Id = "M1017";
-            _macroBom.DJP_Pos_5.Adr = 128;
-            _macroBom.DJP_Pos_5.IsRecipes = true;
-            _macroBom.DJP_Speed_5 = new MacroBomItem();
-            _macroBom.DJP_Speed_5.Id = "M1018";
-            _macroBom.DJP_Speed_5.Adr = 129;
-            _macroBom.DJP_Speed_5.IsRecipes = true;
-            _macroBom.DJP_StopTime_5 = new MacroBomItem();
-            _macroBom.DJP_StopTime_5.Id = "M1019";
-            _macroBom.DJP_StopTime_5.Adr = 130;
-            _macroBom.DJP_StopTime_5.IsRecipes = true;
-            _macroBom.DJP_Pos_6 = new MacroBomItem();
-            _macroBom.DJP_Pos_6.Id = "M1020";
-            _macroBom.DJP_Pos_6.Adr = 131;
-            _macroBom.DJP_Pos_6.IsRecipes = true;
-            _macroBom.DJP_Speed_6 = new MacroBomItem();
-            _macroBom.DJP_Speed_6.Id = "M1021";
-            _macroBom.DJP_Speed_6.Adr = 132;
-            _macroBom.DJP_Speed_6.IsRecipes = true;
-            _macroBom.DJP_StopTime_6 = new MacroBomItem();
-            _macroBom.DJP_StopTime_6.Id = "M1022";
-            _macroBom.DJP_StopTime_6.Adr = 133;
-            _macroBom.DJP_StopTime_6.IsRecipes = true;
-            _macroBom.DJP_Pos_7 = new MacroBomItem();
-            _macroBom.DJP_Pos_7.Id = "M1023";
-            _macroBom.DJP_Pos_7.Adr = 134;
-            _macroBom.DJP_Pos_7.IsRecipes = true;
-            _macroBom.DJP_Speed_7 = new MacroBomItem();
-            _macroBom.DJP_Speed_7.Id = "M1024";
-            _macroBom.DJP_Speed_7.Adr = 135;
-            _macroBom.DJP_Speed_7.IsRecipes = true;
-            _macroBom.DJP_StopTime_7 = new MacroBomItem();
-            _macroBom.DJP_StopTime_7.Id = "M1025";
-            _macroBom.DJP_StopTime_7.Adr = 136;
-            _macroBom.DJP_StopTime_7.IsRecipes = true;
-            _macroBom.DJP_Pos_8 = new MacroBomItem();
-            _macroBom.DJP_Pos_8.Id = "M1026";
-            _macroBom.DJP_Pos_8.Adr = 137;
-            _macroBom.DJP_Pos_8.IsRecipes = true;
-            _macroBom.DJP_Speed_8 = new MacroBomItem();
-            _macroBom.DJP_Speed_8.Id = "M1027";
-            _macroBom.DJP_Speed_8.Adr = 138;
-            _macroBom.DJP_Speed_8.IsRecipes = true;
-            _macroBom.DJP_StopTime_8 = new MacroBomItem();
-            _macroBom.DJP_StopTime_8.Id = "M1028";
-            _macroBom.DJP_StopTime_8.Adr = 139;
-            _macroBom.DJP_StopTime_8.IsRecipes = true;
-            _macroBom.DJP_BottomDeadCentre = new MacroBomItem();
-            _macroBom.DJP_BottomDeadCentre.Id = "M1029";
-            _macroBom.DJP_BottomDeadCentre.Adr = 140;
-            _macroBom.DJP_BottomDeadCentre.IsRecipes = true;
-
-            _macroBom.DPP_SectionNum = new MacroBomItem();
-            _macroBom.DPP_SectionNum.Id = "M1030";
-            _macroBom.DPP_SectionNum.Adr = 108;
-            _macroBom.DPP_SectionNum.IsRecipes = true;
-            _macroBom.DPP_PreDelayTime = new MacroBomItem();
-            _macroBom.DPP_PreDelayTime.Id = "M1031";
-            _macroBom.DPP_PreDelayTime.Adr = 109;
-            _macroBom.DPP_PreDelayTime.IsRecipes = true;
-            _macroBom.DPP_SafeTime = new MacroBomItem();
-            _macroBom.DPP_SafeTime.Id = "M1032";
-            _macroBom.DPP_SafeTime.Adr = 110;
-            _macroBom.DPP_SafeTime.IsRecipes = true;
-            _macroBom.DPP_Pos_1 = new MacroBomItem();
-            _macroBom.DPP_Pos_1.Id = "M1033";
-            _macroBom.DPP_Pos_1.Adr = 141;
-            _macroBom.DPP_Pos_1.IsRecipes = true;
-            _macroBom.DPP_Speed_1 = new MacroBomItem();
-            _macroBom.DPP_Speed_1.Id = "M1034";
-            _macroBom.DPP_Speed_1.Adr = 142;
-            _macroBom.DPP_Speed_1.IsRecipes = true;
-            _macroBom.DPP_StopTime_1 = new MacroBomItem();
-            _macroBom.DPP_StopTime_1.Id = "M1035";
-            _macroBom.DPP_StopTime_1.Adr = 143;
-            _macroBom.DPP_StopTime_1.IsRecipes = true;
-            _macroBom.DPP_Pos_2 = new MacroBomItem();
-            _macroBom.DPP_Pos_2.Id = "M1036";
-            _macroBom.DPP_Pos_2.Adr = 144;
-            _macroBom.DPP_Pos_2.IsRecipes = true;
-            _macroBom.DPP_Speed_2 = new MacroBomItem();
-            _macroBom.DPP_Speed_2.Id = "M1037";
-            _macroBom.DPP_Speed_2.Adr = 145;
-            _macroBom.DPP_Speed_2.IsRecipes = true;
-            _macroBom.DPP_StopTime_2 = new MacroBomItem();
-            _macroBom.DPP_StopTime_2.Id = "M1038";
-            _macroBom.DPP_StopTime_2.Adr = 146;
-            _macroBom.DPP_StopTime_2.IsRecipes = true;
-            _macroBom.DPP_Pos_3 = new MacroBomItem();
-            _macroBom.DPP_Pos_3.Id = "M1039";
-            _macroBom.DPP_Pos_3.Adr = 147;
-            _macroBom.DPP_Pos_3.IsRecipes = true;
-            _macroBom.DPP_Speed_3 = new MacroBomItem();
-            _macroBom.DPP_Speed_3.Id = "M1040";
-            _macroBom.DPP_Speed_3.Adr = 148;
-            _macroBom.DPP_Speed_3.IsRecipes = true;
-            _macroBom.DPP_StopTime_3 = new MacroBomItem();
-            _macroBom.DPP_StopTime_3.Id = "M1041";
-            _macroBom.DPP_StopTime_3.Adr = 149;
-            _macroBom.DPP_StopTime_3.IsRecipes = true;
-            _macroBom.DPP_Pos_4 = new MacroBomItem();
-            _macroBom.DPP_Pos_4.Id = "M1042";
-            _macroBom.DPP_Pos_4.Adr = 150;
-            _macroBom.DPP_Pos_4.IsRecipes = true;
-            _macroBom.DPP_Speed_4 = new MacroBomItem();
-            _macroBom.DPP_Speed_4.Id = "M1043";
-            _macroBom.DPP_Speed_4.Adr = 151;
-            _macroBom.DPP_Speed_4.IsRecipes = true;
-            _macroBom.DPP_StopTime_4 = new MacroBomItem();
-            _macroBom.DPP_StopTime_4.Id = "M1044";
-            _macroBom.DPP_StopTime_4.Adr = 152;
-            _macroBom.DPP_StopTime_4.IsRecipes = true;
-            _macroBom.DPP_Pos_5 = new MacroBomItem();
-            _macroBom.DPP_Pos_5.Id = "M1045";
-            _macroBom.DPP_Pos_5.Adr = 153;
-            _macroBom.DPP_Pos_5.IsRecipes = true;
-            _macroBom.DPP_Speed_5 = new MacroBomItem();
-            _macroBom.DPP_Speed_5.Id = "M1046";
-            _macroBom.DPP_Speed_5.Adr = 154;
-            _macroBom.DPP_Speed_5.IsRecipes = true;
-            _macroBom.DPP_StopTime_5 = new MacroBomItem();
-            _macroBom.DPP_StopTime_5.Id = "M1047";
-            _macroBom.DPP_StopTime_5.Adr = 155;
-            _macroBom.DPP_StopTime_5.IsRecipes = true;
-            _macroBom.DPP_Pos_6 = new MacroBomItem();
-            _macroBom.DPP_Pos_6.Id = "M1048";
-            _macroBom.DPP_Pos_6.Adr = 156;
-            _macroBom.DPP_Pos_6.IsRecipes = true;
-            _macroBom.DPP_Speed_6 = new MacroBomItem();
-            _macroBom.DPP_Speed_6.Id = "M1049";
-            _macroBom.DPP_Speed_6.Adr = 157;
-            _macroBom.DPP_Speed_6.IsRecipes = true;
-            _macroBom.DPP_StopTime_6 = new MacroBomItem();
-            _macroBom.DPP_StopTime_6.Id = "M1050";
-            _macroBom.DPP_StopTime_6.Adr = 158;
-            _macroBom.DPP_StopTime_6.IsRecipes = true;
-            _macroBom.DPP_Pos_7 = new MacroBomItem();
-            _macroBom.DPP_Pos_7.Id = "M1051";
-            _macroBom.DPP_Pos_7.Adr = 159;
-            _macroBom.DPP_Pos_7.IsRecipes = true;
-            _macroBom.DPP_Speed_7 = new MacroBomItem();
-            _macroBom.DPP_Speed_7.Id = "M1052";
-            _macroBom.DPP_Speed_7.Adr = 160;
-            _macroBom.DPP_Speed_7.IsRecipes = true;
-            _macroBom.DPP_StopTime_7 = new MacroBomItem();
-            _macroBom.DPP_StopTime_7.Id = "M1053";
-            _macroBom.DPP_StopTime_7.Adr = 161;
-            _macroBom.DPP_StopTime_7.IsRecipes = true;
-            _macroBom.DPP_Pos_8 = new MacroBomItem();
-            _macroBom.DPP_Pos_8.Id = "M1054";
-            _macroBom.DPP_Pos_8.Adr = 162;
-            _macroBom.DPP_Pos_8.IsRecipes = true;
-            _macroBom.DPP_Speed_8 = new MacroBomItem();
-            _macroBom.DPP_Speed_8.Id = "M1055";
-            _macroBom.DPP_Speed_8.Adr = 163;
-            _macroBom.DPP_Speed_8.IsRecipes = true;
-            _macroBom.DPP_StopTime_8 = new MacroBomItem();
-            _macroBom.DPP_StopTime_8.Id = "M1056";
-            _macroBom.DPP_StopTime_8.Adr = 164;
-            _macroBom.DPP_StopTime_8.IsRecipes = true;
-            _macroBom.DPP_BottomDeadCentre = new MacroBomItem();
-            _macroBom.DPP_BottomDeadCentre.Id = "M1057";
-            _macroBom.DPP_BottomDeadCentre.Adr = 165;
-            _macroBom.DPP_BottomDeadCentre.IsRecipes = true;
+            
+            
 
             _macroBom.SPP_Pressure = new MacroBomItem();
             _macroBom.SPP_Pressure.Id = "M1058";
@@ -1216,6 +936,134 @@ namespace FanucCnc
             _pmcBom.DCP_DieWeight.Adr = 216;
             _pmcBom.DCP_DieWeight.ConversionFactor = 1000;
             _pmcBom.DCP_DieWeight.IsRecipes = true;
+
+            #endregion
+
+            #region 合模设定
+            _pmcBom.DJP_SectionNum = new PmcBomItem();
+            _pmcBom.DJP_SectionNum.Id = "PMC2001";
+            _pmcBom.DJP_SectionNum.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_SectionNum.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_SectionNum.Adr = 1540;
+
+            _pmcBom.DJP_TopDeadCentre = new PmcBomItem();
+            _pmcBom.DJP_TopDeadCentre.Id = "PMC2002";
+            _pmcBom.DJP_TopDeadCentre.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_TopDeadCentre.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_TopDeadCentre.Adr = 1020;
+
+            _pmcBom.DJP_Speed_TopDeadCentre = new PmcBomItem();
+            _pmcBom.DJP_Speed_TopDeadCentre.Id = "PMC2003";
+            _pmcBom.DJP_Speed_TopDeadCentre.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Speed_TopDeadCentre.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Speed_TopDeadCentre.Adr = 1120;
+
+            _pmcBom.DJP_Pos_1 = new PmcBomItem();
+            _pmcBom.DJP_Pos_1.Id = "PMC2004";
+            _pmcBom.DJP_Pos_1.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Pos_1.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Pos_1.Adr = 1024;
+
+            _pmcBom.DJP_Speed_1 = new PmcBomItem();
+            _pmcBom.DJP_Speed_1.Id = "PMC2005";
+            _pmcBom.DJP_Speed_1.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Speed_1.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Speed_1.Adr = 1124;
+
+
+            _pmcBom.DJP_Pos_2 = new PmcBomItem();
+            _pmcBom.DJP_Pos_2.Id = "PMC2006";
+            _pmcBom.DJP_Pos_2.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Pos_2.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Pos_2.Adr = 1028;
+
+            _pmcBom.DJP_Speed_2 = new PmcBomItem();
+            _pmcBom.DJP_Speed_2.Id = "PMC2007";
+            _pmcBom.DJP_Speed_2.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Speed_2.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Speed_2.Adr = 1128;
+
+            _pmcBom.DJP_Pos_3 = new PmcBomItem();
+            _pmcBom.DJP_Pos_3.Id = "PMC2008";
+            _pmcBom.DJP_Pos_3.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Pos_3.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Pos_3.Adr = 1032;
+
+            _pmcBom.DJP_Speed_3 = new PmcBomItem();
+            _pmcBom.DJP_Speed_3.Id = "PMC2009";
+            _pmcBom.DJP_Speed_3.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Speed_3.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Speed_3.Adr = 1132;
+
+            _pmcBom.DJP_Pos_4 = new PmcBomItem();
+            _pmcBom.DJP_Pos_4.Id = "PMC2010";
+            _pmcBom.DJP_Pos_4.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Pos_4.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Pos_4.Adr = 1036;
+
+            _pmcBom.DJP_Speed_4 = new PmcBomItem();
+            _pmcBom.DJP_Speed_4.Id = "PMC2011";
+            _pmcBom.DJP_Speed_4.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Speed_4.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Speed_4.Adr = 1136;
+
+            _pmcBom.DJP_Pos_5 = new PmcBomItem();
+            _pmcBom.DJP_Pos_5.Id = "PMC2012";
+            _pmcBom.DJP_Pos_5.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Pos_5.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Pos_5.Adr = 1040;
+
+            _pmcBom.DJP_Speed_5 = new PmcBomItem();
+            _pmcBom.DJP_Speed_5.Id = "PMC2013";
+            _pmcBom.DJP_Speed_5.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Speed_5.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Speed_5.Adr = 1140;
+
+            _pmcBom.DJP_BottomDeadCentre = new PmcBomItem();
+            _pmcBom.DJP_BottomDeadCentre.Id = "PMC2014";
+            _pmcBom.DJP_BottomDeadCentre.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_BottomDeadCentre.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_BottomDeadCentre.Adr = 1044;
+
+            _pmcBom.DJP_BottomDeadCentre_StopTime = new PmcBomItem();
+            _pmcBom.DJP_BottomDeadCentre_StopTime.Id = "PMC2015";
+            _pmcBom.DJP_BottomDeadCentre_StopTime.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_BottomDeadCentre_StopTime.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_BottomDeadCentre_StopTime.Adr = 1044;
+
+            #endregion
+
+            #region 开模设定
+            _pmcBom.DPP_SectionNum = new PmcBomItem();
+            _pmcBom.DPP_SectionNum.Id = "PMC2020";
+            _pmcBom.DPP_SectionNum.AdrType = PmcAdrTypeEnum.E;
+            _pmcBom.DPP_SectionNum.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DPP_SectionNum.Adr = 2020;
+            _pmcBom.DPP_BottomDeadCentre = new PmcBomItem();
+            _pmcBom.DPP_BottomDeadCentre.Id = "PMC2021";
+            _pmcBom.DPP_BottomDeadCentre.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DPP_BottomDeadCentre.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DPP_BottomDeadCentre.Adr = 1044;
+            _pmcBom.DPP_Speed_BottomDeadCentre = new PmcBomItem();
+            _pmcBom.DPP_Speed_BottomDeadCentre.Id = "PMC2022";
+            _pmcBom.DPP_Speed_BottomDeadCentre.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DPP_Speed_BottomDeadCentre.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DPP_Speed_BottomDeadCentre.Adr = 1144;
+            _pmcBom.DPP_Pos_1 = new PmcBomItem();
+            _pmcBom.DPP_Pos_1.Id = "PMC2023";
+            _pmcBom.DPP_Pos_1.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DPP_Pos_1.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DPP_Pos_1.Adr = 1064;
+            _pmcBom.DPP_Speed_1 = new PmcBomItem();
+            _pmcBom.DPP_Speed_1.Id = "PMC2024";
+            _pmcBom.DPP_Speed_1.Adr = 1148;
+            _pmcBom.DPP_Speed_1.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DPP_Speed_1.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DPP_TopDeadCentre = new PmcBomItem();
+            _pmcBom.DPP_TopDeadCentre.Id = "PMC2027";
+            _pmcBom.DPP_TopDeadCentre.Adr = 1020;
+            _pmcBom.DPP_TopDeadCentre.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DPP_TopDeadCentre.DataType = PmcDataTypeEnum.LONG;
 
             #endregion
 
@@ -2497,11 +2345,11 @@ namespace FanucCnc
             #endregion
 
             #region 基础信息
-            _baseInfo.Ip = "127.0.0.1";
+            _baseInfo.Ip = "192.168.0.1";
             _baseInfo.Port = 8193;
             _baseInfo.Timeout = 10;
             _baseInfo.Increment = 1000.0;
-            _baseInfo.CsdFolder = @"C:\Program Files (x86)\CNCScreenE";
+            _baseInfo.CsdFolder = @"C:\Program Files (x86)\CNCScreen";
             _baseInfo.SciChartXTimeMax = 10000;
             _baseInfo.RealTimeSciChartInflgAdrType = 5;
             _baseInfo.RealTimeSciChartInflgAdr = 444;
@@ -3299,105 +3147,120 @@ namespace FanucCnc
                 if (m_paradieclosing == true)
                 {
                     double sn_temp = 0;
-                    GetMacro(_macroBom.DJP_SectionNum.Adr, ref sn_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_SectionNum, ref sn_temp, m_page_flib);
                     m_dieclosing_info.SectionNum = sn_temp;
+                    
+                    //double pdt_temp = 0;
+                    //GetMacro(_pmcBom.DJP_PreDelayTime, ref pdt_temp, m_page_flib);
+                    //m_dieclosing_info.PreDelayTime = pdt_temp;
 
-                    double pdt_temp = 0;
-                    GetMacro(_macroBom.DJP_PreDelayTime.Adr, ref pdt_temp, m_page_flib);
-                    m_dieclosing_info.PreDelayTime = pdt_temp;
-
-                    double st_temp = 0;
-                    GetMacro(_macroBom.DJP_SafeTime.Adr, ref st_temp, m_page_flib);
-                    m_dieclosing_info.SafeTime = st_temp;
+                    //double st_temp = 0;
+                    //GetMacro(_macroBom.DJP_SafeTime.Adr, ref st_temp, m_page_flib);
+                    //m_dieclosing_info.SafeTime = st_temp;
 
                     Messenger.Default.Send<ParaDieClosingInfo>(m_dieclosing_info, "ParaDieClosingInfoMsg");
 
+                    double p0_temp = 0;
+                    GetPmc(_pmcBom.DJP_TopDeadCentre, ref p0_temp, m_page_flib);
+                    m_dieclosingproc_info.TopDeadCentre = p0_temp;
+                    double s0_temp = 0;
+                    GetPmc(_pmcBom.DJP_Speed_TopDeadCentre, ref s0_temp, m_page_flib);
+                    m_dieclosingproc_info.Speed_TopDeadCentre = s0_temp;
+
                     double p1_temp = 0;
-                    GetMacro(_macroBom.DJP_Pos_1.Adr, ref p1_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Pos_1, ref p1_temp, m_page_flib);
                     m_dieclosingproc_info.Pos_1 = p1_temp;
                     double s1_temp = 0;
-                    GetMacro(_macroBom.DJP_Speed_1.Adr, ref s1_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Speed_1, ref s1_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_1 = s1_temp;
-                    double t1_temp = 0;
-                    GetMacro(_macroBom.DJP_StopTime_1.Adr, ref t1_temp, m_page_flib);
-                    m_dieclosingproc_info.StopTime_1 = t1_temp;
+                    //double t1_temp = 0;
+                    //GetPmc(_macroBom.DJP_StopTime_1.Adr, ref t1_temp, m_page_flib);
+                    //m_dieclosingproc_info.StopTime_1 = t1_temp;
 
                     double p2_temp = 0;
-                    GetMacro(_macroBom.DJP_Pos_2.Adr, ref p2_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Pos_2, ref p2_temp, m_page_flib);
                     m_dieclosingproc_info.Pos_2 = p2_temp;
                     double s2_temp = 0;
-                    GetMacro(_macroBom.DJP_Speed_2.Adr, ref s2_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Speed_2, ref s2_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_2 = s2_temp;
-                    double t2_temp = 0;
-                    GetMacro(_macroBom.DJP_StopTime_2.Adr, ref t2_temp, m_page_flib);
-                    m_dieclosingproc_info.StopTime_2 = t2_temp;
+                    //double t2_temp = 0;
+                    //GetPmc(_pmcBom.DJP_StopTime_2.Adr, ref t2_temp, m_page_flib);
+                    //m_dieclosingproc_info.StopTime_2 = t2_temp;
 
                     double p3_temp = 0;
-                    GetMacro(_macroBom.DJP_Pos_3.Adr, ref p3_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Pos_3, ref p3_temp, m_page_flib);
                     m_dieclosingproc_info.Pos_3 = p3_temp;
                     double s3_temp = 0;
-                    GetMacro(_macroBom.DJP_Speed_3.Adr, ref s3_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Speed_3, ref s3_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_3 = s3_temp;
-                    double t3_temp = 0;
-                    GetMacro(_macroBom.DJP_StopTime_3.Adr, ref t3_temp, m_page_flib);
-                    m_dieclosingproc_info.StopTime_3 = t3_temp;
+                    //double t3_temp = 0;
+                    //GetPmc(_macroBom.DJP_StopTime_3.Adr, ref t3_temp, m_page_flib);
+                    //m_dieclosingproc_info.StopTime_3 = t3_temp;
 
                     double p4_temp = 0;
-                    GetMacro(_macroBom.DJP_Pos_4.Adr, ref p4_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Pos_4, ref p4_temp, m_page_flib);
                     m_dieclosingproc_info.Pos_4 = p4_temp;
                     double s4_temp = 0;
-                    GetMacro(_macroBom.DJP_Speed_4.Adr, ref s4_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Speed_4, ref s4_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_4 = s4_temp;
-                    double t4_temp = 0;
-                    GetMacro(_macroBom.DJP_StopTime_4.Adr, ref t4_temp, m_page_flib);
-                    m_dieclosingproc_info.StopTime_4 = t4_temp;
+                    //double t4_temp = 0;
+                    //GetPmc(_macroBom.DJP_StopTime_4.Adr, ref t4_temp, m_page_flib);
+                    //m_dieclosingproc_info.StopTime_4 = t4_temp;
 
                     double p5_temp = 0;
-                    GetMacro(_macroBom.DJP_Pos_5.Adr, ref p5_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Pos_5, ref p5_temp, m_page_flib);
                     m_dieclosingproc_info.Pos_5 = p5_temp;
                     double s5_temp = 0;
-                    GetMacro(_macroBom.DJP_Speed_5.Adr, ref s5_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Speed_5, ref s5_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_5 = s5_temp;
-                    double t5_temp = 0;
-                    GetMacro(_macroBom.DJP_StopTime_5.Adr, ref t5_temp, m_page_flib);
-                    m_dieclosingproc_info.StopTime_5 = t5_temp;
+                    //double t5_temp = 0;
+                    //GetPmc(_macroBom.DJP_StopTime_5.Adr, ref t5_temp, m_page_flib);
+                    //m_dieclosingproc_info.StopTime_5 = t5_temp;
 
                     double p6_temp = 0;
-                    GetMacro(_macroBom.DJP_Pos_6.Adr, ref p6_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Pos_6, ref p6_temp, m_page_flib);
                     m_dieclosingproc_info.Pos_6 = p6_temp;
                     double s6_temp = 0;
-                    GetMacro(_macroBom.DJP_Speed_6.Adr, ref s6_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Speed_6, ref s6_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_6 = s6_temp;
-                    double t6_temp = 0;
-                    GetMacro(_macroBom.DJP_StopTime_6.Adr, ref t6_temp, m_page_flib);
-                    m_dieclosingproc_info.StopTime_6 = t6_temp;
+                    //double t6_temp = 0;
+                    //GetPmc(_macroBom.DJP_StopTime_6.Adr, ref t6_temp, m_page_flib);
+                    //m_dieclosingproc_info.StopTime_6 = t6_temp;
 
                     double p7_temp = 0;
-                    GetMacro(_macroBom.DJP_Pos_7.Adr, ref p7_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Pos_7, ref p7_temp, m_page_flib);
                     m_dieclosingproc_info.Pos_7 = p7_temp;
                     double s7_temp = 0;
-                    GetMacro(_macroBom.DJP_Speed_7.Adr, ref s7_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Speed_7, ref s7_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_7 = s7_temp;
-                    double t7_temp = 0;
-                    GetMacro(_macroBom.DJP_StopTime_7.Adr, ref t7_temp, m_page_flib);
-                    m_dieclosingproc_info.StopTime_7 = t7_temp;
+                    //double t7_temp = 0;
+                    //GetPmc(_macroBom.DJP_StopTime_7.Adr, ref t7_temp, m_page_flib);
+                    //m_dieclosingproc_info.StopTime_7 = t7_temp;
 
                     double p8_temp = 0;
-                    GetMacro(_macroBom.DJP_Pos_8.Adr, ref p8_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Pos_8, ref p8_temp, m_page_flib);
                     m_dieclosingproc_info.Pos_8 = p8_temp;
                     double s8_temp = 0;
-                    GetMacro(_macroBom.DJP_Speed_8.Adr, ref s8_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_Speed_8, ref s8_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_8 = s8_temp;
-                    double t8_temp = 0;
-                    GetMacro(_macroBom.DJP_StopTime_8.Adr, ref t8_temp, m_page_flib);
-                    m_dieclosingproc_info.StopTime_8 = t8_temp;
+                    //double t8_temp = 0;
+                    //GetPmc(_pmcBom.DJP_StopTime_8, ref t8_temp, m_page_flib);
+                    //m_dieclosingproc_info.StopTime_8 = t8_temp;
 
                     double bdc_temp = 0;
-                    GetMacro(_macroBom.DJP_BottomDeadCentre.Adr, ref bdc_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_BottomDeadCentre, ref bdc_temp, m_page_flib);
                     m_dieclosingproc_info.BottomDeadCentre = bdc_temp;
 
+                    double bdc_st_temp = 0;
+                    GetPmc(_pmcBom.DJP_BottomDeadCentre_StopTime, ref bdc_st_temp, m_page_flib);
+                    m_dieclosingproc_info.BottomDeadCentre_StopTime = bdc_st_temp;
+
+                    double bdcs_temp = 0;
+                    GetPmc(_pmcBom.DJP_Speed_TopDeadCentre, ref bdcs_temp, m_page_flib);
+                    m_dieclosingproc_info.Speed_TopDeadCentre = bdcs_temp;
+
                     double sn2_temp = 0;
-                    GetMacro(_macroBom.DJP_SectionNum.Adr, ref sn2_temp, m_page_flib);
+                    GetPmc(_pmcBom.DJP_SectionNum, ref sn2_temp, m_page_flib);
                     m_dieclosingproc_info.SectionNum = sn2_temp;
 
                     Messenger.Default.Send<ParaDieClosingProcInfo>(m_dieclosingproc_info, "ParaDieClosingProcInfoMsg");
@@ -3405,108 +3268,36 @@ namespace FanucCnc
                 #endregion
 
                 #region 开模设定
-                if (m_paradieclosing == true)
+                if (m_paradieparting == true)
                 {
                     double sn_temp = 0;
-                    GetMacro(_macroBom.DPP_SectionNum.Adr, ref sn_temp, m_page_flib);
+                    GetPmc(_pmcBom.DPP_SectionNum, ref sn_temp, m_page_flib);
                     m_dieparting_info.SectionNum = sn_temp;
 
-                    double pdt_temp = 0;
-                    GetMacro(_macroBom.DPP_PreDelayTime.Adr, ref pdt_temp, m_page_flib);
-                    m_dieparting_info.PreDelayTime = pdt_temp;
-
-                    double st_temp = 0;
-                    GetMacro(_macroBom.DPP_SafeTime.Adr, ref st_temp, m_page_flib);
-                    m_dieparting_info.SafeTime = st_temp;
 
                     Messenger.Default.Send<ParaDiePartingInfo>(m_dieparting_info, "ParaDiePartingInfoMsg");
 
                     double p1_temp = 0;
-                    GetMacro(_macroBom.DPP_Pos_1.Adr, ref p1_temp, m_page_flib);
+                    GetPmc(_pmcBom.DPP_Pos_1, ref p1_temp, m_page_flib);
                     m_diepartingproc_info.Pos_1 = p1_temp;
                     double s1_temp = 0;
-                    GetMacro(_macroBom.DPP_Speed_1.Adr, ref s1_temp, m_page_flib);
+                    GetPmc(_pmcBom.DPP_Speed_1, ref s1_temp, m_page_flib);
                     m_diepartingproc_info.Speed_1 = s1_temp;
-                    double t1_temp = 0;
-                    GetMacro(_macroBom.DPP_StopTime_1.Adr, ref t1_temp, m_page_flib);
-                    m_diepartingproc_info.StopTime_1 = t1_temp;
-
-                    double p2_temp = 0;
-                    GetMacro(_macroBom.DPP_Pos_2.Adr, ref p2_temp, m_page_flib);
-                    m_diepartingproc_info.Pos_2 = p2_temp;
-                    double s2_temp = 0;
-                    GetMacro(_macroBom.DPP_Speed_2.Adr, ref s2_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_2 = s2_temp;
-                    double t2_temp = 0;
-                    GetMacro(_macroBom.DPP_StopTime_2.Adr, ref t2_temp, m_page_flib);
-                    m_diepartingproc_info.StopTime_2 = t2_temp;
-
-                    double p3_temp = 0;
-                    GetMacro(_macroBom.DPP_Pos_3.Adr, ref p3_temp, m_page_flib);
-                    m_diepartingproc_info.Pos_3 = p3_temp;
-                    double s3_temp = 0;
-                    GetMacro(_macroBom.DPP_Speed_3.Adr, ref s3_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_3 = s3_temp;
-                    double t3_temp = 0;
-                    GetMacro(_macroBom.DPP_StopTime_3.Adr, ref t3_temp, m_page_flib);
-                    m_diepartingproc_info.StopTime_3 = t3_temp;
-
-                    double p4_temp = 0;
-                    GetMacro(_macroBom.DPP_Pos_4.Adr, ref p4_temp, m_page_flib);
-                    m_diepartingproc_info.Pos_4 = p4_temp;
-                    double s4_temp = 0;
-                    GetMacro(_macroBom.DPP_Speed_4.Adr, ref s4_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_4 = s4_temp;
-                    double t4_temp = 0;
-                    GetMacro(_macroBom.DPP_StopTime_4.Adr, ref t4_temp, m_page_flib);
-                    m_diepartingproc_info.StopTime_4 = t4_temp;
-
-                    double p5_temp = 0;
-                    GetMacro(_macroBom.DPP_Pos_5.Adr, ref p5_temp, m_page_flib);
-                    m_diepartingproc_info.Pos_5 = p5_temp;
-                    double s5_temp = 0;
-                    GetMacro(_macroBom.DPP_Speed_5.Adr, ref s5_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_5 = s5_temp;
-                    double t5_temp = 0;
-                    GetMacro(_macroBom.DPP_StopTime_5.Adr, ref t5_temp, m_page_flib);
-                    m_diepartingproc_info.StopTime_5 = t5_temp;
-
-                    double p6_temp = 0;
-                    GetMacro(_macroBom.DPP_Pos_6.Adr, ref p6_temp, m_page_flib);
-                    m_diepartingproc_info.Pos_6 = p6_temp;
-                    double s6_temp = 0;
-                    GetMacro(_macroBom.DPP_Speed_6.Adr, ref s6_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_6 = s6_temp;
-                    double t6_temp = 0;
-                    GetMacro(_macroBom.DPP_StopTime_6.Adr, ref t6_temp, m_page_flib);
-                    m_diepartingproc_info.StopTime_6 = t6_temp;
-
-                    double p7_temp = 0;
-                    GetMacro(_macroBom.DPP_Pos_7.Adr, ref p7_temp, m_page_flib);
-                    m_diepartingproc_info.Pos_7 = p7_temp;
-                    double s7_temp = 0;
-                    GetMacro(_macroBom.DPP_Speed_7.Adr, ref s7_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_7 = s7_temp;
-                    double t7_temp = 0;
-                    GetMacro(_macroBom.DPP_StopTime_7.Adr, ref t7_temp, m_page_flib);
-                    m_diepartingproc_info.StopTime_7 = t7_temp;
-
-                    double p8_temp = 0;
-                    GetMacro(_macroBom.DPP_Pos_8.Adr, ref p8_temp, m_page_flib);
-                    m_diepartingproc_info.Pos_8 = p8_temp;
-                    double s8_temp = 0;
-                    GetMacro(_macroBom.DPP_Speed_8.Adr, ref s8_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_8 = s8_temp;
-                    double t8_temp = 0;
-                    GetMacro(_macroBom.DPP_StopTime_8.Adr, ref t8_temp, m_page_flib);
-                    m_diepartingproc_info.StopTime_8 = t8_temp;
-
+                    //double t1_temp = 0;
+                    //GetMacro(_macroBom.DPP_StopTime_1.Adr, ref t1_temp, m_page_flib);
+                    //m_diepartingproc_info.StopTime_1 = t1_temp;
                     double bdc_temp = 0;
-                    GetMacro(_macroBom.DPP_BottomDeadCentre.Adr, ref bdc_temp, m_page_flib);
+                    GetPmc(_pmcBom.DPP_BottomDeadCentre, ref bdc_temp, m_page_flib);
                     m_diepartingproc_info.BottomDeadCentre = bdc_temp;
+                    double bdcs_temp = 0;
+                    GetPmc(_pmcBom.DPP_Speed_BottomDeadCentre, ref bdcs_temp, m_page_flib);
+                    m_diepartingproc_info.Speed_BottomDeadCentre = bdcs_temp;
+                    double tdc_temp = 0;
+                    GetPmc(_pmcBom.DPP_TopDeadCentre, ref tdc_temp, m_page_flib);
+                    m_diepartingproc_info.TopDeadCentre = tdc_temp;
 
                     double sn2_temp = 0;
-                    GetMacro(_macroBom.DPP_SectionNum.Adr, ref sn2_temp, m_page_flib);
+                    GetPmc(_pmcBom.DPP_SectionNum, ref sn2_temp, m_page_flib);
                     m_diepartingproc_info.SectionNum = sn2_temp;
 
                     Messenger.Default.Send<ParaDiePartingProcInfo>(m_diepartingproc_info, "ParaDiePartingProcInfoMsg");
@@ -4126,9 +3917,9 @@ namespace FanucCnc
 
                 {
                     Focas1.ODBAXIS buf = new Focas1.ODBAXIS();
-                    ret = Focas1.cnc_absolute2(m_monitorline_flib, 1, 8, buf);
+                    ret = Focas1.cnc_absolute2(m_monitorline_flib, -1, 200, buf);
                     if (ret == -16) conn = -16;
-                    temp_pos = (double)buf.data[0] / _baseInfo.Increment;
+                    temp_pos = (double)buf.data[1] / _baseInfo.Increment;
 
                     temp_time = DateTime.Now;
                 }
@@ -4140,17 +3931,19 @@ namespace FanucCnc
                         ref inflag);
                 }
 
+                inflag = true;
+
                 if (inflag == true)
                 {
                     Focas1.ODBAXIS buf = new Focas1.ODBAXIS();
-                    ret = Focas1.cnc_absolute2(m_monitorline_flib, 1, 8, buf);
+                    ret = Focas1.cnc_absolute2(m_monitorline_flib, -1, 200, buf);
                     if (ret == -16) conn = -16;
 
                     if (ret == 0)
                     {
                         var time_span = (DateTime.Now - temp_time).TotalMilliseconds;
 
-                        m_monitorline_info.Pos = (double)buf.data[0] / _baseInfo.Increment;
+                        m_monitorline_info.Pos = (double)buf.data[1] / _baseInfo.Increment;
                         m_monitorline_info.Speed = (m_monitorline_info.Pos - temp_pos) / time_span * 1000.0;
 
                         temp_pos = m_monitorline_info.Pos;
@@ -4214,8 +4007,8 @@ namespace FanucCnc
             short ret = 0;
             Focas1.cnc_freelibhndl(flib);
 
-            if (_simulate == false) ret = Focas1.cnc_allclibhndl3(_baseInfo.Ip, _baseInfo.Port, _baseInfo.Timeout, out flib);
-
+            //if (_simulate == false) ret = Focas1.cnc_allclibhndl2(0, out flib);
+            ret = Focas1.cnc_allclibhndl3(_baseInfo.Ip, _baseInfo.Port, _baseInfo.Timeout, out flib);
             return ret;
         }
 

@@ -212,6 +212,93 @@ namespace FanucCnc.Model
         public PmcBomItem CLS_Clamp_Back_13_MoveInStatus { get; set; }
         #endregion
 
+        #region 合模设定
+        [Display(Name = "合模设定-合模段数", AutoGenerateField = true)]
+        public PmcBomItem DJP_SectionNum { get; set; }
+        //[Display(Name = "合模设定-合模前延时", AutoGenerateField = true)]
+        //public PmcBomItem DJP_PreDelayTime { get; set; }
+        //[Display(Name = "合模设定-合模安全时间", AutoGenerateField = true)]
+        //public PmcBomItem DJP_SafeTime { get; set; }
+
+        [Display(Name = "合模规划-上死点", AutoGenerateField = true)]
+        public PmcBomItem DJP_TopDeadCentre { get; set; }
+        [Display(Name = "合模规划-上死点速度", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_TopDeadCentre { get; set; }
+
+        [Display(Name = "合模规划-位置1", AutoGenerateField = true)]
+        public PmcBomItem DJP_Pos_1 { get; set; }
+        [Display(Name = "合模规划-速度1", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_1 { get; set; }
+        //[Display(Name = "合模规划-停止时间1", AutoGenerateField = true)]
+        //public PmcBomItem DJP_StopTime_1 { get; set; }
+        [Display(Name = "合模规划-位置2", AutoGenerateField = true)]
+        public PmcBomItem DJP_Pos_2 { get; set; }
+        [Display(Name = "合模规划-速度2", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_2 { get; set; }
+        //[Display(Name = "合模规划-停止时间2", AutoGenerateField = true)]
+        //public PmcBomItem DJP_StopTime_2 { get; set; }
+        [Display(Name = "合模规划-位置3", AutoGenerateField = true)]
+        public PmcBomItem DJP_Pos_3 { get; set; }
+        [Display(Name = "合模规划-速度3", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_3 { get; set; }
+        //[Display(Name = "合模规划-停止时间3", AutoGenerateField = true)]
+        //public PmcBomItem DJP_StopTime_3 { get; set; }
+        [Display(Name = "合模规划-位置4", AutoGenerateField = true)]
+        public PmcBomItem DJP_Pos_4 { get; set; }
+        [Display(Name = "合模规划-速度4", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_4 { get; set; }
+        //[Display(Name = "合模规划-停止时间4", AutoGenerateField = true)]
+        //public PmcBomItem DJP_StopTime_4 { get; set; }
+        [Display(Name = "合模规划-位置5", AutoGenerateField = true)]
+        public PmcBomItem DJP_Pos_5 { get; set; }
+        [Display(Name = "合模规划-速度5", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_5 { get; set; }
+        //[Display(Name = "合模规划-停止时间5", AutoGenerateField = true)]
+        //public PmcBomItem DJP_StopTime_5 { get; set; }
+        [Display(Name = "合模规划-位置6", AutoGenerateField = true)]
+        public PmcBomItem DJP_Pos_6 { get; set; }
+        [Display(Name = "合模规划-速度6", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_6 { get; set; }
+        //[Display(Name = "合模规划-停止时间6", AutoGenerateField = true)]
+        //public PmcBomItem DJP_StopTime_6 { get; set; }
+        [Display(Name = "合模规划-位置7", AutoGenerateField = true)]
+        public PmcBomItem DJP_Pos_7 { get; set; }
+        [Display(Name = "合模规划-速度7", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_7 { get; set; }
+        //[Display(Name = "合模规划-停止时间7", AutoGenerateField = true)]
+        //public PmcBomItem DJP_StopTime_7 { get; set; }
+        [Display(Name = "合模规划-位置8", AutoGenerateField = true)]
+        public PmcBomItem DJP_Pos_8 { get; set; }
+        [Display(Name = "合模规划-速度8", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_8 { get; set; }
+        //[Display(Name = "合模规划-停止时间8", AutoGenerateField = true)]
+        //public PmcBomItem DJP_StopTime_8 { get; set; }
+        [Display(Name = "合模规划-下死点", AutoGenerateField = true)]
+        public PmcBomItem DJP_BottomDeadCentre { get; set; }
+        [Display(Name = "合模规划-下死点保持时间", AutoGenerateField = true)]
+        public PmcBomItem DJP_BottomDeadCentre_StopTime { get; set; }
+        #endregion
+
+        #region 开模设定
+        [Display(Name = "开模设定-开模段数", AutoGenerateField = true)]
+        public PmcBomItem DPP_SectionNum { get; set; }
+        //[Display(Name = "开模设定-开模前延时", AutoGenerateField = true)]
+        //public PmcBomItem DPP_PreDelayTime { get; set; }
+        //[Display(Name = "开模设定-开模安全时间", AutoGenerateField = true)]
+        //public PmcBomItem DPP_SafeTime { get; set; }
+        [Display(Name = "开模设定-下死点", AutoGenerateField = true)]
+        public PmcBomItem DPP_BottomDeadCentre { get; set; }
+        [Display(Name = "开模设定-下死点速度", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_BottomDeadCentre { get; set; }
+        [Display(Name = "开模规划-位置1", AutoGenerateField = true)]
+        public PmcBomItem DPP_Pos_1 { get; set; }
+        [Display(Name = "开模规划-速度1", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_1 { get; set; }
+
+        [Display(Name = "开模规划-上死点", AutoGenerateField = true)]
+        public PmcBomItem DPP_TopDeadCentre { get; set; }
+        #endregion
+
         #region 换模设定
         [Display(Name = "换模设定-快行速度", AutoGenerateField = true)]
         public PmcBomItem DCP_RapidFeed { get; set; }
