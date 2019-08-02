@@ -23,7 +23,7 @@ namespace PressHmi.ViewModel
         public MaintainSubLimitPageViewModel(Fanuc fanuc)
         {
             this.fanuc = fanuc;
-            //LoadData();
+            LoadData();
         }
 
        

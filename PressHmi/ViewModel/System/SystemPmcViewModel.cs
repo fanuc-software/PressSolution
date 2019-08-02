@@ -46,7 +46,7 @@ namespace PressHmi.ViewModel
                         Title = attributes.Name,
                         Adr = limit.Adr,
                         Bit = limit.Bit,
-                        ConversionFactor = limit.ConversionFactor??0.0,
+                        ConversionFactor = limit.ConversionFactor ?? 0.0,
                         DataType = limit.DataType
 
                     };
@@ -60,7 +60,7 @@ namespace PressHmi.ViewModel
         private void Node_OpenDialogEvent(SystemPmcItemViewModel arg1, string arg2)
         {
             var prop = arg1.GetType().GetProperty(arg2);
-            OpenDialogWindowEvent?.Invoke(arg1, arg2, prop.GetValue(arg1,null)?.ToString());
+            OpenDialogWindowEvent?.Invoke(arg1, arg2, prop.GetValue(arg1, null)?.ToString());
         }
     }
 

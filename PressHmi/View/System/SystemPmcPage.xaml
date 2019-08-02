@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="730" d:DesignWidth="1770"
       Title="SystemPmcPage">
     <Grid Margin="2,2,2,2">
         <Grid.RowDefinitions>
@@ -32,16 +32,16 @@
                             <Grid Margin="10,10,0,0">
 
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="50"/>
-                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="200*"/>
+                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="50*"/>
 
-                                    <ColumnDefinition Width="100"/>
-                                    <ColumnDefinition Width="120"/>
-                                    <ColumnDefinition Width="100"/>
-                                    
-                                    <ColumnDefinition Width="80"/>
-                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="100*"/>
+                                    <ColumnDefinition Width="120*"/>
+                                    <ColumnDefinition Width="100*"/>
+
+                                    <ColumnDefinition Width="80*"/>
+                                    <ColumnDefinition Width="100*"/>
 
 
                                 </Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
                                 <Button Grid.Column="3"  HorizontalAlignment="Center" VerticalAlignment="Center"   
                                FontSize="{DynamicResource TextPrimerSize}" Width="80" Margin="10,0,0,0" Height="30" Style="{StaticResource ParaInputNormalButton}"
                                Content="{Binding Adr}" Command="{Binding ShowDialogCommand}" CommandParameter="Adr"/>
-                                
+
                                 <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="{DynamicResource TextSmallSize}" Foreground="Green" Text="ConversionFactor:" />
                                 <Button Grid.Column="5"  HorizontalAlignment="Center" VerticalAlignment="Center"   
                                FontSize="{DynamicResource TextPrimerSize}" Width="80" Margin="10,0,0,0" Height="30" Style="{StaticResource ParaInputNormalButton}"
@@ -63,7 +63,7 @@
                                 <Button Visibility="{Binding BitVisibility}" Grid.Column="7"  HorizontalAlignment="Center" VerticalAlignment="Center"   
                                FontSize="{DynamicResource TextPrimerSize}" Width="80" Margin="10,0,0,0" Height="30" Style="{StaticResource ParaInputNormalButton}"
                                Content="{Binding Bit}" Command="{Binding ShowDialogCommand}" CommandParameter="Bit"/>
-                                
+
 
 
 
