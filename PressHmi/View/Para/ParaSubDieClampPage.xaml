@@ -7,7 +7,7 @@
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="730" d:DesignWidth="1770"
+      d:DesignHeight="608" d:DesignWidth="940"
       Title="ParaSubDieClampPage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -18,15 +18,7 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Page.Resources>
-        <Style x:Key="FontAwesome">
-            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
-        </Style>
-
-
         <conv:ClampMoveStatusConverter x:Key="_cmsc"/>
-        <conv:IOColorConverter x:Key="_iocc"/>
-        <conv:ClampStatusStringConverter x:Key="_cssc"/>
-        <conv:ClampRelaxInPositionStringConverter x:Key="_cripsc"/>
     </Page.Resources>
 
     <Grid>
@@ -39,109 +31,105 @@
 
         <Grid Grid.Row="0"  Margin="2,2,1,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
                                    Text="基本信息"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="80"/>
-                        <RowDefinition Height="80"/>
-                        <RowDefinition Height="80"/>
-                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="45"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="250"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="20"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="夹紧检测一:" />
-                    <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                             Background="{Binding ParaDieClampInfo.ClampStatus1,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" IsEnabled="False" FontFamily="Microsoft YaHei UI Light"
-                               Text="{Binding ParaDieClampInfo.ClampStatus1,Converter={StaticResource _cssc}}" />
+                    <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30"
+                               Text="{Binding ParaDieClampInfo.ClampStatus1}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="夹紧检测二:" />
-                    <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                             Background="{Binding ParaDieClampInfo.ClampStatus2,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" IsEnabled="False" FontFamily="Microsoft YaHei UI Light"
-                               Text="{Binding ParaDieClampInfo.ClampStatus2,Converter={StaticResource _cssc}}" />
+                    <TextBlock Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30"
+                               Text="{Binding ParaDieClampInfo.ClampStatus2}"/>
                     <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="放松允许位置:" />
-                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieClampInfo.ClampRelaxPosition}"  Tag="&#xf044;"
-                                Command="{Binding ClampRelaxPositionSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaDieClampInfo.ClampRelaxPosition}" Command="{Binding ClampRelaxPositionSetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="放松到位信息" />
-                    <TextBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                             Background="{Binding ParaDieClampInfo.ClampRelaxInPosition,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" IsEnabled="False" FontFamily="Microsoft YaHei UI Light"
-                               Text="{Binding ParaDieClampInfo.ClampRelaxInPosition,Converter={StaticResource _cripsc}}" />
+                    <TextBlock Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30"
+                               Text="{Binding ParaDieClampInfo.ClampRelaxInPosition}"/>
                 </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Column="1"  Margin="1,2,1,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
                                    Text="前夹模器选择"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="夹模器" />
                     <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="使用选择" />
                     <TextBlock Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
-                               Text="移出" />
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="移出检测" />
                     <TextBlock Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
-                               Text="移入" />
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="移入检测" />
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
                                Text="前1" />
@@ -260,56 +248,43 @@
                               Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
                                FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_13_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_1_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_1_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_1_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_2_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_2_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_2_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_3_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_3_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_3_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_4_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_4_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_4_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_5_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_5_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_5_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_6_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_6_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_6_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_7_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_7_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_7_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_8_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_8_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_8_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_9_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_9_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_9_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_10_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_10_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_10_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_11_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_11_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_11_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_12_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_12_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_12_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Front_13_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Front_13_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Front_13_Ebable}"/>
                 </Grid>
             </Border>
@@ -317,91 +292,91 @@
 
         <Grid Grid.Column="2"  Margin="1,2,1,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
                                    Text="后夹模器选择"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="140"/>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
+                        <RowDefinition Height="36"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="夹模器" />
                     <TextBlock Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="使用选择" />
                     <TextBlock Grid.Column="2" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
-                               Text="移出" />
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="移出检测" />
                     <TextBlock Grid.Column="3" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
-                               Text="移入" />
+                               FontSize="{DynamicResource TextSmallSize}"
+                               Text="移入检测" />
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后1" />
+                               Text="前1" />
                     <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后2" />
+                               Text="前2" />
                     <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后3" />
+                               Text="前3" />
                     <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后4" />
+                               Text="前4" />
                     <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后5" />
+                               Text="前5" />
                     <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后6" />
+                               Text="前6" />
                     <TextBlock Grid.Column="0" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后7" />
+                               Text="前7" />
                     <TextBlock Grid.Column="0" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后8" />
+                               Text="前8" />
                     <TextBlock Grid.Column="0" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后9" />
+                               Text="前9" />
                     <TextBlock Grid.Column="0" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后10" />
+                               Text="前10" />
                     <TextBlock Grid.Column="0" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后11" />
+                               Text="前11" />
                     <TextBlock Grid.Column="0" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后12" />
+                               Text="前12" />
                     <TextBlock Grid.Column="0" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                                FontSize="{DynamicResource TextSmallSize}"
-                               Text="后13" />
+                               Text="前13" />
                     <CheckBox Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
                               Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
                                FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_1_MoveInStatus,Converter={StaticResource _cmsc}}"/>
@@ -481,56 +456,43 @@
                               Style="{StaticResource checkbox my-has-success}" IsEnabled="False"
                                FontSize="{DynamicResource TextSmallSize}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_13_MoveOutStatus,Converter={StaticResource _cmsc}}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_1_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_1_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_1_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_2_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_2_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_2_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_3_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_3_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_3_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_4_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_4_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_4_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_5_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_5_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_5_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_6_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_6_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_6_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_7_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_7_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_7_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_8_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_8_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_8_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_9_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_9_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_9_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_10_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_10_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_10_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="11" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_11_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_11_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_11_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_12_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_12_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_12_Ebable}"/>
                     <ToggleButton Grid.Column="1" Grid.Row="13" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0,0" 
-                                  Background="{Binding ParaDieClampInfo.Clamp_Back_13_Ebable,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="160" Height="36"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaClampNormalButton}" Width="60" Height="24"
                                Content="使用" Command="{Binding Clamp_Back_13_EbableSetCmd}" IsChecked="{Binding ParaDieClampInfo.Clamp_Back_13_Ebable}"/>
                 </Grid>
             </Border>

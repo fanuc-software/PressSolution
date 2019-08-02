@@ -20,205 +20,8 @@ namespace FanucCnc
         private static Fanuc _instance = null;
 
         private bool _simulate = false;
-
-        #region 数据表
-        private bool _slidingBlockTableLoaded = false;
-        private Dictionary<double, double> _slidingBlockTable = new Dictionary<double, double>();
-        private Dictionary<double, double> _slidingBlockReverseTable = new Dictionary<double, double>();
-        private string _slidingBlockTablePath= @"C:\Users\Administrator\Desktop\test.csv";
-        private string _slidingBlockReverseTablePath = @"C:\Users\Administrator\Desktop\test_R.csv";
-
-        private void ReLoadSlidingBlockTable()
-        {
-            _slidingBlockTableLoaded = false;
-            _slidingBlockTable.Clear();
-            _slidingBlockReverseTable.Clear();
-
-            try
-            {
-                using (StreamReader sr = new StreamReader(_slidingBlockTablePath))
-                {
-
-                    string strLine = "";
-                    while ((strLine = sr.ReadLine()) != null)
-                    {
-                        var lineDatas = strLine.Split(',');
-
-                        if (lineDatas.Length < 2)
-                        {
-                            return;
-                        }
-
-                        //正向表
-                        {
-                            double data1 = 0, data2 = 0;
-                            var ret_data1 = double.TryParse(lineDatas[0], out data1);
-                            var ret_data2 = double.TryParse(lineDatas[1], out data2);
-
-                            if (ret_data1 == false || ret_data2 == false) return;
-
-                            _slidingBlockTable.Add(data1, data2);
-                        }
-                    }
-                }
-
-                //反向表
-                using (StreamWriter sw = new StreamWriter(_slidingBlockReverseTablePath,false))
-                {
-                    if (_slidingBlockTable.Count < 100) return;
-
-
-                    var last_item = _slidingBlockTable.ElementAt(0);
-                    var temp_x = Math.Round(last_item.Value, 3);
-                    for (int i=1; i<_slidingBlockTable.Count;i++)
-                    {
-                        var cur_item = _slidingBlockTable.ElementAt(i);
-
-                        while(temp_x< cur_item.Value)
-                        {
-                            double temp_y = last_item.Key;
-                            if (cur_item.Value != last_item.Value)
-                            {
-                                temp_y = (cur_item.Key - last_item.Key) / (cur_item.Value - last_item.Value) * (temp_x - last_item.Value) + last_item.Key;
-                            }
-
-
-                            var temp_x_3 = Math.Round(temp_x, 3);
-                            var temp_y_3 = Math.Round(temp_y, 3);
-                            _slidingBlockReverseTable.Add(temp_x_3, temp_y_3);
-                            sw.WriteLine(temp_x_3.ToString("0.000") + "," + temp_y_3.ToString("0.000"));
-
-                            temp_x = temp_x + 0.001;
-
-
-                        }
-
-                    }
-
-
-                }
-
-
-            }
-            catch
-            {
-                return;
-            }
-
-            _slidingBlockTableLoaded = true;
-        }
-
-        private void LoadSlidingBlockTable()
-        {
-            _slidingBlockTableLoaded = false;
-            _slidingBlockTable.Clear();
-            _slidingBlockReverseTable.Clear();
-
-            try
-            {
-                //正向表
-                using (StreamReader sr = new StreamReader(_slidingBlockTablePath))
-                {
-
-                    string strLine = "";
-                    while ((strLine = sr.ReadLine()) != null)
-                    {
-                        var lineDatas = strLine.Split(',');
-
-                        if (lineDatas.Length < 2)
-                        {
-                            return;
-                        }
-
-                        
-                        {
-                            double data1 = 0, data2 = 0;
-                            var ret_data1 = double.TryParse(lineDatas[0], out data1);
-                            var ret_data2 = double.TryParse(lineDatas[1], out data2);
-
-                            if (ret_data1 == false || ret_data2 == false) return;
-
-                            _slidingBlockTable.Add(data1, data2);
-                        }
-                    }
-                }
-
-                using (StreamReader sr = new StreamReader(_slidingBlockReverseTablePath))
-                {
-
-                    string strLine = "";
-                    while ((strLine = sr.ReadLine()) != null)
-                    {
-                        var lineDatas = strLine.Split(',');
-
-                        if (lineDatas.Length < 2)
-                        {
-                            return;
-                        }
-
-                        //正向表
-                        {
-                            double data1 = 0, data2 = 0;
-                            var ret_data1 = double.TryParse(lineDatas[0], out data1);
-                            var ret_data2 = double.TryParse(lineDatas[1], out data2);
-
-                            if (ret_data1 == false || ret_data2 == false) return;
-
-                            _slidingBlockReverseTable.Add(data1, data2);
-                        }
-                    }
-                }
-
-            }
-            catch
-            {
-                return;
-            }
-
-            _slidingBlockTableLoaded = true;
-        }
-
-        public string SearchScrewData(double sliding,ref double screw)
-        {
-            if(_slidingBlockTableLoaded==false)
-            {
-                return "数据表加载失败，请先加载数据表";
-            }
-
-            try
-            {
-                screw = _slidingBlockTable[Math.Round(sliding,3)];
-            }
-            catch
-            {
-                return "数据表加载失败，数据表中没有该数据";
-            }
-
-            return null;
-        }
-
-        public string SearchSlidingData(double screw, ref double sliding)
-        {
-            if (_slidingBlockTableLoaded == false)
-            {
-                return "数据表加载失败，请先加载数据表";
-            }
-
-            try
-            {
-                sliding = _slidingBlockReverseTable[Math.Round(screw, 3)];
-            }
-            catch
-            {
-                return "数据表加载失败，数据表中没有该数据";
-            }
-
-            return null;
-        }
-        #endregion
-
-        #region 配置
         private BaseInfo _baseInfo = new BaseInfo();
+
         public BaseInfo BaseInfo { get { return _baseInfo; } }
 
         private PmcBom _pmcBom = new PmcBom();
@@ -250,8 +53,6 @@ namespace FanucCnc
                 return _recipes;
             }
         }
-
-        #endregion
 
         #region 静态刷新的连接句柄
         private ushort m_static_flib = 0;
@@ -289,9 +90,6 @@ namespace FanucCnc
         private bool m_paraautoairsource = false;
         private ParaAutoAirSourceInfo m_autoairsource_info = new ParaAutoAirSourceInfo();
 
-        private bool m_paradiehydr = false;
-        private ParaDieHydrInfo m_m_diehydr_info = new ParaDieHydrInfo();
-
         private bool m_paraworkcount = false;
         private ParaWorkCountInfo m_workcount_info = new ParaWorkCountInfo();
 
@@ -313,7 +111,7 @@ namespace FanucCnc
         public void ChangePageEvent(bool statemonitor = false, bool paradiechange = false, bool paradieclosing = false,
             bool paradieparting = false, bool parapressuremaint = false, bool paraautoairsource = false,
             bool paraworkcount = false,  bool pararecipes =false, bool sparamachine = false, bool sparalubricate = false, bool sparaanalog = false,
-            bool sparaencode = false, bool paradieclamp = false, bool paradiehydr=false)
+            bool sparaencode = false, bool paradieclamp = false)
         {
             m_statemonitor = statemonitor;
             m_paradiechange = paradiechange;
@@ -322,7 +120,6 @@ namespace FanucCnc
             m_paradieparting = paradieparting;
             m_parapressuremaint = parapressuremaint;
             m_paraautoairsource = paraautoairsource;
-            m_paradiehydr = paradiehydr;
             m_paraworkcount = paraworkcount;
             m_pararecipes = pararecipes;
             m_sparamachine = sparamachine;
@@ -340,11 +137,9 @@ namespace FanucCnc
         private StateMonitorLineChartData m_monitorline_info = new StateMonitorLineChartData();
         bool m_monitorline_indo = false;
 
-        private ushort m_simulatemonitorline_flib = 0;
-        private BackgroundWorker m_simulatemonitorline_BackgroundWorker = new BackgroundWorker();
-        int m_simulatemonitorline_freq = 50;
-        private StateMonitorLineChartData m_simulatemonitorline_info = new StateMonitorLineChartData();
-        bool m_simulatemonitorline_indo = false;
+        private short m_monitorline_inflag_adrtype = 0;
+        private ushort m_monitorline_inflag_adr = 0;
+        private ushort m_monitorline_inflag_bit = 0;
 
         #endregion
 
@@ -381,23 +176,11 @@ namespace FanucCnc
             m_monitorline_BackgroundWorker.DoWork += MonitorLineFunc;
             m_monitorline_BackgroundWorker.RunWorkerCompleted += MonitorLineCompleted;
 
-            //仿真曲线扫描线程
-            m_simulatemonitorline_BackgroundWorker.WorkerReportsProgress = false;
-            m_simulatemonitorline_BackgroundWorker.WorkerSupportsCancellation = true;
-            m_simulatemonitorline_BackgroundWorker.DoWork += SimulateMonitorLineFunc;
-            m_simulatemonitorline_BackgroundWorker.RunWorkerCompleted += SimulateMonitorLineCompleted;
 
-            //启动扫描
             ScannerStatic_Start();
             ScannerPage_Start();
 
-            //加载丝杠滑块对应表
-            Task.Factory.StartNew(() =>
-            {
-                LoadSlidingBlockTable();
-            });
 
-            
         }
 
         private short InitialPmcBom()
@@ -453,18 +236,6 @@ namespace FanucCnc
             _limitBom.DCP_DieWeight.LimitDown = 0;
             _limitBom.DCP_DieWeight.LimitUp = 10.5;
 
-            _limitBom.DCP_LoaderSafePosition = new LimitBomItem();
-            _limitBom.DCP_LoaderSafePosition.LimitDown = 0;
-            _limitBom.DCP_LoaderSafePosition.LimitUp = 1000.0;
-
-            #endregion
-
-            #region 夹模器设定
-            _limitBom.CLS_ClampRelaxPosition = new LimitBomItem();
-            _limitBom.CLS_ClampRelaxPosition.LimitDown = 10;
-            _limitBom.CLS_ClampRelaxPosition.LimitUp = 1000;
-
-
             #endregion
 
             #region 合模设定
@@ -488,9 +259,9 @@ namespace FanucCnc
             _limitBom.DJP_TopDeadCentre.LimitDown = 0;
             _limitBom.DJP_TopDeadCentre.LimitUp = 1280;
 
-            _limitBom.DJP_Speed_BottomDeadCentre = new LimitBomItem();
-            _limitBom.DJP_Speed_BottomDeadCentre.LimitDown = 0;
-            _limitBom.DJP_Speed_BottomDeadCentre.LimitUp = 100;
+            _limitBom.DJP_Speed_TopDeadCentre = new LimitBomItem();
+            _limitBom.DJP_Speed_TopDeadCentre.LimitDown = 0;
+            _limitBom.DJP_Speed_TopDeadCentre.LimitUp = 100;
 
             _limitBom.DJP_Pos_1 = new LimitBomItem();
             _limitBom.DJP_Pos_1.LimitDown = 0;
@@ -594,56 +365,14 @@ namespace FanucCnc
             _limitBom.DPP_Speed_1 = new LimitBomItem();
             _limitBom.DPP_Speed_1.LimitDown = 0;
             _limitBom.DPP_Speed_1.LimitUp = 100;
-            _limitBom.DPP_Pos_2 = new LimitBomItem();
-            _limitBom.DPP_Pos_2.LimitDown = 0;
-            _limitBom.DPP_Pos_2.LimitUp = 1280;
-            _limitBom.DPP_Speed_2 = new LimitBomItem();
-            _limitBom.DPP_Speed_2.LimitDown = 0;
-            _limitBom.DPP_Speed_2.LimitUp = 100;
-            _limitBom.DPP_Pos_3 = new LimitBomItem();
-            _limitBom.DPP_Pos_3.LimitDown = 0;
-            _limitBom.DPP_Pos_3.LimitUp = 1280;
-            _limitBom.DPP_Speed_3 = new LimitBomItem();
-            _limitBom.DPP_Speed_3.LimitDown = 0;
-            _limitBom.DPP_Speed_3.LimitUp = 100;
-            _limitBom.DPP_Pos_4 = new LimitBomItem();
-            _limitBom.DPP_Pos_4.LimitDown = 0;
-            _limitBom.DPP_Pos_4.LimitUp = 1280;
-            _limitBom.DPP_Speed_4 = new LimitBomItem();
-            _limitBom.DPP_Speed_4.LimitDown = 0;
-            _limitBom.DPP_Speed_4.LimitUp = 100;
-            _limitBom.DPP_Pos_5 = new LimitBomItem();
-            _limitBom.DPP_Pos_5.LimitDown = 0;
-            _limitBom.DPP_Pos_5.LimitUp = 1280;
-            _limitBom.DPP_Speed_5 = new LimitBomItem();
-            _limitBom.DPP_Speed_5.LimitDown = 0;
-            _limitBom.DPP_Speed_5.LimitUp = 100;
-            _limitBom.DPP_Pos_6 = new LimitBomItem();
-            _limitBom.DPP_Pos_6.LimitDown = 0;
-            _limitBom.DPP_Pos_6.LimitUp = 1280;
-            _limitBom.DPP_Speed_6 = new LimitBomItem();
-            _limitBom.DPP_Speed_6.LimitDown = 0;
-            _limitBom.DPP_Speed_6.LimitUp = 100;
-            _limitBom.DPP_Pos_7 = new LimitBomItem();
-            _limitBom.DPP_Pos_7.LimitDown = 0;
-            _limitBom.DPP_Pos_7.LimitUp = 1280;
-            _limitBom.DPP_Speed_7 = new LimitBomItem();
-            _limitBom.DPP_Speed_7.LimitDown = 0;
-            _limitBom.DPP_Speed_7.LimitUp = 100;
-            _limitBom.DPP_Pos_8 = new LimitBomItem();
-            _limitBom.DPP_Pos_8.LimitDown = 0;
-            _limitBom.DPP_Pos_8.LimitUp = 1280;
-            _limitBom.DPP_Speed_8 = new LimitBomItem();
-            _limitBom.DPP_Speed_8.LimitDown = 0;
-            _limitBom.DPP_Speed_8.LimitUp = 100;
 
             _limitBom.DPP_BottomDeadCentre = new LimitBomItem();
             _limitBom.DPP_BottomDeadCentre.LimitDown = 0;
             _limitBom.DPP_BottomDeadCentre.LimitUp = 20;
 
-            _limitBom.DPP_Speed_TopDeadCentre = new LimitBomItem();
-            _limitBom.DPP_Speed_TopDeadCentre.LimitDown = 0;
-            _limitBom.DPP_Speed_TopDeadCentre.LimitUp = 20;
+            _limitBom.DPP_Speed_BottomDeadCentre = new LimitBomItem();
+            _limitBom.DPP_Speed_BottomDeadCentre.LimitDown = 0;
+            _limitBom.DPP_Speed_BottomDeadCentre.LimitUp = 20;
 
             _limitBom.DPP_TopDeadCentre = new LimitBomItem();
             _limitBom.DPP_TopDeadCentre.LimitDown = 0;
@@ -706,23 +435,6 @@ namespace FanucCnc
             #endregion
 
             #region 工件计数
-
-            #endregion
-
-            #region 模具液压设定
-            _limitBom.DH_Mode = new LimitBomItem();
-            _limitBom.DH_Mode.LimitDown = 50;
-            _limitBom.DH_Mode.LimitUp = 100;
-            _limitBom.DH_Pressure = new LimitBomItem();
-            _limitBom.DH_Pressure.LimitDown = 750;
-            _limitBom.DH_Pressure.LimitUp = 900;
-            _limitBom.DH_PushPos = new LimitBomItem();
-            _limitBom.DH_PushPos.LimitDown = 750;
-            _limitBom.DH_PushPos.LimitUp = 900;
-            _limitBom.DH_PushDelayTime = new LimitBomItem();
-            _limitBom.DH_PushDelayTime.LimitDown = 750;
-            _limitBom.DH_PushDelayTime.LimitUp = 900;
-
 
             #endregion
 
@@ -1227,14 +939,6 @@ namespace FanucCnc
             _pmcBom.DCP_DieWeight.ConversionFactor = 1000;
             _pmcBom.DCP_DieWeight.IsRecipes = true;
 
-            _pmcBom.DCP_LoaderSafePosition = new PmcBomItem();
-            _pmcBom.DCP_LoaderSafePosition.Id = "PMC1022";
-            _pmcBom.DCP_LoaderSafePosition.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DCP_LoaderSafePosition.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DCP_LoaderSafePosition.Adr = 218;
-            _pmcBom.DCP_LoaderSafePosition.ConversionFactor = 1000;
-            _pmcBom.DCP_LoaderSafePosition.IsRecipes = true;
-
             #endregion
 
             #region 合模设定
@@ -1250,12 +954,17 @@ namespace FanucCnc
             _pmcBom.DJP_TopDeadCentre.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DJP_TopDeadCentre.Adr = 1020;
 
+            _pmcBom.DJP_Speed_TopDeadCentre = new PmcBomItem();
+            _pmcBom.DJP_Speed_TopDeadCentre.Id = "PMC2003";
+            _pmcBom.DJP_Speed_TopDeadCentre.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DJP_Speed_TopDeadCentre.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DJP_Speed_TopDeadCentre.Adr = 1120;
+
             _pmcBom.DJP_Pos_1 = new PmcBomItem();
             _pmcBom.DJP_Pos_1.Id = "PMC2004";
             _pmcBom.DJP_Pos_1.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DJP_Pos_1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DJP_Pos_1.Adr = 1024;
-            _pmcBom.DJP_Pos_1.ConversionFactor = 1000;
 
             _pmcBom.DJP_Speed_1 = new PmcBomItem();
             _pmcBom.DJP_Speed_1.Id = "PMC2005";
@@ -1263,12 +972,12 @@ namespace FanucCnc
             _pmcBom.DJP_Speed_1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DJP_Speed_1.Adr = 1124;
 
+
             _pmcBom.DJP_Pos_2 = new PmcBomItem();
             _pmcBom.DJP_Pos_2.Id = "PMC2006";
             _pmcBom.DJP_Pos_2.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DJP_Pos_2.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DJP_Pos_2.Adr = 1028;
-            _pmcBom.DJP_Pos_2.ConversionFactor = 1000;
 
             _pmcBom.DJP_Speed_2 = new PmcBomItem();
             _pmcBom.DJP_Speed_2.Id = "PMC2007";
@@ -1281,7 +990,6 @@ namespace FanucCnc
             _pmcBom.DJP_Pos_3.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DJP_Pos_3.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DJP_Pos_3.Adr = 1032;
-            _pmcBom.DJP_Pos_3.ConversionFactor = 1000;
 
             _pmcBom.DJP_Speed_3 = new PmcBomItem();
             _pmcBom.DJP_Speed_3.Id = "PMC2009";
@@ -1294,7 +1002,6 @@ namespace FanucCnc
             _pmcBom.DJP_Pos_4.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DJP_Pos_4.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DJP_Pos_4.Adr = 1036;
-            _pmcBom.DJP_Pos_4.ConversionFactor = 1000;
 
             _pmcBom.DJP_Speed_4 = new PmcBomItem();
             _pmcBom.DJP_Speed_4.Id = "PMC2011";
@@ -1307,7 +1014,6 @@ namespace FanucCnc
             _pmcBom.DJP_Pos_5.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DJP_Pos_5.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DJP_Pos_5.Adr = 1040;
-            _pmcBom.DJP_Pos_5.ConversionFactor = 1000;
 
             _pmcBom.DJP_Speed_5 = new PmcBomItem();
             _pmcBom.DJP_Speed_5.Id = "PMC2013";
@@ -1315,63 +1021,17 @@ namespace FanucCnc
             _pmcBom.DJP_Speed_5.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DJP_Speed_5.Adr = 1140;
 
-            _pmcBom.DJP_Pos_6 = new PmcBomItem();
-            _pmcBom.DJP_Pos_6.Id = "PMC2020";
-            _pmcBom.DJP_Pos_6.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DJP_Pos_6.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_Pos_6.Adr = 1044;
-            _pmcBom.DJP_Pos_6.ConversionFactor = 1000;
-
-            _pmcBom.DJP_Speed_6 = new PmcBomItem();
-            _pmcBom.DJP_Speed_6.Id = "PMC2021";
-            _pmcBom.DJP_Speed_6.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DJP_Speed_6.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_Speed_6.Adr = 1144;
-
-            _pmcBom.DJP_Pos_7 = new PmcBomItem();
-            _pmcBom.DJP_Pos_7.Id = "PMC2022";
-            _pmcBom.DJP_Pos_7.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DJP_Pos_7.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_Pos_7.Adr = 1048;
-            _pmcBom.DJP_Pos_7.ConversionFactor = 1000;
-
-            _pmcBom.DJP_Speed_7 = new PmcBomItem();
-            _pmcBom.DJP_Speed_7.Id = "PMC2023";
-            _pmcBom.DJP_Speed_7.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DJP_Speed_7.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_Speed_7.Adr = 1148;
-
-
-            _pmcBom.DJP_Pos_8 = new PmcBomItem();
-            _pmcBom.DJP_Pos_8.Id = "PMC2024";
-            _pmcBom.DJP_Pos_8.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DJP_Pos_8.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_Pos_8.Adr = 1052;
-            _pmcBom.DJP_Pos_8.ConversionFactor = 1000;
-
-            _pmcBom.DJP_Speed_8 = new PmcBomItem();
-            _pmcBom.DJP_Speed_8.Id = "PMC2024";
-            _pmcBom.DJP_Speed_8.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DJP_Speed_8.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_Speed_8.Adr = 1152;
-
             _pmcBom.DJP_BottomDeadCentre = new PmcBomItem();
             _pmcBom.DJP_BottomDeadCentre.Id = "PMC2014";
             _pmcBom.DJP_BottomDeadCentre.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DJP_BottomDeadCentre.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_BottomDeadCentre.Adr = 1064;
-
-            _pmcBom.DJP_Speed_BottomDeadCentre = new PmcBomItem();
-            _pmcBom.DJP_Speed_BottomDeadCentre.Id = "PMC2003";
-            _pmcBom.DJP_Speed_BottomDeadCentre.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DJP_Speed_BottomDeadCentre.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_Speed_BottomDeadCentre.Adr = 1164;
+            _pmcBom.DJP_BottomDeadCentre.Adr = 1044;
 
             _pmcBom.DJP_BottomDeadCentre_StopTime = new PmcBomItem();
             _pmcBom.DJP_BottomDeadCentre_StopTime.Id = "PMC2015";
             _pmcBom.DJP_BottomDeadCentre_StopTime.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DJP_BottomDeadCentre_StopTime.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DJP_BottomDeadCentre_StopTime.Adr = 1000;
+            _pmcBom.DJP_BottomDeadCentre_StopTime.Adr = 1044;
 
             #endregion
 
@@ -1386,101 +1046,23 @@ namespace FanucCnc
             _pmcBom.DPP_BottomDeadCentre.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DPP_BottomDeadCentre.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DPP_BottomDeadCentre.Adr = 1044;
-            _pmcBom.DPP_Speed_TopDeadCentre = new PmcBomItem();
-            _pmcBom.DPP_Speed_TopDeadCentre.Id = "PMC2022";
-            _pmcBom.DPP_Speed_TopDeadCentre.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Speed_TopDeadCentre.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Speed_TopDeadCentre.Adr = 1144;
+            _pmcBom.DPP_Speed_BottomDeadCentre = new PmcBomItem();
+            _pmcBom.DPP_Speed_BottomDeadCentre.Id = "PMC2022";
+            _pmcBom.DPP_Speed_BottomDeadCentre.AdrType = PmcAdrTypeEnum.D;
+            _pmcBom.DPP_Speed_BottomDeadCentre.DataType = PmcDataTypeEnum.LONG;
+            _pmcBom.DPP_Speed_BottomDeadCentre.Adr = 1144;
             _pmcBom.DPP_Pos_1 = new PmcBomItem();
             _pmcBom.DPP_Pos_1.Id = "PMC2023";
             _pmcBom.DPP_Pos_1.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DPP_Pos_1.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DPP_Pos_1.Adr = 1064;
-            _pmcBom.DPP_Pos_1.ConversionFactor = 1000;
             _pmcBom.DPP_Speed_1 = new PmcBomItem();
             _pmcBom.DPP_Speed_1.Id = "PMC2024";
             _pmcBom.DPP_Speed_1.Adr = 1148;
             _pmcBom.DPP_Speed_1.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DPP_Speed_1.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_2 = new PmcBomItem();
-            _pmcBom.DPP_Pos_2.Id = "PMC2025";
-            _pmcBom.DPP_Pos_2.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Pos_2.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_2.Adr = 1068;
-            _pmcBom.DPP_Pos_2.ConversionFactor = 1000;
-            _pmcBom.DPP_Speed_2 = new PmcBomItem();
-            _pmcBom.DPP_Speed_2.Id = "PMC2026";
-            _pmcBom.DPP_Speed_2.Adr = 1152;
-            _pmcBom.DPP_Speed_2.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Speed_2.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_3 = new PmcBomItem();
-            _pmcBom.DPP_Pos_3.Id = "PMC2027";
-            _pmcBom.DPP_Pos_3.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Pos_3.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_3.Adr = 1072;
-            _pmcBom.DPP_Pos_3.ConversionFactor = 1000;
-            _pmcBom.DPP_Speed_3 = new PmcBomItem();
-            _pmcBom.DPP_Speed_3.Id = "PMC2028";
-            _pmcBom.DPP_Speed_3.Adr = 1156;
-            _pmcBom.DPP_Speed_3.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Speed_3.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_4 = new PmcBomItem();
-            _pmcBom.DPP_Pos_4.Id = "PMC2029";
-            _pmcBom.DPP_Pos_4.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Pos_4.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_4.Adr = 1076;
-            _pmcBom.DPP_Pos_4.ConversionFactor = 1000;
-            _pmcBom.DPP_Speed_4 = new PmcBomItem();
-            _pmcBom.DPP_Speed_4.Id = "PMC2030";
-            _pmcBom.DPP_Speed_4.Adr = 1160;
-            _pmcBom.DPP_Speed_4.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Speed_4.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_5 = new PmcBomItem();
-            _pmcBom.DPP_Pos_5.Id = "PMC2031";
-            _pmcBom.DPP_Pos_5.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Pos_5.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_5.Adr = 1080;
-            _pmcBom.DPP_Pos_5.ConversionFactor = 1000;
-            _pmcBom.DPP_Speed_5 = new PmcBomItem();
-            _pmcBom.DPP_Speed_5.Id = "PMC2032";
-            _pmcBom.DPP_Speed_5.Adr = 1164;
-            _pmcBom.DPP_Speed_5.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Speed_5.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_6 = new PmcBomItem();
-            _pmcBom.DPP_Pos_6.Id = "PMC2033";
-            _pmcBom.DPP_Pos_6.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Pos_6.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_6.Adr = 1084;
-            _pmcBom.DPP_Pos_6.ConversionFactor = 1000;
-            _pmcBom.DPP_Speed_6 = new PmcBomItem();
-            _pmcBom.DPP_Speed_6.Id = "PMC2034";
-            _pmcBom.DPP_Speed_6.Adr = 1168;
-            _pmcBom.DPP_Speed_6.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Speed_6.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_7 = new PmcBomItem();
-            _pmcBom.DPP_Pos_7.Id = "PMC2035";
-            _pmcBom.DPP_Pos_7.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Pos_7.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_7.Adr = 1088;
-            _pmcBom.DPP_Pos_7.ConversionFactor = 1000;
-            _pmcBom.DPP_Speed_7 = new PmcBomItem();
-            _pmcBom.DPP_Speed_7.Id = "PMC2036";
-            _pmcBom.DPP_Speed_7.Adr = 1172;
-            _pmcBom.DPP_Speed_7.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Speed_7.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_8 = new PmcBomItem();
-            _pmcBom.DPP_Pos_8.Id = "PMC2037";
-            _pmcBom.DPP_Pos_8.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Pos_8.DataType = PmcDataTypeEnum.LONG;
-            _pmcBom.DPP_Pos_8.Adr = 1092;
-            _pmcBom.DPP_Pos_8.ConversionFactor = 1000;
-            _pmcBom.DPP_Speed_8 = new PmcBomItem();
-            _pmcBom.DPP_Speed_8.Id = "PMC2038";
-            _pmcBom.DPP_Speed_8.Adr = 1176;
-            _pmcBom.DPP_Speed_8.AdrType = PmcAdrTypeEnum.D;
-            _pmcBom.DPP_Speed_8.DataType = PmcDataTypeEnum.LONG;
             _pmcBom.DPP_TopDeadCentre = new PmcBomItem();
-            _pmcBom.DPP_TopDeadCentre.Id = "PMC2039";
+            _pmcBom.DPP_TopDeadCentre.Id = "PMC2027";
             _pmcBom.DPP_TopDeadCentre.Adr = 1020;
             _pmcBom.DPP_TopDeadCentre.AdrType = PmcAdrTypeEnum.D;
             _pmcBom.DPP_TopDeadCentre.DataType = PmcDataTypeEnum.LONG;
@@ -2219,67 +1801,6 @@ namespace FanucCnc
 
             #endregion
 
-            #region 模具压力设定
-            _pmcBom.DH_Mode = new PmcBomItem();
-            _pmcBom.DH_Mode.Id = "PMC1200";
-            _pmcBom.DH_Mode.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DH_Mode.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DH_Mode.Adr = 400;
-            _pmcBom.DH_Mode.IsRecipes = true;
-
-            _pmcBom.DH_Pressure = new PmcBomItem();
-            _pmcBom.DH_Pressure.Id = "PMC1201";
-            _pmcBom.DH_Pressure.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DH_Pressure.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DH_Pressure.Adr = 402;
-            _pmcBom.DH_Pressure.IsRecipes = true;
-
-            _pmcBom.DH_PushPos = new PmcBomItem();
-            _pmcBom.DH_PushPos.Id = "PMC1202";
-            _pmcBom.DH_PushPos.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DH_PushPos.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DH_PushPos.Adr = 404;
-            _pmcBom.DH_PushPos.IsRecipes = true;
-
-            _pmcBom.DH_PushDelayTime = new PmcBomItem();
-            _pmcBom.DH_PushDelayTime.Id = "PMC1203";
-            _pmcBom.DH_PushDelayTime.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DH_PushDelayTime.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DH_PushDelayTime.Adr = 406;
-            _pmcBom.DH_PushDelayTime.IsRecipes = true;
-
-            _pmcBom.DH_ActualPressure = new PmcBomItem();
-            _pmcBom.DH_ActualPressure.Id = "PMC1204";
-            _pmcBom.DH_ActualPressure.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DH_ActualPressure.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DH_ActualPressure.Adr = 408;
-            _pmcBom.DH_ActualPressure.IsRecipes = true;
-
-            _pmcBom.DH_ActualPos = new PmcBomItem();
-            _pmcBom.DH_ActualPos.Id = "PMC1205";
-            _pmcBom.DH_ActualPos.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DH_ActualPos.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DH_ActualPos.Adr = 410;
-            _pmcBom.DH_ActualPos.IsRecipes = true;
-
-            _pmcBom.DH_Run = new PmcBomItem();
-            _pmcBom.DH_Run.Id = "PMC1205";
-            _pmcBom.DH_Run.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DH_Run.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DH_Run.Adr = 420;
-            _pmcBom.DH_Run.Bit = 1;
-            _pmcBom.DH_Run.IsRecipes = true;
-
-            _pmcBom.DH_State = new PmcBomItem();
-            _pmcBom.DH_State.Id = "PMC1207";
-            _pmcBom.DH_State.AdrType = PmcAdrTypeEnum.E;
-            _pmcBom.DH_State.DataType = PmcDataTypeEnum.WORD;
-            _pmcBom.DH_State.Adr = 420;
-            _pmcBom.DH_State.Bit = 2;
-            _pmcBom.DH_State.IsRecipes = true;
-
-            #endregion
-
             #region 工件计数
             _pmcBom.WPP_DayPiece = new PmcBomItem();
             _pmcBom.WPP_DayPiece.Id = "PMC1124";
@@ -2826,19 +2347,15 @@ namespace FanucCnc
             #endregion
 
             #region 基础信息
-            _baseInfo.Ip = "192.168.1.1";
+            _baseInfo.Ip = "192.168.0.1";
             _baseInfo.Port = 8193;
             _baseInfo.Timeout = 10;
             _baseInfo.Increment = 1000.0;
             _baseInfo.CsdFolder = @"C:\Program Files (x86)\CNCScreen";
             _baseInfo.SciChartXTimeMax = 10000;
-            _baseInfo.RealTimeSciChartInflgAdrType = 12;
+            _baseInfo.RealTimeSciChartInflgAdrType = 5;
             _baseInfo.RealTimeSciChartInflgAdr = 444;
             _baseInfo.RealTimeSciChartInflgBit = 0;
-
-            _baseInfo.SimulateSciChartInflgAdrType = 12;
-            _baseInfo.SimulateSciChartInflgAdr = 444;
-            _baseInfo.SimulateSciChartInflgBit = 1;
 
             var jsonBaseInfo = JsonConvert.SerializeObject(_baseInfo, Formatting.Indented);
             using (StreamWriter sw = new StreamWriter(@"baseinfo.cfg", false))
@@ -2884,23 +2401,6 @@ namespace FanucCnc
             return res;
 
         }
-
-        public string SetSlidingTableDataPmc(PmcBomItem pmc, LimitBomItem limit, string data)
-        {
-            if (pmc == null) return "设定数据失败,PMC配置信息不完整";
-
-            ushort flib = 0;
-            var ret = BuildConnect(ref flib);
-            if (ret != 0) return "设定数据失败,连接失败";
-
-            var res = SetSlidingTableDataPmc_InTask(flib, pmc, limit, data);
-
-            FreeConnect(flib);
-
-            return res;
-
-        }
-        
 
         public string ChangePmcBit(PmcBomItem pmc)
         {
@@ -3049,7 +2549,11 @@ namespace FanucCnc
         }
 
         #endregion
-        
+
+        #region 曲线
+
+        #endregion
+
         #region 扫描
 
         #region 静态
@@ -3057,9 +2561,6 @@ namespace FanucCnc
         {
             short ret = -16;
             short conn = -16;
-            DateTime temp_time=DateTime.Now;
-            double temp_pos=0;
-
 
             while (m_static_BackgroundWorker.CancellationPending == false)
             {
@@ -3136,47 +2637,9 @@ namespace FanucCnc
                     m_static_info.CncAlarmList.Clear();
                 }
 
-                if(_slidingBlockTableLoaded==false)
-                {
-                    m_static_info.CncAlarmList.Add(new CncAlarm { Alm_No = 0, Type = 19, Axis = 0, Alm_Msg = "加载丝杠滑块数据表失败" });
-                }
-
                 #endregion
 
                 m_static_info.Increment = _baseInfo.Increment;
-
-                if (_slidingBlockTableLoaded == true)
-                {
-                    Focas1.ODBAXIS absolute = new Focas1.ODBAXIS();
-                    Focas1.cnc_absolute2(m_static_flib, 1, 8, absolute);
-
-                    double sliding = 0;
-                    var ret_sliding = SearchSlidingData((double)absolute.data[0] / _baseInfo.Increment, ref sliding);
-                    if(ret_sliding==null)
-                    {
-                        m_static_info.SliderPosition = sliding;
-
-
-                        var time_span = (DateTime.Now - temp_time).TotalMilliseconds;
-
-                        m_static_info.SliderSpeed = Math.Round((m_static_info.SliderPosition - temp_pos) / time_span * 1000.0, 3);
-
-                        temp_pos = m_static_info.SliderPosition;
-                        temp_time = DateTime.Now;
-                    }
-                }
-
-                StringBuilder str = new StringBuilder();
-                var ret_pn = Focas1.cnc_pdf_rdmain(m_static_flib, str);
-                if (ret_pn == 0)
-                {
-                    string[] sArray = str.ToString().Split('/');
-                    m_static_info.WorkPartName = sArray[sArray.Count() - 1];
-                }
-                else
-                {
-                    m_static_info.WorkPartName = "";
-                }
 
                 int mode_temp = 0;
                 GetPmc(_pmcBom.Mode, ref mode_temp, m_static_flib);
@@ -3213,8 +2676,6 @@ namespace FanucCnc
                 int dw_temp = 0;
                 GetPmc(_pmcBom.DayWork, ref dw_temp, m_static_flib);
                 m_static_info.DayWork = dw_temp;
-
-                
 
                 Messenger.Default.Send<CncStaticInfo>(m_static_info, "CncStaticInfoMsg");
 
@@ -3343,10 +2804,6 @@ namespace FanucCnc
                     double idha_dw = 0;
                     GetPmc(_pmcBom.DCP_DieWeight, ref idha_dw, m_page_flib);
                     m_diechange_info.DieWeight = idha_dw;
-
-                    double idha_lsp = 0;
-                    GetPmc(_pmcBom.DCP_LoaderSafePosition, ref idha_lsp, m_page_flib);
-                    m_diechange_info.LoaderSafePosition = idha_lsp;
 
                     Messenger.Default.Send<ParaDieChangeInfo>(m_diechange_info, "ParaDieChangeInfoMsg");
                 }
@@ -3534,155 +2991,155 @@ namespace FanucCnc
 
                     double b1mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_1_MoveOutStatus, ref b1mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_1_MoveOutStatus = b1mo;
+                    m_dieclamp_info.Clamp_Back_1_MoveOutStatus = f1mo;
 
                     double b1mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_1_MoveInStatus, ref b1mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_1_MoveInStatus = b1mi;
+                    m_dieclamp_info.Clamp_Back_1_MoveInStatus = f1mi;
 
                     double b2e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_2_Ebable, ref b2e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_2_Ebable = b2e;
+                    m_dieclamp_info.Clamp_Back_2_Ebable = f2e;
 
                     double b2mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_2_MoveOutStatus, ref b2mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_2_MoveOutStatus = b2mo;
+                    m_dieclamp_info.Clamp_Back_2_MoveOutStatus = f2mo;
 
                     double b2mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_2_MoveInStatus, ref b2mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_2_MoveInStatus = b2mi;
+                    m_dieclamp_info.Clamp_Back_2_MoveInStatus = f2mi;
 
                     double b3e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_3_Ebable, ref b3e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_3_Ebable = b3e;
+                    m_dieclamp_info.Clamp_Back_3_Ebable = f3e;
 
                     double b3mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_3_MoveOutStatus, ref b3mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_3_MoveOutStatus = b3mo;
+                    m_dieclamp_info.Clamp_Back_3_MoveOutStatus = f3mo;
 
                     double b3mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_3_MoveInStatus, ref b3mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_3_MoveInStatus = b3mi;
+                    m_dieclamp_info.Clamp_Back_3_MoveInStatus = f3mi;
 
                     double b4e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_4_Ebable, ref b4e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_4_Ebable = b4e;
+                    m_dieclamp_info.Clamp_Back_4_Ebable = f4e;
 
                     double b4mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_4_MoveOutStatus, ref b4mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_4_MoveOutStatus = b4mo;
+                    m_dieclamp_info.Clamp_Back_4_MoveOutStatus = f4mo;
 
                     double b4mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_4_MoveInStatus, ref b4mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_4_MoveInStatus = b4mi;
+                    m_dieclamp_info.Clamp_Back_4_MoveInStatus = f4mi;
 
                     double b5e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_5_Ebable, ref b5e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_5_Ebable = b5e;
+                    m_dieclamp_info.Clamp_Back_5_Ebable = f5e;
 
                     double b5mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_5_MoveOutStatus, ref b5mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_5_MoveOutStatus = b5mo;
+                    m_dieclamp_info.Clamp_Back_5_MoveOutStatus = f5mo;
 
                     double b5mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_5_MoveInStatus, ref b5mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_5_MoveInStatus = b5mi;
+                    m_dieclamp_info.Clamp_Back_5_MoveInStatus = f5mi;
 
                     double b6e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_6_Ebable, ref b6e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_6_Ebable = b6e;
+                    m_dieclamp_info.Clamp_Back_6_Ebable = f6e;
 
                     double b6mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_6_MoveOutStatus, ref b6mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_6_MoveOutStatus = b6mo;
+                    m_dieclamp_info.Clamp_Back_6_MoveOutStatus = f6mo;
 
                     double b6mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_6_MoveInStatus, ref b6mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_6_MoveInStatus = b6mi;
+                    m_dieclamp_info.Clamp_Back_6_MoveInStatus = f6mi;
 
                     double b7e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_7_Ebable, ref b7e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_7_Ebable = b7e;
+                    m_dieclamp_info.Clamp_Back_7_Ebable = f7e;
 
                     double b7mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_7_MoveOutStatus, ref b7mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_7_MoveOutStatus = b7mo;
+                    m_dieclamp_info.Clamp_Back_7_MoveOutStatus = f7mo;
 
                     double b7mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_7_MoveInStatus, ref b7mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_7_MoveInStatus = b7mi;
+                    m_dieclamp_info.Clamp_Back_7_MoveInStatus = f7mi;
 
                     double b8e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_8_Ebable, ref b8e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_8_Ebable = b8e;
+                    m_dieclamp_info.Clamp_Back_8_Ebable = f8e;
 
                     double b8mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_8_MoveOutStatus, ref b8mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_8_MoveOutStatus = b8mo;
+                    m_dieclamp_info.Clamp_Back_8_MoveOutStatus = f8mo;
 
                     double b8mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_8_MoveInStatus, ref b8mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_8_MoveInStatus = b8mi;
+                    m_dieclamp_info.Clamp_Back_8_MoveInStatus = f8mi;
 
                     double b9e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_9_Ebable, ref b9e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_9_Ebable = b9e;
+                    m_dieclamp_info.Clamp_Back_9_Ebable = f9e;
 
                     double b9mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_9_MoveOutStatus, ref b9mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_9_MoveOutStatus = b9mo;
+                    m_dieclamp_info.Clamp_Back_9_MoveOutStatus = f9mo;
 
                     double b9mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_9_MoveInStatus, ref b9mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_9_MoveInStatus = b9mi;
+                    m_dieclamp_info.Clamp_Back_9_MoveInStatus = f9mi;
 
                     double b10e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_10_Ebable, ref b10e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_10_Ebable = b10e;
+                    m_dieclamp_info.Clamp_Back_10_Ebable = f10e;
 
                     double b10mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_10_MoveOutStatus, ref b10mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_10_MoveOutStatus = b10mo;
+                    m_dieclamp_info.Clamp_Back_10_MoveOutStatus = f10mo;
 
                     double b10mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_10_MoveInStatus, ref b10mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_10_MoveInStatus = b10mi;
+                    m_dieclamp_info.Clamp_Back_10_MoveInStatus = f10mi;
 
                     double b11e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_11_Ebable, ref b11e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_11_Ebable = b11e;
+                    m_dieclamp_info.Clamp_Back_11_Ebable = f11e;
 
                     double b11mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_11_MoveOutStatus, ref b11mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_11_MoveOutStatus = b11mo;
+                    m_dieclamp_info.Clamp_Back_11_MoveOutStatus = f11mo;
 
                     double b11mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_11_MoveInStatus, ref b11mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_11_MoveInStatus = b11mi;
+                    m_dieclamp_info.Clamp_Back_11_MoveInStatus = f11mi;
 
                     double b12e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_12_Ebable, ref b12e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_12_Ebable = b12e;
+                    m_dieclamp_info.Clamp_Back_12_Ebable = f12e;
 
                     double b12mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_12_MoveOutStatus, ref b12mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_12_MoveOutStatus = b12mo;
+                    m_dieclamp_info.Clamp_Back_12_MoveOutStatus = f12mo;
 
                     double b12mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_12_MoveInStatus, ref b12mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_12_MoveInStatus = b12mi;
+                    m_dieclamp_info.Clamp_Back_12_MoveInStatus = f12mi;
 
                     double b13e = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_13_Ebable, ref b13e, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_13_Ebable = b13e;
+                    m_dieclamp_info.Clamp_Back_13_Ebable = f13e;
 
                     double b13mo = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_13_MoveOutStatus, ref b13mo, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_13_MoveOutStatus = b13mo;
+                    m_dieclamp_info.Clamp_Back_13_MoveOutStatus = f13mo;
 
                     double b13mi = 0;
                     GetPmc(_pmcBom.CLS_Clamp_Back_13_MoveInStatus, ref b13mi, m_page_flib);
-                    m_dieclamp_info.Clamp_Back_13_MoveInStatus = b13mi;
+                    m_dieclamp_info.Clamp_Back_13_MoveInStatus = f13mi;
 
                     Messenger.Default.Send<ParaDieClampInfo>(m_dieclamp_info, "ParaDieClampInfoMsg");
                 }
@@ -3691,8 +3148,6 @@ namespace FanucCnc
                 #region 合模设定
                 if (m_paradieclosing == true)
                 {
-                    m_statemonitor_info.LineChartFlag = m_simulatemonitorline_indo;
-
                     double sn_temp = 0;
                     GetPmc(_pmcBom.DJP_SectionNum, ref sn_temp, m_page_flib);
                     m_dieclosing_info.SectionNum = sn_temp;
@@ -3707,17 +3162,16 @@ namespace FanucCnc
 
                     Messenger.Default.Send<ParaDieClosingInfo>(m_dieclosing_info, "ParaDieClosingInfoMsg");
 
-                    double sliding = 0;
-
                     double p0_temp = 0;
                     GetPmc(_pmcBom.DJP_TopDeadCentre, ref p0_temp, m_page_flib);
-                    SearchSlidingData(p0_temp, ref sliding);
-                    m_dieclosingproc_info.TopDeadCentre = sliding;
+                    m_dieclosingproc_info.TopDeadCentre = p0_temp;
+                    double s0_temp = 0;
+                    GetPmc(_pmcBom.DJP_Speed_TopDeadCentre, ref s0_temp, m_page_flib);
+                    m_dieclosingproc_info.Speed_TopDeadCentre = s0_temp;
 
                     double p1_temp = 0;
                     GetPmc(_pmcBom.DJP_Pos_1, ref p1_temp, m_page_flib);
-                    SearchSlidingData(p1_temp, ref sliding);
-                    m_dieclosingproc_info.Pos_1 = sliding;
+                    m_dieclosingproc_info.Pos_1 = p1_temp;
                     double s1_temp = 0;
                     GetPmc(_pmcBom.DJP_Speed_1, ref s1_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_1 = s1_temp;
@@ -3727,8 +3181,7 @@ namespace FanucCnc
 
                     double p2_temp = 0;
                     GetPmc(_pmcBom.DJP_Pos_2, ref p2_temp, m_page_flib);
-                    SearchSlidingData(p2_temp, ref sliding);
-                    m_dieclosingproc_info.Pos_2 = sliding;
+                    m_dieclosingproc_info.Pos_2 = p2_temp;
                     double s2_temp = 0;
                     GetPmc(_pmcBom.DJP_Speed_2, ref s2_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_2 = s2_temp;
@@ -3738,8 +3191,7 @@ namespace FanucCnc
 
                     double p3_temp = 0;
                     GetPmc(_pmcBom.DJP_Pos_3, ref p3_temp, m_page_flib);
-                    SearchSlidingData(p3_temp, ref sliding);
-                    m_dieclosingproc_info.Pos_3 = sliding;
+                    m_dieclosingproc_info.Pos_3 = p3_temp;
                     double s3_temp = 0;
                     GetPmc(_pmcBom.DJP_Speed_3, ref s3_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_3 = s3_temp;
@@ -3749,8 +3201,7 @@ namespace FanucCnc
 
                     double p4_temp = 0;
                     GetPmc(_pmcBom.DJP_Pos_4, ref p4_temp, m_page_flib);
-                    SearchSlidingData(p4_temp, ref sliding);
-                    m_dieclosingproc_info.Pos_4 = sliding;
+                    m_dieclosingproc_info.Pos_4 = p4_temp;
                     double s4_temp = 0;
                     GetPmc(_pmcBom.DJP_Speed_4, ref s4_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_4 = s4_temp;
@@ -3760,8 +3211,7 @@ namespace FanucCnc
 
                     double p5_temp = 0;
                     GetPmc(_pmcBom.DJP_Pos_5, ref p5_temp, m_page_flib);
-                    SearchSlidingData(p5_temp, ref sliding);
-                    m_dieclosingproc_info.Pos_5 = sliding;
+                    m_dieclosingproc_info.Pos_5 = p5_temp;
                     double s5_temp = 0;
                     GetPmc(_pmcBom.DJP_Speed_5, ref s5_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_5 = s5_temp;
@@ -3771,8 +3221,7 @@ namespace FanucCnc
 
                     double p6_temp = 0;
                     GetPmc(_pmcBom.DJP_Pos_6, ref p6_temp, m_page_flib);
-                    SearchSlidingData(p6_temp, ref sliding);
-                    m_dieclosingproc_info.Pos_6 = sliding;
+                    m_dieclosingproc_info.Pos_6 = p6_temp;
                     double s6_temp = 0;
                     GetPmc(_pmcBom.DJP_Speed_6, ref s6_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_6 = s6_temp;
@@ -3782,8 +3231,7 @@ namespace FanucCnc
 
                     double p7_temp = 0;
                     GetPmc(_pmcBom.DJP_Pos_7, ref p7_temp, m_page_flib);
-                    SearchSlidingData(p7_temp, ref sliding);
-                    m_dieclosingproc_info.Pos_7 = sliding;
+                    m_dieclosingproc_info.Pos_7 = p7_temp;
                     double s7_temp = 0;
                     GetPmc(_pmcBom.DJP_Speed_7, ref s7_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_7 = s7_temp;
@@ -3793,8 +3241,7 @@ namespace FanucCnc
 
                     double p8_temp = 0;
                     GetPmc(_pmcBom.DJP_Pos_8, ref p8_temp, m_page_flib);
-                    SearchSlidingData(p8_temp, ref sliding);
-                    m_dieclosingproc_info.Pos_8 = sliding;
+                    m_dieclosingproc_info.Pos_8 = p8_temp;
                     double s8_temp = 0;
                     GetPmc(_pmcBom.DJP_Speed_8, ref s8_temp, m_page_flib);
                     m_dieclosingproc_info.Speed_8 = s8_temp;
@@ -3804,16 +3251,15 @@ namespace FanucCnc
 
                     double bdc_temp = 0;
                     GetPmc(_pmcBom.DJP_BottomDeadCentre, ref bdc_temp, m_page_flib);
-                    SearchSlidingData(bdc_temp, ref sliding);
-                    m_dieclosingproc_info.BottomDeadCentre = sliding;
+                    m_dieclosingproc_info.BottomDeadCentre = bdc_temp;
 
                     double bdc_st_temp = 0;
                     GetPmc(_pmcBom.DJP_BottomDeadCentre_StopTime, ref bdc_st_temp, m_page_flib);
                     m_dieclosingproc_info.BottomDeadCentre_StopTime = bdc_st_temp;
 
                     double bdcs_temp = 0;
-                    GetPmc(_pmcBom.DJP_Speed_BottomDeadCentre, ref bdcs_temp, m_page_flib);
-                    m_dieclosingproc_info.Speed_BottomDeadCentre = bdcs_temp;
+                    GetPmc(_pmcBom.DJP_Speed_TopDeadCentre, ref bdcs_temp, m_page_flib);
+                    m_dieclosingproc_info.Speed_TopDeadCentre = bdcs_temp;
 
                     double sn2_temp = 0;
                     GetPmc(_pmcBom.DJP_SectionNum, ref sn2_temp, m_page_flib);
@@ -3826,9 +3272,6 @@ namespace FanucCnc
                 #region 开模设定
                 if (m_paradieparting == true)
                 {
-                    m_statemonitor_info.LineChartFlag = m_simulatemonitorline_indo;
-
-                    double sliding = 0;
                     double sn_temp = 0;
                     GetPmc(_pmcBom.DPP_SectionNum, ref sn_temp, m_page_flib);
                     m_dieparting_info.SectionNum = sn_temp;
@@ -3838,75 +3281,22 @@ namespace FanucCnc
 
                     double p1_temp = 0;
                     GetPmc(_pmcBom.DPP_Pos_1, ref p1_temp, m_page_flib);
-                    SearchSlidingData(p1_temp, ref sliding);
-                    m_diepartingproc_info.Pos_1 = sliding;
+                    m_diepartingproc_info.Pos_1 = p1_temp;
                     double s1_temp = 0;
                     GetPmc(_pmcBom.DPP_Speed_1, ref s1_temp, m_page_flib);
                     m_diepartingproc_info.Speed_1 = s1_temp;
-                    double p2_temp = 0;
-                    GetPmc(_pmcBom.DPP_Pos_2, ref p2_temp, m_page_flib);
-                    SearchSlidingData(p2_temp, ref sliding);
-                    m_diepartingproc_info.Pos_2 = sliding;
-                    double s2_temp = 0;
-                    GetPmc(_pmcBom.DPP_Speed_2, ref s2_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_2 = s2_temp;
-                    double p3_temp = 0;
-                    GetPmc(_pmcBom.DPP_Pos_3, ref p3_temp, m_page_flib);
-                    SearchSlidingData(p3_temp, ref sliding);
-                    m_diepartingproc_info.Pos_3 = sliding;
-                    double s3_temp = 0;
-                    GetPmc(_pmcBom.DPP_Speed_3, ref s3_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_3 = s3_temp;
-                    double p4_temp = 0;
-                    GetPmc(_pmcBom.DPP_Pos_4, ref p4_temp, m_page_flib);
-                    SearchSlidingData(p4_temp, ref sliding);
-                    m_diepartingproc_info.Pos_4 = sliding;
-                    double s4_temp = 0;
-                    GetPmc(_pmcBom.DPP_Speed_4, ref s4_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_4 = s4_temp;
-                    double p5_temp = 0;
-                    GetPmc(_pmcBom.DPP_Pos_5, ref p5_temp, m_page_flib);
-                    SearchSlidingData(p5_temp, ref sliding);
-                    m_diepartingproc_info.Pos_5 = sliding;
-                    double s5_temp = 0;
-                    GetPmc(_pmcBom.DPP_Speed_5, ref s5_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_5 = s5_temp;
-                    double p6_temp = 0;
-                    GetPmc(_pmcBom.DPP_Pos_6, ref p6_temp, m_page_flib);
-                    SearchSlidingData(p6_temp, ref sliding);
-                    m_diepartingproc_info.Pos_6 = sliding;
-                    double s6_temp = 0;
-                    GetPmc(_pmcBom.DPP_Speed_6, ref s6_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_6 = s6_temp;
-                    double p7_temp = 0;
-                    GetPmc(_pmcBom.DPP_Pos_7, ref p7_temp, m_page_flib);
-                    SearchSlidingData(p7_temp, ref sliding);
-                    m_diepartingproc_info.Pos_7 = sliding;
-                    double s7_temp = 0;
-                    GetPmc(_pmcBom.DPP_Speed_7, ref s7_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_7 = s7_temp;
-                    double p8_temp = 0;
-                    GetPmc(_pmcBom.DPP_Pos_8, ref p8_temp, m_page_flib);
-                    SearchSlidingData(p8_temp, ref sliding);
-                    m_diepartingproc_info.Pos_8 = sliding;
-                    double s8_temp = 0;
-                    GetPmc(_pmcBom.DPP_Speed_8, ref s8_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_8 = s8_temp;
-
                     //double t1_temp = 0;
                     //GetMacro(_macroBom.DPP_StopTime_1.Adr, ref t1_temp, m_page_flib);
                     //m_diepartingproc_info.StopTime_1 = t1_temp;
                     double bdc_temp = 0;
                     GetPmc(_pmcBom.DPP_BottomDeadCentre, ref bdc_temp, m_page_flib);
-                    SearchSlidingData(bdc_temp, ref sliding);
-                    m_diepartingproc_info.BottomDeadCentre = sliding;
+                    m_diepartingproc_info.BottomDeadCentre = bdc_temp;
                     double bdcs_temp = 0;
-                    GetPmc(_pmcBom.DPP_Speed_TopDeadCentre, ref bdcs_temp, m_page_flib);
-                    m_diepartingproc_info.Speed_TopDeadCentre = bdcs_temp;
+                    GetPmc(_pmcBom.DPP_Speed_BottomDeadCentre, ref bdcs_temp, m_page_flib);
+                    m_diepartingproc_info.Speed_BottomDeadCentre = bdcs_temp;
                     double tdc_temp = 0;
                     GetPmc(_pmcBom.DPP_TopDeadCentre, ref tdc_temp, m_page_flib);
-                    SearchSlidingData(tdc_temp, ref sliding);
-                    m_diepartingproc_info.TopDeadCentre = sliding;
+                    m_diepartingproc_info.TopDeadCentre = tdc_temp;
 
                     double sn2_temp = 0;
                     GetPmc(_pmcBom.DPP_SectionNum, ref sn2_temp, m_page_flib);
@@ -3950,7 +3340,7 @@ namespace FanucCnc
                     GetPmc(_pmcBom.AAS_StartPos_1, ref sp1_temp, m_page_flib);
                     m_autoairsource_info.StartPos_1 = sp1_temp;
 
-                    double sa1_temp = 0;
+                    bool sa1_temp = false;
                     GetPmc(_pmcBom.AAS_StartArr_1, ref sa1_temp, m_page_flib);
                     m_autoairsource_info.StartArr_1 = sa1_temp;
 
@@ -3958,11 +3348,11 @@ namespace FanucCnc
                     GetPmc(_pmcBom.AAS_EndPos_1, ref ep1_temp, m_page_flib);
                     m_autoairsource_info.EndPos_1 = ep1_temp;
 
-                    double ea1_temp = 0;
+                    bool ea1_temp = false;
                     GetPmc(_pmcBom.AAS_EndArr_1, ref ea1_temp, m_page_flib);
                     m_autoairsource_info.EndArr_1 = ea1_temp;
 
-                    double af1_temp = 0;
+                    bool af1_temp = false;
                     GetPmc(_pmcBom.AAS_ActionFlag_1, ref af1_temp, m_page_flib);
                     m_autoairsource_info.ActionFlag_1 = af1_temp;
 
@@ -3970,7 +3360,7 @@ namespace FanucCnc
                     GetPmc(_pmcBom.AAS_StartPos_2, ref sp2_temp, m_page_flib);
                     m_autoairsource_info.StartPos_2 = sp2_temp;
 
-                    double sa2_temp = 0;
+                    bool sa2_temp = false;
                     GetPmc(_pmcBom.AAS_StartArr_2, ref sa2_temp, m_page_flib);
                     m_autoairsource_info.StartArr_2 = sa2_temp;
 
@@ -3978,11 +3368,11 @@ namespace FanucCnc
                     GetPmc(_pmcBom.AAS_EndPos_2, ref ep2_temp, m_page_flib);
                     m_autoairsource_info.EndPos_2 = ep2_temp;
 
-                    double ea2_temp = 0;
+                    bool ea2_temp = false;
                     GetPmc(_pmcBom.AAS_EndArr_2, ref ea2_temp, m_page_flib);
                     m_autoairsource_info.EndArr_2 = ea2_temp;
 
-                    double af2_temp = 0;
+                    bool af2_temp = false;
                     GetPmc(_pmcBom.AAS_ActionFlag_2, ref af2_temp, m_page_flib);
                     m_autoairsource_info.ActionFlag_2 = af2_temp;
 
@@ -3990,7 +3380,7 @@ namespace FanucCnc
                     GetPmc(_pmcBom.AAS_StartPos_3, ref sp3_temp, m_page_flib);
                     m_autoairsource_info.StartPos_3 = sp3_temp;
 
-                    double sa3_temp = 0;
+                    bool sa3_temp = false;
                     GetPmc(_pmcBom.AAS_StartArr_3, ref sa3_temp, m_page_flib);
                     m_autoairsource_info.StartArr_3 = sa3_temp;
 
@@ -3998,11 +3388,11 @@ namespace FanucCnc
                     GetPmc(_pmcBom.AAS_EndPos_3, ref ep3_temp, m_page_flib);
                     m_autoairsource_info.EndPos_3 = ep3_temp;
 
-                    double ea3_temp = 0;
+                    bool ea3_temp = false;
                     GetPmc(_pmcBom.AAS_EndArr_3, ref ea3_temp, m_page_flib);
                     m_autoairsource_info.EndArr_3 = ea3_temp;
 
-                    double af3_temp = 0;
+                    bool af3_temp = false;
                     GetPmc(_pmcBom.AAS_ActionFlag_3, ref af3_temp, m_page_flib);
                     m_autoairsource_info.ActionFlag_3 = af3_temp;
 
@@ -4010,7 +3400,7 @@ namespace FanucCnc
                     GetPmc(_pmcBom.AAS_StartPos_4, ref sp4_temp, m_page_flib);
                     m_autoairsource_info.StartPos_4 = sp4_temp;
 
-                    double sa4_temp = 0;
+                    bool sa4_temp = false;
                     GetPmc(_pmcBom.AAS_StartArr_4, ref sa4_temp, m_page_flib);
                     m_autoairsource_info.StartArr_4 = sa4_temp;
 
@@ -4018,56 +3408,16 @@ namespace FanucCnc
                     GetPmc(_pmcBom.AAS_EndPos_4, ref ep4_temp, m_page_flib);
                     m_autoairsource_info.EndPos_4 = ep4_temp;
 
-                    double ea4_temp = 0;
+                    bool ea4_temp = false;
                     GetPmc(_pmcBom.AAS_EndArr_4, ref ea4_temp, m_page_flib);
                     m_autoairsource_info.EndArr_4 = ea4_temp;
 
-                    double af4_temp = 0;
+                    bool af4_temp = false;
                     GetPmc(_pmcBom.AAS_ActionFlag_4, ref af4_temp, m_page_flib);
                     m_autoairsource_info.ActionFlag_4 = af4_temp;
 
                     Messenger.Default.Send<ParaAutoAirSourceInfo>(m_autoairsource_info, "ParaAutoAirSourceInfoMsg");
                 }
-                #endregion
-
-                #region 模具液压设定
-                if (m_paradiehydr == true)
-                {
-                    double dhmo_temp = 0;
-                    GetPmc(_pmcBom.DH_Mode, ref dhmo_temp, m_page_flib);
-                    m_m_diehydr_info.Mode = dhmo_temp;
-
-                    double dhps_temp = 0;
-                    GetPmc(_pmcBom.DH_Pressure, ref dhps_temp, m_page_flib);
-                    m_m_diehydr_info.Pressure = dhps_temp;
-
-                    double dhpp_temp = 0;
-                    GetPmc(_pmcBom.DH_PushPos, ref dhpp_temp, m_page_flib);
-                    m_m_diehydr_info.PushPos = dhpp_temp;
-
-                    double dhpdt_temp = 0;
-                    GetPmc(_pmcBom.DH_PushDelayTime, ref dhpdt_temp, m_page_flib);
-                    m_m_diehydr_info.PushDelayTime = dhpdt_temp;
-
-                    double dhap_temp = 0;
-                    GetPmc(_pmcBom.DH_ActualPressure, ref dhap_temp, m_page_flib);
-                    m_m_diehydr_info.ActualPressure = dhap_temp;
-
-                    double dhapos_temp = 0;
-                    GetPmc(_pmcBom.DH_ActualPos, ref dhapos_temp, m_page_flib);
-                    m_m_diehydr_info.ActualPos = dhapos_temp;
-
-                    double dhrun_temp = 0;
-                    GetPmc(_pmcBom.DH_Run, ref dhrun_temp, m_page_flib);
-                    m_m_diehydr_info.Run = dhrun_temp;
-
-                    double dhstate_temp = 0;
-                    GetPmc(_pmcBom.DH_State, ref dhstate_temp, m_page_flib);
-                    m_m_diehydr_info.State = dhstate_temp;
-
-                    Messenger.Default.Send<ParaDieHydrInfo>(m_m_diehydr_info, "ParaDieHydrInfoMsg");
-                }
-
                 #endregion
 
                 #region 工件计数
@@ -4551,16 +3901,13 @@ namespace FanucCnc
             short ret = 0;
             short conn = -16;
             double index = 0;
-            DateTime temp_time=DateTime.Now;
-            double temp_pos=0;
+            DateTime temp_time;
+            double temp_pos;
             bool inflag = false;
-            bool first_item = true;
 
             while (m_monitorline_BackgroundWorker.CancellationPending == false)
             {
                 Thread.Sleep(m_monitorline_freq);
-
-                if (_slidingBlockTableLoaded == false) continue;
 
                 if (conn != 0)
                 {
@@ -4571,77 +3918,52 @@ namespace FanucCnc
                 }
 
                 {
+                    Focas1.ODBAXIS buf = new Focas1.ODBAXIS();
+                    ret = Focas1.cnc_absolute2(m_monitorline_flib, -1, 200, buf);
+                    if (ret == -16) conn = -16;
+                    temp_pos = (double)buf.data[1] / _baseInfo.Increment;
+
+                    temp_time = DateTime.Now;
+                }
+
+                {
                     ReadPmcDataByBit_InTask(m_monitorline_flib, _baseInfo.RealTimeSciChartInflgAdrType,
                         _baseInfo.RealTimeSciChartInflgAdr,
                         _baseInfo.RealTimeSciChartInflgBit,
                         ref inflag);
                 }
 
+                inflag = true;
+
                 if (inflag == true)
                 {
+                    Focas1.ODBAXIS buf = new Focas1.ODBAXIS();
+                    ret = Focas1.cnc_absolute2(m_monitorline_flib, -1, 200, buf);
+                    if (ret == -16) conn = -16;
 
-                    if (first_item == true)
+                    if (ret == 0)
                     {
-                        Focas1.ODBAXIS absolute = new Focas1.ODBAXIS();
-                        ret = Focas1.cnc_absolute2(m_monitorline_flib, -1, 200, absolute);
-                        if (ret == -16) conn = -16;
+                        var time_span = (DateTime.Now - temp_time).TotalMilliseconds;
 
-                        double sliding = 0;
-                        var ret_sliding = SearchSlidingData((double)absolute.data[0] / _baseInfo.Increment, ref sliding);
+                        m_monitorline_info.Pos = (double)buf.data[1] / _baseInfo.Increment;
+                        m_monitorline_info.Speed = (m_monitorline_info.Pos - temp_pos) / time_span * 1000.0;
 
-                        if(ret_sliding==null)
-                        {
-                            temp_pos = sliding;
-                            temp_time = DateTime.Now;
-                            first_item = false;
-                        }
-                    }
-                    else
-                    {
+                        temp_pos = m_monitorline_info.Pos;
+                        temp_time = DateTime.Now;
 
-                        try
-                        {
-                            Focas1.ODBAXIS absolute = new Focas1.ODBAXIS();
-                            ret = Focas1.cnc_absolute2(m_monitorline_flib, -1, 200, absolute);
-                            if (ret == -16) conn = -16;
-
-                            short svmeter_num = 1;
-                            Focas1.ODBSVLOAD loadmeter = new Focas1.ODBSVLOAD();
-                            Focas1.cnc_rdsvmeter(m_monitorline_flib, ref svmeter_num, loadmeter);
-
-                            if (ret == 0)
-                            {
-                                var time_span = (DateTime.Now - temp_time).TotalMilliseconds;
-
-                                double screw = (double)absolute.data[0] / _baseInfo.Increment;
-                                double sliding = 0;
-                                var ret_sliding = SearchSlidingData(screw, ref sliding);
-
-                                if(ret_sliding==null)
-                                {
-                                    m_monitorline_info.Pos = sliding;
-                                    m_monitorline_info.Speed = (m_monitorline_info.Pos - temp_pos) / time_span * 1000.0;
-                                    m_monitorline_info.Tem = screw;
-                                    m_monitorline_info.Press = loadmeter.svload1.data * Math.Pow(10, -1 * loadmeter.svload1.dec);
-
-                                    temp_pos = m_monitorline_info.Pos;
-                                    temp_time = DateTime.Now;
-
-
-
-                                    index += time_span;
-                                    m_monitorline_info.Time = index;
-                                    Messenger.Default.Send<StateMonitorLineChartData>(m_monitorline_info, "StateMonitorLineChartDataMsg");
-                                }
-                            }
-                        }
-                        catch { }
+                        index += time_span;
+                        m_monitorline_info.Time = index;
+                        Messenger.Default.Send<StateMonitorLineChartData>(m_monitorline_info, "StateMonitorLineChartDataMsg");
                     }
                 }
                 else
                 {
+                    Focas1.ODBAXIS buf = new Focas1.ODBAXIS();
+                    ret = Focas1.cnc_absolute2(m_monitorline_flib, 1, 8, buf);
+                    if (ret == -16) conn = -16;
+                    temp_pos = (double)buf.data[0] / _baseInfo.Increment;
 
-                    first_item = true;
+                    temp_time = DateTime.Now;
                     index = 0;
                 }
 
@@ -4679,139 +4001,6 @@ namespace FanucCnc
 
         #endregion
 
-        #region 预览曲线
-        private void SimulateMonitorLineFunc(object sender, DoWorkEventArgs e)
-        {
-            short ret = 0;
-            short conn = -16;
-            double index = 0;
-            DateTime temp_time = DateTime.Now;
-            double temp_pos = 0;
-            bool inflag = false;
-            bool first_item = true;
-
-            while (m_simulatemonitorline_BackgroundWorker.CancellationPending == false)
-            {
-                Thread.Sleep(m_simulatemonitorline_freq);
-
-                if (_slidingBlockTableLoaded == false) continue;
-
-                if (conn != 0)
-                {
-                    FreeConnect(m_simulatemonitorline_flib);
-
-                    ret = BuildConnect(ref m_simulatemonitorline_flib);
-                    if (ret == 0) conn = 0;
-                }
-
-                {
-                    ReadPmcDataByBit_InTask(m_simulatemonitorline_flib, _baseInfo.SimulateSciChartInflgAdrType,
-                        _baseInfo.SimulateSciChartInflgAdr,
-                        _baseInfo.SimulateSciChartInflgBit,
-                        ref inflag);
-                }
-
-                if (inflag == true)
-                {
-
-                    if (first_item == true)
-                    {
-                        Focas1.ODBAXIS absolute = new Focas1.ODBAXIS();
-                        ret = Focas1.cnc_absolute2(m_simulatemonitorline_flib, -1, 200, absolute);
-                        if (ret == -16) conn = -16;
-
-                        double sliding = 0;
-                        var ret_sliding = SearchSlidingData((double)absolute.data[0] / _baseInfo.Increment, ref sliding);
-
-                        if (ret_sliding == null)
-                        {
-                            temp_pos = sliding;
-                            temp_time = DateTime.Now;
-                            first_item = false;
-                        }
-                    }
-                    else
-                    {
-
-                        try
-                        {
-                            Focas1.ODBAXIS absolute = new Focas1.ODBAXIS();
-                            ret = Focas1.cnc_absolute2(m_simulatemonitorline_flib, -1, 200, absolute);
-                            if (ret == -16) conn = -16;
-
-                            short svmeter_num = 1;
-                            Focas1.ODBSVLOAD loadmeter = new Focas1.ODBSVLOAD();
-                            Focas1.cnc_rdsvmeter(m_simulatemonitorline_flib, ref svmeter_num, loadmeter);
-
-                            if (ret == 0)
-                            {
-                                var time_span = (DateTime.Now - temp_time).TotalMilliseconds;
-
-                                double screw = (double)absolute.data[0] / _baseInfo.Increment;
-                                double sliding = 0;
-                                var ret_sliding = SearchSlidingData(screw, ref sliding);
-
-                                if (ret_sliding == null)
-                                {
-                                    m_simulatemonitorline_info.Pos = sliding;
-                                    m_simulatemonitorline_info.Speed = (m_simulatemonitorline_info.Pos - temp_pos) / time_span * 1000.0;
-                                    m_simulatemonitorline_info.Tem = screw;
-                                    m_simulatemonitorline_info.Press = loadmeter.svload1.data * Math.Pow(10, -1 * loadmeter.svload1.dec);
-
-                                    temp_pos = m_simulatemonitorline_info.Pos;
-                                    temp_time = DateTime.Now;
-
-
-
-                                    index += time_span;
-                                    m_simulatemonitorline_info.Time = index;
-                                    Messenger.Default.Send<StateMonitorLineChartData>(m_simulatemonitorline_info, "SimulateLineChartDataMsg");
-                                }
-                            }
-                        }
-                        catch { }
-                    }
-                }
-                else
-                {
-
-                    first_item = true;
-                    index = 0;
-                }
-
-            }
-
-            FreeConnect(m_simulatemonitorline_flib);
-        }
-
-        public void SimulateMonitorLine_Start()
-        {
-            try
-            {
-                //TODO:NO CNC
-                if (_simulate == false) m_simulatemonitorline_BackgroundWorker.RunWorkerAsync();
-                m_simulatemonitorline_indo = true;
-            }
-            catch
-            {
-
-            }
-        }
-
-        public void SimulateMonitorLine_Cancel()
-        {
-            m_simulatemonitorline_BackgroundWorker.CancelAsync();
-        }
-
-        private void SimulateMonitorLineCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            m_simulatemonitorline_indo = false;
-
-            FreeConnect(m_simulatemonitorline_flib);
-            m_simulatemonitorline_flib = 0;
-        }
-        #endregion
-
         #endregion
 
         #region 公共函数
@@ -4819,7 +4008,6 @@ namespace FanucCnc
         {
             short ret = 0;
             Focas1.cnc_freelibhndl(flib);
-
 
             //if (_simulate == false) ret = Focas1.cnc_allclibhndl2(0, out flib);
             ret = Focas1.cnc_allclibhndl3(_baseInfo.Ip, _baseInfo.Port, _baseInfo.Timeout, out flib);
@@ -5124,64 +4312,6 @@ namespace FanucCnc
                         if (ret != 0) return "设定数据失败,CNC设定失败";
                     }
                     break;
-            }
-
-
-
-            return null;
-        }
-
-        private string SetSlidingTableDataPmc_InTask(ushort flib, PmcBomItem pmc, LimitBomItem limit, string data)
-        {
-            short ret = 0;
-            bool ret_parse = false;
-
-            switch (pmc.DataType)
-            {
-                case PmcDataTypeEnum.LONG:
-                    int lTemp = 0;
-                    double db;
-
-                    if (pmc.ConversionFactor == null)
-                    {
-                        return "设定数据失败,PMC数据配置错误,没有定义转换因子";
-
-                    }
-                    else
-                    {
-                        ret_parse = double.TryParse(data, out db);
-
-                        if (limit.LimitDown.HasValue)
-                        {
-                            if (db < limit.LimitDown.Value) return "设定数据失败,数据超限";
-                        }
-                        if (limit.LimitUp.HasValue)
-                        {
-                            if (db > limit.LimitUp.Value) return "设定数据失败,数据超限";
-                        }
-
-                        if (db * pmc.ConversionFactor > 4294967295) return "设定数据失败,输入数据超限(系统)";
-                        //lTemp = (int)(db * pmc.ConversionFactor);
-                    }
-                    if (ret_parse == false) return "设定数据失败,输入数据格式不正确";
-
-
-                    if (ret_parse == true)
-                    {
-                        if(_slidingBlockTableLoaded==false) return "设定数据失败,工艺数据表中未成功加载";
-
-                        
-                        double screw = 0;
-                        var ret_screw = SearchScrewData(db, ref screw);
-                        if (ret_screw != null) return ret_screw;
-                        lTemp = (int)(screw * pmc.ConversionFactor);
-
-                        ret = WritePmcDataByLong_InTask(flib, (short)pmc.AdrType, pmc.Adr, lTemp);
-                        if (ret != 0) return "设定数据失败,CNC设定失败";
-                    }
-                    break;
-                default:
-                    return "设定数据失败,数据类型错误";
             }
 
 

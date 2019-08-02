@@ -8,7 +8,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="730" d:DesignWidth="1770"
+      d:DesignHeight="608" d:DesignWidth="940"
       Title="MaintainSubLimitPage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -38,23 +38,23 @@
                 
                 <Style TargetType="DataGridRowHeader">
                     <Setter Property="FontSize" Value="22" />
+
                 </Style>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Height" Value="60" />
-                    <Setter Property="Foreground" Value="Black" />
-                    <Setter Property="Background" Value="Transparent" />
-                    <Setter Property="FontSize" Value="{StaticResource TextPrimerSize}" />
+                    <Setter Property="Height" Value="40" />
+                    <Setter Property="Foreground" Value="White" />
+                    <Setter Property="Background" Value="Black" />
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
-                <DataGridTemplateColumn Header="数据名称">
+                <DataGridTemplateColumn Header="名称">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Title}"  VerticalAlignment="Center" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="数据上限">
+                <DataGridTemplateColumn Header="上限">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Text="{Binding LimitUp}" Width="260"  IsReadOnly="True"  HorizontalAlignment="Left">
@@ -66,7 +66,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="数据下限">
+                <DataGridTemplateColumn Header="下限">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBox Text="{Binding LimitDown}"   IsReadOnly="True" Width="260" HorizontalAlignment="Left">

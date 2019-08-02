@@ -23,9 +23,5 @@ namespace FanucCnc.Model
         public short RealTimeSciChartInflgAdrType { get; set; }
         public ushort RealTimeSciChartInflgAdr { get; set; }
         public ushort RealTimeSciChartInflgBit { get; set; }
-
-        public short SimulateSciChartInflgAdrType { get; set; }
-        public ushort SimulateSciChartInflgAdr { get; set; }
-        public ushort SimulateSciChartInflgBit { get; set; }
     }
 }

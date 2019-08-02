@@ -24,12 +24,10 @@ namespace FanucCnc.Model
             }
         }
 
-        public string WorkPartName { get; set; }
-
         public int Mode { get; set; }
         public int MainStatus { get; set; }
-        public double SliderPosition { get; set; }
-        public double SliderSpeed { get; set; }
+        public int SliderPosition { get; set; }
+        public int SliderSpeed { get; set; }
         public double SliderPressure { get; set; }
         public double BalanceCylinderPressure { get; set; }
         public double InstallDieHigh { get; set; }

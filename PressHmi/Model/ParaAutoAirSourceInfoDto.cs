@@ -26,8 +26,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StartArr_1;
-        public double StartArr_1
+        private bool m_StartArr_1;
+        public bool StartArr_1
         {
             get { return m_StartArr_1; }
             set
@@ -62,8 +62,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_EndArr_1;
-        public double EndArr_1
+        private bool m_EndArr_1;
+        public bool EndArr_1
         {
             get { return m_EndArr_1; }
             set
@@ -76,8 +76,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_ActionFlag_1;
-        public double ActionFlag_1
+        private bool m_ActionFlag_1;
+        public bool ActionFlag_1
         {
             get { return m_ActionFlag_1; }
             set
@@ -113,8 +113,8 @@ namespace PressHmi.Model
         }
 
 
-        private double m_StartArr_2;
-        public double StartArr_2
+        private bool m_StartArr_2;
+        public bool StartArr_2
         {
             get { return m_StartArr_2; }
             set
@@ -149,8 +149,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_EndArr_2;
-        public double EndArr_2
+        private bool m_EndArr_2;
+        public bool EndArr_2
         {
             get { return m_EndArr_2; }
             set
@@ -163,8 +163,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_ActionFlag_2;
-        public double ActionFlag_2
+        private bool m_ActionFlag_2;
+        public bool ActionFlag_2
         {
             get { return m_ActionFlag_2; }
             set
@@ -199,8 +199,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StartArr_3;
-        public double StartArr_3
+        private bool m_StartArr_3;
+        public bool StartArr_3
         {
             get { return m_StartArr_3; }
             set
@@ -235,8 +235,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_EndArr_3;
-        public double EndArr_3
+        private bool m_EndArr_3;
+        public bool EndArr_3
         {
             get { return m_EndArr_3; }
             set
@@ -249,8 +249,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_ActionFlag_3;
-        public double ActionFlag_3
+        private bool m_ActionFlag_3;
+        public bool ActionFlag_3
         {
             get { return m_ActionFlag_3; }
             set
@@ -285,8 +285,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_StartArr_4;
-        public double StartArr_4
+        private bool m_StartArr_4;
+        public bool StartArr_4
         {
             get { return m_StartArr_4; }
             set
@@ -321,8 +321,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_EndArr_4;
-        public double EndArr_4
+        private bool m_EndArr_4;
+        public bool EndArr_4
         {
             get { return m_EndArr_4; }
             set
@@ -335,8 +335,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_ActionFlag_4;
-        public double ActionFlag_4
+        private bool m_ActionFlag_4;
+        public bool ActionFlag_4
         {
             get { return m_ActionFlag_4; }
             set

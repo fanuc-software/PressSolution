@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="830" d:DesignWidth="1770"
+      d:DesignHeight="684" d:DesignWidth="944"
       Title="MaintainMainPage">
     
     <Border CornerRadius="3" Background="{DynamicResource ContentPanelBackground}" Margin="2,3,2,3">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
                 <Frame   Background="Transparent" NavigationUIVisibility="Hidden" Content="{Binding _MaintainPanel}"></Frame>
@@ -28,28 +28,28 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton Grid.Column="0" Style="{StaticResource ParaMenuNormalButton}" FontSize="{StaticResource TextPrimerSize}"
+                <ToggleButton Grid.Column="0" Style="{StaticResource ParaMenuNormalButton}"
                       Content="{Binding MaintainMenu1}" IsChecked="{Binding MaintainMenu1Cheched}" 
                       Visibility="{Binding MaintainMenu1.Visibility}" Command="{Binding MaintainMenu1.Cmd}"/>
-                <ToggleButton Grid.Column="1" Style="{StaticResource ParaMenuNormalButton}"  FontSize="{StaticResource TextPrimerSize}"
+                <ToggleButton Grid.Column="1" Style="{StaticResource ParaMenuNormalButton}" 
                       Content="{Binding MaintainMenu2}" IsChecked="{Binding MaintainMenu2Cheched}" 
                       Visibility="{Binding MaintainMenu2.Visibility}" Command="{Binding MaintainMenu2.Cmd}"/>
-                <ToggleButton Grid.Column="2" Style="{StaticResource ParaMenuNormalButton}"  FontSize="{StaticResource TextPrimerSize}"
+                <ToggleButton Grid.Column="2" Style="{StaticResource ParaMenuNormalButton}" 
                       Content="{Binding MaintainMenu3}" IsChecked="{Binding MaintainMenu3Cheched}" 
                       Visibility="{Binding MaintainMenu3.Visibility}" Command="{Binding MaintainMenu3.Cmd}"/>
-                <ToggleButton Grid.Column="3" Style="{StaticResource ParaMenuNormalButton}"  FontSize="{StaticResource TextPrimerSize}"
+                <ToggleButton Grid.Column="3" Style="{StaticResource ParaMenuNormalButton}" 
                       Content="{Binding MaintainMenu4}" IsChecked="{Binding MaintainMenu4Cheched}" 
                       Visibility="{Binding MaintainMenu4.Visibility}" Command="{Binding MaintainMenu4.Cmd}"/>
-                <ToggleButton Grid.Column="4" Style="{StaticResource ParaMenuNormalButton}"  FontSize="{StaticResource TextPrimerSize}"
+                <ToggleButton Grid.Column="4" Style="{StaticResource ParaMenuNormalButton}" 
                       Content="{Binding MaintainMenu5}" IsChecked="{Binding MaintainMenu5Cheched}" 
                       Visibility="{Binding MaintainMenu5.Visibility}" Command="{Binding MaintainMenu5.Cmd}"/>
-                <ToggleButton Grid.Column="5" Style="{StaticResource ParaMenuNormalButton}"  FontSize="{StaticResource TextPrimerSize}"
+                <ToggleButton Grid.Column="5" Style="{StaticResource ParaMenuNormalButton}" 
                       Content="{Binding MaintainMenu6}" IsChecked="{Binding MaintainMenu6Cheched}" 
                       Visibility="{Binding MaintainMenu6.Visibility}" Command="{Binding MaintainMenu6.Cmd}"/>
-                <ToggleButton Grid.Column="6" Style="{StaticResource ParaMenuNormalButton}"  FontSize="{StaticResource TextPrimerSize}"
+                <ToggleButton Grid.Column="6" Style="{StaticResource ParaMenuNormalButton}" 
                       Content="{Binding MaintainMenu7}" IsChecked="{Binding MaintainMenu7Cheched}" 
                       Visibility="{Binding MaintainMenu7.Visibility}" Command="{Binding MaintainMenu7.Cmd}"/>
-                <ToggleButton Grid.Column="7" Style="{StaticResource ParaMenuNormalButton}"  FontSize="{StaticResource TextPrimerSize}"
+                <ToggleButton Grid.Column="7" Style="{StaticResource ParaMenuNormalButton}" 
                       Content="{Binding MaintainMenu8}" IsChecked="{Binding MaintainMenu8Cheched}" 
                       Visibility="{Binding MaintainMenu8.Visibility}" Command="{Binding MaintainMenu8.Cmd}"/>
 

@@ -127,26 +127,18 @@ namespace FanucCnc
 
         public void StartRefreshCncScreenDisplay()
         {
-            try
-            {
-                _StartRefresh();
-                Messenger.Default.Register<byte>(this, "CsdKeyMsg", OnKey);
-                Messenger.Default.Register<string>(this, "CsdSoftKeyMsg", OnSoftKey);
-                Messenger.Default.Register<string>(this, "CsdMenuKeyMsg", OnMenuKey);
-            }
-            catch { }
+            _StartRefresh();
+            Messenger.Default.Register<byte>(this, "CsdKeyMsg", OnKey);
+            Messenger.Default.Register<string>(this, "CsdSoftKeyMsg", OnSoftKey);
+            Messenger.Default.Register<string>(this, "CsdMenuKeyMsg", OnMenuKey);
         }
 
         public void StopRefreshCncScreenDisplay()
         {
-            try
-            { 
-                _StopRefresh();
-                Messenger.Default.Unregister<byte>(this, "CsdKeyMsg", OnKey);
-                Messenger.Default.Unregister<string>(this, "CsdSoftKeyMsg", OnSoftKey);
-                Messenger.Default.Unregister<string>(this, "CsdMenuKeyMsg", OnMenuKey);
-            }
-            catch { }
+            _StopRefresh();
+            Messenger.Default.Unregister<byte>(this, "CsdKeyMsg", OnKey);
+            Messenger.Default.Unregister<string>(this, "CsdSoftKeyMsg", OnSoftKey);
+            Messenger.Default.Unregister<string>(this, "CsdMenuKeyMsg", OnMenuKey);
         }
 
         #region key
@@ -775,11 +767,7 @@ namespace FanucCnc
 
         private void SendKey2CSD(short state, short key)
         {
-            try
-            {
-                _SendKey(state, key);
-            }
-            catch { }
+            _SendKey(state, key);
         }
     }
 }

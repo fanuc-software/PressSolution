@@ -21,16 +21,16 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_Speed_TopDeadCentre;
-        public double Speed_TopDeadCentre
+        private double m_Speed_BottomDeadCentre;
+        public double Speed_BottomDeadCentre
         {
-            get { return m_Speed_TopDeadCentre; }
+            get { return m_Speed_BottomDeadCentre; }
             set
             {
-                if (m_Speed_TopDeadCentre != value)
+                if (m_Speed_BottomDeadCentre != value)
                 {
-                    m_Speed_TopDeadCentre = value;
-                    RaisePropertyChanged(() => Speed_TopDeadCentre);
+                    m_Speed_BottomDeadCentre = value;
+                    RaisePropertyChanged(() => Speed_BottomDeadCentre);
                 }
             }
         }

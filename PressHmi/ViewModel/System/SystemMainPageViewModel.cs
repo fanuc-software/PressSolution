@@ -366,7 +366,7 @@ namespace PressHmi.ViewModel
         private void OnSystemMenu6Click()
         {
             ChangeSystemMenuEvent(m6: true);
-            _SystemPanel = new SystemTablePage();
+            //_SystemPanel = new SystemSubDieHydrPage();
         }
 
         private void OnSystemMenu7Click()

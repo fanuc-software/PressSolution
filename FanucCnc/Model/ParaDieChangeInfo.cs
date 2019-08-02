@@ -25,6 +25,6 @@ namespace FanucCnc.Model
 
         public double DieWeight { get; set; }
 
-        public double LoaderSafePosition { get; set; }
+        public int LoaderSafePosition { get; set; }
     }
 }

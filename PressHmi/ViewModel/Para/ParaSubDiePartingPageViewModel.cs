@@ -14,9 +14,6 @@ using PressHmi.Model;
 using PressHmi.View;
 using FanucCnc;
 using FanucCnc.Model;
-using System.IO;
-using Newtonsoft.Json;
-using Abt.Controls.SciChart.Model.DataSeries;
 
 namespace PressHmi.ViewModel
 {
@@ -29,8 +26,10 @@ namespace PressHmi.ViewModel
         public ICommand UnloadedCommand { get; set; }
 
         public ICommand SectionNumSetCmd { get; set; }
+        public ICommand PreDelayTimeSetCmd { get; set; }
+        public ICommand SafeTimeSetCmd { get; set; }
         public ICommand BottomDeadCentreSetCmd { get; set; }
-        
+        public ICommand Speed_BottomDeadCentreSetCmd { get; set; }
 
         public ICommand Pos_1SetCmd { get; set; }
         public ICommand Pos_2SetCmd { get; set; }
@@ -50,11 +49,16 @@ namespace PressHmi.ViewModel
         public ICommand Speed_7SetCmd { get; set; }
         public ICommand Speed_8SetCmd { get; set; }
 
+        public ICommand StopTime_1SetCmd { get; set; }
+        public ICommand StopTime_2SetCmd { get; set; }
+        public ICommand StopTime_3SetCmd { get; set; }
+        public ICommand StopTime_4SetCmd { get; set; }
+        public ICommand StopTime_5SetCmd { get; set; }
+        public ICommand StopTime_6SetCmd { get; set; }
+        public ICommand StopTime_7SetCmd { get; set; }
+        public ICommand StopTime_8SetCmd { get; set; }
+
         public ICommand TopDeadCentreSetCmd { get; set; }
-
-        public ICommand Speed_TopDeadCentreSetCmd { get; set; }
-
-        public ICommand StartSciChartCmd { get; set; }
 
         private ParaDiePartingInfoDto m_ParaDiePartingInfo = new ParaDiePartingInfoDto();
         public ParaDiePartingInfoDto ParaDiePartingInfo
@@ -99,55 +103,6 @@ namespace PressHmi.ViewModel
             }
         }
 
-        #region scichart 
-        private double temp_index = 0;
-
-        private IXyDataSeries<double, double> m_PosSeries;
-        public IXyDataSeries<double, double> PosSeries
-        {
-            get { return m_PosSeries; }
-            set
-            {
-                if (m_PosSeries != value)
-                {
-                    m_PosSeries = value;
-                    RaisePropertyChanged(() => PosSeries);
-                }
-            }
-        }
-
-        private IXyDataSeries<double, double> m_SpeedSeries;
-        public IXyDataSeries<double, double> SpeedSeries
-        {
-            get { return m_SpeedSeries; }
-            set
-            {
-                if (m_SpeedSeries != value)
-                {
-                    m_SpeedSeries = value;
-                    RaisePropertyChanged(() => SpeedSeries);
-                }
-            }
-        }
-
-
-        private void OnData(StateMonitorLineChartData info)
-        {
-            if (temp_index <= info.Time)
-            {
-                PosSeries.Append(info.Time, info.Pos);
-                SpeedSeries.Append(info.Time, info.Speed);
-                temp_index = info.Time;
-            }
-            else
-            {
-                PosSeries.Clear();
-                SpeedSeries.Clear();
-                temp_index = info.Time;
-            }
-        }
-        #endregion
-
         public ParaSubDiePartingPageViewModel(IMapper mapper, Fanuc fanuc)
         {
             _fanuc = fanuc;
@@ -155,30 +110,40 @@ namespace PressHmi.ViewModel
 
             LoadedCommand = new RelayCommand(OnLoaded);
             UnloadedCommand = new RelayCommand(OnUnloaded);
-            StartSciChartCmd = new RelayCommand(OnStartSciChart);
 
             SectionNumSetCmd = new RelayCommand(OnSectionNumSet);
+            //PreDelayTimeSetCmd = new RelayCommand(OnPreDelayTimeSet);
+            //SafeTimeSetCmd = new RelayCommand(OnSafeTimeSet);
             BottomDeadCentreSetCmd = new RelayCommand(OnBottomDeadCentreSet);
-            Speed_TopDeadCentreSetCmd = new RelayCommand(OnSpeed_TopDeadCentreSet);
+            Speed_BottomDeadCentreSetCmd = new RelayCommand(OnSpeed_BottomDeadCentreSet);
             TopDeadCentreSetCmd = new RelayCommand(OnTopDeadCentreSet);
 
             Pos_1SetCmd = new RelayCommand(OnPos_1Set);
-            Pos_2SetCmd = new RelayCommand(OnPos_2Set);
-            Pos_3SetCmd = new RelayCommand(OnPos_3Set);
-            Pos_4SetCmd = new RelayCommand(OnPos_4Set);
-            Pos_5SetCmd = new RelayCommand(OnPos_5Set);
-            Pos_6SetCmd = new RelayCommand(OnPos_6Set);
-            Pos_7SetCmd = new RelayCommand(OnPos_7Set);
-            Pos_8SetCmd = new RelayCommand(OnPos_8Set);
+            //Pos_2SetCmd = new RelayCommand(OnPos_2Set);
+            //Pos_3SetCmd = new RelayCommand(OnPos_3Set);
+            //Pos_4SetCmd = new RelayCommand(OnPos_4Set);
+            //Pos_5SetCmd = new RelayCommand(OnPos_5Set);
+            //Pos_6SetCmd = new RelayCommand(OnPos_6Set);
+            //Pos_7SetCmd = new RelayCommand(OnPos_7Set);
+            //Pos_8SetCmd = new RelayCommand(OnPos_8Set);
 
             Speed_1SetCmd = new RelayCommand(OnSpeed_1Set);
-            Speed_2SetCmd = new RelayCommand(OnSpeed_2Set);
-            Speed_3SetCmd = new RelayCommand(OnSpeed_3Set);
-            Speed_4SetCmd = new RelayCommand(OnSpeed_4Set);
-            Speed_5SetCmd = new RelayCommand(OnSpeed_5Set);
-            Speed_6SetCmd = new RelayCommand(OnSpeed_6Set);
-            Speed_7SetCmd = new RelayCommand(OnSpeed_7Set);
-            Speed_8SetCmd = new RelayCommand(OnSpeed_8Set);
+            //Speed_2SetCmd = new RelayCommand(OnSpeed_2Set);
+            //Speed_3SetCmd = new RelayCommand(OnSpeed_3Set);
+            //Speed_4SetCmd = new RelayCommand(OnSpeed_4Set);
+            //Speed_5SetCmd = new RelayCommand(OnSpeed_5Set);
+            //Speed_6SetCmd = new RelayCommand(OnSpeed_6Set);
+            //Speed_7SetCmd = new RelayCommand(OnSpeed_7Set);
+            //Speed_8SetCmd = new RelayCommand(OnSpeed_8Set);
+
+            //StopTime_1SetCmd = new RelayCommand(OnStopTime_1Set);
+            //StopTime_2SetCmd = new RelayCommand(OnStopTime_2Set);
+            //StopTime_3SetCmd = new RelayCommand(OnStopTime_3Set);
+            //StopTime_4SetCmd = new RelayCommand(OnStopTime_4Set);
+            //StopTime_5SetCmd = new RelayCommand(OnStopTime_5Set);
+            //StopTime_6SetCmd = new RelayCommand(OnStopTime_6Set);
+            //StopTime_7SetCmd = new RelayCommand(OnStopTime_7Set);
+            //StopTime_8SetCmd = new RelayCommand(OnStopTime_8Set);
 
             BottomDeadCentreSetCmd = new RelayCommand(OnBottomDeadCentreSet);
 
@@ -201,21 +166,6 @@ namespace PressHmi.ViewModel
                 }
             });
 
-
-            string jsonBaseInfo;
-            using (StreamReader sr = new StreamReader(@"baseinfo.cfg", true))
-            {
-                jsonBaseInfo = sr.ReadToEnd();
-            }
-            var _baseInfo = JsonConvert.DeserializeObject<BaseInfo>(jsonBaseInfo);
-            var fifo = _baseInfo.SciChartXTimeMax;
-            PosSeries = new XyDataSeries<double, double>();
-            PosSeries.FifoCapacity = fifo;
-            SpeedSeries = new XyDataSeries<double, double>();
-            SpeedSeries.FifoCapacity = fifo;
-
-            Messenger.Default.Register<StateMonitorLineChartData>(this, "SimulateLineChartDataMsg", OnData);
-
         }
 
 
@@ -226,12 +176,7 @@ namespace PressHmi.ViewModel
 
         private void OnUnloaded()
         {
-            _fanuc.SimulateMonitorLine_Cancel();
-        }
 
-        private void OnStartSciChart()
-        {
-            _fanuc.SimulateMonitorLine_Start();
         }
 
 
@@ -247,65 +192,73 @@ namespace PressHmi.ViewModel
             dlg.ShowDialog();
         }
 
-        private void OnSpeed_TopDeadCentreSet()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_TopDeadCentre, _fanuc.CurLimitBom.DPP_Speed_TopDeadCentre, "输入开模上死点速度");
-            dlg.ShowDialog();
-        }
-
         private void OnTopDeadCentreSet()
         {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_TopDeadCentre, _fanuc.CurLimitBom.DPP_TopDeadCentre, "输入开模上死点位置");
+            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_BottomDeadCentre, _fanuc.CurLimitBom.DPP_Speed_BottomDeadCentre, "输入开模下死点速度");
             dlg.ShowDialog();
         }
-        
+
+
+        //private void OnPreDelayTimeSet()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom., _fanuc.CurLimitBom.DPP_PreDelayTime, "输入开模前延时(s)");
+        //    dlg.ShowDialog();
+
+        //}
+        //private void OnSafeTimeSet()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_SafeTime, _fanuc.CurLimitBom.DPP_SafeTime, "输入开模安全时间(s)");
+        //    dlg.ShowDialog();
+        //}
+
+
         private void OnPos_1Set()
         {
-            var dlg = new SlidingTableDataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_1, _fanuc.CurLimitBom.DPP_Pos_1, "输入P1位置(mm)");
+            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_1, _fanuc.CurLimitBom.DPP_Pos_1, "输入P1位置(mm)");
             dlg.ShowDialog();
         }
 
-        private void OnPos_2Set()
-        {
-            var dlg = new SlidingTableDataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_2, _fanuc.CurLimitBom.DPP_Pos_2, "输入P2位置(mm)");
-            dlg.ShowDialog();
-        }
+        //private void OnPos_2Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_2, _fanuc.CurLimitBom.DPP_Pos_2, "输入P2位置(mm)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnPos_3Set()
-        {
-            var dlg = new SlidingTableDataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_3, _fanuc.CurLimitBom.DPP_Pos_3, "输入P3位置(mm)");
-            dlg.ShowDialog();
-        }
+        //private void OnPos_3Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_3, _fanuc.CurLimitBom.DPP_Pos_3, "输入P3位置(mm)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnPos_4Set()
-        {
-            var dlg = new SlidingTableDataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_4, _fanuc.CurLimitBom.DPP_Pos_4, "输入P4位置(mm)");
-            dlg.ShowDialog();
-        }
+        //private void OnPos_4Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_4, _fanuc.CurLimitBom.DPP_Pos_4, "输入P4位置(mm)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnPos_5Set()
-        {
-            var dlg = new SlidingTableDataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_5, _fanuc.CurLimitBom.DPP_Pos_5, "输入P5位置(mm)");
-            dlg.ShowDialog();
-        }
+        //private void OnPos_5Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_5, _fanuc.CurLimitBom.DPP_Pos_5, "输入P5位置(mm)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnPos_6Set()
-        {
-            var dlg = new SlidingTableDataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_6, _fanuc.CurLimitBom.DPP_Pos_6, "输入P6位置(mm)");
-            dlg.ShowDialog();
-        }
+        //private void OnPos_6Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_6, _fanuc.CurLimitBom.DPP_Pos_6, "输入P6位置(mm)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnPos_7Set()
-        {
-            var dlg = new SlidingTableDataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_7, _fanuc.CurLimitBom.DPP_Pos_7, "输入P7位置(mm)");
-            dlg.ShowDialog();
-        }
+        //private void OnPos_7Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_7, _fanuc.CurLimitBom.DPP_Pos_7, "输入P7位置(mm)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnPos_8Set()
-        {
-            var dlg = new SlidingTableDataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_8, _fanuc.CurLimitBom.DPP_Pos_8, "输入P8位置(mm)");
-            dlg.ShowDialog();
-        }
+        //private void OnPos_8Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Pos_8, _fanuc.CurLimitBom.DPP_Pos_8, "输入P8位置(mm)");
+        //    dlg.ShowDialog();
+        //}
 
         private void OnSpeed_1Set()
         {
@@ -313,47 +266,95 @@ namespace PressHmi.ViewModel
             dlg.ShowDialog();
         }
 
-        private void OnSpeed_2Set()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_2, _fanuc.CurLimitBom.DPP_Speed_2, "输入P2速度(%)");
-            dlg.ShowDialog();
-        }
+        //private void OnSpeed_2Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_2, _fanuc.CurLimitBom.DPP_Speed_2, "输入P2速度(%)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnSpeed_3Set()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_3, _fanuc.CurLimitBom.DPP_Speed_3, "输入P3速度(%)");
-            dlg.ShowDialog();
-        }
+        //private void OnSpeed_3Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_3, _fanuc.CurLimitBom.DPP_Speed_3, "输入P3速度(%)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnSpeed_4Set()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_4, _fanuc.CurLimitBom.DPP_Speed_4, "输入P4速度(%)");
-            dlg.ShowDialog();
-        }
+        //private void OnSpeed_4Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_4, _fanuc.CurLimitBom.DPP_Speed_4, "输入P4速度(%)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnSpeed_5Set()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_5, _fanuc.CurLimitBom.DPP_Speed_5, "输入P5速度(%)");
-            dlg.ShowDialog();
-        }
+        //private void OnSpeed_5Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_5, _fanuc.CurLimitBom.DPP_Speed_5, "输入P5速度(%)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnSpeed_6Set()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_6, _fanuc.CurLimitBom.DPP_Speed_6, "输入P6速度(%)");
-            dlg.ShowDialog();
-        }
+        //private void OnSpeed_6Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_6, _fanuc.CurLimitBom.DPP_Speed_6, "输入P6速度(%)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnSpeed_7Set()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_7, _fanuc.CurLimitBom.DPP_Speed_7, "输入P7速度(%)");
-            dlg.ShowDialog();
-        }
+        //private void OnSpeed_7Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_7, _fanuc.CurLimitBom.DPP_Speed_7, "输入P7速度(%)");
+        //    dlg.ShowDialog();
+        //}
 
-        private void OnSpeed_8Set()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_8, _fanuc.CurLimitBom.DPP_Speed_8, "输入P8速度(%)");
-            dlg.ShowDialog();
-        }
+        //private void OnSpeed_8Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_Speed_8, _fanuc.CurLimitBom.DPP_Speed_8, "输入P8速度(%)");
+        //    dlg.ShowDialog();
+        //}
+
+        //private void OnStopTime_1Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_StopTime_1, _fanuc.CurLimitBom.DPP_StopTime_1, "输入P1停止时间(s)");
+        //    dlg.ShowDialog();
+        //}
+
+        //private void OnStopTime_2Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_StopTime_2, _fanuc.CurLimitBom.DPP_StopTime_2, "输入P2停止时间(s)");
+        //    dlg.ShowDialog();
+        //}
+
+        //private void OnStopTime_3Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_StopTime_3, _fanuc.CurLimitBom.DPP_StopTime_3, "输入P3停止时间(s)");
+        //    dlg.ShowDialog();
+        //}
+
+        //private void OnStopTime_4Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_StopTime_4, _fanuc.CurLimitBom.DPP_StopTime_4, "输入P4停止时间(s)");
+        //    dlg.ShowDialog();
+        //}
+
+        //private void OnStopTime_5Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_StopTime_5, _fanuc.CurLimitBom.DPP_StopTime_5, "输入P5停止时间(s)");
+        //    dlg.ShowDialog();
+        //}
+
+        //private void OnStopTime_6Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_StopTime_6, _fanuc.CurLimitBom.DPP_StopTime_6, "输入P6停止时间(s)");
+        //    dlg.ShowDialog();
+        //}
+
+        //private void OnStopTime_7Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_StopTime_7, _fanuc.CurLimitBom.DPP_StopTime_7, "输入P7停止时间(s)");
+        //    dlg.ShowDialog();
+        //}
+
+        //private void OnStopTime_8Set()
+        //{
+        //    var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DPP_StopTime_8, _fanuc.CurLimitBom.DPP_StopTime_8, "输入P8停止时间(s)");
+        //    dlg.ShowDialog();
+        //}
 
         private void OnBottomDeadCentreSet()
         {

@@ -52,8 +52,6 @@ namespace PressHmi.ViewModel
         public ICommand Clamp_Back_12_EbableSetCmd { get; set; }
         public ICommand Clamp_Back_13_EbableSetCmd { get; set; }
 
-        public ICommand ClampRelaxPositionSetCmd { get; set; }
-
         private ParaDieClampInfoDto m_ParaDieClampInfo = new ParaDieClampInfoDto();
         public ParaDieClampInfoDto ParaDieClampInfo
         {
@@ -102,8 +100,6 @@ namespace PressHmi.ViewModel
             Clamp_Back_12_EbableSetCmd = new RelayCommand(OnClamp_Back_12_EbableSet);
             Clamp_Back_13_EbableSetCmd = new RelayCommand(OnClamp_Back_13_EbableSet);
 
-            ClampRelaxPositionSetCmd = new RelayCommand(OnClampRelaxPositionSet);
-
 
             Messenger.Default.Register<ParaDieClampInfo>(this, "ParaDieClampInfoMsg", msg =>
             {
@@ -120,12 +116,6 @@ namespace PressHmi.ViewModel
         private void OnUnloaded()
         {
 
-        }
-
-        private void OnClampRelaxPositionSet()
-        {
-            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.CLS_ClampRelaxPosition, _fanuc.CurLimitBom.CLS_ClampRelaxPosition, "输入放松允许位置(mm)");
-            dlg.ShowDialog();
         }
 
         private void OnClamp_Front_1_EbableSet()

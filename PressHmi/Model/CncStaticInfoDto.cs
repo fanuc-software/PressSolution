@@ -82,8 +82,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_SliderPosition;
-        public double SliderPosition
+        private int m_SliderPosition;
+        public int SliderPosition
         {
             get { return m_SliderPosition; }
             set
@@ -96,8 +96,8 @@ namespace PressHmi.Model
             }
         }
 
-        private double m_SliderSpeed;
-        public double SliderSpeed
+        private int m_SliderSpeed;
+        public int SliderSpeed
         {
             get { return m_SliderSpeed; }
             set
@@ -145,21 +145,6 @@ namespace PressHmi.Model
                 }
             }
         }
-
-        private string m_WorkPartName;
-        public string WorkPartName
-        {
-            get { return m_WorkPartName; }
-            set
-            {
-                if (m_WorkPartName != value)
-                {
-                    m_WorkPartName = value;
-                    RaisePropertyChanged(() => WorkPartName);
-                }
-            }
-        }
-
         public string StrBalanceCylinderPressure
         {
             get

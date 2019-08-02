@@ -7,7 +7,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="730" d:DesignWidth="1770"
+      d:DesignHeight="608" d:DesignWidth="940"
       Title="ParaSubAutoAirSourcePage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -18,13 +18,8 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Page.Resources>
-        <Style x:Key="FontAwesome">
-            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
-        </Style>
-
         <conv:AutoAirSourceActionFlagColorConverter x:Key="_aasafc"/>
         <conv:AutoAirSourceArrTextConverter x:Key="_aasatc"/>
-        <conv:IOColorConverter x:Key="_iocc"/>
     </Page.Resources>
 
     <Grid>
@@ -38,216 +33,208 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="0" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
-                        BorderBrush="{DynamicResource HmiBorder}" Background="{Binding ParaAutoAirSourceInfo.ActionFlag_1,Converter={StaticResource _iocc}}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{Binding ParaAutoAirSourceInfo.ActionFlag_1,Converter={StaticResource _aasafc}}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
                                    Text="自动化气源1"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="380"/>
+                        <ColumnDefinition Width="180"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="开始位置(mm):" />
                     <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StrStartPos_1}" Tag="&#xf044;" Command="{Binding StartPos_1SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StrStartPos_1}" Command="{Binding StartPos_1SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="开始方向:" />
                     <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                                Background="{Binding ParaAutoAirSourceInfo.StartArr_1,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource IONormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StartArr_1,Converter={StaticResource _aasatc}}" Tag="&#xf078;" Command="{Binding StartArr_1SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StartArr_1,Converter={StaticResource _aasatc}}" Command="{Binding StartArr_1SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="结束位置(mm):" />
                     <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StrEndPos_1}" Tag="&#xf044;" Command="{Binding EndPos_1SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StrEndPos_1}" Command="{Binding EndPos_1SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="结束方向:" />
                     <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                            Background="{Binding ParaAutoAirSourceInfo.EndArr_1,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource IONormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.EndArr_1,Converter={StaticResource _aasatc}}" Tag="&#xf078;"  Command="{Binding EndArr_1SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.EndArr_1,Converter={StaticResource _aasatc}}" Command="{Binding EndArr_1SetCmd}"/>
                 </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
-                        BorderBrush="{DynamicResource HmiBorder}" Background="{Binding ParaAutoAirSourceInfo.ActionFlag_2,Converter={StaticResource _iocc}}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{Binding ParaAutoAirSourceInfo.ActionFlag_2,Converter={StaticResource _aasafc}}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
                                    Text="自动化气源2"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="380"/>
+                        <ColumnDefinition Width="180"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="开始位置(mm):" />
                     <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StrStartPos_2}" Tag="&#xf044;" Command="{Binding StartPos_2SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StrStartPos_2}" Command="{Binding StartPos_2SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="开始方向:" />
                     <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                            Background="{Binding ParaAutoAirSourceInfo.StartArr_2,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource IONormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StartArr_2,Converter={StaticResource _aasatc}}" Tag="&#xf078;"  Command="{Binding StartArr_2SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StartArr_2,Converter={StaticResource _aasatc}}" Command="{Binding StartArr_2SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="结束位置(mm):" />
                     <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StrEndPos_2}" Tag="&#xf044;" Command="{Binding EndPos_2SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StrEndPos_2}" Command="{Binding EndPos_2SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="结束方向:" />
                     <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                            Background="{Binding ParaAutoAirSourceInfo.EndArr_2,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource IONormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.EndArr_2,Converter={StaticResource _aasatc}}" Tag="&#xf078;"  Command="{Binding EndArr_2SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.EndArr_2,Converter={StaticResource _aasatc}}" Command="{Binding EndArr_2SetCmd}"/>
                 </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="0" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
-                        BorderBrush="{DynamicResource HmiBorder}" Background="{Binding ParaAutoAirSourceInfo.ActionFlag_3,Converter={StaticResource _iocc}}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{Binding ParaAutoAirSourceInfo.ActionFlag_3,Converter={StaticResource _aasafc}}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
                                    Text="自动化气源3"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="380"/>
+                        <ColumnDefinition Width="180"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="开始位置(mm):" />
                     <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StrStartPos_3}" Tag="&#xf044;" Command="{Binding StartPos_3SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StrStartPos_3}" Command="{Binding StartPos_3SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="开始方向:" />
                     <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                            Background="{Binding ParaAutoAirSourceInfo.StartArr_3,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource IONormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StartArr_3,Converter={StaticResource _aasatc}}" Tag="&#xf078;"  Command="{Binding StartArr_3SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StartArr_3,Converter={StaticResource _aasatc}}" Command="{Binding StartArr_3SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="结束位置(mm):" />
                     <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StrEndPos_3}" Tag="&#xf044;" Command="{Binding EndPos_3SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StrEndPos_3}" Command="{Binding EndPos_3SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="结束方向:" />
                     <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                            Background="{Binding ParaAutoAirSourceInfo.EndArr_3,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource IONormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.EndArr_3,Converter={StaticResource _aasatc}}" Tag="&#xf078;"  Command="{Binding EndArr_3SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.EndArr_3,Converter={StaticResource _aasatc}}" Command="{Binding EndArr_3SetCmd}"/>
                 </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
-                        BorderBrush="{DynamicResource HmiBorder}" Background="{Binding ParaAutoAirSourceInfo.ActionFlag_4,Converter={StaticResource _iocc}}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
+                        BorderBrush="{DynamicResource HmiBorder}" Background="{Binding ParaAutoAirSourceInfo.ActionFlag_4,Converter={StaticResource _aasafc}}">
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
                                    Text="自动化气源4"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
-                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="50"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="380"/>
+                        <ColumnDefinition Width="180"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="开始位置(mm):" />
                     <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StrStartPos_4}" Tag="&#xf044;" Command="{Binding StartPos_4SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StrStartPos_4}" Command="{Binding StartPos_4SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="开始方向:" />
                     <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                            Background="{Binding ParaAutoAirSourceInfo.StartArr_4,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource IONormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StartArr_4,Converter={StaticResource _aasatc}}" Tag="&#xf078;"  Command="{Binding StartArr_4SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StartArr_4,Converter={StaticResource _aasatc}}" Command="{Binding StartArr_4SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="结束位置(mm):" />
                     <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.StrEndPos_4}" Tag="&#xf044;" Command="{Binding EndPos_4SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.StrEndPos_4}" Command="{Binding EndPos_4SetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}"
+                               FontSize="{DynamicResource TextSmallSize}"
                                Text="结束方向:" />
                     <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                            Background="{Binding ParaAutoAirSourceInfo.EndArr_4,Converter={StaticResource _iocc}}" Foreground="White"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource IONormalButton}"
-                               Content="{Binding ParaAutoAirSourceInfo.EndArr_4,Converter={StaticResource _aasatc}}" Tag="&#xf078;"  Command="{Binding EndArr_4SetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaAutoAirSourceInfo.EndArr_4,Converter={StaticResource _aasatc}}" Command="{Binding EndArr_4SetCmd}"/>
                 </Grid>
             </Border>
         </Grid>

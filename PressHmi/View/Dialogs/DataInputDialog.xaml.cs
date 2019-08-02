@@ -42,8 +42,6 @@ namespace PressHmi.View
             InitializeComponent();
             this.DataContext = new DataInputDialogViewModel(fanuc, pmc, limit, title);
 
-            this.inputdata.Focus();
-
             CommandBinding Cb0 = new CommandBinding(_Cmd0, RunCommand_0);
             CommandBinding Cb1 = new CommandBinding(_Cmd1, RunCommand_1);
             CommandBinding Cb2 = new CommandBinding(_Cmd2, RunCommand_2);
@@ -172,7 +170,7 @@ namespace PressHmi.View
         {
             //if (_CurrentControl == null) return;
             this.inputdata.Focus();
-            PressHmi.View.Controls.Keyboard.Type2(Key.Decimal);
+            PressHmi.View.Controls.Keyboard.Type(Key.Decimal);
             //_CurrentControl.Focus();
         }
 

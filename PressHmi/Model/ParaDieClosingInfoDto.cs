@@ -4,20 +4,6 @@ namespace PressHmi.Model
 {
     public class ParaDieClosingInfoDto : ViewModelBase
     {
-        private bool m_LineChartFlag;
-        public bool LineChartFlag
-        {
-            get { return m_LineChartFlag; }
-            set
-            {
-                if (m_LineChartFlag != value)
-                {
-                    m_LineChartFlag = value;
-                    RaisePropertyChanged(() => LineChartFlag);
-                }
-            }
-        }
-
         private double m_SectionNum;
         public double SectionNum
         {
@@ -39,5 +25,48 @@ namespace PressHmi.Model
             }
         }
 
+        //private double m_PreDelayTime;
+        //public double PreDelayTime
+        //{
+        //    get { return m_PreDelayTime; }
+        //    set
+        //    {
+        //        if (m_PreDelayTime != value)
+        //        {
+        //            m_PreDelayTime = value;
+        //            RaisePropertyChanged(() => PreDelayTime);
+        //        }
+        //    }
+        //}
+
+        //public string StrPreDelayTime
+        //{
+        //    get
+        //    {
+        //        return PreDelayTime.ToString("0.000");
+        //    }
+        //}
+
+        //private double m_SafeTime;
+        //public double SafeTime
+        //{
+        //    get { return m_SafeTime; }
+        //    set
+        //    {
+        //        if (m_SafeTime != value)
+        //        {
+        //            m_SafeTime = value;
+        //            RaisePropertyChanged(() => SafeTime);
+        //        }
+        //    }
+        //}
+
+        //public string StrSafeTime
+        //{
+        //    get
+        //    {
+        //        return SafeTime.ToString("0.000");
+        //    }
+        //}
     }
 }

@@ -63,7 +63,7 @@ void CCSD::SetIp(char* ip) {
 	memcpy(m_ip, ip, strlen(ip));
 
 	//short ret = sdf_start_ether(m_ip, 8193, &flib, &pdib);
-	//short ret = sdf_start_hssb(0, &flib, &pdib);
+	short ret = sdf_start_hssb(0, &flib, &pdib);
 }
 
 void CCSD::SetScreenPara(int xSrc, int ySrc, int xDest, int yDest, int nSrcWidth, int nSrcHeight, int nDestWidth, int nDestHeight) 

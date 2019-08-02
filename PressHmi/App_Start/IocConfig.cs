@@ -32,7 +32,6 @@ namespace PressHmi.App_Start
             SimpleIoc.Default.Register<ParaSubWorkCountPageViewModel>();
             SimpleIoc.Default.Register<ParaSubDieClampPageViewModel>();
             SimpleIoc.Default.Register<ParaSubProcManagementPageViewModel>();
-            SimpleIoc.Default.Register<ParaSubDieHydrPageViewModel>();
 
             SimpleIoc.Default.Register<MessageMainPageViewModel>();
             SimpleIoc.Default.Register<MessageSubAlarmPageViewModel>();
@@ -53,7 +52,6 @@ namespace PressHmi.App_Start
             SimpleIoc.Default.Register<SysetmInfoViewModel>();
             SimpleIoc.Default.Register<SystemMacroViewModel>();
             SimpleIoc.Default.Register<SystemPmcViewModel>();
-            SimpleIoc.Default.Register<SystemTableViewModel>();
         }
 
     }

@@ -11,7 +11,7 @@ namespace FanucCnc.Model
         public double SectionNum { get; set; }
         
         public double BottomDeadCentre { get; set; }
-        public double Speed_TopDeadCentre { get; set; }
+        public double Speed_BottomDeadCentre { get; set; }
 
         public double Pos_1 { get; set; }
         public double Speed_1 { get; set; }
