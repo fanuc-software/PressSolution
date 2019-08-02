@@ -16,7 +16,7 @@ using FanucCnc.Model;
 
 namespace PressHmi.ViewModel
 {
-    public class ParaSubWorkCountPageViewModel : ViewModelBase
+    public class ParaSubWorkCountPageViewModel : MyBaseViewModel
     {
         private Fanuc _fanuc;
         private IMapper _mapper;

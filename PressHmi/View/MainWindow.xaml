@@ -229,8 +229,8 @@
 
             </Grid>
 
-            <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
-                <Grid.RowDefinitions>
+            <WrapPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1">
+                <!--<Grid.RowDefinitions>
                     <RowDefinition Height="20*"/>
                     <RowDefinition Height="20*"/>
                     <RowDefinition Height="20*"/>
@@ -240,30 +240,30 @@
                     <RowDefinition Height="11*"/>
                     <RowDefinition Height="20*"/>
                     <RowDefinition Height="20*"/>
-                </Grid.RowDefinitions>
-                <ToggleButton Grid.Row="0" Style="{StaticResource MainMenuNormalButton}" Margin="3"
+                </Grid.RowDefinitions>-->
+                <ToggleButton Grid.Row="0" Style="{StaticResource MainMenuNormalButton}" Margin="3" Width="140" Height="100"
                       Content="{Binding MainMenu1}" IsChecked="{Binding MainMenu1Cheched}" 
-                      Visibility="{Binding MainMenu1.Visibility}" Command="{Binding MainMenu1.Cmd}" />
-                <ToggleButton Grid.Row="1" Style="{StaticResource MainMenuNormalButton}" Margin="3"
+                       Command="{Binding MainMenu1.Cmd}" IsEnabled="{Binding _OperatorRole}" />
+                <ToggleButton Grid.Row="1" Style="{StaticResource MainMenuNormalButton}" Margin="3" Width="140" Height="100"
                       Content="{Binding MainMenu2}" IsChecked="{Binding MainMenu2Cheched}" 
-                      Visibility="{Binding MainMenu2.Visibility}" Command="{Binding MainMenu2.Cmd}"/>
-                <ToggleButton Grid.Row="2" Style="{StaticResource MainMenuNormalButton}" Margin="3"
+                       Command="{Binding MainMenu2.Cmd}" IsEnabled="{Binding _OperatorRole}" />
+                <ToggleButton Grid.Row="2" Style="{StaticResource MainMenuNormalButton}" Margin="3" Width="140" Height="100"
                       Content="{Binding MainMenu3}" IsChecked="{Binding MainMenu3Cheched}" 
-                      Visibility="{Binding MainMenu3.Visibility}" Command="{Binding MainMenu3.Cmd}"/>
-                <ToggleButton Grid.Row="3" Style="{StaticResource MainMenuNormalButton}" Margin="3"
+                       Command="{Binding MainMenu3.Cmd}" IsEnabled="{Binding _OperatorRole}" />
+                <ToggleButton Grid.Row="3" Style="{StaticResource MainMenuNormalButton}" Margin="3" Width="140" Height="100"
                       Content="{Binding MainMenu4}" IsChecked="{Binding MainMenu4Cheched}" 
-                      Visibility="{Binding MainMenu4.Visibility}" Command="{Binding MainMenu4.Cmd}"/>
-                <ToggleButton Grid.Row="4" Style="{StaticResource MainMenuNormalButton}" Margin="3"
+                       Command="{Binding MainMenu4.Cmd}" IsEnabled="{Binding _OperatorRole}" />
+                <ToggleButton Grid.Row="4" Style="{StaticResource MainMenuNormalButton}" Margin="3" Width="140" Height="100"
                       Content="{Binding MainMenu5}" IsChecked="{Binding MainMenu5Cheched}" 
-                      Visibility="{Binding MainMenu5.Visibility}" Command="{Binding MainMenu5.Cmd}"/>
-                <ToggleButton Grid.Row="5" Style="{StaticResource MainMenuNormalButton}" Margin="3"
+                       Command="{Binding MainMenu5.Cmd}" IsEnabled="{Binding _OperatorRole}" />
+                <ToggleButton Grid.Row="5" Style="{StaticResource MainMenuNormalButton}" Margin="3" Width="140" Height="100"
                       Content="{Binding MainMenu6}" IsChecked="{Binding MainMenu6Cheched}" 
-                      Visibility="{Binding MainMenu6.Visibility}" Command="{Binding MainMenu6.Cmd}"/>
-                <ToggleButton Grid.Row="7" Style="{StaticResource MainMenuNormalButton}" Margin="3" 
-                      Content="截屏" />
-                <ToggleButton Grid.Row="8" Style="{StaticResource MainMenuNormalButton}" Margin="3" 
-                      Content="用户" />
-            </Grid>
+                       Command="{Binding MainMenu6.Cmd}" IsEnabled="{Binding _OperatorRole}" />
+                <Button Grid.Row="7" Style="{StaticResource MainMenuNormalNButton}" Margin="3,50,0,0" Width="140" Height="100"
+                      Content="{Binding MainMenu7}" Command="{Binding MainMenu7.Cmd}" IsEnabled="{Binding _OperatorRole}" />
+                <Button Grid.Row="8" Style="{StaticResource MainMenuNormalNButton}" Margin="3"  Width="140" Height="100"
+                      Content="{Binding MainMenu8}" Command="{Binding MainMenu8.Cmd}" IsEnabled="{Binding _OperatorRole}" />
+            </WrapPanel>
 
         </Grid>
 

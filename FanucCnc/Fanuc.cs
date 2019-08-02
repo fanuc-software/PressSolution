@@ -21,6 +21,8 @@ namespace FanucCnc
 
         private bool _simulate = false;
 
+        private OperatorAuthTypeEnum _operatorRole = OperatorAuthTypeEnum.OPERATOR;
+
         #region 数据表
         private bool _slidingBlockTableLoaded = false;
         private Dictionary<double, double> _slidingBlockTable = new Dictionary<double, double>();
@@ -252,6 +254,7 @@ namespace FanucCnc
         }
 
         #endregion
+
 
         #region 静态刷新的连接句柄
         private ushort m_static_flib = 0;

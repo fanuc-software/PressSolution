@@ -16,7 +16,7 @@ using FanucCnc.Model;
 
 namespace PressHmi.ViewModel
 {
-    public class ParaSubDieHydrPageViewModel : ViewModelBase
+    public class ParaSubDieHydrPageViewModel : MyBaseViewModel
     {
         private Fanuc _fanuc;
         private IMapper _mapper;

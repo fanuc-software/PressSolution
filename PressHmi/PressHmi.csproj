@@ -138,6 +138,7 @@
     <Compile Include="Model\StateMonitorInfoDto.cs" />
     <Compile Include="ViewModel\Maintain\MaintainSubCsdPageViewModel.cs" />
     <Compile Include="ViewModel\Message\MessageSubAlarmPageViewModel.cs" />
+    <Compile Include="ViewModel\MyBaseViewModel.cs" />
     <Compile Include="ViewModel\Para\ParaSubDieHydrPageViewModel.cs" />
     <Compile Include="ViewModel\System\SysetmInfoViewModel.cs" />
     <Compile Include="ViewModel\System\SystemMacroViewModel.cs" />
@@ -206,10 +207,18 @@
       <DependentUpon>DataInputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialogs\DataInputDialogViewModel.cs" />
+    <Compile Include="View\Controls\LoginKeyBoard.xaml.cs">
+      <DependentUpon>LoginKeyBoard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\OperatorAuthDialog.xaml.cs">
+      <DependentUpon>OperatorAuthDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\OperatorAuthDialogViewModel.cs" />
     <Compile Include="View\Dialogs\SlidingTableDataInputDialog.xaml.cs">
       <DependentUpon>SlidingTableDataInputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialogs\SlidingTableDataInputDialogViewModel.cs" />
+    <Compile Include="View\Helper\PasswordBoxHelper.cs" />
     <Compile Include="View\Maintain\MaintainMainPage.xaml.cs">
       <DependentUpon>MaintainMainPage.xaml</DependentUpon>
     </Compile>
@@ -301,6 +310,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Dialogs\DataInputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Controls\LoginKeyBoard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\OperatorAuthDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

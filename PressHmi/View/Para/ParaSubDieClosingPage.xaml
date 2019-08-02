@@ -56,7 +56,7 @@
 
                     <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0"
                                FontSize="{DynamicResource TextPrimerSize}" Width="280" Height="50" Style="{StaticResource ParaInputInBoxButton}"
-                               Content="{Binding ParaDieClosingInfo.StrSectionNum}" Tag="&#xf044;"
+                               Content="{Binding ParaDieClosingInfo.StrSectionNum}" Tag="&#xf044;" IsEnabled="{Binding _ManagerRole}"
                             Command="{Binding SectionNumSetCmd}"/>
                 </Border>
             </Grid>
@@ -75,7 +75,8 @@
                         BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
                     <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Tag="&#xf044;"
                                FontSize="{DynamicResource TextPrimerSize}" Width="280" Height="50" Style="{StaticResource ParaInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.BottomDeadCentre_StopTime}" Command="{Binding BottomDeadCentre_StopTimeCmd}"/>
+                               Content="{Binding ParaDieClosingProcInfo.BottomDeadCentre_StopTime}" Command="{Binding BottomDeadCentre_StopTimeCmd}"
+                            IsEnabled="{Binding _ManagerRole}"/>
                 </Border>
             </Grid>
 
@@ -243,7 +244,7 @@
                                FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_7}" Command="{Binding Pos_7SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[6]}"/>
             <Button Grid.Column="9" Grid.Row="1"    Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}" 
                                Content="{Binding ParaDieClosingProcInfo.Pos_8}" Command="{Binding Pos_8SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[7]}"/>
 
             <Button Grid.Column="2" Grid.Row="2"    Margin="0,0,1,1"
@@ -272,15 +273,15 @@
                                Content="{Binding ParaDieClosingProcInfo.Speed_8}" Command="{Binding Speed_8SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[7]}"/>
 
             <Button Grid.Column="1" Grid.Row="1"    Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.TopDeadCentre}" Command="{Binding TopDeadCentreCmd}" />
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}" IsEnabled="{Binding _ManagerRole}"
+                               Content="{Binding ParaDieClosingProcInfo.TopDeadCentre}" Command="{Binding TopDeadCentreCmd}"/>
             <Button Grid.Column="10" Grid.Row="2"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.Speed_BottomDeadCentre}" Command="{Binding Speed_BottomDeadCentreCmd}" />
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}" IsEnabled="{Binding _ManagerRole}"
+                               Content="{Binding ParaDieClosingProcInfo.Speed_BottomDeadCentre}" Command="{Binding Speed_BottomDeadCentreCmd}"/>
             
             <Button Grid.Column="10" Grid.Row="1"    Margin="0,1,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.BottomDeadCentre}" Command="{Binding BottomDeadCentreSetCmd}" />
+                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}" IsEnabled="{Binding _ManagerRole}"
+                               Content="{Binding ParaDieClosingProcInfo.BottomDeadCentre}" Command="{Binding BottomDeadCentreSetCmd}"/>
         </Grid>
     </Grid>
 </Page>

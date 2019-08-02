@@ -14,10 +14,11 @@ using PressHmi.View;
 using FanucCnc;
 using FanucCnc.Model;
 using PressHmi.Roles;
+using PressHmi.View.Dialogs;
 
 namespace PressHmi.ViewModel
 {
-    public class MainWindowViewModel: ViewModelBase
+    public class MainWindowViewModel: MyBaseViewModel
     {
         private System.Timers.Timer timerL = new System.Timers.Timer();
 
@@ -183,6 +184,34 @@ namespace PressHmi.ViewModel
             }
         }
 
+        private MenuButtonDto m_MainMenu7;
+        public MenuButtonDto MainMenu7
+        {
+            get { return m_MainMenu7; }
+            set
+            {
+                if (m_MainMenu7 != value)
+                {
+                    m_MainMenu7 = value;
+                    RaisePropertyChanged(() => MainMenu7);
+                }
+            }
+        }
+
+        private MenuButtonDto m_MainMenu8;
+        public MenuButtonDto MainMenu8
+        {
+            get { return m_MainMenu8; }
+            set
+            {
+                if (m_MainMenu8 != value)
+                {
+                    m_MainMenu8 = value;
+                    RaisePropertyChanged(() => MainMenu8);
+                }
+            }
+        }
+
         private bool m_MainMenu1Cheched;
         public bool MainMenu1Cheched
         {
@@ -294,59 +323,69 @@ namespace PressHmi.ViewModel
 
         private void InitialMainMenu()
         {
-            if (_role.CurRole.Level<8)
-                MainMenu1 = new MenuButtonDto
-                {
-                    Text = "状态",
-                    Text2 = "监控",
-                    Cmd = new RelayCommand(OnMainMenu1Click),
-                    Visibility = "Visible",
-                };
+            MainMenu7 = new MenuButtonDto
+            {
+                Text = "屏幕",
+                Text2 = "截屏",
+                Cmd = new RelayCommand(OnMainMenu7Click),
+                Visibility = "Visible",
+            };
 
-            if (_role.CurRole.Level <= 5)
-                MainMenu2 = new MenuButtonDto
-                {
-                    Text = "参数",
-                    Text2 = "设置",
-                    Cmd = new RelayCommand(OnMainMenu2Click),
-                    Visibility = "Visible",
-                };
+            MainMenu8 = new MenuButtonDto
+            {
+                Text = "用户",
+                Text2 = "权限",
+                Cmd = new RelayCommand(OnMainMenu8Click),
+                Visibility = "Visible",
+            };
 
-            if (_role.CurRole.Level < 8)
-                MainMenu3 = new MenuButtonDto
-                {
-                    Text = "报警",
-                    Text2 = "信息",
-                    Cmd = new RelayCommand(OnMainMenu3Click),
-                    Visibility = "Visible",
-                };
+            MainMenu1 = new MenuButtonDto
+            {
+                Text = "状态",
+                Text2 = "监控",
+                Cmd = new RelayCommand(OnMainMenu1Click),
+                Visibility = "Visible",
+            };
 
-            if (_role.CurRole.Level <= 5)
-                MainMenu4 = new MenuButtonDto
-                {
-                    Text = "系统",
-                    Text2 = "维护",
-                    Cmd = new RelayCommand(OnMainMenu4Click),
-                    Visibility = "Visible",
-                };
+            MainMenu2 = new MenuButtonDto
+            {
+                Text = "参数",
+                Text2 = "设置",
+                Cmd = new RelayCommand(OnMainMenu2Click),
+                Visibility = "Visible",
+            };
 
-            if (_role.CurRole.Level <= 5)
-                MainMenu5 = new MenuButtonDto
-                {
-                    Text = "系统",
-                    Text2 = "参数",
-                    Cmd = new RelayCommand(OnMainMenu5Click),
-                    Visibility = "Visible",
-                };
+            MainMenu3 = new MenuButtonDto
+            {
+                Text = "报警",
+                Text2 = "信息",
+                Cmd = new RelayCommand(OnMainMenu3Click),
+                Visibility = "Visible",
+            };
 
-            if (_role.CurRole.Level <= 5)
-                MainMenu6 = new MenuButtonDto
-                {
-                    Text = "系统",
-                    Text2 = "配置",
-                    Cmd = new RelayCommand(OnMainMenu6Click),
-                    Visibility = "Visible",
-                };
+            MainMenu4 = new MenuButtonDto
+            {
+                Text = "系统",
+                Text2 = "维护",
+                Cmd = new RelayCommand(OnMainMenu4Click),
+                Visibility = "Visible",
+            };
+
+            MainMenu5 = new MenuButtonDto
+            {
+                Text = "系统",
+                Text2 = "参数",
+                Cmd = new RelayCommand(OnMainMenu5Click),
+                Visibility = "Visible",
+            };
+
+            MainMenu6 = new MenuButtonDto
+            {
+                Text = "系统",
+                Text2 = "配置",
+                Cmd = new RelayCommand(OnMainMenu6Click),
+                Visibility = "Visible",
+            };
 
         }
 
@@ -376,11 +415,21 @@ namespace PressHmi.ViewModel
             _MainPanel = new SParaMainPage();
 
         }
-
         private void OnMainMenu6Click()
         {
             ChangeMainMenuEvent(m6: true);
             _MainPanel = new SystemMainPage();
+        }
+
+        private void OnMainMenu7Click()
+        {
+
+        }
+
+        private void OnMainMenu8Click()
+        {
+            var auth = new OperatorAuthDialog();
+            auth.ShowDialog();
         }
 
 

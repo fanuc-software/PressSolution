@@ -19,6 +19,7 @@ namespace PressHmi.Roles
     public class Role
     {
         private static Role _instance = null;
+        private OperatorAuthTypeEnum _operatorRole;
 
         public static Role CreateInstance()
         {
@@ -30,19 +31,6 @@ namespace PressHmi.Roles
             return _instance;
         }
 
-        private RoleInfoDto curRole;
-        public RoleInfoDto CurRole
-        {
-            get
-            {
-                return curRole;
-            }
-            set
-            {
-                curRole = value;
-            }
-        }
-        
         public Role()
         {
             Initial();
@@ -50,8 +38,21 @@ namespace PressHmi.Roles
 
         public void Initial()
         {
+            _operatorRole = OperatorAuthTypeEnum.OPERATOR;
+        }
+
+        public bool SetOperatorRole(OperatorAuthTypeEnum role,string pwd)
+        {
             var srv = new RoleInfoService();
-            CurRole = srv.GetInitial();
+            var ret = srv.AuthR((int)role, pwd);
+
+            if (ret == false) return ret;
+
+            _operatorRole = role;
+
+            Messenger.Default.Send<OperatorAuthTypeEnum>(role, "OperatorAuthMsg");
+
+            return true;
         }
     }
 }

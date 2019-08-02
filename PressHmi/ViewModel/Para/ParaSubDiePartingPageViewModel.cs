@@ -20,7 +20,7 @@ using Abt.Controls.SciChart.Model.DataSeries;
 
 namespace PressHmi.ViewModel
 {
-    public class ParaSubDiePartingPageViewModel : ViewModelBase
+    public class ParaSubDiePartingPageViewModel : MyBaseViewModel
     {
         private Fanuc _fanuc;
         private IMapper _mapper;

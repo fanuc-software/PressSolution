@@ -3,6 +3,7 @@ using AutoMapper;
 using PressHmi.ViewModel;
 using FanucCnc;
 using PressHmi.Roles;
+using PressHmi.View.Dialogs;
 
 namespace PressHmi.App_Start
 {
@@ -17,7 +18,6 @@ namespace PressHmi.App_Start
 
             //role
             SimpleIoc.Default.Register<Role>(() => Role.CreateInstance());
-
 
 
             SimpleIoc.Default.Register<MainWindowViewModel>();
@@ -54,6 +54,8 @@ namespace PressHmi.App_Start
             SimpleIoc.Default.Register<SystemMacroViewModel>();
             SimpleIoc.Default.Register<SystemPmcViewModel>();
             SimpleIoc.Default.Register<SystemTableViewModel>();
+
+            SimpleIoc.Default.Register<OperatorAuthDialogViewModel>();
         }
 
     }

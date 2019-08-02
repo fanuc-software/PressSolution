@@ -52,10 +52,64 @@
                             <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MainMenuCheckedForeground}" />
                             <Setter TargetName="text3" Property="Foreground" Value="{DynamicResource MainMenuCheckedForeground}" />
                         </Trigger>
-                        <!--<Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="{DynamicResource MenuPressedBackground}" />
-                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MenuPressedForeground}" />
-                        </Trigger>-->
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MainMenuNormalNButtonFocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="4 2">
+                        <Rectangle x:Name="r1" StrokeThickness="1" Stroke="Black" StrokeDashArray="2 2"/>
+                        <Border x:Name="border" Width="{TemplateBinding ActualWidth}" Height="{TemplateBinding ActualHeight}"  CornerRadius="2" BorderThickness="1" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MainMenuNormalNButton" BasedOn="{StaticResource MyButtonBase}" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="FontFamily" Value="YouYuan"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource MainMenuNormalNButtonFocusVisual}" />
+        <Setter Property="Background" Value="{DynamicResource MainMenuBackground}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border" CornerRadius="2" BorderThickness="1" BorderBrush="{DynamicResource MainMenuBorder}"
+						SnapsToDevicePixels="False" Background="Transparent">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="text2" Grid.Row="0" FontSize="{DynamicResource TextPrimerSize}" Margin="2,2,2,1"  FontFamily="Microsoft YaHei UI Light"
+                                        HorizontalAlignment="Center" VerticalAlignment="Bottom"
+										Text="{Binding Content.Text, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+										Foreground="{DynamicResource MainMenuForeground}"/>
+                            <TextBlock x:Name="text3" Grid.Row="1"  FontSize="{DynamicResource TextPrimerSize}" Margin="2,1,2,2"  FontFamily="Microsoft YaHei UI Light"
+                                        HorizontalAlignment="Center" VerticalAlignment="Top"
+										Text="{Binding Content.Text2, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+										Foreground="{DynamicResource MainMenuForeground}"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource MainMenuCheckedBackground}" />
+                            <Setter TargetName="text2" Property="Foreground" Value="{DynamicResource MainMenuCheckedForeground}" />
+                            <Setter TargetName="text3" Property="Foreground" Value="{DynamicResource MainMenuCheckedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

@@ -20,7 +20,7 @@ using System.IO;
 
 namespace PressHmi.ViewModel
 {
-    public class ParaSubDieClosingPageViewModel : ViewModelBase
+    public class ParaSubDieClosingPageViewModel : MyBaseViewModel
     {
         private Fanuc _fanuc;
         private IMapper _mapper;

@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CncScreenDisplay.cs" />
+    <Compile Include="Enum\OperatorAuthTypeEnum.cs" />
     <Compile Include="Enum\PmcAdrTypeEnum.cs" />
     <Compile Include="Enum\PmcDataTypeEnum.cs" />
     <Compile Include="Fanuc.cs" />

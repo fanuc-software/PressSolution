@@ -54,14 +54,14 @@
                                Text="快行速度(%):"/>
                     <Button Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.RapidFeed}" Tag="&#xf044;"
+                               Content="{Binding ParaDieChangeInfo.RapidFeed}" Tag="&#xf044;" IsEnabled="{Binding _ManagerRole}" 
                             Command="{Binding RapidFeedSetCmd}"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}"
                                Text="寸动速度(%):"/>
                     <Button Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.JogFeed}" Tag="&#xf044;"
+                               Content="{Binding ParaDieChangeInfo.JogFeed}" Tag="&#xf044;" IsEnabled="{Binding _ManagerRole}" 
                             Command="{Binding JogFeedSetCmd}"/>
                 </Grid>
             </Border>
@@ -90,7 +90,7 @@
                                Text="装模高度设定值(mm):"/>
                     <Button Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.StrInstallDieHighSet}" Tag="&#xf044;"
+                               Content="{Binding ParaDieChangeInfo.StrInstallDieHighSet}" Tag="&#xf044;" IsEnabled="{Binding _ManagerRole}" 
                             Command="{Binding InstallDieHighSetCmd}"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}"
@@ -130,7 +130,7 @@
                                Text="平衡缸压力设定值(MPa):"/>
                     <Button Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.StrCylinderpRressureSet}" Tag="&#xf044;"
+                               Content="{Binding ParaDieChangeInfo.StrCylinderpRressureSet}" Tag="&#xf044;" IsEnabled="{Binding _ManagerRole}" 
                             Command="{Binding CylinderpRressureSetCmd}"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}"
@@ -143,7 +143,7 @@
                                Text="上模重量(T):"/>
                     <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.StrDieWeight}" Tag="&#xf044;"
+                               Content="{Binding ParaDieChangeInfo.StrDieWeight}" Tag="&#xf044;" IsEnabled="{Binding _ManagerRole}" 
                             Command="{Binding DieWeightSetCmd}"/>
 
                 </Grid>
@@ -177,7 +177,7 @@
                                Text="上行安全位置(mm):"/>
                     <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
                                FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.StrLoaderSafePosition}" Tag="&#xf044;"
+                               Content="{Binding ParaDieChangeInfo.StrLoaderSafePosition}" Tag="&#xf044;" IsEnabled="{Binding _ManagerRole}" 
                             Command="{Binding LoaderSafePositionSetCmd}"/>
                 </Grid>
             </Border>

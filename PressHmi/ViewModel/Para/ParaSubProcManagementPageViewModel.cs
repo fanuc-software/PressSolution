@@ -21,7 +21,7 @@ using System.IO;
 
 namespace PressHmi.ViewModel
 {
-    public class ParaSubProcManagementPageViewModel : ViewModelBase
+    public class ParaSubProcManagementPageViewModel : MyBaseViewModel
     {
         private Fanuc _fanuc;
         private IMapper _mapper;
