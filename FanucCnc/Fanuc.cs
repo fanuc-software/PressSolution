@@ -361,8 +361,8 @@ namespace FanucCnc
 
         public Fanuc()
         {
-            ReInitialPmcBom();
-
+           // ReInitialPmcBom();
+            InitialPmcBom();
             //静态扫描线程
             m_static_BackgroundWorker.WorkerReportsProgress = false;
             m_static_BackgroundWorker.WorkerSupportsCancellation = true;
@@ -425,6 +425,14 @@ namespace FanucCnc
             }
 
             _baseInfo = JsonConvert.DeserializeObject<BaseInfo>(jsonBaseInfo);
+
+         
+            string jsonLimit;
+            using (StreamReader sr = new StreamReader(@"limitbom.cfg", true))
+            {
+                jsonLimit = sr.ReadToEnd();
+            }
+            _limitBom = JsonConvert.DeserializeObject<LimitBom>(jsonLimit);
 
             return 0;
         }
