@@ -8,7 +8,7 @@
       xmlns:conv="clr-namespace:PressHmi.View.Converters" 
       xmlns:SciChart="http://schemas.abtsoftware.co.uk/scichart"
       mc:Ignorable="d"
-      d:DesignHeight="684" d:DesignWidth="944"
+      d:DesignHeight="830" d:DesignWidth="1770"
       Title="StateMonitorPage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -19,26 +19,31 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Page.Resources>
+        <Style x:Key="FontAwesome">
+            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
+        </Style>
+
+        <conv:BoolVisibleConverter x:Key="_bvc"/>
         <conv:BoolConverter x:Key="_bc"/>
     </Page.Resources>
 
     <Border CornerRadius="3" Background="{DynamicResource ContentPanelBackground}" Margin="2,3,2,3">
         <Grid Margin="2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="70"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="187"/>
+                <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="187*"/>
-                    <ColumnDefinition Width="187*"/>
-                    <ColumnDefinition Width="187*"/>
-                    <ColumnDefinition Width="188*"/>
-                    <ColumnDefinition Width="187*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid Grid.Column="0">
@@ -128,29 +133,28 @@
 
             </Grid>
 
-            <Grid Grid.Row="1" Grid.Column="1" >
+            <Grid Grid.Row="1" Grid.Column="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="72"/>
-                    <RowDefinition Height="72"/>
-                    <RowDefinition Height="72"/>
-                    <RowDefinition Height="72"/>
-
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="20"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="10"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource btn-primary}" Height="40" Width="180" Grid.Row="1" Content="开始绘制" IsEnabled="{Binding StateMonitorInfo.LineChartFlag,Converter={StaticResource _bc}}" Command="{Binding StartSciChartCmd}"/>
-                    <Button Style="{StaticResource btn-warning}" Height="40" Width="180" Grid.Row="2" Content="停止绘制"  Command="{Binding StopSciChartCmd}"/>
+                    <Button Style="{StaticResource btn-primary}" FontSize="{StaticResource TextPrimerSize}" Height="80" Width="250" Grid.Row="1" Content="开始绘制" IsEnabled="{Binding StateMonitorInfo.LineChartFlag,Converter={StaticResource _bc}}" Command="{Binding StartSciChartCmd}"/>
+                    <Button Style="{StaticResource btn-warning}" FontSize="{StaticResource TextPrimerSize}" Height="80" Width="250" Grid.Row="2" Content="停止绘制"  Command="{Binding StopSciChartCmd}"/>
                 </Grid>
 
 
-                <Grid Grid.Row="1" Margin="0,0,0,2">
+                <Grid Grid.Row="1" Margin="0,0,0,2" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -167,7 +171,7 @@
                     </Border>
                 </Grid>
 
-                <Grid Grid.Row="2" Margin="0,0,0,2">
+                <Grid Grid.Row="2" Margin="0,0,0,2" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -184,7 +188,7 @@
                     </Border>
                 </Grid>
 
-                <Grid Grid.Row="3" Margin="0,0,0,2">
+                <Grid Grid.Row="3" Margin="0,0,0,2" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -201,7 +205,7 @@
                     </Border>
                 </Grid>
 
-                <Grid Grid.Row="4" Margin="0,0,0,2">
+                <Grid Grid.Row="4" Margin="0,0,0,2" Visibility="Hidden">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
@@ -220,17 +224,17 @@
             </Grid>
 
             <Grid Grid.Row="1" Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="0"/>
-                </Grid.RowDefinitions>
-                <SciChart:SciChartSurface Name="Plotter" SciChart:ThemeManager.Theme="ExpressionLight" Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="53"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <SciChart:SciChartSurface Grid.Column="1" Name="Plotter" SciChart:ThemeManager.Theme="ExpressionLight" Background="Transparent">
 
                     <SciChart:SciChartSurface.RenderableSeries>
-                        <SciChart:FastLineRenderableSeries DataSeries="{Binding PosSeries}" SeriesColor="#c23531" StrokeThickness="1" YAxisId="PS1_POS"/>
-                        <SciChart:FastLineRenderableSeries DataSeries="{Binding SpeedSeries}" SeriesColor="#2f4554" StrokeThickness="1" YAxisId="PS1_SPEED"/>
-                        <SciChart:FastLineRenderableSeries DataSeries="{Binding TemSeries}" SeriesColor="#61a0a8" StrokeThickness="1" YAxisId="PS1_TEM"/>
-                        <SciChart:FastLineRenderableSeries DataSeries="{Binding PressSeries}" SeriesColor="#d48265" StrokeThickness="1" YAxisId="PS1_PRESS"/>
+                        <SciChart:FastLineRenderableSeries DataSeries="{Binding PosSeries}" SeriesColor="#c23531" StrokeThickness="2" YAxisId="PS1_POS" Visibility="{Binding Series1Visible,Converter={StaticResource _bvc}}"/>
+                        <SciChart:FastLineRenderableSeries DataSeries="{Binding SpeedSeries}" SeriesColor="#2f4554" StrokeThickness="2" YAxisId="PS1_SPEED" Visibility="{Binding Series2Visible,Converter={StaticResource _bvc}}"/>
+                        <SciChart:FastLineRenderableSeries DataSeries="{Binding TemSeries}" SeriesColor="#61a0a8" StrokeThickness="2" YAxisId="PS1_TEM" Visibility="{Binding Series3Visible,Converter={StaticResource _bvc}}"/>
+                        <SciChart:FastLineRenderableSeries DataSeries="{Binding PressSeries}" SeriesColor="#d48265" StrokeThickness="2" YAxisId="PS1_PRESS" Visibility="{Binding Series4Visible,Converter={StaticResource _bvc}}"/>
                     </SciChart:SciChartSurface.RenderableSeries>
 
                     <!-- Create an X Axis -->
@@ -245,7 +249,7 @@
                     <!-- Create an Y Axes -->
                     <SciChart:SciChartSurface.YAxes>
                         <SciChart:NumericAxis Id="PS1_POS" AxisTitle="位移(mm)"  AutoRange="Always" AxisAlignment="Left" 
-                                              BorderBrush="#c23531" BorderThickness="0,0,1,0" 
+                                              BorderBrush="#c23531" BorderThickness="0,0,1,0" Visibility="{Binding Series1Visible,Converter={StaticResource _bvc}}"
                                               DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
                                               TickTextBrush="#c23531">
                             <SciChart:NumericAxis.GrowBy>
@@ -254,7 +258,7 @@
                         </SciChart:NumericAxis>
 
                         <SciChart:NumericAxis Id="PS1_SPEED" AxisTitle="速度(mm/s)" AutoRange="Always" AxisAlignment="Left" 
-                                              BorderBrush="#2f4554" BorderThickness="0,0,1,0" 
+                                              BorderBrush="#2f4554" BorderThickness="0,0,1,0"  Visibility="{Binding Series2Visible,Converter={StaticResource _bvc}}"
                                               DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
                                               TickTextBrush="#2f4554">
                             <SciChart:NumericAxis.GrowBy>
@@ -263,7 +267,7 @@
                         </SciChart:NumericAxis>
 
                         <SciChart:NumericAxis Id="PS1_TEM" AxisTitle="温度(℃)" AutoRange="Always" AxisAlignment="Right" 
-                                              BorderBrush="#61a0a8" BorderThickness="0,0,1,0" 
+                                              BorderBrush="#61a0a8" BorderThickness="0,0,1,0" Visibility="{Binding Series3Visible,Converter={StaticResource _bvc}}"
                                               DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
                                               TickTextBrush="#61a0a8">
                             <SciChart:NumericAxis.GrowBy>
@@ -272,7 +276,7 @@
                         </SciChart:NumericAxis>
 
                         <SciChart:NumericAxis Id="PS1_PRESS" AxisTitle="压力(MPa)" AutoRange="Always" AxisAlignment="Right" 
-                                              BorderBrush="#d48265" BorderThickness="0,0,1,0" 
+                                              BorderBrush="#d48265" BorderThickness="0,0,1,0" Visibility="{Binding Series4Visible,Converter={StaticResource _bvc}}"
                                               DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
                                               TickTextBrush="#d48265">
                             <SciChart:NumericAxis.GrowBy>
@@ -285,7 +289,26 @@
 
 
                 </SciChart:SciChartSurface>
-
+                <Grid Grid.Column="0" Margin="1,0,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="82"/>
+                        <RowDefinition Height="82"/>
+                        <RowDefinition Height="82"/>
+                        <RowDefinition Height="82"/>
+                        <RowDefinition Height="82"/>
+                        <RowDefinition Height="82"/>
+                        <RowDefinition Height="82"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ToggleButton Grid.Row="0" Content="&#xf072;" Style="{StaticResource SeriesButton}" Margin="1,0,1,1" Width="50" Height="80" BorderBrush="{DynamicResource ContentPanelNormalBackground}"  IsChecked="{Binding Series1Visible}" Background="Transparent"/>
+                    <ToggleButton Grid.Row="1" Content="&#xf0e4;" Style="{StaticResource SeriesButton}" Margin="1,0,1,1" Width="50" Height="80" BorderBrush="{DynamicResource ContentPanelNormalBackground}"  IsChecked="{Binding Series2Visible}" Background="Transparent"/>
+                    <ToggleButton Grid.Row="2" Content="&#xf0e2;" Style="{StaticResource SeriesButton}" Margin="1,0,1,1" Width="50" Height="80" BorderBrush="{DynamicResource ContentPanelNormalBackground}"  IsChecked="{Binding Series3Visible}" Background="Transparent"/>
+                    <ToggleButton Grid.Row="3" Content="&#xf0e3;" Style="{StaticResource SeriesButton}" Margin="1,0,1,1" Width="50" Height="80" BorderBrush="{DynamicResource ContentPanelNormalBackground}"  IsChecked="{Binding Series4Visible}" Background="Transparent"/>
+                    <ToggleButton Grid.Row="4" Content="&#xf047;" Style="{StaticResource SeriesButton}" Margin="1,0,1,1" Width="50" Height="80" BorderBrush="{DynamicResource ContentPanelNormalBackground}"  Background="Transparent"/>
+                    <ToggleButton Grid.Row="5" Content="&#xf00e;" Style="{StaticResource SeriesButton}" Margin="1,0,1,1" Width="50" Height="80" BorderBrush="{DynamicResource ContentPanelNormalBackground}"  Background="Transparent"/>
+                    <ToggleButton Grid.Row="6" Content="&#xf0c7;" Style="{StaticResource SeriesButton}" Margin="1,0,1,1" Width="50" Height="80" BorderBrush="{DynamicResource ContentPanelNormalBackground}"  Background="Transparent"/>
+                    <ToggleButton Grid.Row="7" Content="" Style="{StaticResource SeriesButton}" Margin="1,0,1,1" Width="50" Height="144" BorderBrush="{DynamicResource ContentPanelNormalBackground}"  Background="Transparent"/>
+                </Grid>
             </Grid>
 
         </Grid>

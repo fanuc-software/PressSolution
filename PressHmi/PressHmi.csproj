@@ -121,6 +121,7 @@
     <Compile Include="Model\ParaDieChangeInfoDto.cs" />
     <Compile Include="Model\ParaDieClampInfoDto.cs" />
     <Compile Include="Model\ParaDieClosingInfoDto.cs" />
+    <Compile Include="Model\ParaDieHydrInfoDto.cs" />
     <Compile Include="Model\ParaDiePartingProcInfoDto.cs" />
     <Compile Include="Model\ParaDieClosingProcInfoDto.cs" />
     <Compile Include="Model\ParaDiePartingInfoDto.cs" />
@@ -137,10 +138,19 @@
     <Compile Include="Model\StateMonitorInfoDto.cs" />
     <Compile Include="ViewModel\Maintain\MaintainSubCsdPageViewModel.cs" />
     <Compile Include="ViewModel\Message\MessageSubAlarmPageViewModel.cs" />
+    <Compile Include="ViewModel\Para\ParaSubDieHydrPageViewModel.cs" />
     <Compile Include="ViewModel\System\SysetmInfoViewModel.cs" />
     <Compile Include="ViewModel\System\SystemMacroViewModel.cs" />
     <Compile Include="ViewModel\System\SystemPmcViewModel.cs" />
+    <Compile Include="ViewModel\System\SystemTableViewModel.cs" />
     <Compile Include="View\Converters\AlarmTypeStringConverter.cs" />
+    <Compile Include="View\Converters\BoolVisibleConverter.cs" />
+    <Compile Include="View\Converters\ClampRelaxInPositionStringConverter.cs" />
+    <Compile Include="View\Converters\ClampStatusConverter.cs" />
+    <Compile Include="View\Converters\DieHydrRunStringConverter.cs" />
+    <Compile Include="View\Converters\DieHydrStateColorConverter.cs" />
+    <Compile Include="View\Converters\DieHydrStateStringConverter.cs" />
+    <Compile Include="View\Converters\IOColorConverter.cs" />
     <Compile Include="View\Converters\UpDownStringConverter.cs" />
     <Compile Include="Roles\Role.cs" />
     <Compile Include="ViewModel\Maintain\MaintainMainPageViewModel.cs" />
@@ -183,6 +193,11 @@
       <DependentUpon>AutoAirSourceArrInputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialogs\AutoAirSourceArrInputDialogViewModel.cs" />
+    <Compile Include="View\Dialogs\DoubleDataInputDialog.xaml.cs">
+      <DependentUpon>DoubleDataInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\DoubleDataInputDialogViewModel.cs" />
+    <Compile Include="View\Dialogs\InputDialogData.cs" />
     <Compile Include="View\Dialogs\MacroDataInputDialogViewModel.cs" />
     <Compile Include="View\Dialogs\MacroDataInputDialog.xaml.cs">
       <DependentUpon>MacroDataInputDialog.xaml</DependentUpon>
@@ -191,6 +206,10 @@
       <DependentUpon>DataInputDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Dialogs\DataInputDialogViewModel.cs" />
+    <Compile Include="View\Dialogs\SlidingTableDataInputDialog.xaml.cs">
+      <DependentUpon>SlidingTableDataInputDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Dialogs\SlidingTableDataInputDialogViewModel.cs" />
     <Compile Include="View\Maintain\MaintainMainPage.xaml.cs">
       <DependentUpon>MaintainMainPage.xaml</DependentUpon>
     </Compile>
@@ -266,7 +285,14 @@
     <Compile Include="View\System\SystemPmcPage.xaml.cs">
       <DependentUpon>SystemPmcPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\System\SystemTablePage.xaml.cs">
+      <DependentUpon>SystemTablePage.xaml</DependentUpon>
+    </Compile>
     <Page Include="View\Dialogs\AutoAirSourceArrInputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\DoubleDataInputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -275,6 +301,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Dialogs\DataInputDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Dialogs\SlidingTableDataInputDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -467,6 +497,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\System\SystemPmcPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\System\SystemTablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

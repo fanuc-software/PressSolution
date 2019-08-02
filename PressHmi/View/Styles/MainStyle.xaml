@@ -88,7 +88,7 @@
                     <Border x:Name="border" CornerRadius="0" BorderThickness="0" BorderBrush="{DynamicResource MainMenuBorder}"
 						SnapsToDevicePixels="False" Background="{Binding Background, RelativeSource={RelativeSource Mode=TemplatedParent}}">
                         <Grid>
-                            <TextBlock x:Name="text2" FontSize="12" Margin="5"  FontFamily="Microsoft YaHei UI Light"
+                            <TextBlock x:Name="text2" FontSize="{Binding FontSize,RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="5"  FontFamily="Microsoft YaHei UI Light"
                                         HorizontalAlignment="Left" VerticalAlignment="Center"
 										Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
 										Foreground="{Binding Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
@@ -163,6 +163,58 @@
                             <Setter TargetName="border" Property="Background" Value="{StaticResource DataButtonClickedBackground}" />
                             <Setter TargetName="text" Property="Foreground" Value="{StaticResource DataButtonClickedForeground}" />
                         </Trigger>-->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.7" />
+                            <Setter Property="Foreground" Value="Gray" />
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SeriesButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Margin" Value="0,5"/>
+        <Setter Property="FontFamily" Value="YouYuan"/>
+        <Setter Property="FontSize" Value="16px"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border x:Name="border" CornerRadius="0"
+						BorderThickness="0"
+						Padding="0"
+						Height="Auto" Width="Auto"
+						SnapsToDevicePixels="False" BorderBrush="Gray">
+                        <Grid>
+                            <Border CornerRadius="0" BorderBrush="Gray" BorderThickness="1">
+                                <Grid  x:Name="grid" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" >
+                                    <TextBlock x:Name="text" FontSize="28" Margin="5" HorizontalAlignment="Center" VerticalAlignment="Center"
+										Text="{Binding Content, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+										Foreground="Gray" Style="{DynamicResource FontAwesome}"/>
+                                </Grid>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF4788c8" />
+                            <Setter TargetName="text" Property="Foreground" Value="#FF4788c8" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="Gray" />
+                            <Setter TargetName="text" Property="Foreground" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#FF2E205B"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#FF140A36" />
+                            <Setter Property="Foreground" Value="#FFF74848"/>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="border" Property="Opacity" Value="0.7" />
                             <Setter Property="Foreground" Value="Gray" />

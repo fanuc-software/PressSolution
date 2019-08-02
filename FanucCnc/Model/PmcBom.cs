@@ -222,8 +222,8 @@ namespace FanucCnc.Model
 
         [Display(Name = "合模规划-上死点", AutoGenerateField = true)]
         public PmcBomItem DJP_TopDeadCentre { get; set; }
-        [Display(Name = "合模规划-上死点速度", AutoGenerateField = true)]
-        public PmcBomItem DJP_Speed_TopDeadCentre { get; set; }
+        [Display(Name = "合模规划-下死点速度", AutoGenerateField = true)]
+        public PmcBomItem DJP_Speed_BottomDeadCentre { get; set; }
 
         [Display(Name = "合模规划-位置1", AutoGenerateField = true)]
         public PmcBomItem DJP_Pos_1 { get; set; }
@@ -288,12 +288,40 @@ namespace FanucCnc.Model
         //public PmcBomItem DPP_SafeTime { get; set; }
         [Display(Name = "开模设定-下死点", AutoGenerateField = true)]
         public PmcBomItem DPP_BottomDeadCentre { get; set; }
-        [Display(Name = "开模设定-下死点速度", AutoGenerateField = true)]
-        public PmcBomItem DPP_Speed_BottomDeadCentre { get; set; }
+        [Display(Name = "开模设定-上死点速度", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_TopDeadCentre { get; set; }
         [Display(Name = "开模规划-位置1", AutoGenerateField = true)]
         public PmcBomItem DPP_Pos_1 { get; set; }
         [Display(Name = "开模规划-速度1", AutoGenerateField = true)]
         public PmcBomItem DPP_Speed_1 { get; set; }
+        [Display(Name = "开模规划-位置2", AutoGenerateField = true)]
+        public PmcBomItem DPP_Pos_2 { get; set; }
+        [Display(Name = "开模规划-速度2", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_2 { get; set; }
+        [Display(Name = "开模规划-位置3", AutoGenerateField = true)]
+        public PmcBomItem DPP_Pos_3 { get; set; }
+        [Display(Name = "开模规划-速度3", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_3 { get; set; }
+        [Display(Name = "开模规划-位置4", AutoGenerateField = true)]
+        public PmcBomItem DPP_Pos_4 { get; set; }
+        [Display(Name = "开模规划-速度4", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_4 { get; set; }
+        [Display(Name = "开模规划-位置5", AutoGenerateField = true)]
+        public PmcBomItem DPP_Pos_5 { get; set; }
+        [Display(Name = "开模规划-速度5", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_5 { get; set; }
+        [Display(Name = "开模规划-位置6", AutoGenerateField = true)]
+        public PmcBomItem DPP_Pos_6 { get; set; }
+        [Display(Name = "开模规划-速度6", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_6 { get; set; }
+        [Display(Name = "开模规划-位置7", AutoGenerateField = true)]
+        public PmcBomItem DPP_Pos_7 { get; set; }
+        [Display(Name = "开模规划-速度7", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_7 { get; set; }
+        [Display(Name = "开模规划-位置8", AutoGenerateField = true)]
+        public PmcBomItem DPP_Pos_8 { get; set; }
+        [Display(Name = "开模规划-速度8", AutoGenerateField = true)]
+        public PmcBomItem DPP_Speed_8 { get; set; }
 
         [Display(Name = "开模规划-上死点", AutoGenerateField = true)]
         public PmcBomItem DPP_TopDeadCentre { get; set; }
@@ -363,6 +391,32 @@ namespace FanucCnc.Model
         public PmcBomItem AAS_EndArr_4 { get; set; }
         [Display(Name = "自动化气源4-凸轮动作显示", AutoGenerateField = true)]
         public PmcBomItem AAS_ActionFlag_4 { get; set; }
+        #endregion
+
+        #region 模具液压设定
+        [Display(Name = "工作模式选择", AutoGenerateField = true)]
+        public PmcBomItem DH_Mode { get; set; }
+
+        [Display(Name = "压力设定", AutoGenerateField = true)]
+        public PmcBomItem DH_Pressure { get; set; }
+
+        [Display(Name = "顶出位置", AutoGenerateField = true)]
+        public PmcBomItem DH_PushPos { get; set; }
+
+        [Display(Name = "顶出延时", AutoGenerateField = true)]
+        public PmcBomItem DH_PushDelayTime { get; set; }
+
+        [Display(Name = "实际压力", AutoGenerateField = true)]
+        public PmcBomItem DH_ActualPressure { get; set; }
+
+        [Display(Name = "实际位置", AutoGenerateField = true)]
+        public PmcBomItem DH_ActualPos { get; set; }
+
+        [Display(Name = "系统运行指示灯", AutoGenerateField = true)]
+        public PmcBomItem DH_Run { get; set; }
+
+        [Display(Name = "系统运行状态", AutoGenerateField = true)]
+        public PmcBomItem DH_State { get; set; }
         #endregion
 
         #region 工件计数

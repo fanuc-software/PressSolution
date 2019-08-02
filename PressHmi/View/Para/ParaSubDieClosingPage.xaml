@@ -5,9 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:SciChart="http://schemas.abtsoftware.co.uk/scichart"
       xmlns:local="clr-namespace:PressHmi.View"
+      xmlns:conv="clr-namespace:PressHmi.View.Converters" 
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
       mc:Ignorable="d" 
-      d:DesignHeight="608" d:DesignWidth="940"
+      d:DesignHeight="730" d:DesignWidth="1770"
       Title="ParaSubDieClosingPage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -18,18 +19,26 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
+    <Page.Resources>
+        <Style x:Key="FontAwesome">
+            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
+        </Style>
+
+        <conv:BoolConverter x:Key="_bc"/>
+    </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="240"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Margin="2,2,0,0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="187"/>
-                <ColumnDefinition Width="187"/>
-                <ColumnDefinition Width="187"/>
-                <ColumnDefinition Width="187"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="280"/>
+                <ColumnDefinition Width="0"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
@@ -39,51 +48,16 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextSmallSize}"
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="段数"/>
                 </Border>
                 <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
 
                     <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="187" Height="30" Style="{StaticResource ParaInputInBoxButton}"
-                               Content="{Binding ParaDieClosingInfo.StrSectionNum}" Command="{Binding SectionNumSetCmd}"/>
-                </Border>
-            </Grid>
-
-            <Grid Grid.Column="1" Visibility="Hidden">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
-                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="合模前延时(s)"/>
-                </Border>
-                <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
-                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
-                    <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="187" Height="30" Style="{StaticResource ParaInputInBoxButton}"
-                               Content="{Binding ParaDieClosingInfo.StrPreDelayTime}" Command="{Binding PreDelayTimeSetCmd}"/>
-                </Border>
-            </Grid>
-
-            <Grid Grid.Column="2"  Visibility="Hidden">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
-                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="合模安全时间"/>
-                </Border>
-                <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
-                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
-                    <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="187" Height="30" Style="{StaticResource ParaInputInBoxButton}"
-                               Content="{Binding ParaDieClosingInfo.StrSafeTime}" Command="{Binding SafeTimeSetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="280" Height="50" Style="{StaticResource ParaInputInBoxButton}"
+                               Content="{Binding ParaDieClosingInfo.StrSectionNum}" Tag="&#xf044;"
+                            Command="{Binding SectionNumSetCmd}"/>
                 </Border>
             </Grid>
 
@@ -94,31 +68,51 @@
                 </Grid.RowDefinitions>
                 <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="下限保持时间"/>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="下限保持时间(ms)"/>
+                </Border>
+                <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
+                    <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0" Tag="&#xf044;"
+                               FontSize="{DynamicResource TextPrimerSize}" Width="280" Height="50" Style="{StaticResource ParaInputInBoxButton}"
+                               Content="{Binding ParaDieClosingProcInfo.BottomDeadCentre_StopTime}" Command="{Binding BottomDeadCentre_StopTimeCmd}"/>
+                </Border>
+            </Grid>
+
+            <!--<Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
+                        BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="{DynamicResource ContentPanelNormalBackground}">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="合模保压时间"/>
                 </Border>
                 <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource ContentPanelNormalBackground}" Background="Transparent">
                     <Button HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0,0,0,0"
-                               FontSize="{DynamicResource TextPrimerSize}" Width="187" Height="30" Style="{StaticResource ParaInputInBoxButton}"
+                               FontSize="{DynamicResource TextPrimerSize}" Width="280" Height="50" Style="{StaticResource ParaInputInBoxButton}"
                                Content="{Binding ParaDieClosingInfo.BottomDeadCentre_StopTime}" Command="{Binding BottomDeadCentre_StopTimeCmd}"/>
                 </Border>
-            </Grid>
-
-            <Button  Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0"
-                Style="{StaticResource btn-primary}" Content="曲线预览" Height="60" Width="160"/>
+            </Grid>-->
+            
+            <Button  Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" FontSize="{StaticResource TextPrimerSize}"
+                Style="{StaticResource btn-primary}" Content="曲线预览" Height="80" Width="280" Command="{Binding StartSciChartCmd}"
+                     IsEnabled="{Binding ParaDieClosingInfo.LineChartFlag,Converter={StaticResource _bc}}" />
 
         </Grid>
         <Grid Grid.Row="1">
-            <SciChart:SciChartSurface Name="Plotter_S1" SciChart:ThemeManager.Theme="ExpressionLight" Background="Transparent">
+            <SciChart:SciChartSurface Grid.Column="1" Name="Plotter" SciChart:ThemeManager.Theme="ExpressionLight" Background="Transparent">
 
                 <SciChart:SciChartSurface.RenderableSeries>
-                    <SciChart:FastLineRenderableSeries x:Name="PS1_DataSeries" SeriesColor="#FFE13219" StrokeThickness="1" YAxisId="PS1_Y"/>
+                    <SciChart:FastLineRenderableSeries DataSeries="{Binding PosSeries}" SeriesColor="#c23531" StrokeThickness="2" YAxisId="PS1_POS"/>
+                    <SciChart:FastLineRenderableSeries DataSeries="{Binding SpeedSeries}" SeriesColor="#2f4554" StrokeThickness="2" YAxisId="PS1_SPEED"/>
                 </SciChart:SciChartSurface.RenderableSeries>
 
                 <!-- Create an X Axis -->
                 <SciChart:SciChartSurface.XAxis>
-                    <SciChart:NumericAxis AutoRange="Always" DrawMinorTicks="False" DrawMinorGridLines="False" Visibility="Hidden" TextFormatting="0">
+                    <SciChart:NumericAxis AutoRange="Always" BorderThickness="0,0,1,0"  Visibility="Visible" TextFormatting="0">
                         <SciChart:NumericAxis.GrowBy>
                             <SciChart:DoubleRange Min="0.1" Max="0.1"/>
                         </SciChart:NumericAxis.GrowBy>
@@ -127,12 +121,27 @@
 
                 <!-- Create an Y Axes -->
                 <SciChart:SciChartSurface.YAxes>
-                    <SciChart:NumericAxis Id="PS1_Y" AutoRange="Always" AxisAlignment="Left" DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.#">
+                    <SciChart:NumericAxis Id="PS1_POS" AxisTitle="位移(mm)"  AutoRange="Always" AxisAlignment="Left" 
+                                              BorderBrush="#c23531" BorderThickness="0,0,1,0" 
+                                              DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
+                                              TickTextBrush="#c23531">
                         <SciChart:NumericAxis.GrowBy>
                             <SciChart:DoubleRange Min="0.1" Max="0.1"/>
                         </SciChart:NumericAxis.GrowBy>
                     </SciChart:NumericAxis>
+
+                    <SciChart:NumericAxis Id="PS1_SPEED" AxisTitle="速度(mm/s)" AutoRange="Always" AxisAlignment="Right" 
+                                              BorderBrush="#2f4554" BorderThickness="0,0,1,0" 
+                                              DrawMinorTicks="False" DrawMinorGridLines="False" TextFormatting="0.00"
+                                              TickTextBrush="#2f4554">
+                        <SciChart:NumericAxis.GrowBy>
+                            <SciChart:DoubleRange Min="0.1" Max="0.1"/>
+                        </SciChart:NumericAxis.GrowBy>
+                    </SciChart:NumericAxis>
+
                 </SciChart:SciChartSurface.YAxes>
+
+
 
             </SciChart:SciChartSurface>
         </Grid>
@@ -145,7 +154,7 @@
                 <RowDefinition Height="0"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="130"/>
+                <ColumnDefinition Width="200"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -159,63 +168,59 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}" Margin="1,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="上死点 ← 下死点" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
+                                   Text="下行" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
             </Border>
             <Border Grid.Column="1" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="上死点" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
             </Border>
             <Border Grid.Column="2" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="1" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="3" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="2" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="4" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="3" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="5" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="4" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="6" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="5" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="7" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="6" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="8" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="7" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="9" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="8" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
                 </Border>
             <Border Grid.Column="10" Grid.Row="0" Background="{DynamicResource ContentPanelNormalBackground}"  Margin="0,0,1,0">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="下死点" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
             </Border>
             
             <Border Grid.Column="0" Grid.Row="1" Background="{DynamicResource ContentPanelNormalBackground}" Margin="1,1,1,1">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="位置(mm)" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
             </Border>
             <Border Grid.Column="0" Grid.Row="2" Background="{DynamicResource ContentPanelNormalBackground}" Margin="1,0,1,1">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="速度(%)" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
             </Border>
-            <Border Grid.Column="0" Grid.Row="3" Background="{DynamicResource ContentPanelNormalBackground}" Margin="1,0,1,1">
-                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="停止时间(s)" Foreground="{DynamicResource ContentPanelPrimerForeground}"/>
-            </Border>
-            
+
             <Button Grid.Column="2" Grid.Row="1"    Margin="0,1,1,1"
                                FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Pos_1}" Command="{Binding Pos_1SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[0]}"/>
@@ -266,37 +271,12 @@
                                FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.Speed_8}" Command="{Binding Speed_8SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[7]}"/>
 
-            <Button Grid.Column="2" Grid.Row="3"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.StopTime_1}" Command="{Binding StopTime_1SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[0]}"/>
-            <Button Grid.Column="3" Grid.Row="3"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.StopTime_2}" Command="{Binding StopTime_2SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[1]}"/>
-            <Button Grid.Column="4" Grid.Row="3"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.StopTime_3}" Command="{Binding StopTime_3SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[2]}"/>
-            <Button Grid.Column="5" Grid.Row="3"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.StopTime_4}" Command="{Binding StopTime_4SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[3]}"/>
-            <Button Grid.Column="6" Grid.Row="3"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.StopTime_5}" Command="{Binding StopTime_5SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[4]}"/>
-            <Button Grid.Column="7" Grid.Row="3"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.StopTime_6}" Command="{Binding StopTime_6SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[5]}"/>
-            <Button Grid.Column="8" Grid.Row="3"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.StopTime_7}" Command="{Binding StopTime_7SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[6]}"/>
-            <Button Grid.Column="9" Grid.Row="3"    Margin="0,0,1,1"
-                               FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.StopTime_8}" Command="{Binding StopTime_8SetCmd}" IsEnabled="{Binding ParaDieClosingProcInfoEnables[7]}"/>
-
             <Button Grid.Column="1" Grid.Row="1"    Margin="0,1,1,1"
                                FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
                                Content="{Binding ParaDieClosingProcInfo.TopDeadCentre}" Command="{Binding TopDeadCentreCmd}" />
-            <Button Grid.Column="1" Grid.Row="2"    Margin="0,0,1,1"
+            <Button Grid.Column="10" Grid.Row="2"    Margin="0,0,1,1"
                                FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"
-                               Content="{Binding ParaDieClosingProcInfo.Speed_TopDeadCentre}" Command="{Binding Speed_TopDeadCentreCmd}" />
+                               Content="{Binding ParaDieClosingProcInfo.Speed_BottomDeadCentre}" Command="{Binding Speed_BottomDeadCentreCmd}" />
             
             <Button Grid.Column="10" Grid.Row="1"    Margin="0,1,1,1"
                                FontSize="{DynamicResource TextPrimerSize}" Style="{StaticResource ParaListInputInBoxButton}"

@@ -6,7 +6,7 @@
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="608" d:DesignWidth="940"
+      d:DesignHeight="730" d:DesignWidth="1770"
       Title="ParaSubDieChangePage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -16,83 +16,87 @@
             <i:InvokeCommandAction Command="{Binding UnloadedCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+    <Page.Resources>
+        <Style x:Key="FontAwesome">
+            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
+        </Style>
+    </Page.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="4*"/>
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"  Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="速度"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="快行速度(%):"/>
                     <Button Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.RapidFeed}" Command="{Binding RapidFeedSetCmd}"/>
-                    <!--<TextBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160"
-                               Text="{Binding ParaDieChangeInfo.RapidFeed}"/>-->
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaDieChangeInfo.RapidFeed}" Tag="&#xf044;"
+                            Command="{Binding RapidFeedSetCmd}"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="寸动速度(%):"/>
                     <Button Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.JogFeed}" Command="{Binding JogFeedSetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaDieChangeInfo.JogFeed}" Tag="&#xf044;"
+                            Command="{Binding JogFeedSetCmd}"/>
                 </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Row="1"  Margin="2,0,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
-                                   Text="装模高度调节"/>
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}" Text="装模高度调节"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="装模高度设定值(mm):"/>
                     <Button Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.StrInstallDieHighSet}" Command="{Binding InstallDieHighSetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaDieChangeInfo.StrInstallDieHighSet}" Tag="&#xf044;"
+                            Command="{Binding InstallDieHighSetCmd}"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="装模高度当前值(mm):"/>
                     <TextBox Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" IsEnabled="False"
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" IsEnabled="False" FontFamily="Microsoft YaHei UI Light"
                                Text="{Binding ParaDieChangeInfo.StrInstallDieHighActual,Mode=OneWay}"/>
                 </Grid>
             </Border>
@@ -100,12 +104,12 @@
 
         <Grid Grid.Row="2"  Margin="2,0,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="平衡缸压力调节"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
@@ -116,58 +120,65 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="平衡缸压力设定值(MPa):"/>
                     <Button Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.StrCylinderpRressureSet}" Command="{Binding CylinderpRressureSetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaDieChangeInfo.StrCylinderpRressureSet}" Tag="&#xf044;"
+                            Command="{Binding CylinderpRressureSetCmd}"/>
                     <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="平衡缸压力当前值(MPa):"/>
                     <TextBox Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" IsEnabled="False"
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" IsEnabled="False" FontFamily="Microsoft YaHei UI Light"
                                Text="{Binding ParaDieChangeInfo.StrCylinderpRressureActual,Mode=OneWay}" />
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="上模重量(T):"/>
                     <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ParaDieChangeInfo.StrDieWeight}" Command="{Binding DieWeightSetCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaDieChangeInfo.StrDieWeight}" Tag="&#xf044;"
+                            Command="{Binding DieWeightSetCmd}"/>
 
                 </Grid>
             </Border>
         </Grid>
         <Grid Grid.Row="3" Margin="2,0,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="60"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="上行安全位置(机械手)"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="上行安全位置(mm):"/>
-                    <TextBox Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160"
-                               Text="??"/>
+                    <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding ParaDieChangeInfo.StrLoaderSafePosition}" Tag="&#xf044;"
+                            Command="{Binding LoaderSafePositionSetCmd}"/>
                 </Grid>
             </Border>
         </Grid>

@@ -7,7 +7,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="608" d:DesignWidth="940"
+       d:DesignHeight="730" d:DesignWidth="1770"
       Title="MessageSubAlarmPage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -25,18 +25,19 @@
     <Grid>
         <Grid>
             <DataGrid Margin="5" Grid.Column="0" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1" Background="Transparent"
-                      ItemsSource="{Binding _AlarmList}" FontSize="14" Foreground="{DynamicResource ContentPanelNormalBackground}">
+                      ItemsSource="{Binding _AlarmList}" Foreground="{DynamicResource ContentPanelNormalBackground}">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="Foreground" Value="Black"/>
-                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontSize" Value="{StaticResource TextPrimerSize}" />
+                        <Setter Property="Height" Value="60" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="报警类型"    Width="200"  ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Type,Converter={StaticResource _atsc}}"/>
-                    <DataGridTextColumn Header="报警号"  Width="200"   ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Alm_No}"/>
-                    <DataGridTextColumn Header="报警信息"  Width="500"   ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Alm_Msg}"/>
+                    <DataGridTextColumn Header="报警类型"    Width="400" ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Type,Converter={StaticResource _atsc}}"/>
+                    <DataGridTextColumn Header="报警号"  Width="400"  ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Alm_No}"/>
+                    <DataGridTextColumn Header="报警信息"  Width="900"  ElementStyle="{StaticResource AlarmDataGridTextCenter}" Binding="{Binding Alm_Msg}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

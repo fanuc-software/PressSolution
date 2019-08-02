@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
-      d:DesignHeight="608" d:DesignWidth="940"
+      d:DesignHeight="730" d:DesignWidth="1770"
       Title="ParaSubWorkCountPage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -16,6 +16,12 @@
             <i:InvokeCommandAction Command="{Binding UnloadedCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+
+    <Page.Resources>
+        <Style x:Key="FontAwesome">
+            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -28,88 +34,88 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="0" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="当日计数器"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="400"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="当日次数:" />
                     <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" IsEnabled="False"
-                               Text="{Binding ParaWorkCountInfo.DayPiece}" />
-                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource btn-warning}" 
-                            Content="清空"  FontSize="{DynamicResource TextSmallSize}" Command="{Binding ClearDayPieceCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" IsEnabled="False"
+                               Text="{Binding ParaWorkCountInfo.DayPiece}" Tag="&#xf044;"/>
+                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource btn-warning}"  Width="100" Height="60"
+                            Content="清空"  FontSize="{DynamicResource TextPrimerSize}" Command="{Binding ClearDayPieceCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="当前生产次数" />
                     <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" IsEnabled="False"
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" IsEnabled="False"
                                Text="{Binding ParaWorkCountInfo.DayWork}" />
-                    <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btn-warning}" 
-                            Content="清空"  FontSize="{DynamicResource TextSmallSize}"  Command="{Binding ClearDayWorkCmd}"/>
+                    <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btn-warning}" Width="100" Height="60"
+                            Content="清空"  FontSize="{DynamicResource TextPrimerSize}"  Command="{Binding ClearDayWorkCmd}"/>
                 </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="预置计数器"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="400"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="当前次数:" />
                     <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" IsEnabled="False"
-                               Text="{Binding ParaWorkCountInfo.WPP_CurPiece}" />
-                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource btn-warning}" 
-                            Content="清空"  FontSize="{DynamicResource TextSmallSize}"  Command="{Binding ClearCurPieceCmd}"/>
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" IsEnabled="False"
+                               Text="{Binding ParaWorkCountInfo.WPP_CurPiece}" Tag="&#xf044;"/>
+                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource btn-warning}" Width="100" Height="60"
+                            Content="清空"  FontSize="{DynamicResource TextPrimerSize}"  Command="{Binding ClearCurPieceCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="设定次数:" />
                     <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160"
-                               Text="{Binding ParaWorkCountInfo.SetPiece}" />
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60"
+                               Text="{Binding ParaWorkCountInfo.SetPiece}" Tag="&#xf044;"/>
 
                 </Grid>
             </Border>
@@ -117,85 +123,85 @@
 
         <Grid Grid.Row="1" Grid.Column="0" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="工件计数器"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="400"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="当前次数:" />
                     <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" IsEnabled="False"
-                               Text="{Binding ParaWorkCountInfo.CurPiece2}" />
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60"  IsEnabled="False"
+                               Text="{Binding ParaWorkCountInfo.CurPiece2}" Tag="&#xf044;"/>
 
-                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource btn-warning}" 
-                            Content="清空"  FontSize="{DynamicResource TextSmallSize}"  Command="{Binding ClearCurPiece2Cmd}"/>
+                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource btn-warning}" Width="100" Height="60"
+                            Content="清空"  FontSize="{DynamicResource TextPrimerSize}"  Command="{Binding ClearCurPiece2Cmd}"/>
                 </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Row="1" Grid.Column="1" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="总计数器"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
-                        <RowDefinition Height="50"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="180"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="400"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="总次数:" />
                     <TextBox Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" IsEnabled="False"
-                               Text="{Binding ParaWorkCountInfo.TotalPiece}" />
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60"  IsEnabled="False"
+                               Text="{Binding ParaWorkCountInfo.TotalPiece}" Tag="&#xf044;"/>
 
-                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource btn-warning}" 
-                            Content="清空"  FontSize="{DynamicResource TextSmallSize}"  Command="{Binding ClearTotalPieceCmd}"/>
+                    <Button Grid.Column="2" Grid.Row="0" Style="{StaticResource btn-warning}" Width="100" Height="60"
+                            Content="清空"  FontSize="{DynamicResource TextPrimerSize}"  Command="{Binding ClearTotalPieceCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="总生产次数:" />
                     <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" IsEnabled="False"
-                               Text="{Binding ParaWorkCountInfo.TotalWork}" />
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60"  IsEnabled="False"
+                               Text="{Binding ParaWorkCountInfo.TotalWork}" Tag="&#xf044;"/>
 
-                    <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btn-warning}" 
-                            Content="清空"  FontSize="{DynamicResource TextSmallSize}"  Command="{Binding ClearToalWorkCmd}"/>
+                    <Button Grid.Column="2" Grid.Row="1" Style="{StaticResource btn-warning}" Width="100" Height="60"
+                            Content="清空"  FontSize="{DynamicResource TextPrimerSize}"  Command="{Binding ClearToalWorkCmd}"/>
                 </Grid>
             </Border>
         </Grid>

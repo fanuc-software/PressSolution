@@ -144,8 +144,8 @@ namespace PressHmi.Model
             }
         }
 
-        private int m_LoaderSafePosition;
-        public int LoaderSafePosition
+        private double m_LoaderSafePosition;
+        public double LoaderSafePosition
         {
             get { return m_LoaderSafePosition; }
             set
@@ -155,6 +155,14 @@ namespace PressHmi.Model
                     m_LoaderSafePosition = value;
                     RaisePropertyChanged(() => LoaderSafePosition);
                 }
+            }
+        }
+
+        public string StrLoaderSafePosition
+        {
+            get
+            {
+                return LoaderSafePosition.ToString("0.0");
             }
         }
     }
