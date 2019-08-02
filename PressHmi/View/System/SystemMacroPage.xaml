@@ -11,17 +11,22 @@
 
     <Grid Margin="2,2,2,2">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="变量配置"/>
         </Border>
         <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
-            <ScrollViewer>
+            <Grid>
+                <Grid.ColumnDefinitions>
+
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
                 <ItemsControl ItemsSource="{Binding MacroNodes}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -31,15 +36,17 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
 
-                            <Grid Width="400" Margin="10,10,0,0">
-
+                            <Grid Width="600" Margin="10,10,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200"/>
-                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="{DynamicResource TextSmallSize}" Text="{Binding Title}" />
                                 <Button Grid.Column="1"  HorizontalAlignment="Center" VerticalAlignment="Center"   
-                               FontSize="{DynamicResource TextPrimerSize}" Width="180" Margin="10,0,0,0" Height="30" Style="{StaticResource ParaInputNormalButton}"
+                               FontSize="{DynamicResource TextPrimerSize}" Width="280" Margin="10,0,0,0" Height="40" Style="{StaticResource ParaInputNormalButton}"
                                Content="{Binding Address}" Command="{Binding ShowDialogCommand}" />
 
 
@@ -50,8 +57,9 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+                <Button Grid.Column="1" Style="{StaticResource btn-primary}" Command="{Binding SaveCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0" FontSize="{StaticResource TextPrimerSize}" Height="80" Width="250" Grid.Row="1" Content="保存" />
 
-            </ScrollViewer>
+            </Grid>
           
         </Border>
     </Grid>

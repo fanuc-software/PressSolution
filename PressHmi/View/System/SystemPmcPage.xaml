@@ -9,70 +9,112 @@
       Title="SystemPmcPage">
     <Grid Margin="2,2,2,2">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="PMC配置"/>
         </Border>
+        
         <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
-            <ScrollViewer>
-                <ItemsControl ItemsSource="{Binding PmcNodes}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
 
-                            <Grid Margin="10,10,0,0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="300" />
+                </Grid.ColumnDefinitions>
+                <DataGrid AlternationCount="2" Style="{x:Null}"  AutoGenerateColumns="False"  IsReadOnly="False"  ItemsSource="{Binding PmcNodes}" CanUserAddRows="False" ColumnWidth="*" FontSize="20" >
+                    <DataGrid.RowStyle>
+                        <Style TargetType="{x:Type DataGridRow}">
+                            <Setter Property="Height" Value="50" />
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="200*"/>
-                                    <ColumnDefinition Width="50*"/>
-                                    <ColumnDefinition Width="50*"/>
-
-                                    <ColumnDefinition Width="100*"/>
-                                    <ColumnDefinition Width="120*"/>
-                                    <ColumnDefinition Width="100*"/>
-
-                                    <ColumnDefinition Width="80*"/>
-                                    <ColumnDefinition Width="100*"/>
+                        </Style>
 
 
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="{DynamicResource TextSmallSize}" Text="{Binding Title}" />
-                                <TextBlock Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="{DynamicResource TextSmallSize}" Foreground="Red" Text="{Binding DataType}" />
+                    </DataGrid.RowStyle>
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridRowHeader">
+                            <Setter Property="FontSize" Value="22" />
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
 
-                                <TextBlock Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="{DynamicResource TextSmallSize}" Foreground="Green" Text="Adr:" />
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Height" Value="60" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="FontSize" Value="{StaticResource TextPrimerSize}" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn Header="标题" >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Title}"  VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="数据类型" Width="200">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding DataType}"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Adr" Width="260">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Adr}" Width="200" IsReadOnly="True"  HorizontalAlignment="Center">
+                                        <TextBox.InputBindings>
+                                            <MouseBinding Gesture="LeftClick" Command="{Binding ShowDialogCommand}" CommandParameter="Adr"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
 
-                                <Button Grid.Column="3"  HorizontalAlignment="Center" VerticalAlignment="Center"   
-                               FontSize="{DynamicResource TextPrimerSize}" Width="80" Margin="10,0,0,0" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding Adr}" Command="{Binding ShowDialogCommand}" CommandParameter="Adr"/>
-
-                                <TextBlock Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="{DynamicResource TextSmallSize}" Foreground="Green" Text="ConversionFactor:" />
-                                <Button Grid.Column="5"  HorizontalAlignment="Center" VerticalAlignment="Center"   
-                               FontSize="{DynamicResource TextPrimerSize}" Width="80" Margin="10,0,0,0" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding ConversionFactor}" Command="{Binding ShowDialogCommand}" CommandParameter="ConversionFactor"/>
-
-                                <TextBlock Visibility="{Binding BitVisibility}" Grid.Column="6" HorizontalAlignment="Right" VerticalAlignment="Center"  FontSize="{DynamicResource TextSmallSize}" Foreground="Green" Text="Bit:" />
-                                <Button Visibility="{Binding BitVisibility}" Grid.Column="7"  HorizontalAlignment="Center" VerticalAlignment="Center"   
-                               FontSize="{DynamicResource TextPrimerSize}" Width="80" Margin="10,0,0,0" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding Bit}" Command="{Binding ShowDialogCommand}" CommandParameter="Bit"/>
 
 
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="ConversionFactor" Width="270">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding ConversionFactor}" Width="200" IsReadOnly="True"  HorizontalAlignment="Center">
+                                        <TextBox.InputBindings>
+                                            <MouseBinding Gesture="LeftClick" Command="{Binding ShowDialogCommand}" CommandParameter="ConversionFactor"/>
+                                        </TextBox.InputBindings>
+                                    </TextBox>
 
 
-                            </Grid>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Bit" Width="260">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel  Visibility="{Binding BitVisibility}" VerticalAlignment="Center">
+                                        <TextBox Text="{Binding Bit}"  Width="200" IsReadOnly="True"  HorizontalAlignment="Center">
+                                            <TextBox.InputBindings>
+                                                <MouseBinding Gesture="LeftClick" Command="{Binding ShowDialogCommand}" CommandParameter="Bit"/>
+                                            </TextBox.InputBindings>
+                                        </TextBox>
+                                    </StackPanel>
 
-            </ScrollViewer>
+
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Grid.Column="1" Style="{StaticResource btn-primary}" Command="{Binding SaveCommand}" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,20,20,0" FontSize="{StaticResource TextPrimerSize}" Height="80" Width="250" Grid.Row="1" Content="保存" />
+
+            </Grid>
+
+
 
         </Border>
     </Grid>

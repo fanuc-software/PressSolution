@@ -12,6 +12,8 @@ using FanucCnc;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations;
 using FanucCnc.Model;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace PressHmi.ViewModel
 {
@@ -26,7 +28,38 @@ namespace PressHmi.ViewModel
             PmcNodes = new List<SystemPmcItemViewModel>();
             LoadData();
         }
+        public ICommand SaveCommand
+        {
+            get { return new GalaSoft.MvvmLight.Command.RelayCommand(SaveConfig); }
+        }
+        private void SaveConfig()
+        {
+            var type = fanuc.CurPmcBom.GetType();
+            foreach (PropertyInfo item in type.GetProperties())
+            {
+                var limit = item.GetValue(fanuc.CurPmcBom) as PmcBomItem;
+                if (limit == null)
+                {
+                    limit = new PmcBomItem();
+                    item.SetValue(fanuc.CurPmcBom, limit);
+                }
+                var prop = PmcNodes.FirstOrDefault(d => d.PropertyName == item.Name);
+                if (prop != null)
+                {
+                    limit.Adr = prop.Adr;
+                    limit.ConversionFactor = prop.ConversionFactor;
+                    limit.Bit = prop.Bit;
+                }
 
+
+            }
+            var jsonLimitBom = JsonConvert.SerializeObject(fanuc.CurPmcBom, Formatting.Indented);
+            using (StreamWriter sw = new StreamWriter(@"pmcbom.cfg", false))
+            {
+                sw.Write(jsonLimitBom);
+            }
+
+        }
         private void LoadData()
         {
             var type = fanuc.CurPmcBom.GetType();
@@ -43,6 +76,7 @@ namespace PressHmi.ViewModel
                     }
                     var node = new SystemPmcItemViewModel()
                     {
+                        PropertyName = item.Name,
                         Title = attributes.Name,
                         Adr = limit.Adr,
                         Bit = limit.Bit,
@@ -67,6 +101,7 @@ namespace PressHmi.ViewModel
 
     public class SystemPmcItemViewModel : ViewModelBase
     {
+        public string PropertyName { get; set; }
         public string Title { get; set; }
 
         public PmcDataTypeEnum DataType { get; set; }

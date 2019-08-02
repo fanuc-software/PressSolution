@@ -10,6 +10,8 @@ using FanucCnc;
 using System.Reflection;
 using System.ComponentModel.DataAnnotations;
 using FanucCnc.Model;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace PressHmi.ViewModel
 {
@@ -25,7 +27,36 @@ namespace PressHmi.ViewModel
             this.fanuc = fanuc;
             this.LoadData();
         }
+        public ICommand SaveCommand
+        {
+            get { return new GalaSoft.MvvmLight.Command.RelayCommand(SaveConfig); }
+        }
+        private void SaveConfig()
+        {
+            var type = fanuc.CurMacroBom.GetType();
+            foreach (PropertyInfo item in type.GetProperties())
+            {
+                var limit = item.GetValue(fanuc.CurMacroBom) as MacroBomItem;
+                if (limit == null)
+                {
+                    limit = new MacroBomItem();
+                    item.SetValue(fanuc.CurMacroBom, limit);
+                }
+                var prop = MacroNodes.FirstOrDefault(d => d.PropertyName == item.Name);
+                if (prop != null)
+                {
+                    limit.Adr = prop.Address;
+                }
 
+
+            }
+            var jsonLimitBom = JsonConvert.SerializeObject(fanuc.CurMacroBom, Formatting.Indented);
+            using (StreamWriter sw = new StreamWriter(@"macrobom.cfg", false))
+            {
+                sw.Write(jsonLimitBom);
+            }
+
+        }
         private void LoadData()
         {
             var type = fanuc.CurMacroBom.GetType();
@@ -42,6 +73,7 @@ namespace PressHmi.ViewModel
                     }
                     var node = new SystemMacroItemViewModel()
                     {
+                        PropertyName = item.Name,
                         Title = attributes.Name,
                         Address = limit?.Adr ?? 0
                     };
@@ -61,6 +93,7 @@ namespace PressHmi.ViewModel
     public class SystemMacroItemViewModel : ViewModelBase
     {
 
+        public string PropertyName { get; set; }
         public string Title { get; set; }
 
         private short address;

@@ -11,6 +11,7 @@ namespace PressHmi.Model
 {
     public class MaintainSubLimitDto : ViewModelBase
     {
+        public string PropertyName { get; set; }
         private string title;
 
         public string Title
