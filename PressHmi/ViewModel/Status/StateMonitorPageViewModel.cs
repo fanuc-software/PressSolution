@@ -46,6 +46,62 @@ namespace PressHmi.ViewModel
             }
         }
 
+        private bool m_Series1Visible;
+        public bool Series1Visible
+        {
+            get { return m_Series1Visible; }
+            set
+            {
+                if (m_Series1Visible != value)
+                {
+                    m_Series1Visible = value;
+                    RaisePropertyChanged(() => Series1Visible);
+                }
+            }
+        }
+
+        private bool m_Series2Visible;
+        public bool Series2Visible
+        {
+            get { return m_Series2Visible; }
+            set
+            {
+                if (m_Series2Visible != value)
+                {
+                    m_Series2Visible = value;
+                    RaisePropertyChanged(() => Series2Visible);
+                }
+            }
+        }
+
+        private bool m_Series3Visible;
+        public bool Series3Visible
+        {
+            get { return m_Series3Visible; }
+            set
+            {
+                if (m_Series3Visible != value)
+                {
+                    m_Series3Visible = value;
+                    RaisePropertyChanged(() => Series3Visible);
+                }
+            }
+        }
+
+        private bool m_Series4Visible;
+        public bool Series4Visible
+        {
+            get { return m_Series4Visible; }
+            set
+            {
+                if (m_Series4Visible != value)
+                {
+                    m_Series4Visible = value;
+                    RaisePropertyChanged(() => Series4Visible);
+                }
+            }
+        }
+
         public StateMonitorPageViewModel(IMapper mapper, Fanuc fanuc)
         {
             _fanuc = fanuc;

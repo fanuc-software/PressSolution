@@ -6,7 +6,7 @@
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
       xmlns:local="clr-namespace:PressHmi.View"
       mc:Ignorable="d" 
-      d:DesignHeight="608" d:DesignWidth="940"
+      d:DesignHeight="730" d:DesignWidth="1770"
       Title="SParaSubMachinePage">
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -16,6 +16,12 @@
             <i:InvokeCommandAction Command="{Binding UnloadedCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
+
+    <Page.Resources>
+        <Style x:Key="FontAwesome">
+            <Setter Property="TextElement.FontFamily" Value="pack://application:,,,/PressHmi;component/View/FontAwesome/#FontAwesome" />
+        </Style>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -27,125 +33,125 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Row="0" Grid.Column="0" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="压机设定"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="最大吨位:" />
-                    <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.MaxWeight}" Command="{Binding MaxWeightSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60"  Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.MaxWeight}" Tag="&#xf044;"  Command="{Binding MaxWeightSetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="最大温度:" />
-                    <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.MaxTemperature}" Command="{Binding MaxTemperatureSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60"  Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.MaxTemperature}" Tag="&#xf044;"  Command="{Binding MaxTemperatureSetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="允许误差设定:" />
-                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.MaxError}" Command="{Binding MaxErrorSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.MaxError}" Tag="&#xf044;"  Command="{Binding MaxErrorSetCmd}"/>
                 </Grid>
             </Border>
         </Grid>
 
         <Grid Grid.Row="0" Grid.Column="1" Margin="2,2,2,2">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" BorderThickness="1,1,1,1" Margin="1,1,1,0"
                         BorderBrush="{DynamicResource HmiBorder}" Background="{DynamicResource ContentPanelNormalBackground}">
-                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextSmallSize}"
+                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,0,0" FontSize="{DynamicResource TextPrimerSize}"
                                    Text="平衡缸参数设置"/>
             </Border>
             <Border Grid.Row="1" BorderThickness="1,0,1,1" Margin="1,0,1,1"
                         BorderBrush="{DynamicResource HmiBorder}">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
-                        <RowDefinition Height="45"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
+                        <RowDefinition Height="78"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="160"/>
-                        <ColumnDefinition Width="240"/>
+                        <ColumnDefinition Width="380"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="0"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="压力传感器转换值:" />
-                    <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.PressureSensorPara}" Command="{Binding PressureSensorParaSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.PressureSensorPara}" Tag="&#xf044;"  Command="{Binding PressureSensorParaSetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="平衡缸模拟量值:" />
-                    <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.BalanceCylinderAnalog}" Command="{Binding BalanceCylinderAnalogSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.BalanceCylinderAnalog}" Tag="&#xf044;"  Command="{Binding BalanceCylinderAnalogSetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="平衡缸压力:" />
-                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.BalanceCylinderPressure}" Command="{Binding BalanceCylinderPressureSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.BalanceCylinderPressure}" Tag="&#xf044;"  Command="{Binding BalanceCylinderPressureSetCmd}"/>
                     <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="溢流延时:" />
-                    <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.OverflowDelay}" Command="{Binding OverflowDelaySetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.OverflowDelay}" Tag="&#xf044;"  Command="{Binding OverflowDelaySetCmd}"/>
                     
                     <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="压力差调节:" />
-                    <Button Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.PressureDiffPara}" Command="{Binding PressureDiffParaSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.PressureDiffPara}" Tag="&#xf044;"  Command="{Binding PressureDiffParaSetCmd}"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="低压报警:" />
-                    <Button Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.PressureLowAlarm}" Command="{Binding PressureLowAlarmSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.PressureLowAlarm}" Tag="&#xf044;"  Command="{Binding PressureLowAlarmSetCmd}"/>
 
                     <TextBlock Grid.Column="0" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Center"  Margin="0,0,10,0" 
-                               FontSize="{DynamicResource TextSmallSize}"
+                               FontSize="{DynamicResource TextPrimerSize}"
                                Text="润滑检测:" />
-                    <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10,0,10,0" 
-                               FontSize="{DynamicResource TextPrimerSize}" Width="160" Height="30" Style="{StaticResource ParaInputNormalButton}"
-                               Content="{Binding SParaMachineInfo.LubricateDetect}" Command="{Binding LubricateDetectSetCmd}"/>
+                    <Button Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="10,0,10,0" 
+                               FontSize="{DynamicResource TextPrimerSize}" Width="300" Height="60" Style="{StaticResource ParaInputNormalButton}"
+                               Content="{Binding SParaMachineInfo.LubricateDetect}" Tag="&#xf044;"  Command="{Binding LubricateDetectSetCmd}"/>
 
                 </Grid>
             </Border>

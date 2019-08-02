@@ -75,6 +75,7 @@
     <Compile Include="Model\ParaDieChangeInfo.cs" />
     <Compile Include="Model\ParaDieClampInfo.cs" />
     <Compile Include="Model\ParaDieClosingInfo.cs" />
+    <Compile Include="Model\ParaDieHydrInfo.cs" />
     <Compile Include="Model\ParaDiePartingProcInfo.cs" />
     <Compile Include="Model\ParaDieClosingProcInfo.cs" />
     <Compile Include="Model\ParaDiePartingInfo.cs" />

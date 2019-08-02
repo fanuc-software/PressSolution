@@ -8,6 +8,8 @@ namespace FanucCnc.Model
 {
     public class ParaDieClosingInfo
     {
+
+        public bool LineChartFlag { get; set; }
         public double SectionNum { get; set; }
 
         //public double PreDelayTime { get; set; }

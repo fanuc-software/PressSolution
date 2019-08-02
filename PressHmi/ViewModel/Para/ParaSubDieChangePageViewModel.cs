@@ -31,6 +31,8 @@ namespace PressHmi.ViewModel
         public ICommand CylinderpRressureSetCmd { get; set; }
         public ICommand DieWeightSetCmd { get; set; }
 
+        public ICommand LoaderSafePositionSetCmd { get; set; }
+
         private ParaDieChangeInfoDto m_ParaDieChangeInfo = new ParaDieChangeInfoDto();
         public ParaDieChangeInfoDto ParaDieChangeInfo
         {
@@ -60,6 +62,7 @@ namespace PressHmi.ViewModel
             InstallDieHighSetCmd = new RelayCommand(OnInstallDieHighSet);
             CylinderpRressureSetCmd = new RelayCommand(OnCylinderpRressureSet);
             DieWeightSetCmd = new RelayCommand(OnDieWeightSet);
+            LoaderSafePositionSetCmd = new RelayCommand(OnLoaderSafePositionSet);
 
 
             Messenger.Default.Register<ParaDieChangeInfo>(this, "ParaDieChangeInfoMsg", msg =>
@@ -107,6 +110,12 @@ namespace PressHmi.ViewModel
         private void OnDieWeightSet()
         {
             var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DCP_DieWeight, _fanuc.CurLimitBom.DCP_DieWeight, "输入上模重量(T)");
+            dlg.ShowDialog();
+        }
+
+        private void OnLoaderSafePositionSet()
+        {
+            var dlg = new DataInputDialog(_fanuc, _fanuc.CurPmcBom.DCP_LoaderSafePosition, _fanuc.CurLimitBom.DCP_LoaderSafePosition, "输入上行安全位置(mm)");
             dlg.ShowDialog();
         }
 
